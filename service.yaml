@@ -1,0 +1,80 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ataskaitos-api
+  annotations:
+    run.googleapis.com/ingress: all
+    run.googleapis.com/launch-stage: BETA
+spec:
+  template:
+    metadata:
+      annotations:
+        # Auto-scaling configuration
+        autoscaling.knative.dev/minScale: '0'
+        autoscaling.knative.dev/maxScale: '10'
+        # CPU throttling (can be disabled for CPU-intensive workloads)
+        run.googleapis.com/cpu-throttling: 'true'
+        # Startup CPU boost
+        run.googleapis.com/startup-cpu-boost: 'true'
+    spec:
+      # Service account for Cloud Run
+      serviceAccountName: cloud-run-service-account
+      # Container configuration
+      containers:
+      - image: REGION-docker.pkg.dev/PROJECT_ID/ataskaitos/ataskaitos-api:latest
+        ports:
+        - containerPort: 8080
+          name: http1
+        env:
+        # Environment mode (development/production)
+        - name: ENV
+          value: "production"
+        # API key for authentication (set via Secret Manager)
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ataskaitos-api-key
+              key: latest
+        # OpenAI API Key (set via Secret Manager)
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-api-key
+              key: latest
+        # Google API Key (set via Secret Manager)
+        - name: GOOGLE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: google-api-key
+              key: latest
+        # Anthropic API Key (set via Secret Manager)
+        - name: ANTHROPIC_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: anthropic-api-key
+              key: latest
+        # Resource limits
+        resources:
+          limits:
+            cpu: '2'
+            memory: 2Gi
+        # Startup probe for slow-starting containers
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 0
+          timeoutSeconds: 10
+          periodSeconds: 10
+          failureThreshold: 3
+        # Liveness probe
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+          periodSeconds: 30
+          failureThreshold: 3
+      # Request timeout (max: 3600s for Cloud Run)
+      timeoutSeconds: 300
