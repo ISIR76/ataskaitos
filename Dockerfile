@@ -20,6 +20,7 @@ COPY README.md ./
 
 # Copy source code
 COPY ataskaitos ./ataskaitos
+COPY prompts ./prompts
 COPY main.py ./
 
 # Install dependencies using uv

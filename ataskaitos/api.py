@@ -215,6 +215,7 @@ async def evaluate_with_scoring(
 
     try:
         # Create a temporary dataset with this document
+        # Pass the LLMJudge evaluators directly (Dataset accepts Evaluator instances)
         temp_dataset = Dataset(
             cases=[],
             evaluators=evaluators,  # Use evaluators from evals.py
@@ -230,8 +231,8 @@ async def evaluate_with_scoring(
             },
         )
 
-        # Run comprehensive evaluation
-        eval_results = temp_dataset.evaluate_sync(do)
+        # Run comprehensive evaluation (use async version)
+        eval_results = await temp_dataset.evaluate(do)
 
         # Convert results to JSON-serializable format
         results_data = convert_results(eval_results)
@@ -277,7 +278,8 @@ async def list_evaluators(
             else:
                 continue  # Skip if no score config
 
-        evaluators_info.append(spec)
+        # Convert EvaluatorSpec to dict for JSON serialization
+        evaluators_info.append(spec.model_dump() if hasattr(spec, 'model_dump') else dict(spec))
 
     return EvaluatorsListResponse(
         total_evaluators=len(evaluators_info),
