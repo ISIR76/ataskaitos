@@ -1,76 +1,82 @@
-from email.mime import base
+from pydantic import BaseModel, Field
 from pydantic_ai import Agent, ModelSettings
-from pydantic_ai.models import Model
-from pydantic_ai.models.anthropic import AnthropicModel
-from pydantic_ai.models.google import GoogleModel
-from pydantic_ai.models.openai import OpenAIResponsesModel
-from pydantic_ai.toolsets import combined
-from ataskaitos.schemas import FrascatiEvaluation
+from pydantic_ai.models.openai import OpenAIModel
+
+# Simple MVP structured output for report evaluation
+class SimpleReportEvaluation(BaseModel):
+    """Simple structured evaluation result for R&D reports."""
+
+    overall_score: float = Field(
+        ge=0.0, le=1.0,
+        description="Overall R&D qualification score (0.0-1.0)"
+    )
+    qualifies_as_rd: bool = Field(
+        description="Does this qualify as R&D per Frascati Manual?"
+    )
+    novelty_score: float = Field(
+        ge=0.0, le=1.0,
+        description="Novelty/innovation level (0.0-1.0)"
+    )
+    systematic_score: float = Field(
+        ge=0.0, le=1.0,
+        description="Systematic planning and organization (0.0-1.0)"
+    )
+    uncertainty_score: float = Field(
+        ge=0.0, le=1.0,
+        description="Scientific/technical uncertainty (0.0-1.0)"
+    )
+    summary: str = Field(
+        description="Brief summary of the evaluation (2-3 sentences)"
+    )
+    strengths: list[str] = Field(
+        description="2-3 key strengths of the R&D activity"
+    )
+    weaknesses: list[str] = Field(
+        description="2-3 areas for improvement"
+    )
+
 
 settings = ModelSettings(temperature=0)
 
 base_instructions = """
-You are a Frascati Manual expert evaluator. Analyze activities against 
-all R&D criteria and return structured evaluation data.
+You are a Frascati Manual expert evaluator. Analyze R&D activities and provide structured evaluations.
 
-Score each component carefully:
-- Core criteria: 0.1 each (0.5 total)
-- R&D content: 0.15 max
-- Innovation vs R&D: 0.1 max
-- Personnel: 0.075 max
-- Documentation: 0.075 max
-- Exclusions: subtract penalties
+Focus on these core Frascati criteria:
+1. NOVELTY: Does it create new knowledge beyond current state-of-the-art?
+2. SYSTEMATIC: Is it formally planned with defined objectives and methodology?
+3. UNCERTAINTY: Are outcomes genuinely unpredictable due to scientific/technical unknowns?
 
-Be precise with evidence and rationale.
+Score each criterion 0.0-1.0:
+- 0.8-1.0: Excellent, clearly meets criteria
+- 0.6-0.7: Good, meets most requirements
+- 0.4-0.5: Acceptable, some gaps
+- 0.2-0.3: Weak, significant issues
+- 0.0-0.1: Does not meet criteria
+
+Overall qualification:
+- qualifies_as_rd = True if overall_score >= 0.6
+- qualifies_as_rd = False if overall_score < 0.6
+
+Provide actionable, evidence-based feedback.
 """
-
-with open(
-    "./prompts/ekspertai/ekspertas-komercializacijos.md", "r", encoding="utf-8"
-) as f:
-    commercialization_instructions = f.read()
-
-with open("./prompts/uzduotys/greitas-perziura.md", "r", encoding="utf-8") as f:
-    quick_review_instructions = f.read()
-
-combined_instructions = (
-    base_instructions
-    + "\n"
-    + commercialization_instructions
-    + "\n"
-    + quick_review_instructions
-)
 
 
 class AgentFactory:
     @staticmethod
-    def create_frascati_agent(
-        model: Model, instructions: str
-    ) -> Agent[None, FrascatiEvaluation]:
+    def create_simple_report_agent(
+        model_name: str = "gpt-4o"
+    ) -> Agent[None, SimpleReportEvaluation]:
+        """Create a simple agent for R&D report evaluation."""
+        model = OpenAIModel(model_name, settings=settings)
         return Agent(
             model=model,
-            output_type=FrascatiEvaluation,
-            instructions=instructions,
-        )
-
-    @staticmethod
-    def create_generic_agent(model: Model, instructions: str) -> Agent[None, str]:
-        return Agent(
-            model=model,
-            output_type=str,
-            instructions=instructions,
+            output_type=SimpleReportEvaluation,
+            system_prompt=base_instructions,
         )
 
 
-models = [
-    OpenAIResponsesModel("gpt-5", settings=settings),
-    # AnthropicModel("claude-sonnet-4-5-20250929", settings=settings),
-    # GoogleModel("gemini-pro-20240925", settings=settings),
-]
-
-agents = [
-    AgentFactory.create_generic_agent(model, combined_instructions) for model in models
-]
-agent = agents[0]
+# Create default agent instance
+agent = AgentFactory.create_simple_report_agent()
 
 if __name__ == "__main__":
     with open(
