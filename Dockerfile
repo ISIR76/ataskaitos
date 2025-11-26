@@ -4,9 +4,14 @@ FROM python:3.13-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies for document processing
+# Install system dependencies for document processing and Node.js
 RUN apt-get update && apt-get install -y \
     curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 20 LTS
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv for fast package management
@@ -25,6 +30,18 @@ COPY main.py ./
 
 # Install dependencies using uv
 RUN uv sync --frozen
+
+# Copy frontend files
+COPY frontend/package.json frontend/package-lock.json ./frontend/
+WORKDIR /app/frontend
+RUN npm ci
+
+# Copy frontend source and build
+COPY frontend/ ./
+RUN npm run build
+
+# Return to app directory
+WORKDIR /app
 
 # Expose port for Cloud Run
 EXPOSE 8080

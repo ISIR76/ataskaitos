@@ -66,3 +66,15 @@ deploy*.sh
 
 # Claude config
 CLAUDE.md
+
+# Frontend build artifacts (will be built in container)
+frontend/node_modules/
+frontend/dist/
+frontend/.turbo/
+frontend/.next/
+frontend/.cache/
+
+# Frontend environment files
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local

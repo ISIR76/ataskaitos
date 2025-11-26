@@ -1,0 +1,111 @@
+[
+  {
+    "name": "scientific_apparatus_score",
+    "rubric": "Evaluate the presence and quality of scientific apparatus per SMSM regulation (§4.16).\n\nA scientific article MUST have field-appropriate scientific apparatus. Award points:\n\n1. REFERENCES/BIBLIOGRAPHY (0.25 max):\n   - Comprehensive reference list (>20 sources): 0.25\n   - Adequate references (10-20 sources): 0.20\n   - Minimal references (5-9 sources): 0.15\n   - Few references (<5 sources): 0.10\n   - No references visible: 0.0\n\n2. METHODOLOGY/APPROACH (0.25 max):\n   - Detailed methodology section with clear procedures: 0.25\n   - Methodology described but not comprehensive: 0.20\n   - Basic approach mentioned: 0.15\n   - Vague methodology: 0.10\n   - No methodology: 0.0\n\n3. TECHNICAL CONTENT (0.25 max):\n   - Formulas/algorithms/diagrams/technical illustrations present: 0.25\n   - Some technical elements: 0.15\n   - Minimal technical content: 0.05\n   - No formulas/diagrams: 0.0\n\n4. DATA/RESULTS (0.25 max):\n   - Statistical tables, experimental data, clear results: 0.25\n   - Some data/results presented: 0.15\n   - Minimal data: 0.05\n   - No data shown: 0.0\n\nTotal score 1.0 if all elements fully present.\nMINIMUM 0.50 required to qualify as scientific article.\n\nProvide specific evidence from the text for each element."
+  },
+  {
+    "name": "structure_organization_score",
+    "rubric": "Assess the structure and organization quality of the publication.\n\nAward points for structural elements:\n\n1. ABSTRACT/SUMMARY (0.20 max):\n   - Clear abstract summarizing objectives, methods, results: 0.20\n   - Basic abstract present: 0.15\n   - Minimal or unclear abstract: 0.10\n   - No abstract: 0.0\n\n2. LOGICAL ORGANIZATION (0.30 max):\n   - Well-structured sections (Intro, Methods, Results, Discussion/Conclusion): 0.30\n   - Most sections present: 0.25\n   - Basic structure: 0.15\n   - Poor organization: 0.05\n\n3. INTRODUCTION/BACKGROUND (0.25 max):\n   - Comprehensive literature review, clear research gap, objectives: 0.25\n   - Adequate background and objectives: 0.20\n   - Basic introduction: 0.15\n   - Minimal context: 0.10\n\n4. CONCLUSIONS/DISCUSSION (0.25 max):\n   - Clear conclusions relating findings to objectives: 0.25\n   - Adequate conclusions: 0.20\n   - Basic conclusions: 0.15\n   - Weak or missing conclusions: 0.05\n\nTotal score 1.0 if excellently structured.\n\nCite specific evidence of structural elements."
+  },
+  {
+    "name": "novelty_contribution_score",
+    "rubric": "Assess scientific novelty and contribution per SMSM requirements (§4.15, §4.16).\n\nScientific work must advance knowledge. Evaluate what is NEW:\n\n1. NOVELTY LEVEL (0.40 max):\n   - Groundbreaking new method/theory/discovery: 0.40\n   - Significant advancement beyond existing work: 0.35\n   - Notable contribution with clear new elements: 0.30\n   - Incremental improvement or new application: 0.25\n   - Adaptation of existing methods: 0.20\n   - Mostly synthesis/review of existing work: 0.15\n   - No discernible novelty: 0.0\n\n2. RESEARCH GAP ADDRESSED (0.30 max):\n   - Clearly identifies and fills specific gap in literature: 0.30\n   - Addresses known problem or limitation: 0.25\n   - Explores under-studied area: 0.20\n   - Extends previous work: 0.15\n   - No clear gap addressed: 0.0\n\n3. CONTRIBUTION CLARITY (0.30 max):\n   - Explicitly states novel contributions: 0.30\n   - Contributions clear but not explicit: 0.25\n   - Implied contributions: 0.20\n   - Unclear what is new: 0.10\n   - No identifiable contribution: 0.0\n\nDEDUCTIONS:\n- If appears to be purely descriptive/educational: -0.20\n- If mostly replicates existing work: -0.20\n\nFor MONOGRAPHS: Must have ≥20% new unpublished material.\nFor ARTICLES: Must advance disciplinary knowledge.\n\nQuote specific passages showing novelty."
+  },
+  {
+    "name": "publication_type_score",
+    "rubric": "Infer the publication type from text structure and content.\n\nIdentify SMSM category based on observable characteristics:\n\nJOURNAL ARTICLES (most common):\n- 1.5-1.7: Journal article format (5-15k words, standard sections)\n- Evidence: \"journal homepage\", volume/issue numbers, article format\n- Typical length: 0.25-2 author's sheets (10k-80k characters)\n\nMONOGRAPHS & STUDIES:\n- 1.1-1.4: Book/monograph format (very long, >80k words)\n- Evidence: chapters, comprehensive coverage, book-like structure\n- Typical length: ≥2 author's sheets (≥80k characters)\n\nOTHER TYPES:\n- 1.8: Dictionary, encyclopedia, reference work (structured entries)\n- 1.9: Dataset documentation\n- 1.10: Review article (comprehensive literature review)\n- 1.11: Expert report, white paper, technical report\n- 1.12: Popular science article (accessible language, no heavy apparatus)\n\nScoring:\n- 1.0: Can confidently identify type with clear evidence\n- 0.8: Strong indicators of type\n- 0.6: Probable type but some ambiguity\n- 0.4: Multiple possible types\n- 0.2: Unclear type\n- 0.0: Cannot determine type\n\nState the most likely SMSM category (1.X) and provide textual evidence."
+  },
+  {
+    "name": "publisher_quality_inference_score",
+    "rubric": "Infer publisher/journal quality from contextual clues in the text.\n\nUse your knowledge and textual evidence to assess:\n\nPUBLISHER/JOURNAL INDICATORS:\n- Journal name visible in header/footer: What is it?\n- Publisher name (Elsevier, Springer, IEEE, ACM, Wiley, MDPI, etc.)\n- Mentions of \"peer review\", \"double-blind review\"\n- DOI prefix (10.1016 = Elsevier, 10.1007 = Springer, etc.)\n- Professional formatting and layout\n- Multi-country author affiliations (indicates international journal)\n\nQUALITY ASSESSMENT (use your training knowledge):\n- 1.0: Top-tier publisher/journal (Nature, Science, major IEEE/ACM)\n- 0.9: Elsevier, Springer, Wiley established journal\n- 0.8: Reputable field-specific journal (known in discipline)\n- 0.7: Solid international journal, clear peer review\n- 0.6: Credible journal with ISSN\n- 0.5: Journal name suggests quality but uncertain\n- 0.4: Unknown journal or unclear publisher\n- 0.3: Signs of low quality (poor formatting, language issues)\n- 0.2: Questionable quality indicators\n- 0.0: Cannot determine from text\n\nIMPORTANT: Base assessment on:\n1. Observable evidence in text (journal name, publisher, DOI)\n2. Your training knowledge of academic publishers\n3. Quality indicators (formatting, peer review mentions, author affiliations)\n\nState the journal/publisher name if visible and explain quality assessment."
+  },
+  {
+    "name": "academic_rigor_score",
+    "rubric": "Assess the overall academic rigor and scientific quality from the text.\n\nEvaluate multiple dimensions:\n\n1. ARGUMENTATION QUALITY (0.25 max):\n   - Logical, well-supported arguments with evidence: 0.25\n   - Generally sound reasoning: 0.20\n   - Some logical issues but acceptable: 0.15\n   - Weak argumentation: 0.10\n   - Poor or absent reasoning: 0.0\n\n2. LITERATURE ENGAGEMENT (0.25 max):\n   - Comprehensive engagement with current literature: 0.25\n   - Good coverage of relevant work: 0.20\n   - Adequate literature review: 0.15\n   - Minimal literature engagement: 0.10\n   - No literature context: 0.0\n\n3. METHODOLOGICAL RIGOR (0.25 max):\n   - Rigorous systematic approach, clearly documented: 0.25\n   - Sound methodology: 0.20\n   - Acceptable methods: 0.15\n   - Weak methodology: 0.10\n   - No clear method: 0.0\n\n4. WRITING QUALITY (0.25 max):\n   - Clear, precise scientific writing: 0.25\n   - Good clarity: 0.20\n   - Acceptable writing: 0.15\n   - Poor clarity or language issues: 0.10\n   - Unprofessional writing: 0.0\n\nTotal score 1.0 indicates high-quality scientific work.\n\nProvide specific examples of quality indicators from text."
+  },
+  {
+    "name": "comprehensive_text_based_score",
+    "rubric": "COMPREHENSIVE SMSM PUBLICATION EVALUATION - TEXT-BASED ANALYSIS (0.0-1.0)\n\nBased on Lithuanian SMSM Regulation for Scientific Publications\nEVALUATES ONLY what can be determined from article text\n\n═══════════════════════════════════════════════════════════════\nPART 1: SCIENTIFIC APPARATUS COMPLETENESS (0.25 max)\n═══════════════════════════════════════════════════════════════\n\nPer SMSM §4.16, scientific article must have appropriate apparatus:\n\n- Bibliography/references present and adequate: 0.065\n- Methodology/approach clearly described: 0.065\n- Formulas/diagrams/technical elements: 0.06\n- Data/results/statistical content: 0.06\n\nScore 0.25 if all elements present at high quality.\nMINIMUM 0.125 (half) required for scientific article qualification.\n\n═══════════════════════════════════════════════════════════════\nPART 2: STRUCTURE & ORGANIZATION (0.20 max)\n═══════════════════════════════════════════════════════════════\n\nAcademic publication structure quality:\n\n- Abstract/summary present: 0.05\n- Logical section organization (IMRaD or equivalent): 0.08\n- Introduction with literature review: 0.04\n- Clear conclusions/discussion: 0.03\n\nScore 0.20 if excellently structured.\n\n═══════════════════════════════════════════════════════════════\nPART 3: NOVELTY & SCIENTIFIC CONTRIBUTION (0.25 max)\n═══════════════════════════════════════════════════════════════\n\nPer SMSM §4.15, §4.16 - must advance knowledge:\n\nNOVELTY LEVEL:\n- Groundbreaking/pioneering: 0.15\n- Significant advancement: 0.12\n- Notable contribution: 0.10\n- Incremental improvement: 0.08\n- Adaptation/synthesis: 0.05\n- No discernible novelty: 0.0\n\nCONTRIBUTION CLARITY:\n- Explicitly stated new contributions: 0.05\n- Clear research gap addressed: 0.05\n\nScore 0.25 max. For monographs: must have ≥20% new material.\n\n═══════════════════════════════════════════════════════════════\nPART 4: ACADEMIC RIGOR (0.15 max)\n═══════════════════════════════════════════════════════════════\n\nQuality of scientific work:\n\n- Sound argumentation and logic: 0.05\n- Adequate literature engagement: 0.05\n- Methodological rigor: 0.03\n- Clear scientific writing: 0.02\n\nScore 0.15 if demonstrates high academic standards.\n\n═══════════════════════════════════════════════════════════════\nPART 5: PUBLICATION CONTEXT INFERENCE (0.15 max)\n═══════════════════════════════════════════════════════════════\n\nWhat can be inferred from text about publication venue:\n\nOBSERVABLE EVIDENCE:\n- Recognizable journal/publisher name in text: 0.05\n- Professional formatting and presentation: 0.03\n- Peer review mentioned or evident: 0.03\n- International authorship (multi-country): 0.02\n- DOI or persistent identifier present: 0.02\n\nUse your training knowledge of academic publishers to assess quality.\n\nMajor publishers (Elsevier, Springer, IEEE, ACM, Wiley): strong indicator\nUnknown or no publisher information: neutral\n\n═══════════════════════════════════════════════════════════════\nFINAL SCORING INTERPRETATION\n═══════════════════════════════════════════════════════════════\n\n0.75-1.00: EXCELLENT - High-quality scientific publication\n           Likely SMSM Category 1.5-1.7 (journal articles)\n           Strong scientific apparatus, clear novelty, rigorous\n\n0.60-0.74: GOOD - Solid scientific work meeting standards\n           Likely SMSM Category 1.7-1.11\n           Adequate apparatus and contribution\n\n0.45-0.59: ACCEPTABLE - Meets minimum scientific standards\n           Likely SMSM Category 1.11-1.12\n           Basic requirements met but limited contribution\n\n0.30-0.44: WEAK - Missing key scientific elements\n           May not qualify under SMSM standards\n           Significant gaps in apparatus or novelty\n\n0.00-0.29: DOES NOT QUALIFY - Insufficient scientific quality\n           Not a scientific publication per SMSM\n           Lacks scientific apparatus or contribution\n\n═══════════════════════════════════════════════════════════════\nREQUIRED EVALUATION OUTPUT\n═══════════════════════════════════════════════════════════════\n\nYour evaluation MUST include:\n\n1. OVERALL SCORE (0-1) with breakdown by parts 1-5\n2. PUBLICATION TYPE: Most likely SMSM category (1.5, 1.7, etc.) based on structure\n3. QUALIFICATION STATUS: PASS (≥0.45) or FAIL (<0.45) with reasoning\n4. QUALITY TIER: Excellent/Good/Acceptable/Weak/Does Not Qualify\n5. SCIENTIFIC APPARATUS: Which elements present/missing (references, methods, data, technical content)\n6. NOVELTY ASSESSMENT: What is new/novel in this work?\n7. STRUCTURAL QUALITY: Organization strengths/weaknesses\n8. PUBLISHER INFERENCE: If journal/publisher visible, assess quality using your knowledge\n9. KEY STRENGTHS: Top 2-3 strengths observed in text\n10. KEY WEAKNESSES: Top 2-3 gaps or issues in text\n11. EVIDENCE CITATIONS: Quote specific passages supporting your assessment\n12. RECOMMENDATION: Would this qualify for SMSM evaluation? Which category?\n\n═══════════════════════════════════════════════════════════════\nIMPORTANT LIMITATIONS\n═══════════════════════════════════════════════════════════════\n\nThis evaluation is TEXT-BASED ONLY. Cannot definitively assess:\n- Official impact factors (JIF/SNIP) - requires database lookup\n- Formal peer review process - not visible in published article\n- Official ISSN/ISBN - may not be in text\n- Institutional author affiliation details for AIV formula\n- Exact character count - provide as metadata\n\nEvaluation focuses on CONTENT QUALITY that can be assessed from text alone.",
+    "has_assertion": true
+  },
+  {
+    "name": "reproducibility_score",
+    "rubric": "Can another researcher replicate this work from the description provided?\n\nScore 1.0: Complete details (data sources, parameters, procedures fully specified)\nScore 0.7: Most details provided, minor gaps\nScore 0.5: Key details present but incomplete\nScore 0.3: Vague descriptions, hard to reproduce\nScore 0.0: No reproducible information\n\nCite what's missing for replication."
+  },
+  {
+    "name": "citation_quality_score",
+    "rubric": "Are references appropriate, recent, and properly contextualized?\n\nScore 1.0: Recent (<5 years), relevant sources, well-integrated into narrative\nScore 0.7: Mostly recent, appropriate citations\nScore 0.5: Mix of old/recent, adequate relevance\nScore 0.3: Outdated citations (>10 years) or poor relevance\nScore 0.0: No citations or irrelevant sources\n\nNote citation quality issues."
+  },
+  {
+    "name": "limitations_discussion_score",
+    "rubric": "Does the work acknowledge limitations and discuss alternative approaches?\n\nScore 1.0: Explicit limitations section, discusses alternatives, shows critical thinking\nScore 0.7: Limitations acknowledged in discussion\nScore 0.5: Brief mention of limitations\nScore 0.3: Minimal self-awareness of constraints\nScore 0.0: No limitations discussed, appears uncritical\n\nQuote limitations if present."
+  },
+  {
+    "name": "research_significance_score",
+    "rubric": "Is this addressing an important problem or a trivial/already-solved issue?\n\nScore 1.0: Addresses critical gap with clear practical/theoretical impact\nScore 0.7: Important problem, clear application value\nScore 0.5: Relevant but incremental problem\nScore 0.3: Minor problem with limited impact\nScore 0.0: Trivial problem or already well-solved\n\nExplain problem importance."
+  },
+  {
+    "name": "reporting_completeness_score",
+    "rubric": "Are all necessary details provided (sample sizes, parameters, validation)?\n\nScore 1.0: Complete reporting (sample sizes, parameters, validation/evaluation)\nScore 0.7: Most essential details included\nScore 0.5: Key details present but some gaps\nScore 0.3: Significant omissions in reporting\nScore 0.0: Critical information missing\n\nList what's missing."
+  },
+  {
+    "name": "language_quality_score",
+    "rubric": "Assess grammar, clarity, and professional writing standards.\n\nScore 1.0: Excellent academic English, clear, professional\nScore 0.7: Good writing, minor issues\nScore 0.5: Acceptable but noticeable language problems\nScore 0.3: Poor grammar/clarity affecting comprehension\nScore 0.0: Unprofessional or incomprehensible writing\n\nNote major language issues."
+  },
+  {
+    "name": "data_transparency_score",
+    "rubric": "Are data sources, access, and availability clearly described?\n\nScore 1.0: Data sources specified, availability/access statement, DOI/repository\nScore 0.7: Data sources clear, reasonable access info\nScore 0.5: Data described but access unclear\nScore 0.3: Vague data sources\nScore 0.0: No information about data\n\nNote data transparency level."
+  },
+  {
+    "name": "results_interpretation_score",
+    "rubric": "Are results properly analyzed and interpretations justified by evidence?\n\nScore 1.0: Rigorous analysis, interpretations fully supported, statistical validity\nScore 0.7: Sound interpretation, adequate justification\nScore 0.5: Reasonable but some interpretive leaps\nScore 0.3: Weak justification or over-interpretation\nScore 0.0: Unjustified claims or invalid interpretations\n\nNote interpretation issues."
+  },
+  {
+    "name": "scope_appropriateness_score",
+    "rubric": "Is the scope appropriate for an article (not too broad/narrow, achievable)?\n\nScore 1.0: Well-defined, focused scope matching article format\nScore 0.7: Appropriate scope with minor boundary issues\nScore 0.5: Acceptable but could be better focused\nScore 0.3: Too broad (needs book) or too narrow (blog post)\nScore 0.0: Inappropriate scope for academic article\n\nAssess scope fit."
+  },
+  {
+    "name": "theoretical_grounding_score",
+    "rubric": "Is the work grounded in relevant theory or conceptual framework?\n\nScore 1.0: Strong theoretical foundation, well-integrated framework\nScore 0.7: Adequate theoretical context\nScore 0.5: Basic conceptual grounding\nScore 0.3: Weak or missing theoretical framework\nScore 0.0: Atheoretical or conceptually confused\n\nNote theoretical basis."
+  },
+  {
+    "name": "apparatus_fluid",
+    "rubric": "Evaluate how well this article demonstrates appropriate scientific apparatus (references, methodology, technical content, data/results).\n\nConsider: Are the elements present and adequate for this type of work? What's missing or weak? Would this pass scientific publication standards?\n\nScore 0.0-1.0 based on overall apparatus quality."
+  },
+  {
+    "name": "structure_fluid",
+    "rubric": "Assess the overall organization and structure of this publication.\n\nConsider: Does it follow logical academic structure? Are all necessary sections present? Is the flow coherent? Does it meet structural standards for scientific articles?\n\nScore 0.0-1.0 based on structural quality."
+  },
+  {
+    "name": "contribution_fluid",
+    "rubric": "Evaluate the novelty and scientific contribution of this work.\n\nConsider: What's new here? Does it advance knowledge? Is there a clear contribution beyond existing work? How significant is the advancement?\n\nScore 0.0-1.0 based on contribution strength."
+  },
+  {
+    "name": "venue_quality_fluid",
+    "rubric": "Infer the publication venue quality from available context.\n\nConsider: Publisher/journal indicators, international reach, peer review evidence, professional presentation. Does this appear to be from a reputable academic venue?\n\nScore 0.0-1.0 based on inferred venue quality."
+  },
+  {
+    "name": "rigor_fluid",
+    "rubric": "Assess the overall academic and methodological rigor of this work.\n\nConsider: Quality of argumentation, literature engagement, methodological soundness, scientific standards. Would this meet peer review expectations?\n\nScore 0.0-1.0 based on research rigor. 2 decimal places."
+  },
+  {
+    "name": "reproducibility_fluid",
+    "rubric": "Evaluate whether another researcher could reproduce this work.\n\nConsider: Are methods, data, parameters sufficiently detailed? What's missing? Is there enough transparency for replication?\n\nScore 0.0-1.0 based on reproducibility level. 2 decimal places."
+  },
+  {
+    "name": "references_fluid",
+    "rubric": "Assess the quality and appropriateness of citations and references.\n\nConsider: Are sources recent, relevant, and well-integrated? Is the literature coverage adequate? Any issues with citation quality?\n\nScore 0.0-1.0 based on reference quality. 2 decimal places."
+  },
+  {
+    "name": "critical_awareness_fluid",
+    "rubric": "Evaluate the work's critical self-awareness and discussion of limitations.\n\nConsider: Does it acknowledge constraints? Discuss alternatives? Show reflective thinking? Or does it present findings uncritically?\n\nScore 0.0-1.0 based on critical awareness level. 2 decimal places."
+  },
+  {
+    "name": "importance_fluid",
+    "rubric": "Evaluate the importance and significance of the research problem addressed.\n\nConsider: Is this a meaningful problem? Does it have practical or theoretical value? Or is it trivial/already well-addressed?\n\nScore 0.0-1.0 based on problem importance.2 decimal places."
+  },
+  {
+    "name": "overall_quality_fluid",
+    "rubric": "Provide a holistic assessment of this publication's overall quality.\n\nConsider: All aspects - content, presentation, contribution, rigor, completeness. Would you accept this for publication? Does it meet academic standards? What's the overall impression?\n\nScore 0.0-1.0 based on overall quality. 2 decimal places."
+  }
+]

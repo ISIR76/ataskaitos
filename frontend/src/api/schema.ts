@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/": {
+    "/api/": {
         parameters: {
             query?: never;
             header?: never;
@@ -15,7 +15,7 @@ export interface paths {
          * Root
          * @description Root endpoint with basic service information.
          */
-        get: operations["root__get"];
+        get: operations["root_api__get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -24,7 +24,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/health": {
+    "/api/health": {
         parameters: {
             query?: never;
             header?: never;
@@ -35,7 +35,7 @@ export interface paths {
          * Health Check
          * @description Detailed health check endpoint with service configuration.
          */
-        get: operations["health_check_health_get"];
+        get: operations["health_check_api_health_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -64,6 +64,34 @@ export interface paths {
          *     Useful for discovering what evaluators are available and how to use them.
          */
         get: operations["list_evaluators_api_v1_evaluators_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/agents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Agents
+         * @description List all available agents grouped by document type.
+         *
+         *     Returns information about each agent including:
+         *     - Name
+         *     - Description
+         *     - Output schema type
+         *     - Additional metadata
+         *
+         *     Useful for discovering what agents are available for agent-based evaluation.
+         */
+        get: operations["list_agents_api_v1_agents_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -214,9 +242,14 @@ export interface components {
             evaluation_type: "agent" | "scoring";
             /**
              * Evaluators
-             * @description Comma-separated list of specific evaluators to run (optional)
+             * @description Comma-separated list of specific evaluators to run (for scoring mode)
              */
             evaluators?: string | null;
+            /**
+             * Agents
+             * @description Comma-separated list of specific agents to run (for agent mode)
+             */
+            agents?: string | null;
         };
         /** Body_evaluate_report_api_v1_reports_evaluate_post */
         Body_evaluate_report_api_v1_reports_evaluate_post: {
@@ -432,7 +465,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    root__get: {
+    root_api__get: {
         parameters: {
             query?: never;
             header?: never;
@@ -452,7 +485,7 @@ export interface operations {
             };
         };
     };
-    health_check_health_get: {
+    health_check_api_health_get: {
         parameters: {
             query?: never;
             header?: never;
@@ -488,6 +521,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["EvaluatorsListResponse"];
+                };
+            };
+        };
+    };
+    list_agents_api_v1_agents_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
         };
