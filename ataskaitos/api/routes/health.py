@@ -11,7 +11,7 @@ from ataskaitos.api.models import (
 )
 from ataskaitos.evaluators import EvaluatorRegistry
 
-router = APIRouter(tags=["Health & Info"])
+router = APIRouter(prefix="/api", tags=["Health & Info"])
 
 
 @router.get("/", response_model=RootResponse)
@@ -21,7 +21,7 @@ async def root():
         message="Ataskaitos API - AI-powered evaluation platform",
         status="healthy",
         version="0.2.0",
-        docs_url="/docs",
+        docs_url="/api/docs",
     )
 
 
@@ -39,7 +39,7 @@ async def health_check():
     )
 
 
-@router.get("/api/v1/evaluators", response_model=EvaluatorsListResponse)
+@router.get("/v1/evaluators", response_model=EvaluatorsListResponse)
 async def list_evaluators(
     registry: EvaluatorRegistry = Depends(get_evaluator_registry),
 ):
@@ -85,7 +85,7 @@ async def list_evaluators(
     )
 
 
-@router.get("/api/v1/agents")
+@router.get("/v1/agents")
 async def list_agents():
     """List all available agents grouped by document type.
 
