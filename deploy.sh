@@ -12,6 +12,7 @@ echo "Deploying to project: $PROJECT_ID"
 gcloud run deploy $SERVICE_NAME \
     --source . \
     --region $REGION \
+    --project $PROJECT_ID \
     --platform managed \
     --allow-unauthenticated \
     --set-env-vars ENV=production \
@@ -23,4 +24,7 @@ gcloud run deploy $SERVICE_NAME \
 
 echo "Deployment complete!"
 echo "Service URL:"
-gcloud run services describe $SERVICE_NAME --region $REGION --format 'value(status.url)'
+gcloud run services describe $SERVICE_NAME \
+    --project $PROJECT_ID \
+    --region $REGION \
+    --format 'value(status.url)'

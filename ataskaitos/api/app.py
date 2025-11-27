@@ -1,9 +1,13 @@
 """FastAPI application factory."""
 
+import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from ataskaitos.evaluators import get_registry, initialize_default_evaluators
 
@@ -61,19 +65,26 @@ def create_app() -> FastAPI:
         """,
         version="0.2.0",
         lifespan=lifespan,
-        docs_url="/docs",
-        redoc_url="/redoc",
+        docs_url="/api/docs",
+        redoc_url="/api/redoc",
+        openapi_url="/api/openapi.json",
     )
 
     # Configure CORS
+    allowed_origins = [
+        "http://localhost:5173",  # Vite dev server
+        "http://localhost:3000",  # Common React dev port
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:3000",
+    ]
+
+    # Add Cloud Run origin in production
+    if os.getenv("ENV") == "production":
+        allowed_origins.append("https://ataskaitos-579031308562.europe-west1.run.app")
+
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[
-            "http://localhost:5173",  # Vite dev server
-            "http://localhost:3000",  # Common React dev port
-            "http://127.0.0.1:5173",
-            "http://127.0.0.1:3000",
-        ],
+        allow_origins=allowed_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -82,6 +93,28 @@ def create_app() -> FastAPI:
     # Register routers
     app.include_router(health_router)
     app.include_router(evaluate_router)
+
+    # Serve frontend static files (only if frontend/dist exists)
+    frontend_dist = Path(__file__).parent.parent.parent / "frontend" / "dist"
+    if frontend_dist.exists():
+        # Mount static assets (JS, CSS, images, etc.)
+        app.mount("/assets", StaticFiles(directory=frontend_dist / "assets"), name="assets")
+
+        # Catch-all route for SPA routing - must be last
+        @app.get("/{full_path:path}")
+        async def serve_spa(request: Request, full_path: str):
+            """Serve the React SPA for all non-API routes."""
+            # If path starts with /api, let it 404 naturally
+            if full_path.startswith("api/"):
+                return None
+
+            # Check if requested file exists in dist directory
+            requested_file = frontend_dist / full_path
+            if requested_file.is_file():
+                return FileResponse(requested_file)
+
+            # Otherwise, serve index.html (SPA routing)
+            return FileResponse(frontend_dist / "index.html")
 
     return app
 

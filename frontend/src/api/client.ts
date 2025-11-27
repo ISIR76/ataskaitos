@@ -1,7 +1,9 @@
 import createClient from "openapi-fetch";
 import type { paths } from "./schema";
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+// Use relative URLs in production (same origin), localhost in dev
+const baseUrl = import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.PROD ? "" : "http://localhost:8000");
 
 console.log("API Base URL:", baseUrl);
 

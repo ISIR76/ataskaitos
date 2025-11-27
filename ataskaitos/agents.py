@@ -3,7 +3,7 @@
 from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent, ModelSettings
-from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.models.openai import OpenAIModel, OpenAIResponsesModel
 
 
 # ============================================================================
@@ -177,7 +177,7 @@ Provide comprehensive evaluation covering:
 
 Provide specific, evidence-based feedback with actionable recommendations.
 """
-        model = OpenAIModel("gpt-4o", settings=cls._settings)
+        model = OpenAIResponsesModel("gpt-4o", settings=cls._settings)
         return Agent(
             model=model,
             output_type=DetailedArticleEvaluation,
