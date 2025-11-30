@@ -31,6 +31,7 @@ frascati_rd_dataset.json
 
 # Analysis outputs
 docs/out/
+docs/*
 agent_evaluation_*.csv
 agent_evaluation_*.pkl
 
