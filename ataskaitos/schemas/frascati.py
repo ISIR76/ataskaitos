@@ -1,7 +1,7 @@
-from typing import Literal, Optional
 from enum import Enum
+from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, field_validator, computed_field
+from pydantic import BaseModel, Field, computed_field, field_validator
 
 
 class RDType(str, Enum):
@@ -55,9 +55,7 @@ class NoveltyAssessment(BaseModel):
     level: NoveltyLevel = Field(description="Novelty classification")
     beyond_state_of_art: bool = Field(description="Exceeds current knowledge")
     evidence: str = Field(description="Specific evidence of novelty")
-    knowledge_gap: Optional[str] = Field(
-        None, description="What knowledge gap is addressed"
-    )
+    knowledge_gap: Optional[str] = Field(None, description="What knowledge gap is addressed")
 
 
 class CreativityAssessment(BaseModel):
@@ -67,9 +65,7 @@ class CreativityAssessment(BaseModel):
     non_obvious_approach: bool = Field(description="Requires creative problem-solving")
     new_methods_developed: bool = Field(description="Novel methodology created")
     evidence: str = Field(description="Specific creative elements")
-    innovation_type: Optional[str] = Field(
-        None, description="Type of creative innovation"
-    )
+    innovation_type: Optional[str] = Field(None, description="Type of creative innovation")
 
 
 class UncertaintyAssessment(BaseModel):
@@ -78,9 +74,7 @@ class UncertaintyAssessment(BaseModel):
     score: float = Field(ge=0.0, le=0.1, description="Uncertainty score (0.0-0.1)")
     outcome_unpredictable: bool = Field(description="Genuine unpredictability")
     uncertainty_source: UncertaintySource = Field(description="Source of uncertainty")
-    failure_risk: Literal["high", "moderate", "low", "none"] = Field(
-        description="Risk level"
-    )
+    failure_risk: Literal["high", "moderate", "low", "none"] = Field(description="Risk level")
     evidence: str = Field(description="Specific uncertainty factors")
 
     @field_validator("score")
@@ -90,9 +84,7 @@ class UncertaintyAssessment(BaseModel):
         if "uncertainty_source" in info.data:
             source = info.data["uncertainty_source"]
             if source != UncertaintySource.SCIENTIFIC_TECHNICAL and v > 0.05:
-                raise ValueError(
-                    "High uncertainty score only valid for scientific/technical uncertainty"
-                )
+                raise ValueError("High uncertainty score only valid for scientific/technical uncertainty")
         return v
 
 
@@ -126,9 +118,7 @@ class ExclusionCheck(BaseModel):
     production: bool = Field(False, description="Production/manufacturing")
     software_maintenance: bool = Field(False, description="Software maintenance")
     routine_data_collection: bool = Field(False, description="Routine data collection")
-    implementation: bool = Field(
-        False, description="Implementation of existing solutions"
-    )
+    implementation: bool = Field(False, description="Implementation of existing solutions")
     penalty: float = Field(ge=0.0, le=1.0, description="Total penalty applied")
     details: str = Field(description="Description of exclusions found")
 
@@ -138,21 +128,17 @@ class RDContentRatio(BaseModel):
 
     rd_percentage: int = Field(ge=0, le=100, description="Estimated R&D content %")
     score: float = Field(ge=0.0, le=0.15, description="R&D content score (0.0-0.15)")
-    primary_activity: Literal[
-        "pure_rd", "mostly_rd", "mixed", "mostly_routine", "routine"
-    ] = Field(description="Primary nature of activity")
+    primary_activity: Literal["pure_rd", "mostly_rd", "mixed", "mostly_routine", "routine"] = Field(
+        description="Primary nature of activity"
+    )
     explanation: str = Field(description="Breakdown of R&D vs non-R&D elements")
 
 
 class InnovationVsRD(BaseModel):
     """Distinguish R&D (creates knowledge) from Innovation (applies knowledge)"""
 
-    score: float = Field(
-        ge=0.0, le=0.1, description="R&D vs Innovation score (0.0-0.1)"
-    )
-    classification: Literal["creates_knowledge", "applies_knowledge", "mixed"] = Field(
-        description="Primary objective"
-    )
+    score: float = Field(ge=0.0, le=0.1, description="R&D vs Innovation score (0.0-0.1)")
+    classification: Literal["creates_knowledge", "applies_knowledge", "mixed"] = Field(description="Primary objective")
     advances_knowledge: bool = Field(description="Advances state of knowledge")
     uses_knowledge: bool = Field(description="Uses existing knowledge")
     explanation: str = Field(description="Rationale for classification")
@@ -175,9 +161,7 @@ class PersonnelAssessment(BaseModel):
 class DocumentationAssessment(BaseModel):
     """R&D process documentation and rigor"""
 
-    score: float = Field(
-        ge=0.0, le=0.075, description="Documentation score (0.0-0.075)"
-    )
+    score: float = Field(ge=0.0, le=0.075, description="Documentation score (0.0-0.075)")
     has_objectives: bool = Field(description="Research objectives documented")
     has_methodology: bool = Field(description="Methodology/protocols defined")
     has_literature_review: bool = Field(description="Prior art/literature reviewed")
@@ -220,9 +204,7 @@ class FrascatiEvaluation(BaseModel):
     strongest_criteria: list[str] = Field(description="Top 3 strongest criteria")
     weakest_criteria: list[str] = Field(description="Top 3 weakest criteria")
     missing_information: list[str] = Field(description="Gaps in provided information")
-    recommendations: list[str] = Field(
-        description="How to strengthen R&D qualification"
-    )
+    recommendations: list[str] = Field(description="How to strengthen R&D qualification")
     overall_summary: str = Field(description="Executive summary of evaluation")
 
     @computed_field
@@ -285,9 +267,7 @@ class FrascatiEvaluation(BaseModel):
                 - info.data["exclusions"].penalty
             )
             if abs(v - expected) > 0.01:  # Allow small floating point errors
-                raise ValueError(
-                    f"Total score {v} doesn't match sum of components {expected}"
-                )
+                raise ValueError(f"Total score {v} doesn't match sum of components {expected}")
         return v
 
     @field_validator("qualifies_as_rd")

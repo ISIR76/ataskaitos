@@ -40,10 +40,7 @@ async def verify_api_key(api_key: Optional[str] = Security(api_key_header)):
         return True
 
     if not API_KEY:
-        raise HTTPException(
-            status_code=500,
-            detail="API_KEY not configured on server"
-        )
+        raise HTTPException(status_code=500, detail="API_KEY not configured on server")
 
     if not api_key:
         raise HTTPException(
@@ -53,10 +50,7 @@ async def verify_api_key(api_key: Optional[str] = Security(api_key_header)):
         )
 
     if api_key != API_KEY:
-        raise HTTPException(
-            status_code=403,
-            detail="Invalid API key"
-        )
+        raise HTTPException(status_code=403, detail="Invalid API key")
 
     return True
 
@@ -84,9 +78,7 @@ class BaseEvaluationResponse(BaseModel):
 class AgentEvaluationResponse(BaseEvaluationResponse):
     """Response from agent-based evaluation - flexible structured output."""
 
-    agent_output: str = Field(
-        description="Agent evaluation output (can be structured or text)"
-    )
+    agent_output: str = Field(description="Agent evaluation output (can be structured or text)")
     evaluation_type: str = Field(default="agent")
 
 
@@ -130,17 +122,12 @@ class RootResponse(BaseModel):
 @app.get("/", response_model=RootResponse)
 async def root():
     """Root endpoint with basic service information."""
-    return RootResponse(
-        message="Ataskaitos API is running",
-        status="healthy"
-    )
+    return RootResponse(message="Ataskaitos API is running", status="healthy")
 
 
 @app.post("/evaluate/agent", response_model=AgentEvaluationResponse)
 async def evaluate_with_agent(
-    file: Annotated[
-        UploadFile, File(description="Document file to evaluate (DOCX, PDF, etc.)")
-    ],
+    file: Annotated[UploadFile, File(description="Document file to evaluate (DOCX, PDF, etc.)")],
     authenticated: bool = Depends(verify_api_key),
 ):
     """
@@ -175,16 +162,12 @@ async def evaluate_with_agent(
         )
 
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error during agent evaluation: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error during agent evaluation: {str(e)}")
 
 
 @app.post("/evaluate/scoring", response_model=ScoringEvaluationResponse)
 async def evaluate_with_scoring(
-    file: Annotated[
-        UploadFile, File(description="Document file to evaluate (DOCX, PDF, etc.)")
-    ],
+    file: Annotated[UploadFile, File(description="Document file to evaluate (DOCX, PDF, etc.)")],
     authenticated: bool = Depends(verify_api_key),
 ):
     """
@@ -237,21 +220,15 @@ async def evaluate_with_scoring(
         # Convert results to JSON-serializable format
         results_data = convert_results(eval_results)
 
-        return ScoringEvaluationResponse(
-            markdown_content=markdown_content, evaluation_results=results_data
-        )
+        return ScoringEvaluationResponse(markdown_content=markdown_content, evaluation_results=results_data)
 
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error during scoring evaluation: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error during scoring evaluation: {str(e)}")
 
 
 @app.get("/evaluators/list", response_model=EvaluatorsListResponse)
 async def list_evaluators(
-    evaluation_name: Optional[str] = Query(
-        None, description="Filter by evaluation_name (unique identifier)"
-    )
+    evaluation_name: Optional[str] = Query(None, description="Filter by evaluation_name (unique identifier)"),
 ):
     """
     List all available evaluators in the scoring system.
@@ -279,7 +256,7 @@ async def list_evaluators(
                 continue  # Skip if no score config
 
         # Convert EvaluatorSpec to dict for JSON serialization
-        evaluators_info.append(spec.model_dump() if hasattr(spec, 'model_dump') else dict(spec))
+        evaluators_info.append(spec.model_dump() if hasattr(spec, "model_dump") else dict(spec))
 
     return EvaluatorsListResponse(
         total_evaluators=len(evaluators_info),
@@ -337,9 +314,7 @@ async def _convert_file_to_markdown(file: UploadFile) -> str:
             tmp_path.unlink(missing_ok=True)
 
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error converting file to markdown: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {str(e)}")
 
 
 if __name__ == "__main__":

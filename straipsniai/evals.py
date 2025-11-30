@@ -1,3 +1,19 @@
+"""
+SMSM Article Evaluation System (Development Tool)
+
+This module is for development/testing of article evaluators:
+- Loads evaluators from straipsniai/article_judges.json
+- FILTERS to only "fluid" and "dynamic" named judges (subset testing)
+- Batch evaluates reference documents
+
+Production API uses ALL evaluators from:
+- ataskaitos/evaluators/articles/smsm_judges.json
+
+For development batch evaluation:
+- Run: uv run python straipsniai/evals.py
+- Processes: docs/reference_documents/straipsniai*/*.md
+- Outputs: straipsniai_evaluation_results.json
+"""
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -5,6 +21,7 @@ from typing import Any
 
 from pydantic_evals import Dataset
 from pydantic_evals.evaluators import LLMJudge
+from pydantic_evals.reporting import EvaluationReport
 
 
 @dataclass
@@ -65,9 +82,6 @@ def do(data) -> ScientificArticle:
     return data
 
 
-from pydantic_evals.reporting import EvaluationReport
-
-
 def convert_results(result: EvaluationReport[Any, Any]):
     # Convert averages to JSON-serializable format
     averages = result.averages()
@@ -88,13 +102,8 @@ def convert_results(result: EvaluationReport[Any, Any]):
         "cases": [
             {
                 "name": case.name,
-                "expected_output": case.expected_output
-                if case.expected_output
-                else None,
-                "scores": {
-                    k: {"value": v.value, "reason": v.reason}
-                    for k, v in case.scores.items()
-                },
+                "expected_output": case.expected_output if case.expected_output else None,
+                "scores": {k: {"value": v.value, "reason": v.reason} for k, v in case.scores.items()},
                 "metrics": case.metrics,
                 "task_duration": case.task_duration,
                 "total_duration": case.total_duration,
@@ -104,9 +113,7 @@ def convert_results(result: EvaluationReport[Any, Any]):
         "failures": [
             {
                 "name": failure.name,
-                "expected_output": failure.expected_output
-                if failure.expected_output
-                else None,
+                "expected_output": failure.expected_output if failure.expected_output else None,
                 "error_message": failure.error_message,
                 "error_stacktrace": failure.error_stacktrace,
             }

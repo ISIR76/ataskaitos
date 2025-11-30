@@ -1,39 +1,37 @@
+"""
+DEPRECATED: Legacy agent implementation (kept for reference)
+
+This file contains the original simple agent implementation before refactoring.
+
+Current production implementation:
+- ataskaitos/agents/factory.py (agent creation)
+- ataskaitos/agents/registry.py (agent management)
+- ataskaitos/agents/schemas/ (output schemas)
+
+This file is kept for:
+- Historical reference
+- Understanding original design
+- Comparison with refactored architecture
+
+DO NOT USE for new development.
+"""
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent, ModelSettings
 from pydantic_ai.models.openai import OpenAIModel
+
 
 # Simple MVP structured output for report evaluation
 class SimpleReportEvaluation(BaseModel):
     """Simple structured evaluation result for R&D reports."""
 
-    overall_score: float = Field(
-        ge=0.0, le=1.0,
-        description="Overall R&D qualification score (0.0-1.0)"
-    )
-    qualifies_as_rd: bool = Field(
-        description="Does this qualify as R&D per Frascati Manual?"
-    )
-    novelty_score: float = Field(
-        ge=0.0, le=1.0,
-        description="Novelty/innovation level (0.0-1.0)"
-    )
-    systematic_score: float = Field(
-        ge=0.0, le=1.0,
-        description="Systematic planning and organization (0.0-1.0)"
-    )
-    uncertainty_score: float = Field(
-        ge=0.0, le=1.0,
-        description="Scientific/technical uncertainty (0.0-1.0)"
-    )
-    summary: str = Field(
-        description="Brief summary of the evaluation (2-3 sentences)"
-    )
-    strengths: list[str] = Field(
-        description="2-3 key strengths of the R&D activity"
-    )
-    weaknesses: list[str] = Field(
-        description="2-3 areas for improvement"
-    )
+    overall_score: float = Field(ge=0.0, le=1.0, description="Overall R&D qualification score (0.0-1.0)")
+    qualifies_as_rd: bool = Field(description="Does this qualify as R&D per Frascati Manual?")
+    novelty_score: float = Field(ge=0.0, le=1.0, description="Novelty/innovation level (0.0-1.0)")
+    systematic_score: float = Field(ge=0.0, le=1.0, description="Systematic planning and organization (0.0-1.0)")
+    uncertainty_score: float = Field(ge=0.0, le=1.0, description="Scientific/technical uncertainty (0.0-1.0)")
+    summary: str = Field(description="Brief summary of the evaluation (2-3 sentences)")
+    strengths: list[str] = Field(description="2-3 key strengths of the R&D activity")
+    weaknesses: list[str] = Field(description="2-3 areas for improvement")
 
 
 settings = ModelSettings(temperature=0)
@@ -63,9 +61,7 @@ Provide actionable, evidence-based feedback.
 
 class AgentFactory:
     @staticmethod
-    def create_simple_report_agent(
-        model_name: str = "gpt-4o"
-    ) -> Agent[None, SimpleReportEvaluation]:
+    def create_simple_report_agent(model_name: str = "gpt-4o") -> Agent[None, SimpleReportEvaluation]:
         """Create a simple agent for R&D report evaluation."""
         model = OpenAIModel(model_name, settings=settings)
         return Agent(
@@ -79,9 +75,7 @@ class AgentFactory:
 agent = AgentFactory.create_simple_report_agent()
 
 if __name__ == "__main__":
-    with open(
-        "./docs/reference_documents/energus-ataskaita.md", "r", encoding="utf-8"
-    ) as f:
+    with open("./docs/reference_documents/energus-ataskaita.md", "r", encoding="utf-8") as f:
         doc_text = f.read()
 
     # Run evaluation

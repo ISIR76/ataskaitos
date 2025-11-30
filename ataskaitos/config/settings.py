@@ -1,4 +1,17 @@
-"""Application settings."""
+"""
+DEPRECATED: Old settings file
+
+Use ataskaitos/settings.py instead.
+
+This file is kept for backward compatibility but should not be used.
+"""
+import warnings
+
+warnings.warn(
+    "ataskaitos/config/settings.py is deprecated. Use ataskaitos/settings.py",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 

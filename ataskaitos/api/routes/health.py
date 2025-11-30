@@ -67,11 +67,7 @@ async def list_evaluators(
                 source=eval_dict.get("source"),
                 has_assertion=eval_dict.get("has_assertion", False),
                 rubric=eval_dict.get("rubric"),
-                metadata={
-                    k: v
-                    for k, v in eval_dict.items()
-                    if k not in ["name", "source", "has_assertion", "rubric"]
-                },
+                metadata={k: v for k, v in eval_dict.items() if k not in ["name", "source", "has_assertion", "rubric"]},
             )
             for eval_dict in evaluators_list
         ]
@@ -99,15 +95,10 @@ async def list_agents():
     """
     try:
         from ataskaitos.agents import get_agent_registry
+
         agent_registry = get_agent_registry()
         available = agent_registry.list_available()
 
-        return {
-            "agents": available,
-            "total_count": sum(len(agents) for agents in available.values())
-        }
+        return {"agents": available, "total_count": sum(len(agents) for agents in available.values())}
     except ImportError:
-        return {
-            "agents": {"report": [], "article": []},
-            "total_count": 0
-        }
+        return {"agents": {"report": [], "article": []}, "total_count": 0}

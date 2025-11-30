@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
     registry = get_registry()
     initialize_default_evaluators(registry)
 
-    print(f"✓ Loaded evaluators:")
+    print("✓ Loaded evaluators:")
     counts = registry.count()
     for doc_type, count in counts.items():
         print(f"  - {doc_type}: {count} evaluators")

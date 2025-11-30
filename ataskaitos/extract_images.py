@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Extract base64-encoded images from markdown files to separate image files."""
 
-import re
 import base64
+import re
 from pathlib import Path
 from typing import Counter
 

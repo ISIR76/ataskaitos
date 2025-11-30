@@ -11,11 +11,15 @@ class Settings(BaseSettings):
     # API Keys
     openai_api_key: str | None = None
     google_api_key: str | None = None
+    anthropic_api_key: str | None = None
 
-    # Agent models
-    literature_model: str = "openai:gpt-4o"
-    validity_model: str = "openai:gpt-4o"
-    evaluation_model: str = "openai:gpt-4o"
+    # Default models for agents (format: "provider:model")
+    default_article_model: str = "openai:gpt-4o"
+    default_report_model: str = "openai:gpt-4o"
+    default_mtep_model: str = "openai:gpt-4o"
+
+    # Model settings
+    default_temperature: float = 0.0
 
 
 settings = Settings()

@@ -1,7 +1,5 @@
 """Base evaluator registry and management."""
 
-import json
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from pydantic_evals.evaluators import LLMJudge
@@ -29,9 +27,7 @@ class EvaluatorRegistry:
     ):
         """Register an evaluator for a document type."""
         if document_type not in self._evaluators:
-            raise ValueError(
-                f"Unknown document type: {document_type}. Must be 'report' or 'article'"
-            )
+            raise ValueError(f"Unknown document type: {document_type}. Must be 'report' or 'article'")
 
         self._evaluators[document_type][name] = evaluator
         self._metadata[document_type][name] = metadata or {}
@@ -40,9 +36,7 @@ class EvaluatorRegistry:
         """Get a specific evaluator by name."""
         return self._evaluators.get(document_type, {}).get(name)
 
-    def get_evaluators(
-        self, document_type: str, names: Optional[List[str]] = None
-    ) -> List[LLMJudge]:
+    def get_evaluators(self, document_type: str, names: Optional[List[str]] = None) -> List[LLMJudge]:
         """Get evaluators for document type.
 
         Args:
@@ -60,9 +54,7 @@ class EvaluatorRegistry:
 
         return [all_evaluators[name] for name in names if name in all_evaluators]
 
-    def list_available(
-        self, document_type: Optional[str] = None
-    ) -> Dict[str, List[Dict[str, Any]]]:
+    def list_available(self, document_type: Optional[str] = None) -> Dict[str, List[Dict[str, Any]]]:
         """List all available evaluators with metadata.
 
         Args:
@@ -81,8 +73,8 @@ class EvaluatorRegistry:
                 info = {"name": name, **self._metadata[dtype].get(name, {})}
 
                 # Extract rubric from the LLMJudge evaluator if available
-                if hasattr(evaluator, 'rubric'):
-                    info['rubric'] = evaluator.rubric
+                if hasattr(evaluator, "rubric"):
+                    info["rubric"] = evaluator.rubric
 
                 evaluators_info.append(info)
 
@@ -95,9 +87,7 @@ class EvaluatorRegistry:
         if document_type:
             return {document_type: len(self._evaluators.get(document_type, {}))}
 
-        return {
-            dtype: len(evaluators) for dtype, evaluators in self._evaluators.items()
-        }
+        return {dtype: len(evaluators) for dtype, evaluators in self._evaluators.items()}
 
 
 # Global registry instance

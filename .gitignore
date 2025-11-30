@@ -19,6 +19,27 @@ __pycache__/
 # OS
 .DS_Store
 
+# Evaluation outputs
+*_evaluation_results*.json
+*_evaluation_results*.csv
+*_ml_format.csv
+*_ml_format.pkl
+temp_fresh_results.json
+straipsniai_evaluation_results.json
+straipsniai_dataset.json
+frascati_rd_dataset.json
+
+# Analysis outputs
+docs/out/
+agent_evaluation_*.csv
+agent_evaluation_*.pkl
+
+# Temporary files
+tmp.txt
+*.tmp
+
+# Backup directory
+backup/
 
 .venv
 .env

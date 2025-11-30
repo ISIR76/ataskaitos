@@ -155,13 +155,9 @@ def initialize_default_evaluators(registry: EvaluatorRegistry) -> None:
     # Load article evaluators
     articles_json = evaluators_dir / "articles" / "smsm_judges.json"
     if articles_json.exists():
-        load_evaluators_from_json(
-            json_path=articles_json, document_type="article", registry=registry
-        )
+        load_evaluators_from_json(json_path=articles_json, document_type="article", registry=registry)
 
     # Load report evaluators
     reports_json = evaluators_dir / "reports" / "frascati_judges.json"
     if reports_json.exists():
-        load_evaluators_from_json(
-            json_path=reports_json, document_type="report", registry=registry
-        )
+        load_evaluators_from_json(json_path=reports_json, document_type="report", registry=registry)

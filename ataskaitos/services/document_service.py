@@ -36,8 +36,7 @@ class DocumentService:
         if file_ext not in self.SUPPORTED_FORMATS:
             raise HTTPException(
                 status_code=400,
-                detail=f"Unsupported file format: {file_ext}. "
-                f"Supported formats: {', '.join(self.SUPPORTED_FORMATS)}",
+                detail=f"Unsupported file format: {file_ext}. Supported formats: {', '.join(self.SUPPORTED_FORMATS)}",
             )
 
         try:
@@ -59,9 +58,7 @@ class DocumentService:
             # Re-raise HTTP exceptions
             raise
         except Exception as e:
-            raise HTTPException(
-                status_code=500, detail=f"Error converting file to markdown: {str(e)}"
-            )
+            raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {str(e)}")
 
     def convert_file_to_markdown(self, file_path: str | Path) -> str:
         """Convert a file path to markdown (sync version for CLI/scripts).
@@ -83,8 +80,7 @@ class DocumentService:
         file_ext = file_path.suffix.lower()
         if file_ext not in self.SUPPORTED_FORMATS:
             raise ValueError(
-                f"Unsupported file format: {file_ext}. "
-                f"Supported formats: {', '.join(self.SUPPORTED_FORMATS)}"
+                f"Unsupported file format: {file_ext}. Supported formats: {', '.join(self.SUPPORTED_FORMATS)}"
             )
 
         try:

@@ -38,9 +38,7 @@ async def verify_api_key(api_key: Optional[str] = Security(api_key_header)) -> b
         return True
 
     if not API_KEY:
-        raise HTTPException(
-            status_code=500, detail="API_KEY not configured on server"
-        )
+        raise HTTPException(status_code=500, detail="API_KEY not configured on server")
 
     if not api_key:
         raise HTTPException(
@@ -84,6 +82,7 @@ def get_evaluation_service() -> EvaluationService:
     # Import agent registry here to avoid circular imports
     try:
         from ataskaitos.agents import get_agent_registry
+
         agent_registry = get_agent_registry()
     except ImportError:
         agent_registry = None

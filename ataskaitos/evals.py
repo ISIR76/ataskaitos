@@ -1,4 +1,20 @@
 """
+Frascati Manual R&D Evaluation System (Development Tool)
+
+This module serves dual purposes:
+1. PRODUCTION: Defines the 10 Frascati evaluators loaded by the API
+2. DEVELOPMENT: __main__ block for batch evaluation on reference documents
+
+For production API usage, see:
+- ataskaitos/evaluators/reports/frascati_judges.json (JSON configs)
+- ataskaitos/services/evaluation_service.py (API integration)
+
+For development batch evaluation:
+- Run: uv run python ataskaitos/evals.py
+- Processes: docs/reference_documents/ataskaitos/{ok,not_ok}/*.docx
+- Outputs: temp_fresh_results.json and CSV
+
+===============================================================================
 Frascati Manual R&D Evaluation System for Lithuanian Research Council
 
 This module implements evaluators for determining whether activities qualify as R&D
@@ -71,7 +87,8 @@ from pydantic_evals import Dataset
 from pydantic_evals.evaluators import LLMJudge
 from pydantic_evals.evaluators.llm_as_a_judge import set_default_judge_model
 
-from combine_results import combine_evaluation_results
+from scripts.utils.combine_results import combine_evaluation_results
+from pydantic_evals.reporting import EvaluationReport
 
 DEFAULT_JUDGE_MODEL = "gemini-2.5-pro"
 set_default_judge_model(DEFAULT_JUDGE_MODEL)
@@ -470,9 +487,6 @@ def do(data) -> RDActivity:
     return data
 
 
-from pydantic_evals.reporting import EvaluationReport
-
-
 def convert_results(result: EvaluationReport[Any, Any]):
     # Convert averages to JSON-serializable format
     averages = result.averages()
@@ -494,14 +508,9 @@ def convert_results(result: EvaluationReport[Any, Any]):
             {
                 "name": case.name,
                 # "input": case.inputs,
-                "expected_output": case.expected_output
-                if case.expected_output
-                else None,
+                "expected_output": case.expected_output if case.expected_output else None,
                 # "actual_output": case.output if case.output else None,
-                "scores": {
-                    k: {"value": v.value, "reason": v.reason}
-                    for k, v in case.scores.items()
-                },
+                "scores": {k: {"value": v.value, "reason": v.reason} for k, v in case.scores.items()},
                 "metrics": case.metrics,
                 "task_duration": case.task_duration,
                 "total_duration": case.total_duration,
@@ -512,9 +521,7 @@ def convert_results(result: EvaluationReport[Any, Any]):
             {
                 "name": failure.name,
                 # "input": failure.inputs,
-                "expected_output": failure.expected_output
-                if failure.expected_output
-                else None,
+                "expected_output": failure.expected_output if failure.expected_output else None,
                 "error_message": failure.error_message,
                 "error_stacktrace": failure.error_stacktrace,
             }
@@ -526,6 +533,7 @@ def convert_results(result: EvaluationReport[Any, Any]):
 
 if __name__ == "__main__":
     from pathlib import Path
+
     import markitdown
 
     docs_dir = Path("./docs/reference_documents/")
@@ -611,8 +619,6 @@ if __name__ == "__main__":
     data = convert_results(results)
     fname = f"frascati_rd_evaluation_results_{DEFAULT_JUDGE_MODEL}.json"
     with open(fname, "w", encoding="utf-8") as f:
-        import jsony
-
         f.write(json.dumps(data, indent=2))
 
     combine_evaluation_results(

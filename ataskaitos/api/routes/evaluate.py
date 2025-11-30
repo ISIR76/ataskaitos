@@ -1,6 +1,6 @@
 """Unified evaluation endpoints for all document types."""
 
-from typing import Annotated, List, Literal, Optional
+from typing import Annotated, Literal, Optional
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
@@ -17,9 +17,7 @@ router = APIRouter(prefix="/api/v1", tags=["Evaluation"])
 
 @router.post("/evaluate", response_model=UnifiedEvaluationResponse)
 async def evaluate_document(
-    file: Annotated[
-        UploadFile, File(description="Document file to evaluate (DOCX, PDF, MD, TXT)")
-    ],
+    file: Annotated[UploadFile, File(description="Document file to evaluate (DOCX, PDF, MD, TXT)")],
     document_type: Annotated[
         Literal["report", "article"],
         Form(description="Type of document: 'report' or 'article'"),
@@ -120,9 +118,7 @@ async def evaluate_document(
 
 @router.post("/reports/evaluate", response_model=UnifiedEvaluationResponse)
 async def evaluate_report(
-    file: Annotated[
-        UploadFile, File(description="Report document to evaluate (DOCX, PDF, etc.)")
-    ],
+    file: Annotated[UploadFile, File(description="Report document to evaluate (DOCX, PDF, etc.)")],
     evaluation_type: Annotated[
         Literal["agent", "scoring"],
         Form(description="Evaluation method: 'agent' or 'scoring'"),
@@ -154,9 +150,7 @@ async def evaluate_report(
 
 @router.post("/articles/evaluate", response_model=UnifiedEvaluationResponse)
 async def evaluate_article(
-    file: Annotated[
-        UploadFile, File(description="Article document to evaluate (DOCX, PDF, etc.)")
-    ],
+    file: Annotated[UploadFile, File(description="Article document to evaluate (DOCX, PDF, etc.)")],
     evaluation_type: Annotated[
         Literal["agent", "scoring"],
         Form(description="Evaluation method: 'agent' or 'scoring'"),

@@ -51,13 +51,9 @@ class EvaluationService:
         metadata["character_count"] = len(content)
 
         if evaluation_type == "agent":
-            return await self._evaluate_with_agent(
-                content, document_type, agent_names, metadata
-            )
+            return await self._evaluate_with_agent(content, document_type, agent_names, metadata)
         else:
-            return await self._evaluate_with_scoring(
-                content, document_type, evaluator_names, metadata, filename
-            )
+            return await self._evaluate_with_scoring(content, document_type, evaluator_names, metadata, filename)
 
     async def _evaluate_with_agent(
         self,
@@ -124,7 +120,7 @@ Provide a structured evaluation covering:
             agent_output = evaluation_result.output
 
             # Convert to dictionary
-            if hasattr(agent_output, 'model_dump'):
+            if hasattr(agent_output, "model_dump"):
                 agent_results[agent_name] = agent_output.model_dump()
             else:
                 agent_results[agent_name] = str(agent_output)
@@ -177,10 +173,12 @@ Provide a structured evaluation covering:
         # Create appropriate input model based on document type
         if document_type == "report":
             inputs = RDActivity(description=content, metadata=metadata)
-            process_fn = lambda x: x  # Identity function for RDActivity
+            def process_fn(x):
+                return x  # Identity function for RDActivity
         else:  # article
             inputs = ScientificArticle(description=content, metadata=metadata)
-            process_fn = lambda x: x  # Identity function for ScientificArticle
+            def process_fn(x):
+                return x  # Identity function for ScientificArticle
 
         # Create temporary dataset
         temp_dataset = Dataset(cases=[], evaluators=evaluators)
@@ -233,10 +231,7 @@ Provide a structured evaluation covering:
             case_dict = {
                 "name": case.name,
                 "expected_output": case.expected_output if hasattr(case, "expected_output") else None,
-                "scores": {
-                    k: {"value": v.value, "reason": v.reason}
-                    for k, v in case.scores.items()
-                },
+                "scores": {k: {"value": v.value, "reason": v.reason} for k, v in case.scores.items()},
                 "metrics": case.metrics if hasattr(case, "metrics") else {},
                 "task_duration": case.task_duration if hasattr(case, "task_duration") else None,
                 "total_duration": case.total_duration if hasattr(case, "total_duration") else None,
