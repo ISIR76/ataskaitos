@@ -12,7 +12,8 @@ from ataskaitos.services import DocumentService, EvaluationService
 # Environment and security configuration
 ENV = os.getenv("ENV", "development")
 API_KEY = os.getenv("API_KEY", "")
-REQUIRE_AUTH = ENV != "development"
+# Disable authentication by default (set REQUIRE_API_KEY=true to enable)
+REQUIRE_AUTH = os.getenv("REQUIRE_API_KEY", "false").lower() == "true"
 
 # API Key security scheme
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
@@ -21,8 +22,8 @@ api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 async def verify_api_key(api_key: Optional[str] = Security(api_key_header)) -> bool:
     """Verify API key for protected endpoints.
 
-    In development (ENV=development): Authentication is disabled
-    In production (ENV=production): X-API-Key header is required
+    Authentication is disabled by default. Set REQUIRE_API_KEY=true to enable.
+    When enabled, X-API-Key header is required and must match API_KEY env var.
 
     Args:
         api_key: API key from X-API-Key header

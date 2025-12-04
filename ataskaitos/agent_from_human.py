@@ -2,7 +2,7 @@ from decimal import Decimal
 from typing import Optional
 
 from pydantic import BaseModel, Field
-from pydantic_ai import Agent, ModelSettings
+from pydantic_ai import Agent, ModelSettings, NativeOutput
 from pydantic_ai.models.openai import OpenAIResponsesModel
 
 
@@ -142,7 +142,7 @@ class MTEPVertinimas(BaseModel):
     # Initial document analysis
     initial_analysis: str = Field(
         description="Initial comprehensive analysis of the document structure, content, and apparent MTEP characteristics. "
-        "Identify key strengths and potential issues before detailed evaluation. 3-5 sentences."
+        "Identify key strengths and potential issues before detailed evaluation. 10-15 sentences."
     )
 
     # 5 pagrindiniai kriterijai
@@ -430,6 +430,6 @@ Prioritizuokite mokslinę esmę prieš dokumentacijos formatą. MTEP standartai 
 
     return Agent(
         model=model,
-        output_type=MTEPVertinimas,
+        output_type=NativeOutput(MTEPVertinimas),
         instructions=instructions,
     )

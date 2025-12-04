@@ -3,6 +3,7 @@
 from typing import Any, Dict, Optional
 
 from pydantic_ai import Agent
+from pydantic_ai.output import NativeOutput
 
 # Import MTEP agent
 from ataskaitos.agent_from_human import create_mtep_agent
@@ -67,9 +68,24 @@ class AgentRegistry:
         for dtype in types:
             agents_info = []
             for name, agent in self._agents.get(dtype, {}).items():
+                # Safely get output schema name
+                output_schema = None
+                if hasattr(agent, "output_type"):
+                    output_type = agent.output_type
+                    if isinstance(output_type, NativeOutput):
+                        # NativeOutput wraps the actual output types
+                        if output_type.name:
+                            output_schema = output_type.name
+                        elif hasattr(output_type, "outputs"):
+                            # Try to get name from the wrapped outputs
+                            if hasattr(output_type.outputs, "__name__"):
+                                output_schema = output_type.outputs.__name__
+                    elif hasattr(output_type, "__name__"):
+                        output_schema = output_type.__name__
+
                 info = {
                     "name": name,
-                    "output_schema": agent.output_type.__name__ if hasattr(agent, "output_type") else None,
+                    "output_schema": output_schema,
                     **self._metadata[dtype].get(name, {}),
                 }
                 agents_info.append(info)
