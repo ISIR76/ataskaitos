@@ -28,8 +28,33 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+from reportlab.platypus.flowables import Flowable
+from reportlab.pdfgen import canvas as pdfgen_canvas
 
 from ataskaitos.agent_from_human import MTEPVertinimas
+
+
+class VerticalText(Flowable):
+    """Flowable for rendering vertical text in table cells."""
+
+    def __init__(self, text: str, font_name: str = "Helvetica-Bold", font_size: int = 8):
+        Flowable.__init__(self)
+        self.text = text
+        self.font_name = font_name
+        self.font_size = font_size
+
+    def draw(self):
+        canvas = self.canv
+        canvas.saveState()
+        canvas.rotate(90)
+        canvas.setFont(self.font_name, self.font_size)
+        canvas.drawString(0, -self.font_size, self.text)
+        canvas.restoreState()
+
+    def wrap(self, availWidth, availHeight):
+        # Width becomes the text height (vertical), height becomes font size (horizontal)
+        text_width = pdfgen_canvas.Canvas('').stringWidth(self.text, self.font_name, self.font_size)
+        return (self.font_size + 2, text_width + 4)
 
 
 def register_fonts():
@@ -89,10 +114,23 @@ def create_pdf_report(json_path: Path, output_path: Path | None = None):
 
     # Load evaluation data
     data = load_evaluation(json_path)
-    results = data.get("results", [])
+    all_results = data.get("results", [])
+
+    # Filter out results with errors or null evaluations
+    results = [r for r in all_results if r.get("evaluation") is not None and r.get("error") is None]
+
+    skipped_count = len(all_results) - len(results)
+    if skipped_count > 0:
+        print(f"⚠ Skipped {skipped_count} result(s) with errors or missing evaluations")
+        for r in all_results:
+            if r.get("evaluation") is None or r.get("error") is not None:
+                file_name = Path(r.get("file", "Unknown")).name
+                model_name = r.get("model", "N/A")
+                error_msg = r.get("error", "Missing evaluation")[:80]
+                print(f"  - {file_name} ({model_name}): {error_msg}")
 
     if not results:
-        print("No evaluation results found in JSON")
+        print("No valid evaluation results found in JSON")
         sys.exit(1)
 
     # Determine output path
@@ -205,61 +243,90 @@ def create_pdf_report(json_path: Path, output_path: Path | None = None):
     story.append(Paragraph(f"Vertinimo laikas: {timestamp}", body_style))
     story.append(Spacer(1, 0.3 * inch))
 
+    # Model comparison table
+    story.append(PageBreak())
+    story.append(Paragraph("Modelių palyginimas", title_style))
+    story.append(Spacer(1, 0.1 * inch))
+
+    # Group results by document
+    docs_by_file = {}
+    for result in results:
+        file_path = result.get("file", "")
+        file_name = Path(file_path).name
+        if file_name not in docs_by_file:
+            docs_by_file[file_name] = {
+                "file_path": file_path,
+                "y_true": 1 if "/ok/" in file_path.lower() else 0,
+                "models": {}
+            }
+        model_name = result.get("model", "N/A")
+        evaluation_data = result.get("evaluation", {})
+        score = float(evaluation_data.get("score", 0.0)) if evaluation_data else 0.0
+        docs_by_file[file_name]["models"][model_name] = score
+
+    # Build comparison table
+    # Header row with vertical text for model names
+    header_row = ["Dokumentas", "y_true"] + [VerticalText(model, font_bold, 8) for model in sorted(models)]
+
+    # Data rows
+    comparison_data = [header_row]
+    for file_name in sorted(docs_by_file.keys()):
+        doc_info = docs_by_file[file_name]
+        row = [file_name, str(doc_info["y_true"])]
+        for model in sorted(models):
+            score = doc_info["models"].get(model, None)
+            row.append(f"{score:.2f}" if score is not None else "-")
+        comparison_data.append(row)
+
+    # Calculate column widths dynamically - model columns can be narrower with vertical text
+    available_width = 6.5 * inch
+    doc_col_width = 1.5 * inch
+    ytrue_col_width = 0.4 * inch
+    model_col_width = 0.4 * inch  # Fixed width for vertical text columns
+    total_model_width = model_col_width * len(models)
+
+    # If models don't fit, adjust
+    if doc_col_width + ytrue_col_width + total_model_width > available_width:
+        model_col_width = (available_width - doc_col_width - ytrue_col_width) / len(models)
+
+    col_widths = [doc_col_width, ytrue_col_width] + [model_col_width] * len(models)
+
+    t = Table(comparison_data, colWidths=col_widths)
+    t.setStyle(
+        TableStyle([
+            ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
+            ("FONTNAME", (0, 0), (1, 0), font_bold),  # Dokumentas and y_true headers
+            ("FONTNAME", (0, 1), (-1, -1), font_regular),  # Data rows
+            ("FONTSIZE", (0, 0), (1, 0), 9),  # Doc/ytrue headers
+            ("FONTSIZE", (0, 1), (-1, -1), 8),  # Data rows
+            ("ALIGN", (0, 0), (-1, -1), "CENTER"),  # Center all
+            ("ALIGN", (0, 0), (0, -1), "LEFT"),  # Left align document names
+            ("PADDING", (0, 0), (-1, -1), 3),  # Minimal padding
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f0f0f0")),  # Header background
+            ("VALIGN", (0, 0), (-1, 0), "BOTTOM"),  # Bottom align headers (for vertical text)
+            ("VALIGN", (0, 1), (-1, -1), "MIDDLE"),  # Middle align data
+        ])
+    )
+    story.append(t)
+    story.append(Spacer(1, 0.2 * inch))
+
     # Process each evaluation
     for idx, result in enumerate(results):
         if idx > 0:
             story.append(PageBreak())
 
-        document_name, evaluation = parse_mtep_evaluation(result)
+        evaluation = parse_mtep_evaluation(result)[1]
         file_path = result.get("file", "Unknown")
+        file_name = Path(file_path).name
         model_name = result.get("model", "N/A")
 
-        # Document header with file path
-        story.append(Paragraph(f"Dokumentas {idx + 1}", title_style))
-        story.append(Spacer(1, 0.05 * inch))
-
-        # File path in a box
-        file_para = Paragraph(
-            f'<font size="9" color="#555555">{file_path}</font>',
-            body_style
-        )
-        file_table = [[file_para]]
-        t = Table(file_table, colWidths=[6.5 * inch])
-        t.setStyle(
-            TableStyle([
-                ("BOX", (0, 0), (-1, -1), 1, colors.HexColor("#95a5a6")),
-                ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#ecf0f1")),
-                ("PADDING", (0, 0), (-1, -1), 8),
-            ])
-        )
-        story.append(t)
-        story.append(Spacer(1, 0.05 * inch))
-
-        # Model for this document
-        story.append(Paragraph(f"<b>Modelis:</b> {model_name}", body_style))
+        # Document header - use filename
+        story.append(Paragraph(file_name, title_style))
         story.append(Spacer(1, 0.1 * inch))
 
-        # Final score (prominent)
+        # Model and score on same line
         final_score = float(evaluation.score) if evaluation.score else 0.0
-        score_color = create_score_color(final_score)
-
-        score_para = Paragraph(
-            f'<font size="20" color="{score_color}"><b>{final_score:.2f}</b></font>',
-            body_style,
-        )
-        label_para = Paragraph("<b>GALUTINIS BALAS</b>", body_style)
-
-        score_table = [[label_para, score_para]]
-        t = Table(score_table, colWidths=[3 * inch, 3.5 * inch])
-        t.setStyle(
-            TableStyle([
-                ("BOX", (0, 0), (-1, -1), 2, colors.grey),
-                ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f8f9fa")),
-                ("PADDING", (0, 0), (-1, -1), 12),
-                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ])
-        )
-        story.append(t)
+        story.append(Paragraph(f"<b>Modelis:</b> {model_name} | <b>Balas:</b> {final_score:.2f}", body_style))
         story.append(Spacer(1, 0.2 * inch))
 
         # Initial analysis
@@ -424,6 +491,166 @@ def create_pdf_report(json_path: Path, output_path: Path | None = None):
         story.append(Paragraph("Vertinimo apžvalga", heading_style))
         story.append(Paragraph(evaluation.assessment_overview, body_style))
         story.append(Spacer(1, 0.2 * inch))
+
+    # Appendix: Detailed criterion scores table
+    story.append(PageBreak())
+    story.append(Paragraph("Priedas: Detalūs kriterijai", title_style))
+    story.append(Spacer(1, 0.1 * inch))
+
+    # Group results by model
+    results_by_model = {}
+    for result in results:
+        model_name = result.get("model", "N/A")
+        if model_name not in results_by_model:
+            results_by_model[model_name] = []
+        results_by_model[model_name].append(result)
+
+    # Create one table per model (each model on a new page)
+    for model_idx, (model_name, model_results) in enumerate(sorted(results_by_model.items())):
+        if model_idx > 0:
+            story.append(PageBreak())
+
+        # Model name
+        story.append(Paragraph(f"Modelis: {model_name}", title_style))
+        story.append(Spacer(1, 0.05 * inch))
+
+        # Table header with vertical text and full names
+        header = ["Dokumentas"] + [
+            VerticalText(text, font_bold, 8) for text in
+            ["Naujumas", "Kūrybiškumas", "Neapibrėžtumas", "Sistemingumas", "Perduodamumas",
+             "Įvadas", "Problemos formulavimas", "Uždavinio apibrėžimas", "Veiklos aprašymas"]
+        ]
+
+        table_data = [header]
+
+        # Add rows for each document
+        for result in model_results:
+            evaluation = parse_mtep_evaluation(result)[1]
+            file_name = Path(result.get("file", "Unknown")).name
+
+            row = [
+                file_name,
+                f"{float(evaluation.naujumas.score):.2f}",
+                f"{float(evaluation.kurybiskumas.score):.2f}",
+                f"{float(evaluation.neapibreztumas.score):.2f}",
+                f"{float(evaluation.sistemingumas.score):.2f}",
+                f"{float(evaluation.perduodamumas.score):.2f}",
+                f"{float(evaluation.ivadas.score):.2f}",
+                f"{float(evaluation.problemos_formulavimas.score):.2f}",
+                f"{float(evaluation.uzdavinio_apibrezimas.score):.2f}",
+                f"{float(evaluation.veiklos_aprasymas.score):.2f}",
+            ]
+            table_data.append(row)
+
+        # Column widths - narrower for vertical text
+        col_widths = [1.5*inch] + [0.55*inch]*9
+
+        t = Table(table_data, colWidths=col_widths)
+        t.setStyle(
+            TableStyle([
+                ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
+                ("FONTNAME", (0, 0), (0, 0), font_bold),  # Only Dokumentas header
+                ("FONTNAME", (0, 1), (-1, -1), font_regular),  # Data rows
+                ("FONTSIZE", (0, 0), (0, 0), 9),  # Dokumentas header
+                ("FONTSIZE", (0, 1), (-1, -1), 8),  # Data rows
+                ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                ("ALIGN", (0, 0), (0, -1), "LEFT"),
+                ("PADDING", (0, 0), (-1, -1), 3),
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f0f0f0")),
+                ("VALIGN", (0, 0), (-1, 0), "BOTTOM"),  # Bottom align headers for vertical text
+                ("VALIGN", (0, 1), (-1, -1), "MIDDLE"),
+            ])
+        )
+        story.append(t)
+        story.append(Spacer(1, 0.2 * inch))
+
+        # Red flags table
+        story.append(Paragraph(f"Raudonos vėliavos - {model_name}", heading_style))
+        story.append(Spacer(1, 0.05 * inch))
+
+        red_flag_header = ["Dokumentas", "'Praktikos' žodžiai", "Tik modeliavimas", "Mokslinis naujumas", "Tinkama tema"]
+        red_flag_data = [red_flag_header]
+
+        for result in model_results:
+            evaluation = parse_mtep_evaluation(result)[1]
+            file_name = Path(result.get("file", "Unknown")).name
+
+            row = [
+                file_name,
+                f"{float(evaluation.praktikos_zodziai.score):.2f}",
+                f"{float(evaluation.tik_modeliavimas.score):.2f}",
+                f"{float(evaluation.mokslinis_naujumas.score):.2f}",
+                f"{float(evaluation.tinkama_tema.score):.2f}",
+            ]
+            red_flag_data.append(row)
+
+        red_flag_widths = [1.5*inch] + [1.25*inch]*4
+
+        t_red = Table(red_flag_data, colWidths=red_flag_widths)
+        t_red.setStyle(
+            TableStyle([
+                ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
+                ("FONTNAME", (0, 0), (-1, 0), font_bold),
+                ("FONTNAME", (0, 1), (-1, -1), font_regular),
+                ("FONTSIZE", (0, 0), (-1, -1), 8),
+                ("ALIGN", (1, 0), (-1, -1), "CENTER"),
+                ("ALIGN", (0, 0), (0, -1), "LEFT"),
+                ("PADDING", (0, 0), (-1, -1), 3),
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f0f0f0")),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ])
+        )
+        story.append(t_red)
+        story.append(Spacer(1, 0.2 * inch))
+
+        # Result type table
+        story.append(Paragraph(f"Rezultato tipas - {model_name}", heading_style))
+        story.append(Spacer(1, 0.05 * inch))
+
+        result_type_header = ["Dokumentas"] + [
+            VerticalText(text, font_bold, 8) for text in
+            ["Fundamentiniai tyrimai", "Koncepcija", "Parametrai", "Pirminis maketas",
+             "Realus maketas", "Prototipas", "Galutinis prototipas", "Bandomoji partija"]
+        ]
+        result_type_data = [result_type_header]
+
+        for result in model_results:
+            evaluation = parse_mtep_evaluation(result)[1]
+            file_name = Path(result.get("file", "Unknown")).name
+
+            row = [
+                file_name,
+                f"{float(evaluation.rezultato_tipas_fundamentiniai_tyrimai.score):.2f}",
+                f"{float(evaluation.rezultato_tipas_koncepcija.score):.2f}",
+                f"{float(evaluation.rezultato_tipas_parametrai.score):.2f}",
+                f"{float(evaluation.rezultato_tipas_pirminis_maketas.score):.2f}",
+                f"{float(evaluation.rezultato_tipas_realus_maketas.score):.2f}",
+                f"{float(evaluation.rezultato_tipas_prototipas.score):.2f}",
+                f"{float(evaluation.rezultato_tipas_galutinis_prototipas.score):.2f}",
+                f"{float(evaluation.rezultato_tipas_bandomoji_partija.score):.2f}",
+            ]
+            result_type_data.append(row)
+
+        result_type_widths = [1.5*inch] + [0.625*inch]*8
+
+        t_result = Table(result_type_data, colWidths=result_type_widths)
+        t_result.setStyle(
+            TableStyle([
+                ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
+                ("FONTNAME", (0, 0), (0, 0), font_bold),  # Only Dokumentas header
+                ("FONTNAME", (0, 1), (-1, -1), font_regular),  # Data rows
+                ("FONTSIZE", (0, 0), (0, 0), 9),  # Dokumentas header
+                ("FONTSIZE", (0, 1), (-1, -1), 8),  # Data rows
+                ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                ("ALIGN", (0, 0), (0, -1), "LEFT"),
+                ("PADDING", (0, 0), (-1, -1), 3),
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f0f0f0")),
+                ("VALIGN", (0, 0), (-1, 0), "BOTTOM"),  # Bottom align headers for vertical text
+                ("VALIGN", (0, 1), (-1, -1), "MIDDLE"),
+            ])
+        )
+        story.append(t_result)
+
 
     # Build PDF
     doc.build(story)
