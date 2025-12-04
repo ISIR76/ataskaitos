@@ -13,7 +13,10 @@ import sys
 from glob import glob
 from pathlib import Path
 
+from pydantic_ai.models.anthropic import AnthropicModel
 from pydantic_ai.models.google import GoogleModel
+from pydantic_ai.models.openai import OpenAIResponsesModel
+
 
 from ataskaitos.agent_from_human import create_mtep_agent
 from ataskaitos.services.batch_evaluation import BatchEvaluator
@@ -21,8 +24,13 @@ from ataskaitos.services.batch_evaluation import BatchEvaluator
 DOCUMENTS = "docs/reference_documents/ataskaitos/**/*.docx"
 MODELS = [
     GoogleModel("gemini-2.5-flash-lite"),
-    # GoogleModel("gemini-3-pro-preview"),
-    # GoogleModel("gemini-2.5-flash"),
+    GoogleModel("gemini-3-pro-preview"),
+    GoogleModel("gemini-2.5-flash"),
+    OpenAIResponsesModel("gpt-4o"),
+    OpenAIResponsesModel("gpt-5.1"),
+    OpenAIResponsesModel("gpt-5.1-mini"),
+    AnthropicModel("claude-sonnet-4-5"),
+    AnthropicModel("claude-opus-4-5"),
 ]
 
 OUTPUT_DIR = Path("docs/out/reports/agent_evaluations")
