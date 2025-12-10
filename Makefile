@@ -49,5 +49,7 @@ clean:
 restore-backup:
 	@echo "Backup files are in backup/ directory"
 	@echo "Manually copy files back if needed"
+deploy:
+	./deploy.sh
 
-.PHONY: dev eval-agent eval-reports eval-articles convert-latest analyze-latest show-latest pdf-latest combine-results lint lint-fix pipeline clean restore-backup
+.PHONY: dev eval-agent eval-reports eval-articles convert-latest analyze-latest show-latest pdf-latest combine-results lint lint-fix pipeline clean restore-backup deploy
