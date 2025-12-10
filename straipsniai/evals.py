@@ -36,6 +36,7 @@ def load_evaluators_from_json(
     json_path: str = "straipsniai/article_judges.json",
 ) -> list:
     """Load evaluator rubrics from JSON and create LLMJudge instances."""
+    print(f"Loading evaluators from: {json_path}")
     with open(json_path, "r", encoding="utf-8") as f:
         judges_config = json.load(f)
 
@@ -43,6 +44,7 @@ def load_evaluators_from_json(
     for config in judges_config:
         name = config["name"]
         if not ("fluid" in name or "dynamic" in name or "giedre" in name):
+            print(f"Skipping evaluator: {name}")
             continue  # Skip non-fluid/dynamic/giedre evaluators
 
         rubric = config["rubric"]

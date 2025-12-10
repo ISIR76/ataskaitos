@@ -241,6 +241,7 @@ async def list_evaluators(
     evaluators_info = []
 
     for evaluator in evaluators:
+        print(f"Checking evaluator: {getattr(evaluator, 'score', None)}")
         # Use the built-in as_spec method for clean serialization
         spec = evaluator.as_spec()
 

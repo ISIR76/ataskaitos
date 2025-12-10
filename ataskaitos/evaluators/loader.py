@@ -149,6 +149,7 @@ def initialize_default_evaluators(registry: EvaluatorRegistry) -> None:
     - Article evaluators from: evaluators/articles/smsm_judges.json
     - Report evaluators from: evaluators/reports/frascati_judges.json (if exists)
     """
+    print("Initializing default evaluators...")
     # Get the evaluators directory path
     evaluators_dir = Path(__file__).parent
 
