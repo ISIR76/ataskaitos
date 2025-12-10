@@ -14,6 +14,7 @@ For development batch evaluation:
 - Processes: docs/reference_documents/straipsniai*/*.md
 - Outputs: straipsniai_evaluation_results.json
 """
+
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -41,8 +42,8 @@ def load_evaluators_from_json(
     evaluators = []
     for config in judges_config:
         name = config["name"]
-        if not ("fluid" in name or "dynamic" in name):
-            continue  # Skip non-fluid/dynamic judges
+        if not ("fluid" in name or "dynamic" in name or "giedre" in name):
+            continue  # Skip non-fluid/dynamic/giedre evaluators
 
         rubric = config["rubric"]
         has_assertion = config.get("has_assertion", False)
