@@ -1,5 +1,6 @@
 """Database connection and session management."""
 
+import os
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -8,12 +9,18 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from ataskaitos.models.database import Base
 
-# Create data directory if it doesn't exist
-DATA_DIR = Path("data/database")
-DATA_DIR.mkdir(parents=True, exist_ok=True)
+# Use in-memory database in production, file-based locally
+if os.getenv("ENV") == "production":
+    DATABASE_URL = "sqlite:///:memory:"
+    print("Using in-memory SQLite database")
+else:
+    # Create data directory if it doesn't exist
+    DATA_DIR = Path("data/database")
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    DATABASE_URL = "sqlite:///data/database/ataskaitos.db"
+    print(f"Using file-based SQLite database: {DATABASE_URL}")
 
 # Create engine with SQLite
-DATABASE_URL = "sqlite:///data/database/ataskaitos.db"
 engine = create_engine(
     DATABASE_URL,
     echo=False,  # Set to True for SQL query logging

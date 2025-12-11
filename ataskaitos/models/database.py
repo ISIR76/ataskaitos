@@ -83,7 +83,7 @@ class Evaluation(Base):
     )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, init=False, autoincrement=True)
-    evaluation_id: Mapped[str] = mapped_column(String, index=True)  # UUID
+    evaluation_id: Mapped[str] = mapped_column(String)  # UUID
     document_version_id: Mapped[int] = mapped_column(Integer, ForeignKey("document_versions.id"))
     evaluation_type: Mapped[str] = mapped_column(String)  # "scoring" or "agent"
     evaluators_used: Mapped[str] = mapped_column(String)  # JSON array string
