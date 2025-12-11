@@ -194,6 +194,322 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/projects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Projects
+         * @description List all projects with pagination.
+         *
+         *     Args:
+         *         skip: Number of records to skip (default: 0)
+         *         limit: Maximum number of records to return (default: 100)
+         *
+         *     Returns:
+         *         List of projects with total count
+         */
+        get: operations["list_projects_api_v1_projects_get"];
+        put?: never;
+        /**
+         * Create Project
+         * @description Create a new project.
+         *
+         *     Args:
+         *         request: Project creation request with name and type
+         *
+         *     Returns:
+         *         Created project details
+         *
+         *     Raises:
+         *         HTTPException: If project name already exists
+         */
+        post: operations["create_project_api_v1_projects_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Project
+         * @description Get project details by ID.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *
+         *     Returns:
+         *         Project details
+         *
+         *     Raises:
+         *         HTTPException: If project not found
+         */
+        get: operations["get_project_api_v1_projects__project_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete Project
+         * @description Delete a project and all its versions.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *
+         *     Raises:
+         *         HTTPException: If project not found
+         */
+        delete: operations["delete_project_api_v1_projects__project_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/versions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Versions
+         * @description List all versions for a project.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *
+         *     Returns:
+         *         List of document versions
+         *
+         *     Raises:
+         *         HTTPException: If project not found
+         */
+        get: operations["list_versions_api_v1_projects__project_id__versions_get"];
+        put?: never;
+        /**
+         * Upload Version
+         * @description Upload a new document version to a project.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         file: Document file to upload
+         *
+         *     Returns:
+         *         Created document version details
+         *
+         *     Raises:
+         *         HTTPException: If project not found or file processing fails
+         */
+        post: operations["upload_version_api_v1_projects__project_id__versions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/versions/{version_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Version
+         * @description Get document version details with markdown content.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         version_id: Version ID
+         *
+         *     Returns:
+         *         Document version details with markdown content
+         *
+         *     Raises:
+         *         HTTPException: If project or version not found
+         */
+        get: operations["get_version_api_v1_projects__project_id__versions__version_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete Version
+         * @description Delete a document version.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         version_id: Version ID
+         *
+         *     Raises:
+         *         HTTPException: If project or version not found, or if trying to delete the only version
+         */
+        delete: operations["delete_version_api_v1_projects__project_id__versions__version_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/versions/{version_id}/markdown": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Version Markdown
+         * @description Get markdown content for a version.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         version_id: Version ID
+         *
+         *     Returns:
+         *         Plain text markdown content
+         *
+         *     Raises:
+         *         HTTPException: If project or version not found
+         */
+        get: operations["get_version_markdown_api_v1_projects__project_id__versions__version_id__markdown_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/versions/{version_id}/set-active": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Set Active Version
+         * @description Set a version as the active version for the project.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         version_id: Version ID to set as active
+         *
+         *     Returns:
+         *         Updated project details
+         *
+         *     Raises:
+         *         HTTPException: If project or version not found
+         */
+        post: operations["set_active_version_api_v1_projects__project_id__versions__version_id__set_active_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/versions/{version_id}/evaluate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Evaluate Version
+         * @description Run evaluation on a document version.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         version_id: Version ID
+         *         evaluation_type: Type of evaluation ("scoring" or "agent")
+         *         evaluators: Comma-separated list of evaluators (for scoring)
+         *         agents: Comma-separated list of agents (for agent mode)
+         *
+         *     Returns:
+         *         Evaluation results
+         *
+         *     Raises:
+         *         HTTPException: If project or version not found, or evaluation fails
+         */
+        post: operations["evaluate_version_api_v1_projects__project_id__versions__version_id__evaluate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/versions/{version_id}/evaluations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Version Evaluations
+         * @description List all evaluations for a document version.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         version_id: Version ID
+         *
+         *     Returns:
+         *         List of evaluation history items
+         *
+         *     Raises:
+         *         HTTPException: If project or version not found
+         */
+        get: operations["list_version_evaluations_api_v1_projects__project_id__versions__version_id__evaluations_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/evaluations/{evaluation_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Evaluation
+         * @description Get evaluation details by UUID.
+         *
+         *     Args:
+         *         project_id: Project ID
+         *         evaluation_id: Evaluation UUID
+         *
+         *     Returns:
+         *         Evaluation details with full results
+         *
+         *     Raises:
+         *         HTTPException: If project or evaluation not found
+         */
+        get: operations["get_evaluation_api_v1_projects__project_id__evaluations__evaluation_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -271,6 +587,233 @@ export interface components {
              * @description Comma-separated list of evaluators (optional)
              */
             evaluators?: string | null;
+        };
+        /** Body_evaluate_version_api_v1_projects__project_id__versions__version_id__evaluate_post */
+        Body_evaluate_version_api_v1_projects__project_id__versions__version_id__evaluate_post: {
+            /**
+             * Evaluation Type
+             * @default scoring
+             */
+            evaluation_type: string;
+            /** Evaluators */
+            evaluators?: string;
+            /** Agents */
+            agents?: string;
+        };
+        /** Body_upload_version_api_v1_projects__project_id__versions_post */
+        Body_upload_version_api_v1_projects__project_id__versions_post: {
+            /**
+             * File
+             * Format: binary
+             */
+            file: string;
+        };
+        /**
+         * CreateProjectRequest
+         * @description Request to create a new project.
+         */
+        CreateProjectRequest: {
+            /**
+             * Name
+             * @description Project name (must be unique)
+             */
+            name: string;
+            /**
+             * Project Type
+             * @description Type of project
+             * @enum {string}
+             */
+            project_type: "straipsnis" | "ataskaita";
+        };
+        /**
+         * DocumentVersionDetailResponse
+         * @description Response for a document version with markdown content.
+         */
+        DocumentVersionDetailResponse: {
+            /**
+             * Id
+             * @description Version ID
+             */
+            id: number;
+            /**
+             * Project Id
+             * @description Project ID
+             */
+            project_id: number;
+            /**
+             * Version Number
+             * @description Version number
+             */
+            version_number: number;
+            /**
+             * Original Filename
+             * @description Original filename
+             */
+            original_filename: string;
+            /**
+             * Character Count
+             * @description Character count
+             */
+            character_count: number;
+            /**
+             * Evaluation Count
+             * @description Number of evaluations
+             */
+            evaluation_count: number;
+            /**
+             * Is Active
+             * @description Whether this is the active version
+             */
+            is_active: boolean;
+            /**
+             * Created At
+             * Format: date-time
+             * @description Creation timestamp
+             */
+            created_at: string;
+            /**
+             * Markdown Content
+             * @description Markdown content of the document
+             */
+            markdown_content: string;
+        };
+        /**
+         * DocumentVersionResponse
+         * @description Response for a document version.
+         */
+        DocumentVersionResponse: {
+            /**
+             * Id
+             * @description Version ID
+             */
+            id: number;
+            /**
+             * Project Id
+             * @description Project ID
+             */
+            project_id: number;
+            /**
+             * Version Number
+             * @description Version number
+             */
+            version_number: number;
+            /**
+             * Original Filename
+             * @description Original filename
+             */
+            original_filename: string;
+            /**
+             * Character Count
+             * @description Character count
+             */
+            character_count: number;
+            /**
+             * Evaluation Count
+             * @description Number of evaluations
+             */
+            evaluation_count: number;
+            /**
+             * Is Active
+             * @description Whether this is the active version
+             */
+            is_active: boolean;
+            /**
+             * Created At
+             * Format: date-time
+             * @description Creation timestamp
+             */
+            created_at: string;
+        };
+        /**
+         * EvaluationDetailResponse
+         * @description Response for an evaluation with full results.
+         */
+        EvaluationDetailResponse: {
+            /**
+             * Id
+             * @description Evaluation database ID
+             */
+            id: number;
+            /**
+             * Evaluation Id
+             * @description Evaluation UUID
+             */
+            evaluation_id: string;
+            /**
+             * Evaluation Type
+             * @description Type of evaluation
+             */
+            evaluation_type: string;
+            /**
+             * Evaluators Used
+             * @description List of evaluators used
+             */
+            evaluators_used: string[];
+            /**
+             * Status
+             * @description Evaluation status
+             */
+            status: string;
+            /**
+             * Duration Seconds
+             * @description Duration in seconds
+             */
+            duration_seconds: number;
+            /**
+             * Created At
+             * Format: date-time
+             * @description Creation timestamp
+             */
+            created_at: string;
+            /**
+             * Results
+             * @description Full evaluation results
+             */
+            results: {
+                [key: string]: unknown;
+            };
+        };
+        /**
+         * EvaluationHistoryItem
+         * @description Response for an evaluation in history list.
+         */
+        EvaluationHistoryItem: {
+            /**
+             * Id
+             * @description Evaluation database ID
+             */
+            id: number;
+            /**
+             * Evaluation Id
+             * @description Evaluation UUID
+             */
+            evaluation_id: string;
+            /**
+             * Evaluation Type
+             * @description Type of evaluation
+             */
+            evaluation_type: string;
+            /**
+             * Evaluators Used
+             * @description List of evaluators used
+             */
+            evaluators_used: string[];
+            /**
+             * Status
+             * @description Evaluation status
+             */
+            status: string;
+            /**
+             * Duration Seconds
+             * @description Duration in seconds
+             */
+            duration_seconds: number;
+            /**
+             * Created At
+             * Format: date-time
+             * @description Creation timestamp
+             */
+            created_at: string;
         };
         /**
          * EvaluatorInfo
@@ -374,6 +917,70 @@ export interface components {
              * @description Whether authentication is required
              */
             authentication_required: boolean;
+        };
+        /**
+         * ProjectListResponse
+         * @description Response for list of projects.
+         */
+        ProjectListResponse: {
+            /**
+             * Projects
+             * @description List of projects
+             */
+            projects: components["schemas"]["ProjectResponse"][];
+            /**
+             * Total
+             * @description Total number of projects
+             */
+            total: number;
+        };
+        /**
+         * ProjectResponse
+         * @description Response for a project.
+         */
+        ProjectResponse: {
+            /**
+             * Id
+             * @description Project ID
+             */
+            id: number;
+            /**
+             * Name
+             * @description Project name
+             */
+            name: string;
+            /**
+             * Project Type
+             * @description Project type
+             */
+            project_type: string;
+            /**
+             * Active Version Id
+             * @description Active version ID
+             */
+            active_version_id: number | null;
+            /**
+             * Active Version Number
+             * @description Active version number
+             */
+            active_version_number: number | null;
+            /**
+             * Total Versions
+             * @description Total number of versions
+             */
+            total_versions: number;
+            /**
+             * Created At
+             * Format: date-time
+             * @description Creation timestamp
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             * @description Last update timestamp
+             */
+            updated_at: string;
         };
         /**
          * RootResponse
@@ -631,6 +1238,423 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UnifiedEvaluationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_projects_api_v1_projects_get: {
+        parameters: {
+            query?: {
+                skip?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProjectListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_project_api_v1_projects_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateProjectRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProjectResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_project_api_v1_projects__project_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProjectResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_project_api_v1_projects__project_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_versions_api_v1_projects__project_id__versions_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DocumentVersionResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upload_version_api_v1_projects__project_id__versions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_upload_version_api_v1_projects__project_id__versions_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DocumentVersionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_version_api_v1_projects__project_id__versions__version_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                version_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DocumentVersionDetailResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_version_api_v1_projects__project_id__versions__version_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                version_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_version_markdown_api_v1_projects__project_id__versions__version_id__markdown_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                version_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    set_active_version_api_v1_projects__project_id__versions__version_id__set_active_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                version_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProjectResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    evaluate_version_api_v1_projects__project_id__versions__version_id__evaluate_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                version_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/x-www-form-urlencoded": components["schemas"]["Body_evaluate_version_api_v1_projects__project_id__versions__version_id__evaluate_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnifiedEvaluationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_version_evaluations_api_v1_projects__project_id__versions__version_id__evaluations_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                version_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvaluationHistoryItem"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_evaluation_api_v1_projects__project_id__evaluations__evaluation_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                evaluation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvaluationDetailResponse"];
                 };
             };
             /** @description Validation Error */

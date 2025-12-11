@@ -1,5 +1,6 @@
 """FastAPI application factory."""
 
+from logging import getLogger
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -11,13 +12,26 @@ from fastapi.staticfiles import StaticFiles
 
 from ataskaitos.evaluators import get_registry, initialize_default_evaluators
 
-from .routes import evaluate_router, health_router
+from .routes import evaluate_router, health_router, projects_router
+import logfire
+
+logfire.configure(send_to_logfire="if-token-present")
+logfire.instrument_pydantic()
+logfire.instrument_pydantic_ai()
+logger = getLogger(None)
+logger.addHandler(logfire.LogfireLoggingHandler(level="DEBUG"))
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan manager - handles startup and shutdown."""
-    # Startup: Initialize evaluators
+    # Startup
+    # 1. Initialize database
+    from ataskaitos.database import init_db
+
+    init_db()
+
+    # 2. Initialize evaluators
     registry = get_registry()
     initialize_default_evaluators(registry)
 
@@ -69,6 +83,7 @@ def create_app() -> FastAPI:
         redoc_url="/api/redoc",
         openapi_url="/api/openapi.json",
     )
+    logfire.instrument_fastapi(app)
 
     # Configure CORS
     allowed_origins = [
@@ -93,6 +108,7 @@ def create_app() -> FastAPI:
     # Register routers
     app.include_router(health_router)
     app.include_router(evaluate_router)
+    app.include_router(projects_router)
 
     # Serve frontend static files (only if frontend/dist exists)
     frontend_dist = Path(__file__).parent.parent.parent / "frontend" / "dist"

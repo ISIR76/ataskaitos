@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Upload, FileText, Loader2, CheckSquare, Square, ChevronDown, ChevronUp } from "lucide-react";
+import { Upload, FileText, Loader2, ChevronDown, ChevronUp, CheckSquare, Square } from "lucide-react";
 import { client } from "../api/client";
 import type { components } from "../api/schema";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 type EvaluationResponse = components["schemas"]["UnifiedEvaluationResponse"];
 type EvaluatorInfo = components["schemas"]["EvaluatorInfo"];
@@ -135,13 +138,13 @@ export function DocumentUpload({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file) {
-      setError("Please select a file");
+      setError("Pasirinkite failą");
       return;
     }
 
     // Require at least one evaluator/agent selected
     if (selectedEvaluators.length === 0) {
-      setError(`Please select at least one ${evaluationType === "scoring" ? "evaluator" : "agent"}`);
+      setError(`Pasirinkite bent vieną ${evaluationType === "scoring" ? "vertintoją" : "agentą"}`);
       return;
     }
 
@@ -194,7 +197,7 @@ export function DocumentUpload({
           onDragOver={handleDrag}
           onDrop={handleDrop}
         >
-          <input
+          <Input
             type="file"
             id="file-upload"
             className="hidden"
@@ -202,16 +205,16 @@ export function DocumentUpload({
             accept=".docx,.pdf,.doc,.txt,.md"
           />
 
-          <label
+          <Label
             htmlFor="file-upload"
             className="flex flex-col items-center cursor-pointer"
           >
             <Upload className="h-12 w-12 text-muted-foreground mb-4" />
             <p className="text-lg font-medium mb-1">
-              {file ? file.name : "Drop your document here"}
+              {file ? file.name : "Tempkite dokumentą čia"}
             </p>
             <p className="text-sm text-muted-foreground">
-              or click to browse (DOCX, PDF, MD, TXT)
+              arba spustelėkite naršyti (DOCX, PDF, MD, TXT)
             </p>
             {file && (
               <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
@@ -219,7 +222,7 @@ export function DocumentUpload({
                 <span>{(file.size / 1024).toFixed(1)} KB</span>
               </div>
             )}
-          </label>
+          </Label>
         </div>
 
         {/* Options */}
@@ -227,60 +230,44 @@ export function DocumentUpload({
           {/* Document Type */}
           {!hideDocumentTypeSelector && (
             <div className="space-y-2">
-              <label className="text-sm font-medium">Document Type</label>
+              <Label className="text-sm font-medium">Dokumento tipas</Label>
               <div className="grid grid-cols-2 gap-2">
-                <button
+                <Button
                   type="button"
+                  variant={documentType === "article" ? "default" : "outline"}
                   onClick={() => setDocumentType("article")}
-                  className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${
-                    documentType === "article"
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background border-input hover:bg-muted"
-                  }`}
                 >
-                  Article
-                </button>
-                <button
+                  Straipsnis
+                </Button>
+                <Button
                   type="button"
+                  variant={documentType === "report" ? "default" : "outline"}
                   onClick={() => setDocumentType("report")}
-                  className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${
-                    documentType === "report"
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background border-input hover:bg-muted"
-                  }`}
                 >
-                  Report
-                </button>
+                  Ataskaita
+                </Button>
               </div>
             </div>
           )}
 
           {/* Evaluation Type */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Evaluation Method</label>
+            <Label className="text-sm font-medium">Vertinimo metodas</Label>
             <div className="grid grid-cols-2 gap-2">
-              <button
+              <Button
                 type="button"
+                variant={evaluationType === "scoring" ? "default" : "outline"}
                 onClick={() => setEvaluationType("scoring")}
-                className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${
-                  evaluationType === "scoring"
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background border-input hover:bg-muted"
-                }`}
               >
-                Scoring
-              </button>
-              <button
+                Įvertinimas
+              </Button>
+              <Button
                 type="button"
+                variant={evaluationType === "agent" ? "default" : "outline"}
                 onClick={() => setEvaluationType("agent")}
-                className={`px-4 py-2 rounded-md border text-sm font-medium transition-colors ${
-                  evaluationType === "agent"
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background border-input hover:bg-muted"
-                }`}
               >
-                Agent
-              </button>
+                Agentas
+              </Button>
             </div>
           </div>
         </div>
@@ -289,7 +276,7 @@ export function DocumentUpload({
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium">
-              Select {evaluationType === "scoring" ? "Evaluators" : "Agents"} ({selectedEvaluators.length}/{availableEvaluators.length})
+              Pasirinkite {evaluationType === "scoring" ? "vertintojus" : "agentus"} ({selectedEvaluators.length}/{availableEvaluators.length})
             </label>
             <button
               type="button"
@@ -297,20 +284,20 @@ export function DocumentUpload({
               className="text-sm text-primary hover:underline"
             >
               {selectedEvaluators.length === availableEvaluators.length
-                ? "Deselect All"
-                : "Select All"}
+                ? "Atžymėti viską"
+                : "Pasirinkti viską"}
             </button>
           </div>
 
           {loadingEvaluators ? (
             <div className="flex items-center justify-center p-4 text-sm text-muted-foreground">
               <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              Loading {evaluationType === "scoring" ? "evaluators" : "agents"}...
+              Įkeliami {evaluationType === "scoring" ? "vertintojai" : "agentai"}...
             </div>
           ) : availableEvaluators.length === 0 ? (
             <div className="rounded-lg border border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 p-4">
               <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                No {evaluationType === "scoring" ? "evaluators" : "agents"} configured for {documentType}s yet.
+                Nėra sukonfigūruotų {evaluationType === "scoring" ? "vertintojų" : "agentų"} {documentType === "article" ? "straipsniams" : "ataskaitoms"}.
               </p>
             </div>
           ) : (
@@ -371,7 +358,7 @@ export function DocumentUpload({
                           {isExpanded && evaluator.rubric && (
                             <div className="mt-3 pt-3 border-t">
                               <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                                Complete Rubric
+                                Pilna rubrika
                               </h4>
                               <pre className="whitespace-pre-wrap text-xs text-muted-foreground bg-muted/30 rounded-md p-3 overflow-auto max-h-64">
                                 {evaluator.rubric}
@@ -404,10 +391,10 @@ export function DocumentUpload({
           {loading ? (
             <>
               <Loader2 className="h-5 w-5 animate-spin" />
-              Evaluating...
+              Vertinama...
             </>
           ) : (
-            "Evaluate Document"
+            "Vertinti dokumentą"
           )}
         </button>
       </form>

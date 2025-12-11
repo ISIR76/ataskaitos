@@ -1,12 +1,16 @@
 """Evaluation orchestration service."""
 
+import logging
 from typing import Any, Dict, List, Literal, Optional
 
+import logfire
 from pydantic_evals import Dataset
 from pydantic_evals.reporting import EvaluationReport
 
 from ataskaitos.evaluators import EvaluatorRegistry
 from ataskaitos.models import EvaluationResult, RDActivity, ScientificArticle
+
+logger = logging.getLogger(__name__)
 
 
 class EvaluationService:
@@ -191,10 +195,37 @@ Provide a structured evaluation covering:
         )
 
         # Run evaluation
-        eval_results: EvaluationReport = await temp_dataset.evaluate(process_fn)
+        with logfire.span("evaluate_scoring", document_type=document_type, evaluator_count=len(evaluators)):
+            eval_results: EvaluationReport = await temp_dataset.evaluate(process_fn)
 
-        # Convert results to dictionary format
-        results_data = self._convert_eval_results(eval_results)
+        # Log evaluation results
+        logger.info(f"📊 Evaluation completed. Cases: {len(eval_results.cases)}")
+
+        with logfire.span("process_eval_results", case_count=len(eval_results.cases)):
+            if eval_results.cases:
+                first_case = eval_results.cases[0]
+                score_dict = dict(first_case.scores)
+                logfire.info("Scores received from evaluation",
+                            score_count=len(score_dict),
+                            score_names=list(score_dict.keys()))
+
+                logger.info(f"📈 First case scores: {score_dict}")
+                logger.info(f"   Score keys: {list(first_case.scores.keys())}")
+                for score_name, score_obj in first_case.scores.items():
+                    logger.info(f"   - {score_name}: value={score_obj.value}, reason={score_obj.reason[:50] if score_obj.reason else 'N/A'}...")
+
+            # Convert results to dictionary format
+            results_data = self._convert_eval_results(eval_results)
+
+            converted_scores = {}
+            if results_data.get('cases'):
+                converted_scores = results_data['cases'][0].get('scores', {})
+
+            logfire.info("Results converted to dict",
+                        converted_score_count=len(converted_scores),
+                        converted_score_names=list(converted_scores.keys()))
+
+            logger.info(f"🔄 Converted results_data scores: {list(converted_scores.keys())}")
 
         return EvaluationResult(
             document_type=document_type,

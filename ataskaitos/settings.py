@@ -21,5 +21,10 @@ class Settings(BaseSettings):
     # Model settings
     default_temperature: float = 0.0
 
+    # Storage configuration
+    data_directory: str = "data"
+    uploads_directory: str = "data/uploads"
+    database_url: str = "sqlite:///data/database/ataskaitos.db"
+
 
 settings = Settings()

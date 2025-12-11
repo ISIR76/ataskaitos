@@ -1,5 +1,6 @@
 """API request and response models."""
 
+from datetime import datetime
 from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, Field
@@ -93,3 +94,70 @@ class RootResponse(BaseModel):
     status: str = Field(description="Service status")
     version: str = Field(description="API version")
     docs_url: str = Field(description="URL to API documentation")
+
+
+# Project management models
+
+
+class CreateProjectRequest(BaseModel):
+    """Request to create a new project."""
+
+    name: str = Field(description="Project name (must be unique)")
+    project_type: Literal["straipsnis", "ataskaita"] = Field(description="Type of project")
+
+
+class ProjectResponse(BaseModel):
+    """Response for a project."""
+
+    id: int = Field(description="Project ID")
+    name: str = Field(description="Project name")
+    project_type: str = Field(description="Project type")
+    active_version_id: int | None = Field(description="Active version ID")
+    active_version_number: int | None = Field(description="Active version number")
+    total_versions: int = Field(description="Total number of versions")
+    created_at: datetime = Field(description="Creation timestamp")
+    updated_at: datetime = Field(description="Last update timestamp")
+
+
+class ProjectListResponse(BaseModel):
+    """Response for list of projects."""
+
+    projects: list[ProjectResponse] = Field(description="List of projects")
+    total: int = Field(description="Total number of projects")
+
+
+class DocumentVersionResponse(BaseModel):
+    """Response for a document version."""
+
+    id: int = Field(description="Version ID")
+    project_id: int = Field(description="Project ID")
+    version_number: int = Field(description="Version number")
+    original_filename: str = Field(description="Original filename")
+    character_count: int = Field(description="Character count")
+    evaluation_count: int = Field(description="Number of evaluations")
+    is_active: bool = Field(description="Whether this is the active version")
+    created_at: datetime = Field(description="Creation timestamp")
+
+
+class DocumentVersionDetailResponse(DocumentVersionResponse):
+    """Response for a document version with markdown content."""
+
+    markdown_content: str = Field(description="Markdown content of the document")
+
+
+class EvaluationHistoryItem(BaseModel):
+    """Response for an evaluation in history list."""
+
+    id: int = Field(description="Evaluation database ID")
+    evaluation_id: str = Field(description="Evaluation UUID")
+    evaluation_type: str = Field(description="Type of evaluation")
+    evaluators_used: list[str] = Field(description="List of evaluators used")
+    status: str = Field(description="Evaluation status")
+    duration_seconds: float = Field(description="Duration in seconds")
+    created_at: datetime = Field(description="Creation timestamp")
+
+
+class EvaluationDetailResponse(EvaluationHistoryItem):
+    """Response for an evaluation with full results."""
+
+    results: dict[str, Any] = Field(description="Full evaluation results")

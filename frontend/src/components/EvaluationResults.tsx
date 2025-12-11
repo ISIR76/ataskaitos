@@ -1,6 +1,9 @@
 import React from "react";
 import { CheckCircle2, XCircle, AlertCircle, ChevronDown, ChevronUp } from "lucide-react";
 import type { components } from "../api/schema";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 
 type EvaluationResponse = components["schemas"]["UnifiedEvaluationResponse"];
 
@@ -54,14 +57,21 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
   const renderScoringResults = () => {
     const resultData = result.results as any;
 
+    console.log("📊 Rendering scoring results:", {
+      resultData,
+      hasCases: resultData?.cases,
+      casesLength: resultData?.cases?.length,
+      firstCase: resultData?.cases?.[0],
+    });
+
     // Check if we have cases with scores
     if (!resultData?.cases || resultData.cases.length === 0) {
       return (
-        <div className="rounded-lg border border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 p-4">
-          <p className="text-sm text-yellow-800 dark:text-yellow-200">
-            No evaluation scores available. The document may have failed to process.
-          </p>
-        </div>
+        <Alert variant="destructive">
+          <AlertDescription>
+            Nėra prieinamų vertinimo balų. Dokumentas galėjo nepavykti apdoroti.
+          </AlertDescription>
+        </Alert>
       );
     }
 
@@ -69,13 +79,22 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
     const caseData = resultData.cases[0];
     const scores = caseData?.scores || {};
 
+    console.log("📈 Scores object:", {
+      scores,
+      scoreKeys: Object.keys(scores),
+      scoreEntries: Object.entries(scores),
+    });
+
     if (Object.keys(scores).length === 0) {
       return (
-        <div className="rounded-lg border border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 p-4">
-          <p className="text-sm text-yellow-800 dark:text-yellow-200">
-            No scores found in evaluation results.
-          </p>
-        </div>
+        <Alert variant="destructive">
+          <AlertDescription>
+            Vertinimo rezultatuose balų nerasta. Vertinimas galbūt buvo paleistas su klaida arba balai nebuvo išsaugoti duomenų bazėje.
+            <br />
+            <br />
+            <strong>Sprendimas:</strong> Paleiskite naują vertinimą šiai versijai.
+          </AlertDescription>
+        </Alert>
       );
     }
 
@@ -87,13 +106,11 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
           const reason = scoreData?.reason || "";
 
           return (
-            <div
-              key={key}
-              className="rounded-lg border bg-card overflow-hidden"
-            >
-              <button
+            <Card key={key}>
+              <Button
+                variant="ghost"
                 onClick={() => toggleSection(key)}
-                className="w-full p-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+                className="w-full p-4 flex items-center justify-between h-auto"
               >
                 <div className="flex-1 text-left">
                   <h4 className="font-semibold capitalize">
@@ -110,16 +127,16 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
                     )}
                   </div>
                 )}
-              </button>
+              </Button>
 
               {isExpanded && reason && (
-                <div className="px-4 pb-4 pt-2 border-t bg-muted/20">
+                <CardContent className="pt-2 border-t">
                   <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                     {reason}
                   </p>
-                </div>
+                </CardContent>
               )}
-            </div>
+            </Card>
           );
         })}
       </div>
@@ -137,20 +154,20 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
       return (
         <div className="space-y-6">
           {agentNames.map((agentName) => (
-            <div key={agentName} className="rounded-lg border bg-card overflow-hidden">
-              <div className="bg-muted/30 px-6 py-3 border-b">
-                <h3 className="text-lg font-semibold capitalize">
+            <Card key={agentName}>
+              <CardHeader>
+                <CardTitle className="capitalize">
                   {agentName.replace(/_/g, " ")}
-                </h3>
-              </div>
-              <div className="p-6">
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 <div className="prose prose-sm dark:prose-invert max-w-none">
                   <pre className="whitespace-pre-wrap text-sm bg-muted/50 p-4 rounded-md overflow-auto">
                     {JSON.stringify(evaluations[agentName], null, 2)}
                   </pre>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       );
@@ -158,14 +175,18 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
 
     // Fallback for legacy single agent output
     return (
-      <div className="rounded-lg border bg-card p-6">
-        <h3 className="text-lg font-semibold mb-4">Agent Analysis</h3>
-        <div className="prose prose-sm dark:prose-invert max-w-none">
-          <pre className="whitespace-pre-wrap text-sm bg-muted p-4 rounded-md overflow-auto">
-            {JSON.stringify(agentOutput, null, 2)}
-          </pre>
-        </div>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Agento analizė</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="prose prose-sm dark:prose-invert max-w-none">
+            <pre className="whitespace-pre-wrap text-sm bg-muted p-4 rounded-md overflow-auto">
+              {JSON.stringify(agentOutput, null, 2)}
+            </pre>
+          </div>
+        </CardContent>
+      </Card>
     );
   };
 
@@ -174,7 +195,7 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Evaluation Results</h2>
+          <h2 className="text-2xl font-bold">Vertinimo rezultatai</h2>
           <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
             <span className="capitalize">{result.document_type}</span>
             <span>•</span>
@@ -210,7 +231,7 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
       {result.metadata && Object.keys(result.metadata).length > 0 && (
         <div className="rounded-lg border bg-card p-4">
           <h3 className="text-sm font-semibold mb-2 text-muted-foreground uppercase tracking-wide">
-            Metadata
+            Metaduomenys
           </h3>
           <dl className="grid grid-cols-2 gap-4 text-sm">
             {Object.entries(result.metadata).map(([key, value]) => (

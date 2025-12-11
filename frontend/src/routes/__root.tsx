@@ -1,5 +1,5 @@
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
-import { FileText, FileSearch, Home } from "lucide-react";
+import { Home, FolderOpen } from "lucide-react";
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -25,27 +25,17 @@ function RootLayout() {
                   }}
                 >
                   <Home className="h-4 w-4" />
-                  Home
+                  Pagrindinis
                 </Link>
                 <Link
-                  to="/articles"
+                  to="/projects"
                   className="px-3 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors flex items-center gap-2"
                   activeProps={{
                     className: "bg-muted",
                   }}
                 >
-                  <FileText className="h-4 w-4" />
-                  Articles
-                </Link>
-                <Link
-                  to="/reports"
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors flex items-center gap-2"
-                  activeProps={{
-                    className: "bg-muted",
-                  }}
-                >
-                  <FileSearch className="h-4 w-4" />
-                  Reports
+                  <FolderOpen className="h-4 w-4" />
+                  Projektai
                 </Link>
               </div>
             </div>
@@ -62,7 +52,7 @@ function RootLayout() {
       <footer className="border-t py-6 mt-12">
         <div className="container mx-auto px-6">
           <p className="text-center text-sm text-muted-foreground">
-            AI-powered evaluation platform for scientific documents
+            Dirbtinio intelekto valdoma platforma mokslinių dokumentų vertinimui
           </p>
         </div>
       </footer>
