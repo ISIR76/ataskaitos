@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Loader2, ChevronDown, ChevronUp, CheckSquare, Square } from "lucide-react";
 import { client } from "../api/client";
 import type { components } from "../api/schema";
+import { runEvaluation } from "@/api/projects";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -134,35 +135,10 @@ export function RunEvaluationModal({
     setError(null);
 
     try {
-      const formData = new FormData();
-      formData.append("evaluation_type", evaluationType);
-
-      // Pass evaluators for scoring mode, agents for agent mode
-      if (evaluationType === "scoring") {
-        formData.append("evaluators", selectedEvaluators.join(","));
-      } else {
-        formData.append("agents", selectedEvaluators.join(","));
-      }
-
-      // Use full backend URL since we're not using a proxy
-      const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-      const response = await fetch(
-        `${baseUrl}/api/v1/projects/${projectId}/versions/${versionId}/evaluate`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (response.ok) {
-        onEvaluationComplete();
-      } else {
-        const errorText = await response.text();
-        console.error("Evaluation failed:", errorText);
-        setError(`Nepavyko paleisti vertinimo: ${response.statusText}`);
-      }
+      await runEvaluation(projectId, versionId, evaluationType, selectedEvaluators);
+      onEvaluationComplete();
     } catch (err) {
-      setError(`Error: ${err instanceof Error ? err.message : "Unknown error"}`);
+      setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setLoading(false);
     }
