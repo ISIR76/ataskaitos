@@ -31,6 +31,7 @@ export const Route = createFileRoute(
         project.project_type === "straipsnis" ? "article" : "report",
       evaluation_type: evaluation.evaluation_type,
       status: evaluation.status,
+      markdown_content: "", // Not needed for viewing results
       results: evaluation.results,
       metadata: {
         evaluators_used: evaluation.evaluators_used,
