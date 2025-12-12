@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useRouter, Outlet, useMatches } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useMatches, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Upload, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import {
   setActiveVersion,
   type EvaluationItem,
 } from "../../api/projects";
+import { useRouterMutation, useDialog, useExpandableData } from "@/hooks";
 
 export const Route = createFileRoute("/projects/$projectId")({
   loader: async ({ params }) => {
@@ -42,74 +43,54 @@ export const Route = createFileRoute("/projects/$projectId")({
 
 function ProjectDetailPage() {
   const { project, versions, projectId } = Route.useLoaderData();
-  const router = useRouter();
   const matches = useMatches();
+  const navigate = useNavigate();
 
   // Check if we're on a child route (e.g., evaluation results page)
   const isOnChildRoute = matches.some(match =>
     match.id.includes('/evaluations/')
   );
-  const [showUploadModal, setShowUploadModal] = useState(false);
-  const [showEvaluationModal, setShowEvaluationModal] = useState(false);
+
+  const uploadDialog = useDialog();
+  const evaluationDialog = useDialog();
   const [evaluatingVersionId, setEvaluatingVersionId] = useState<number | null>(
     null
   );
-  const [expandedVersion, setExpandedVersion] = useState<number | null>(null);
-  const [versionEvaluations, setVersionEvaluations] = useState<
-    Record<number, EvaluationItem[]>
-  >({});
+  const versionEvaluationsData = useExpandableData<number, EvaluationItem[]>();
 
-  const handleUploadVersion = async (file: File) => {
+  const handleUploadVersion = useRouterMutation(async (file: File) => {
     await uploadVersion(projectId, file);
-    // Reload the route data
-    await router.invalidate();
-  };
+  });
 
-  const handleSetActive = async (versionId: number) => {
+  const handleSetActive = useRouterMutation(async (versionId: number) => {
     await setActiveVersion(projectId, versionId);
-    // Reload the route data
-    await router.invalidate();
-  };
+  });
 
   const handleToggleExpand = async (versionId: number) => {
-    if (expandedVersion === versionId) {
-      setExpandedVersion(null);
-    } else {
-      setExpandedVersion(versionId);
-      // Load evaluations if not already loaded
-      if (!versionEvaluations[versionId]) {
-        try {
-          const evaluations = await fetchVersionEvaluations(
-            projectId,
-            versionId
-          );
-          setVersionEvaluations((prev) => ({
-            ...prev,
-            [versionId]: evaluations,
-          }));
-        } catch (err) {
-          console.error("Failed to load evaluations:", err);
-        }
-      }
-    }
+    await versionEvaluationsData.toggle(versionId, () =>
+      fetchVersionEvaluations(projectId, versionId)
+    );
   };
 
   const handleRunEvaluation = (versionId: number) => {
     setEvaluatingVersionId(versionId);
-    setShowEvaluationModal(true);
+    evaluationDialog.open();
   };
 
-  const handleEvaluationComplete = async () => {
-    // Reload project data
-    await router.invalidate();
-    // Auto-expand the version's evaluation history
-    if (evaluatingVersionId) {
-      setExpandedVersion(evaluatingVersionId);
-    }
-    // Close modal
-    setShowEvaluationModal(false);
+  const handleEvaluationComplete = useRouterMutation(async (evaluationId: string) => {
+    // Close modal first
+    evaluationDialog.close();
     setEvaluatingVersionId(null);
-  };
+
+    // Navigate to evaluation results page
+    navigate({
+      to: "/projects/$projectId/evaluations/$evaluationId",
+      params: {
+        projectId: String(projectId),
+        evaluationId: evaluationId,
+      },
+    });
+  });
 
   // If on child route, only render the child (Outlet)
   if (isOnChildRoute) {
@@ -131,7 +112,7 @@ function ProjectDetailPage() {
             <h1 className="text-3xl font-bold mb-2">{project.name}</h1>
             <Badge variant="secondary">{project.project_type}</Badge>
           </div>
-          <Button onClick={() => setShowUploadModal(true)}>
+          <Button onClick={uploadDialog.open}>
             <Upload className="w-5 h-5 mr-2" />
             Įkelti naują versiją
           </Button>
@@ -143,7 +124,7 @@ function ProjectDetailPage() {
           <CardContent className="pt-6">
             <FileText className="w-16 h-16 mx-auto text-gray-400 mb-4" />
             <p className="text-gray-600 mb-4">Dar nėra dokumento versijų</p>
-            <Button onClick={() => setShowUploadModal(true)}>
+            <Button onClick={uploadDialog.open}>
               Įkelti pirmąją versiją
             </Button>
           </CardContent>
@@ -152,25 +133,27 @@ function ProjectDetailPage() {
         <VersionsList
           projectId={projectId}
           versions={versions}
-          versionEvaluations={versionEvaluations}
+          versionEvaluations={Object.fromEntries(
+            versions.map(v => [v.id, versionEvaluationsData.getData(v.id) || []])
+          )}
           onSetActive={handleSetActive}
           onRunEvaluation={handleRunEvaluation}
           onToggleExpand={handleToggleExpand}
-          expandedVersionId={expandedVersion}
+          expandedVersionId={versionEvaluationsData.expandedId}
         />
       )}
 
       <UploadVersionDialog
-        open={showUploadModal}
-        onOpenChange={setShowUploadModal}
+        open={uploadDialog.isOpen}
+        onOpenChange={uploadDialog.setIsOpen}
         onSubmit={handleUploadVersion}
       />
 
-      {showEvaluationModal && evaluatingVersionId && (
+      {evaluationDialog.isOpen && evaluatingVersionId && (
         <RunEvaluationModal
-          isOpen={showEvaluationModal}
+          isOpen={evaluationDialog.isOpen}
           onClose={() => {
-            setShowEvaluationModal(false);
+            evaluationDialog.close();
             setEvaluatingVersionId(null);
           }}
           projectType={project.project_type}

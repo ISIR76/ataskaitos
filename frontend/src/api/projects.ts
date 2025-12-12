@@ -151,13 +151,14 @@ export async function uploadVersion(projectId: number, file: File): Promise<void
 
 /**
  * Run evaluation on a version
+ * Returns the evaluation ID for navigation to results
  */
 export async function runEvaluation(
   projectId: number,
   versionId: number,
   evaluationType: "scoring" | "agent",
   evaluators: string[]
-): Promise<void> {
+): Promise<string> {
   const formData = new FormData();
   formData.append("evaluation_type", evaluationType);
 
@@ -176,6 +177,9 @@ export async function runEvaluation(
   if (!response.ok) {
     throw new Error(`Nepavyko paleisti vertinimo: ${response.statusText}`);
   }
+
+  const data = await response.json();
+  return data.evaluation_id;
 }
 
 /**

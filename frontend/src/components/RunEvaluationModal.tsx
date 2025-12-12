@@ -23,7 +23,7 @@ interface RunEvaluationModalProps {
   projectType: string;  // "straipsnis" or "ataskaita"
   versionId: number;
   projectId: number;
-  onEvaluationComplete: () => void;
+  onEvaluationComplete: (evaluationId: string) => void;
 }
 
 export function RunEvaluationModal({
@@ -135,8 +135,8 @@ export function RunEvaluationModal({
     setError(null);
 
     try {
-      await runEvaluation(projectId, versionId, evaluationType, selectedEvaluators);
-      onEvaluationComplete();
+      const evaluationId = await runEvaluation(projectId, versionId, evaluationType, selectedEvaluators);
+      onEvaluationComplete(evaluationId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
