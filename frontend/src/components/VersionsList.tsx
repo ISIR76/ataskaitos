@@ -7,7 +7,6 @@ import {
   Play,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { DocumentVersion, EvaluationItem } from "../api/projects";
 
@@ -33,76 +32,70 @@ export function VersionsList({
   return (
     <div className="space-y-4">
       {versions.map((version) => (
-        <Card key={version.id}>
-          <CardHeader>
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <CardTitle>Versija {version.version_number}</CardTitle>
-                  {version.is_active && (
-                    <Badge
-                      variant="default"
-                      className="bg-green-100 text-green-800 hover:bg-green-100"
-                    >
-                      <CheckCircle className="w-3 h-3 mr-1" />
-                      Aktyvi
-                    </Badge>
-                  )}
-                </div>
-                <p className="text-gray-600 text-sm mb-1">
-                  {version.original_filename}
-                </p>
-                <div className="flex gap-4 text-sm text-gray-500">
-                  <span>
-                    {version.character_count.toLocaleString()} simboliai
-                  </span>
-                  <span>{version.evaluation_count} vertinimai</span>
-                  <span>
-                    Įkelta {new Date(version.created_at).toLocaleString()}
-                  </span>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                {!version.is_active && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => onSetActive(version.id)}
-                  >
-                    Nustatyti aktyvią
-                  </Button>
+        <div key={version.id} className="border rounded-lg p-6">
+          <div className="flex justify-between items-start">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="font-semibold">Versija {version.version_number}</h3>
+                {version.is_active && (
+                  <Badge>
+                    <CheckCircle className="w-3 h-3 mr-1" />
+                    Aktyvi
+                  </Badge>
                 )}
-                <Button
-                  size="sm"
-                  onClick={() => onRunEvaluation(version.id)}
-                >
-                  <Play className="w-4 h-4 mr-1" />
-                  Paleisti vertinimą
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => onToggleExpand(version.id)}
-                >
-                  {expandedVersionId === version.id ? (
-                    <ChevronUp className="w-5 h-5" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5" />
-                  )}
-                </Button>
+              </div>
+              <p className="text-sm mb-1">
+                {version.original_filename}
+              </p>
+              <div className="flex gap-4 text-sm text-muted-foreground">
+                <span>
+                  {version.character_count.toLocaleString()} simboliai
+                </span>
+                <span>{version.evaluation_count} vertinimai</span>
+                <span>
+                  Įkelta {new Date(version.created_at).toLocaleString()}
+                </span>
               </div>
             </div>
-          </CardHeader>
+            <div className="flex gap-2">
+              {!version.is_active && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => onSetActive(version.id)}
+                >
+                  Nustatyti aktyvią
+                </Button>
+              )}
+              <Button
+                onClick={() => onRunEvaluation(version.id)}
+              >
+                <Play className="w-4 h-4 mr-2" />
+                Paleisti vertinimą
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => onToggleExpand(version.id)}
+              >
+                {expandedVersionId === version.id ? (
+                  <ChevronUp className="w-5 h-5" />
+                ) : (
+                  <ChevronDown className="w-5 h-5" />
+                )}
+              </Button>
+            </div>
+          </div>
 
           {expandedVersionId === version.id && (
-            <div className="border-t border-gray-200 bg-gray-50 p-6">
+            <div className="border-t mt-6 pt-6">
               <h4 className="font-semibold mb-3">Vertinimo istorija</h4>
               {versionEvaluations[version.id]?.length > 0 ? (
                 <div className="space-y-2">
                   {versionEvaluations[version.id].map((evaluation) => (
                     <div
                       key={evaluation.id}
-                      className="bg-white p-4 rounded border border-gray-200"
+                      className="bg-muted p-4 rounded border"
                     >
                       <div className="flex justify-between items-start">
                         <div>
@@ -110,11 +103,11 @@ export function VersionsList({
                             <span className="font-medium">
                               {evaluation.evaluation_type}
                             </span>
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs text-muted-foreground">
                               {evaluation.evaluators_used.length} vertintojai
                             </span>
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-sm text-muted-foreground">
                             <Clock className="w-3 h-3 inline mr-1" />
                             {evaluation.duration_seconds.toFixed(2)}s •{" "}
                             {new Date(evaluation.created_at).toLocaleString()}
@@ -126,7 +119,7 @@ export function VersionsList({
                             projectId: projectId.toString(),
                             evaluationId: evaluation.evaluation_id,
                           }}
-                          className="text-blue-600 hover:text-blue-800 text-sm"
+                          className="text-sm"
                           onClick={() => {
                             console.log("🔗 Clicking evaluation link:", {
                               projectId,
@@ -142,11 +135,11 @@ export function VersionsList({
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-500 text-sm">Dar nėra vertinimų</p>
+                <p className="text-muted-foreground text-sm">Dar nėra vertinimų</p>
               )}
             </div>
           )}
-        </Card>
+        </div>
       ))}
     </div>
   );

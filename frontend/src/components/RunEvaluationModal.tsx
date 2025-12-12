@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Loader2, ChevronDown, ChevronUp, CheckSquare, Square } from "lucide-react";
+import { Loader2, ChevronDown, ChevronUp } from "lucide-react";
 import { client } from "../api/client";
 import type { components } from "../api/schema";
 import { runEvaluation } from "@/api/projects";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetFooter,
+} from "@/components/ui/sheet";
 import { Label } from "@/components/ui/label";
-import { Card } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type EvaluatorInfo = components["schemas"]["EvaluatorInfo"];
 
@@ -116,12 +116,6 @@ export function RunEvaluationModal({
     }
   };
 
-  const getFirstLine = (text: string | null | undefined): string => {
-    if (!text) return "";
-    const firstLine = text.trim().split("\n")[0];
-    return firstLine.length > 120 ? firstLine.substring(0, 120) + "..." : firstLine;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -145,23 +139,23 @@ export function RunEvaluationModal({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Paleisti vertinimą</DialogTitle>
-        </DialogHeader>
+    <Sheet open={isOpen} onOpenChange={onClose}>
+      <SheetContent side="right" className="w-full sm:w-[600px] lg:w-[800px] overflow-y-auto p-6">
+        <SheetHeader className="mb-6">
+          <SheetTitle className="text-xl">Paleisti vertinimą</SheetTitle>
+        </SheetHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Evaluation Type */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium">Vertinimo metodas</Label>
-            <div className="grid grid-cols-2 gap-2">
+            <Label className="text-sm">Vertinimo metodas</Label>
+            <div className="grid grid-cols-2 gap-3">
               <Button
                 type="button"
                 variant={evaluationType === "scoring" ? "default" : "outline"}
                 onClick={() => setEvaluationType("scoring")}
                 disabled={loading}
-                className="w-full"
+                className="h-9"
               >
                 Įvertinimas
               </Button>
@@ -170,7 +164,7 @@ export function RunEvaluationModal({
                 variant={evaluationType === "agent" ? "default" : "outline"}
                 onClick={() => setEvaluationType("agent")}
                 disabled={loading}
-                className="w-full"
+                className="h-9"
               >
                 Agentas
               </Button>
@@ -180,15 +174,20 @@ export function RunEvaluationModal({
           {/* Evaluator/Agent Selection */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <Label className="text-sm font-medium">
-                Pasirinkite {evaluationType === "scoring" ? "vertintojus" : "agentus"} ({selectedEvaluators.length}/{availableEvaluators.length})
-              </Label>
+              <div className="flex items-baseline gap-3">
+                <Label className="text-sm">
+                  {evaluationType === "scoring" ? "Vertintojai" : "Agentai"}
+                </Label>
+                <span className="text-xs text-muted-foreground">
+                  Pasirinkta: {selectedEvaluators.length}/{availableEvaluators.length}
+                </span>
+              </div>
               <Button
                 type="button"
-                variant="link"
+                variant="outline"
+                size="sm"
                 onClick={toggleAll}
                 disabled={loading}
-                className="h-auto p-0 text-sm"
               >
                 {selectedEvaluators.length === availableEvaluators.length
                   ? "Atžymėti viską"
@@ -197,125 +196,100 @@ export function RunEvaluationModal({
             </div>
 
             {loadingEvaluators ? (
-              <div className="flex items-center justify-center p-4 text-sm text-muted-foreground">
+              <div className="flex items-center justify-center p-6 text-sm text-muted-foreground">
                 <Loader2 className="h-4 w-4 animate-spin mr-2" />
                 Įkeliami {evaluationType === "scoring" ? "vertintojai" : "agentai"}...
               </div>
             ) : availableEvaluators.length === 0 ? (
               <Alert>
-                <AlertDescription>
+                <AlertDescription className="text-sm">
                   Nėra sukonfigūruotų {evaluationType === "scoring" ? "vertintojų" : "agentų"} {documentType}s.
                 </AlertDescription>
               </Alert>
             ) : (
-              <Card className="max-h-96 overflow-y-auto">
-                <div className="divide-y">
-                  {availableEvaluators.map((evaluator) => {
+              <div className="divide-y">
+                {availableEvaluators.map((evaluator) => {
                     const isExpanded = expandedEvaluators.has(evaluator.name);
                     return (
-                      <div key={evaluator.name} className="p-3">
-                        <div className="flex items-start gap-3">
-                          <input
-                            type="checkbox"
+                      <div key={evaluator.name} className="py-3 px-2 hover:bg-muted/50 transition-colors">
+                        <div className="flex items-center gap-4">
+                          <Checkbox
                             checked={selectedEvaluators.includes(evaluator.name)}
-                            onChange={() => toggleEvaluator(evaluator.name)}
+                            onCheckedChange={() => toggleEvaluator(evaluator.name)}
                             disabled={loading}
-                            className="hidden"
-                            id={`eval-${evaluator.name}`}
                           />
-                          <label
-                            htmlFor={`eval-${evaluator.name}`}
-                            className="cursor-pointer"
-                          >
-                            {selectedEvaluators.includes(evaluator.name) ? (
-                              <CheckSquare className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
-                            ) : (
-                              <Square className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
-                            )}
-                          </label>
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-start gap-2">
-                              <label
-                                htmlFor={`eval-${evaluator.name}`}
-                                className="flex-1 cursor-pointer"
-                              >
-                                <span className="text-sm font-medium capitalize block">
-                                  {evaluator.name.replace(/_/g, " ")}
-                                </span>
-                                {evaluator.rubric && (
-                                  <span className="text-xs text-gray-600 block mt-1">
-                                    {getFirstLine(evaluator.rubric)}
-                                  </span>
-                                )}
-                              </label>
-                              {evaluator.rubric && (
-                                <button
-                                  type="button"
-                                  onClick={() => toggleExpanded(evaluator.name)}
-                                  disabled={loading}
-                                  className="text-gray-400 hover:text-gray-600 transition-colors shrink-0 mt-0.5"
-                                  aria-label={isExpanded ? "Suskleisti" : "Išskleisti"}
-                                >
-                                  {isExpanded ? (
-                                    <ChevronUp className="h-4 w-4" />
-                                  ) : (
-                                    <ChevronDown className="h-4 w-4" />
-                                  )}
-                                </button>
-                              )}
+                            <div className="font-medium text-sm capitalize">
+                              {evaluator.name.replace(/_/g, " ")}
                             </div>
-                            {isExpanded && evaluator.rubric && (
-                              <div className="mt-3 pt-3 border-t">
-                                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                                  Pilna rubrika
-                                </h4>
-                                <pre className="whitespace-pre-wrap text-xs text-gray-600 bg-gray-50 rounded-md p-3 overflow-auto max-h-64">
-                                  {evaluator.rubric}
-                                </pre>
-                              </div>
-                            )}
                           </div>
+                          {evaluator.rubric && (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => toggleExpanded(evaluator.name)}
+                              disabled={loading}
+                              className="shrink-0 h-7 w-7 p-0"
+                            >
+                              {isExpanded ? (
+                                <ChevronUp className="h-3 w-3" />
+                              ) : (
+                                <ChevronDown className="h-3 w-3" />
+                              )}
+                            </Button>
+                          )}
                         </div>
+                        {isExpanded && evaluator.rubric && (
+                          <div className="mt-3 ml-8 pt-3 border-t">
+                            <div className="text-xs bg-muted rounded-md p-3 max-h-64 overflow-auto">
+                              <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed">
+                                {evaluator.rubric}
+                              </pre>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     );
                   })}
-                </div>
-              </Card>
+              </div>
             )}
           </div>
 
           {/* Error Display */}
           {error && (
             <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
+              <AlertDescription className="text-sm">{error}</AlertDescription>
             </Alert>
           )}
 
-          <DialogFooter>
+          <SheetFooter className="gap-2 mt-6">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
               disabled={loading}
+              className="h-9"
             >
               Atšaukti
             </Button>
             <Button
               type="submit"
               disabled={loading || selectedEvaluators.length === 0}
+              className="h-9"
             >
               {loading ? (
                 <>
-                  <Loader2 className="h-5 w-5 animate-spin mr-2" />
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
                   Vertinama...
                 </>
               ) : (
                 "Paleisti vertinimą"
               )}
             </Button>
-          </DialogFooter>
+          </SheetFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }

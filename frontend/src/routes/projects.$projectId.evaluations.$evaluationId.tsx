@@ -54,7 +54,7 @@ export const Route = createFileRoute(
     console.error("❌ Error in evaluation route:", error);
     return (
       <div className="container mx-auto p-8">
-        <div className="text-center text-red-600">
+        <div className="text-center text-destructive">
           Klaida įkeliant vertinimą: {error.message}
         </div>
         <pre className="mt-4 text-xs">{error.stack}</pre>
@@ -74,7 +74,7 @@ function EvaluationResultsPage() {
         <Link
           to="/projects/$projectId"
           params={{ projectId: String(project.id) }}
-          className="text-blue-600 hover:text-blue-800 mb-4 inline-block"
+          className="mb-4 inline-block"
         >
           ← Atgal į projektą
         </Link>

@@ -2,7 +2,6 @@ import { createFileRoute, Link, Outlet, useMatches, useNavigate } from "@tanstac
 import { useState } from "react";
 import { Upload, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { RunEvaluationModal } from "../../components/RunEvaluationModal";
 import { UploadVersionDialog } from "../../components/UploadVersionDialog";
@@ -34,7 +33,7 @@ export const Route = createFileRoute("/projects/$projectId")({
   ),
   errorComponent: ({ error }) => (
     <div className="container mx-auto p-8">
-      <div className="text-center text-red-600">
+      <div className="text-center text-destructive">
         Klaida įkeliant projektą: {error.message}
       </div>
     </div>
@@ -103,7 +102,7 @@ function ProjectDetailPage() {
       <div className="mb-6">
         <Link
           to="/projects"
-          className="text-blue-600 hover:text-blue-800 mb-4 inline-block"
+          className="mb-4 inline-block"
         >
           ← Atgal į projektus
         </Link>
@@ -120,15 +119,13 @@ function ProjectDetailPage() {
       </div>
 
       {versions.length === 0 ? (
-        <Card className="text-center py-12">
-          <CardContent className="pt-6">
-            <FileText className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-            <p className="text-gray-600 mb-4">Dar nėra dokumento versijų</p>
-            <Button onClick={uploadDialog.open}>
-              Įkelti pirmąją versiją
-            </Button>
-          </CardContent>
-        </Card>
+        <div className="text-center py-12">
+          <FileText className="w-16 h-16 mx-auto mb-4" />
+          <p className="mb-4">Dar nėra dokumento versijų</p>
+          <Button onClick={uploadDialog.open}>
+            Įkelti pirmąją versiją
+          </Button>
+        </div>
       ) : (
         <VersionsList
           projectId={projectId}

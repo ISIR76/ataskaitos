@@ -23,13 +23,11 @@ function HomePage() {
         {/* Document Type Cards */}
         <div className="grid md:grid-cols-2 gap-6">
           {/* Articles Card */}
-          <Link to="/articles" className="group h-full">
-            <Card className="hover:shadow-lg transition-all cursor-pointer h-full">
+          <Link to="/articles" className="h-full">
+            <Card className="h-full">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                    <FileText className="h-6 w-6" />
-                  </div>
+                  <FileText className="h-6 w-6 text-primary" />
                   <CardTitle className="text-2xl">Moksliniai straipsniai</CardTitle>
                 </div>
                 <CardDescription>
@@ -39,7 +37,7 @@ function HomePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                <div className="flex items-center gap-2 text-primary font-medium">
                   <span>Vertinti straipsnį</span>
                   <ArrowRight className="h-4 w-4" />
                 </div>
@@ -48,13 +46,11 @@ function HomePage() {
           </Link>
 
           {/* Reports Card */}
-          <Link to="/reports" className="group h-full">
-            <Card className="hover:shadow-lg transition-all cursor-pointer h-full">
+          <Link to="/reports" className="h-full">
+            <Card className="h-full">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                    <FileSearch className="h-6 w-6" />
-                  </div>
+                  <FileSearch className="h-6 w-6 text-primary" />
                   <CardTitle className="text-2xl">M&T ataskaitos</CardTitle>
                 </div>
                 <CardDescription>
@@ -63,7 +59,7 @@ function HomePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                <div className="flex items-center gap-2 text-primary font-medium">
                   <span>Vertinti ataskaitą</span>
                   <ArrowRight className="h-4 w-4" />
                 </div>
@@ -73,33 +69,29 @@ function HomePage() {
         </div>
 
         {/* Features */}
-        <Card className="bg-muted/50">
-          <CardHeader>
-            <CardTitle>Funkcijos</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-4 text-sm">
-              <div>
-                <div className="font-medium mb-1">Keletas vertintojų</div>
-                <p className="text-muted-foreground">
-                  Išsamus vertinimas pagal kelis kriterijus
-                </p>
-              </div>
-              <div>
-                <div className="font-medium mb-1">Detalus pagrindimas</div>
-                <p className="text-muted-foreground">
-                  Gaukite paaiškinimus kiekvienam vertinimo balui
-                </p>
-              </div>
-              <div>
-                <div className="font-medium mb-1">Keli formatai</div>
-                <p className="text-muted-foreground">
-                  Palaikomi DOCX, PDF, MD ir TXT failai
-                </p>
-              </div>
+        <div>
+          <h2 className="font-semibold mb-4">Funkcijos</h2>
+          <div className="grid md:grid-cols-3 gap-4 text-sm">
+            <div>
+              <div className="font-medium mb-1">Keletas vertintojų</div>
+              <p className="text-muted-foreground">
+                Išsamus vertinimas pagal kelis kriterijus
+              </p>
             </div>
-          </CardContent>
-        </Card>
+            <div>
+              <div className="font-medium mb-1">Detalus pagrindimas</div>
+              <p className="text-muted-foreground">
+                Gaukite paaiškinimus kiekvienam vertinimo balui
+              </p>
+            </div>
+            <div>
+              <div className="font-medium mb-1">Keli formatai</div>
+              <p className="text-muted-foreground">
+                Palaikomi DOCX, PDF, MD ir TXT failai
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 import React from "react";
 import { CheckCircle2, XCircle, AlertCircle, ChevronDown, ChevronUp } from "lucide-react";
 import type { components } from "../api/schema";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 type EvaluationResponse = components["schemas"]["UnifiedEvaluationResponse"];
 
@@ -30,23 +30,13 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
 
   const renderScore = (score: number) => {
     const percentage = Math.round(score * 100);
-    let color = "text-red-600 dark:text-red-400";
-    let bgColor = "bg-red-100 dark:bg-red-900/30";
-
-    if (score >= 0.75) {
-      color = "text-green-600 dark:text-green-400";
-      bgColor = "bg-green-100 dark:bg-green-900/30";
-    } else if (score >= 0.5) {
-      color = "text-yellow-600 dark:text-yellow-400";
-      bgColor = "bg-yellow-100 dark:bg-yellow-900/30";
-    }
 
     return (
       <div className="flex items-center gap-2">
-        <span className={`text-2xl font-bold ${color}`}>{percentage}%</span>
+        <span className="text-2xl font-bold">{percentage}%</span>
         <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
           <div
-            className={`h-full ${bgColor} transition-all`}
+            className="h-full bg-primary transition-all"
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -106,7 +96,7 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
           const reason = scoreData?.reason || "";
 
           return (
-            <Card key={key}>
+            <div key={key} className="border rounded-lg">
               <Button
                 variant="ghost"
                 onClick={() => toggleSection(key)}
@@ -130,13 +120,13 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
               </Button>
 
               {isExpanded && reason && (
-                <CardContent className="pt-2 border-t">
+                <div className="px-4 pb-4 pt-2 border-t">
                   <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                     {reason}
                   </p>
-                </CardContent>
+                </div>
               )}
-            </Card>
+            </div>
           );
         })}
       </div>
@@ -154,20 +144,16 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
       return (
         <div className="space-y-6">
           {agentNames.map((agentName) => (
-            <Card key={agentName}>
-              <CardHeader>
-                <CardTitle className="capitalize">
-                  {agentName.replace(/_/g, " ")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="prose prose-sm dark:prose-invert max-w-none">
-                  <pre className="whitespace-pre-wrap text-sm bg-muted/50 p-4 rounded-md overflow-auto">
-                    {JSON.stringify(evaluations[agentName], null, 2)}
-                  </pre>
-                </div>
-              </CardContent>
-            </Card>
+            <div key={agentName} className="border rounded-lg p-6">
+              <h3 className="font-semibold mb-4 capitalize">
+                {agentName.replace(/_/g, " ")}
+              </h3>
+              <div className="prose prose-sm dark:prose-invert max-w-none">
+                <pre className="whitespace-pre-wrap text-sm bg-muted/50 p-4 rounded-md overflow-auto">
+                  {JSON.stringify(evaluations[agentName], null, 2)}
+                </pre>
+              </div>
+            </div>
           ))}
         </div>
       );
@@ -175,18 +161,14 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
 
     // Fallback for legacy single agent output
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Agento analizė</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="prose prose-sm dark:prose-invert max-w-none">
-            <pre className="whitespace-pre-wrap text-sm bg-muted p-4 rounded-md overflow-auto">
-              {JSON.stringify(agentOutput, null, 2)}
-            </pre>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="border rounded-lg p-6">
+        <h3 className="font-semibold mb-4">Agento analizė</h3>
+        <div className="prose prose-sm dark:prose-invert max-w-none">
+          <pre className="whitespace-pre-wrap text-sm bg-muted p-4 rounded-md overflow-auto">
+            {JSON.stringify(agentOutput, null, 2)}
+          </pre>
+        </div>
+      </div>
     );
   };
 
@@ -204,14 +186,15 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
             <span>ID: {result.evaluation_id.slice(0, 8)}</span>
           </div>
         </div>
-        <div
-          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
+        <Badge
+          variant={
             result.status === "success"
-              ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+              ? "default"
               : result.status === "error"
-              ? "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
-              : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"
-          }`}
+              ? "destructive"
+              : "secondary"
+          }
+          className="inline-flex items-center gap-2"
         >
           {result.status === "success" && <CheckCircle2 className="h-4 w-4" />}
           {result.status === "error" && <XCircle className="h-4 w-4" />}
@@ -219,7 +202,7 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
             <AlertCircle className="h-4 w-4" />
           )}
           {result.status}
-        </div>
+        </Badge>
       </div>
 
       {/* Results */}

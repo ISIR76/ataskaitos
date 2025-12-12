@@ -23,7 +23,7 @@ export const Route = createFileRoute("/projects/")({
   ),
   errorComponent: ({ error }) => (
     <div className="container mx-auto p-8">
-      <div className="text-center text-red-600">
+      <div className="text-center text-destructive">
         Klaida įkeliant projektus: {error.message}
       </div>
     </div>
