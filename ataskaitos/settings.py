@@ -26,5 +26,12 @@ class Settings(BaseSettings):
     uploads_directory: str = "data/uploads"
     database_url: str = "sqlite:///data/database/ataskaitos.db"
 
+    # Google Cloud Storage configuration
+    use_gcs: bool = False  # Set to True to enable GCS storage
+    gcs_bucket_name: str | None = None
+    gcs_project_id: str | None = None
+    gcs_credentials_path: str | None = None  # Path to service account JSON file
+    gcs_base_path: str = "ataskaitos"  # Base path within the bucket
+
 
 settings = Settings()

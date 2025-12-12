@@ -2,8 +2,8 @@
 
 from datetime import datetime
 
-from sqlalchemy.orm import Session, selectinload
 from sqlalchemy import select
+from sqlalchemy.orm import Session, selectinload
 
 from ataskaitos.models.database import Project
 

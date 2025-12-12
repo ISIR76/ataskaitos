@@ -169,9 +169,10 @@ Provide a structured evaluation covering:
 
         if not evaluators:
             available = self.registry.list_available(document_type)
+            available_names = [e.get('name', '') for e in available.get(document_type, [])]
             raise ValueError(
                 f"No evaluators found for document type '{document_type}'. "
-                f"Available: {list(available.get(document_type, {}).keys())}"
+                f"Available: {available_names}"
             )
 
         # Create appropriate input model based on document type
@@ -247,8 +248,8 @@ Provide a structured evaluation covering:
         """
         # Convert averages
         averages_data = {}
-        if result.averages():
-            avg = result.averages()
+        avg = result.averages()
+        if avg is not None:
             averages_data = {
                 "scores": avg.scores if hasattr(avg, "scores") else {},
                 "metrics": avg.metrics if hasattr(avg, "metrics") else {},

@@ -16,7 +16,7 @@ def mock_registry():
     """Create a mock EvaluatorRegistry."""
     registry = MagicMock()
     registry.get_evaluators.return_value = {"test_evaluator": MagicMock(name="test_evaluator")}
-    registry.list_available.return_value = {"article": {"test_evaluator": MagicMock()}}
+    registry.list_available.return_value = {"article": [{"name": "test_evaluator"}]}
     return registry
 
 

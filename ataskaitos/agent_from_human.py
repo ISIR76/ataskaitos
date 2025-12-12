@@ -176,6 +176,7 @@ class MTEPVertinimas(BaseModel):
     rezultato_tipas_prototipas: RezultatoTipasPrototipas
     rezultato_tipas_galutinis_prototipas: RezultatoTipasGalutinisPrototipas
     rezultato_tipas_bandomoji_partija: RezultatoTipasBandomojiPartija
+    rezultato_tipas_ivertinta_partija: RezultatoTipasIvertintaPartija
 
     # Assessment overview before final scoring
     assessment_overview: str = Field(

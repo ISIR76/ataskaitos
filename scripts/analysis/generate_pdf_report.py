@@ -20,6 +20,7 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas as pdfgen_canvas
 from reportlab.platypus import (
     PageBreak,
     Paragraph,
@@ -29,7 +30,6 @@ from reportlab.platypus import (
     TableStyle,
 )
 from reportlab.platypus.flowables import Flowable
-from reportlab.pdfgen import canvas as pdfgen_canvas
 
 from ataskaitos.agent_from_human import MTEPVertinimas
 

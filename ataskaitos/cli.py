@@ -1,7 +1,7 @@
 """CLI for Ataskaitos - Scientific Document Evaluation Platform."""
 
 from pathlib import Path
-from typing import Optional
+from typing import Literal, Optional
 
 import click
 import markitdown
@@ -272,19 +272,20 @@ def split(source, pages, output):
 # ============================================================================
 
 
-def _run_single_agent_evaluation(file: Path, doc_type: str, agents: tuple, output: Optional[Path]):
+def _run_single_agent_evaluation(file: Path, doc_type: Literal["report", "article"], agents: tuple, output: Optional[Path]):
     """Run agent-based evaluation on a single file."""
-    from ataskaitos.services.document_service import DocumentService
-    from ataskaitos.services.evaluation_service import get_evaluation_service
     import asyncio
     import json
+
+    from ataskaitos.api.dependencies import get_evaluation_service
+    from ataskaitos.services.document_service import DocumentService
 
     click.echo(f"Evaluating {file.name} with agent mode...")
 
     # Convert document to markdown
     doc_service = DocumentService()
     try:
-        markdown = doc_service.convert_file_to_markdown_sync(str(file))
+        markdown = doc_service.convert_file_to_markdown(str(file))
     except Exception as e:
         click.echo(f"✗ Error converting document: {e}", err=True)
         raise click.Abort()
@@ -294,7 +295,7 @@ def _run_single_agent_evaluation(file: Path, doc_type: str, agents: tuple, outpu
 
     async def run_eval():
         return await eval_service.evaluate_document(
-            document_text=markdown,
+            content=markdown,
             document_type=doc_type,
             evaluation_type="agent",
             agent_names=list(agents) if agents else None,
@@ -305,11 +306,11 @@ def _run_single_agent_evaluation(file: Path, doc_type: str, agents: tuple, outpu
 
         # Output results
         if output:
-            output.write_text(json.dumps(result.model_dump(), indent=2))
+            output.write_text(json.dumps(result.to_dict(), indent=2))
             click.echo(f"✓ Results saved to {output}")
         else:
             click.echo("\nResults:")
-            click.echo(json.dumps(result.model_dump(), indent=2))
+            click.echo(json.dumps(result.to_dict(), indent=2))
 
     except Exception as e:
         click.echo(f"✗ Evaluation error: {e}", err=True)
@@ -329,19 +330,20 @@ def _run_batch_agent_evaluation(pattern: str, doc_type: str, agents: tuple, conc
     click.echo(f'  Run: uv run python scripts/evaluation/run_agent.py "{pattern}" {concurrency}')
 
 
-def _run_single_evals_evaluation(file: Path, doc_type: str, evaluators: tuple, output: Optional[Path]):
+def _run_single_evals_evaluation(file: Path, doc_type: Literal["report", "article"], evaluators: tuple, output: Optional[Path]):
     """Run evals-based evaluation on a single file."""
-    from ataskaitos.services.document_service import DocumentService
-    from ataskaitos.services.evaluation_service import get_evaluation_service
     import asyncio
     import json
+
+    from ataskaitos.api.dependencies import get_evaluation_service
+    from ataskaitos.services.document_service import DocumentService
 
     click.echo(f"Evaluating {file.name} with scoring mode...")
 
     # Convert document to markdown
     doc_service = DocumentService()
     try:
-        markdown = doc_service.convert_file_to_markdown_sync(str(file))
+        markdown = doc_service.convert_file_to_markdown(str(file))
     except Exception as e:
         click.echo(f"✗ Error converting document: {e}", err=True)
         raise click.Abort()
@@ -351,7 +353,7 @@ def _run_single_evals_evaluation(file: Path, doc_type: str, evaluators: tuple, o
 
     async def run_eval():
         return await eval_service.evaluate_document(
-            document_text=markdown,
+            content=markdown,
             document_type=doc_type,
             evaluation_type="scoring",
             evaluator_names=list(evaluators) if evaluators else None,
@@ -362,11 +364,11 @@ def _run_single_evals_evaluation(file: Path, doc_type: str, evaluators: tuple, o
 
         # Output results
         if output:
-            output.write_text(json.dumps(result.model_dump(), indent=2))
+            output.write_text(json.dumps(result.to_dict(), indent=2))
             click.echo(f"✓ Results saved to {output}")
         else:
             click.echo("\nResults:")
-            click.echo(json.dumps(result.model_dump(), indent=2))
+            click.echo(json.dumps(result.to_dict(), indent=2))
 
     except Exception as e:
         click.echo(f"✗ Evaluation error: {e}", err=True)

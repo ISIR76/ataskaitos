@@ -614,8 +614,9 @@ export interface components {
             /**
              * Evaluation Type
              * @default scoring
+             * @enum {string}
              */
-            evaluation_type: string;
+            evaluation_type: "agent" | "scoring";
             /** Evaluators */
             evaluators?: string;
             /** Agents */

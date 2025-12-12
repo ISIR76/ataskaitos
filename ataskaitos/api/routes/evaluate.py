@@ -104,13 +104,13 @@ async def evaluate_document(
 
     except ValueError as e:
         # Handle validation errors (e.g., unknown evaluators)
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Unknown evaluator or agent specified.") from e
     except Exception as e:
         # Handle unexpected errors
         raise HTTPException(
             status_code=500,
-            detail=f"Error during evaluation: {str(e)}",
-        )
+            detail="An error occurred during document evaluation.",
+        ) from e
 
 
 # Convenience endpoints for specific document types

@@ -1,10 +1,11 @@
 """FastAPI application factory."""
 
-from logging import getLogger
 import os
 from contextlib import asynccontextmanager
+from logging import getLogger
 from pathlib import Path
 
+import logfire
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
@@ -13,7 +14,6 @@ from fastapi.staticfiles import StaticFiles
 from ataskaitos.evaluators import get_registry, initialize_default_evaluators
 
 from .routes import evaluate_router, health_router, projects_router
-import logfire
 
 logfire.configure(send_to_logfire="if-token-present")
 logfire.instrument_pydantic()

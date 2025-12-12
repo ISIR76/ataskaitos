@@ -86,9 +86,9 @@ from typing import Any
 from pydantic_evals import Dataset
 from pydantic_evals.evaluators import LLMJudge
 from pydantic_evals.evaluators.llm_as_a_judge import set_default_judge_model
+from pydantic_evals.reporting import EvaluationReport
 
 from scripts.utils.combine_results import combine_evaluation_results
-from pydantic_evals.reporting import EvaluationReport
 
 DEFAULT_JUDGE_MODEL = "gemini-2.5-pro"
 set_default_judge_model(DEFAULT_JUDGE_MODEL)

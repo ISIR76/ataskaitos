@@ -17,7 +17,6 @@ from pydantic_ai.models.anthropic import AnthropicModel
 from pydantic_ai.models.google import GoogleModel
 from pydantic_ai.models.openai import OpenAIResponsesModel
 
-
 from ataskaitos.agent_from_human import create_mtep_agent
 from ataskaitos.services.batch_evaluation import BatchEvaluator
 

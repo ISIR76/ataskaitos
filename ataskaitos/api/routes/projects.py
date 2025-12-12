@@ -4,34 +4,32 @@ import json
 import logging
 import time
 from pathlib import Path
+from typing import Literal
 
 import logfire
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Depends
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
 from ataskaitos.api.dependencies import get_document_service, get_evaluation_service
-
-logger = logging.getLogger(__name__)
 from ataskaitos.api.models import (
     CreateProjectRequest,
+    DocumentVersionDetailResponse,
+    DocumentVersionResponse,
+    EvaluationDetailResponse,
+    EvaluationHistoryItem,
     ProjectListResponse,
     ProjectResponse,
-    DocumentVersionResponse,
-    DocumentVersionDetailResponse,
-    EvaluationHistoryItem,
-    EvaluationDetailResponse,
     UnifiedEvaluationResponse,
 )
 from ataskaitos.database import get_session
-from ataskaitos.repositories.project_repository import ProjectRepository
 from ataskaitos.repositories.document_repository import DocumentVersionRepository
 from ataskaitos.repositories.evaluation_repository import EvaluationRepository
+from ataskaitos.repositories.project_repository import ProjectRepository
 from ataskaitos.services.document_service import DocumentService
 from ataskaitos.services.evaluation_service import EvaluationService
 from ataskaitos.services.storage_service import storage_service
 
 router = APIRouter(prefix="/api/v1/projects", tags=["projects"])
-
+logger = logging.getLogger(__name__)
 
 # Helper functions
 
@@ -232,7 +230,7 @@ async def upload_version(
 
         # Save files to storage
         file.file.seek(0)  # Reset file pointer after reading
-        original_path, markdown_path = await storage_service.save_document_files(
+        paths = await storage_service.save_document_files(
             project_id, version_number, file, markdown_content
         )
 
@@ -243,8 +241,8 @@ async def upload_version(
             version_number=version_number,
             original_filename=file.filename or "document",
             file_extension=file_extension,
-            original_file_path=original_path,
-            markdown_file_path=markdown_path,
+            original_file_path=paths.original_file_path,
+            markdown_file_path=paths.markdown_file_path,
             character_count=len(markdown_content),
         )
 
@@ -441,7 +439,7 @@ async def delete_version(project_id: int, version_id: int):
 async def evaluate_version(
     project_id: int,
     version_id: int,
-    evaluation_type: str = Form("scoring"),
+    evaluation_type: Literal["agent", "scoring"] = Form("scoring"),
     evaluators: str = Form(None),
     agents: str = Form(None),
     eval_service: EvaluationService = Depends(get_evaluation_service),
@@ -521,7 +519,7 @@ async def evaluate_version(
                         score_names=score_keys)
 
             # Log what we're about to save
-            logger.info(f"💾 Saving evaluation to database:")
+            logger.info("💾 Saving evaluation to database:")
             logger.info(f"   Evaluation ID: {evaluation_result.evaluation_id}")
             logger.info(f"   Type: {evaluation_type}")
             logger.info(f"   Evaluators: {evaluators_list}")
