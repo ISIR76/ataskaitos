@@ -1,43 +1,11 @@
 import { client, baseUrl } from "./client";
 import type { components } from "./schema";
 
-export type Project = {
-  id: number;
-  name: string;
-  project_type: string;
-  active_version_number: number | null;
-  total_versions: number;
-  created_at: string;
-};
-
-export type ProjectDetail = {
-  id: number;
-  name: string;
-  project_type: string;
-  active_version_id: number | null;
-  total_versions: number;
-};
-
-export type DocumentVersion = {
-  id: number;
-  version_number: number;
-  original_filename: string;
-  character_count: number;
-  evaluation_count: number;
-  is_active: boolean;
-  created_at: string;
-};
-
-export type EvaluationItem = {
-  id: number;
-  evaluation_id: string;
-  evaluation_type: string;
-  evaluators_used: string[];
-  status: string;
-  duration_seconds: number;
-  created_at: string;
-};
-
+// Use generated schema types instead of custom types
+export type Project = components["schemas"]["ProjectResponse"];
+export type ProjectDetail = components["schemas"]["ProjectResponse"];
+export type DocumentVersion = components["schemas"]["DocumentVersionResponse"];
+export type EvaluationItem = components["schemas"]["EvaluationHistoryItem"];
 export type EvaluationDetail = components["schemas"]["EvaluationDetailResponse"];
 
 /**

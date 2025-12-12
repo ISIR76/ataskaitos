@@ -302,6 +302,7 @@ export interface paths {
          *     Args:
          *         project_id: Project ID
          *         file: Document file to upload
+         *         doc_service: Document service (injected)
          *
          *     Returns:
          *         Created document version details
@@ -502,6 +503,26 @@ export interface paths {
          *         HTTPException: If project or evaluation not found
          */
         get: operations["get_evaluation_api_v1_projects__project_id__evaluations__evaluation_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/{full_path}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Serve Spa
+         * @description Serve the React SPA for all non-API routes.
+         */
+        get: operations["serve_spa__full_path__get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1655,6 +1676,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["EvaluationDetailResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    serve_spa__full_path__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                full_path: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
