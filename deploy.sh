@@ -16,7 +16,7 @@ gcloud run deploy $SERVICE_NAME \
     --platform managed \
     --allow-unauthenticated \
     --set-env-vars ENV=production \
-    --update-secrets OPENAI_API_KEY=openai-api-key:latest,API_KEY=ataskaitos-api-key:latest \
+    --update-secrets OPENAI_API_KEY=openai-api-key:latest,API_KEY=ataskaitos-api-key:latest,DATABASE_URL=ataskaitos-database-url:latest,JWT_SECRET=ataskaitos-jwt-secret:latest \
     --memory 1Gi \
     --cpu 2 \
     --max-instances 1 \
