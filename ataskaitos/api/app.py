@@ -1,6 +1,5 @@
 """FastAPI application factory."""
 
-import os
 from contextlib import asynccontextmanager
 from logging import getLogger
 from pathlib import Path
@@ -12,8 +11,9 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from ataskaitos.evaluators import get_registry, initialize_default_evaluators
+from ataskaitos.settings import settings
 
-from .routes import evaluate_router, health_router, projects_router
+from .routes import auth_router, evaluate_router, health_router, projects_router
 
 logfire.configure(send_to_logfire="if-token-present")
 logfire.instrument_pydantic()
@@ -26,10 +26,11 @@ logger.addHandler(logfire.LogfireLoggingHandler(level="DEBUG"))
 async def lifespan(app: FastAPI):
     """Application lifespan manager - handles startup and shutdown."""
     # Startup
-    # 1. Initialize database
-    from ataskaitos.database import init_db
+    # 1. Initialize databases (sync and async)
+    from ataskaitos.database import init_db, init_db_async
 
     init_db()
+    await init_db_async()
 
     # 2. Initialize evaluators
     registry = get_registry()
@@ -77,7 +78,7 @@ def create_app() -> FastAPI:
         - Lithuanian and English support
         - Production-ready with authentication
         """,
-        version="0.2.0",
+        version=settings.api_version,
         lifespan=lifespan,
         docs_url="/api/docs",
         redoc_url="/api/redoc",
@@ -85,28 +86,26 @@ def create_app() -> FastAPI:
     )
     logfire.instrument_fastapi(app)
 
-    # Configure CORS
-    allowed_origins = [
-        "http://localhost:5173",  # Vite dev server
-        "http://localhost:3000",  # Common React dev port
-        "http://127.0.0.1:5173",
-        "http://127.0.0.1:3000",
-    ]
-
-    # Add Cloud Run origin in production
-    if os.getenv("ENV") == "production":
-        allowed_origins.append("https://ataskaitos-579031308562.europe-west1.run.app")
-
+    # Configure CORS for authentication and API access
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=allowed_origins,
+        allow_origins=settings.allowed_origins,
         allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
+        allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        allow_headers=[
+            "Content-Type",
+            "Authorization",
+            "Accept",
+            "Origin",
+            "X-Requested-With",
+        ],
+        expose_headers=["Content-Type", "Authorization"],
+        max_age=settings.cors_max_age_seconds,
     )
 
     # Register routers
     app.include_router(health_router)
+    app.include_router(auth_router)
     app.include_router(evaluate_router)
     app.include_router(projects_router)
 

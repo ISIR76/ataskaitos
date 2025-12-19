@@ -3,17 +3,35 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import ForeignKey, Index, Integer, String, UniqueConstraint
+from fastapi_users.db import SQLAlchemyBaseUserTable
+from sqlalchemy import Boolean, ForeignKey, Index, Integer, String, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, MappedAsDataclass, mapped_column, relationship
 
 if TYPE_CHECKING:
     pass
 
 
-class Base(MappedAsDataclass, DeclarativeBase):
-    """Base class for all database models with dataclass functionality."""
+# Use single DeclarativeBase for all models (FastAPI-Users requires non-dataclass base)
+class Base(DeclarativeBase):
+    """Base class for all database models."""
 
     pass
+
+
+class User(SQLAlchemyBaseUserTable[int], Base):
+    """User model for authentication with FastAPI-Users.
+
+    Inherits from SQLAlchemyBaseUserTable which provides email, hashed_password,
+    is_active, is_superuser, and is_verified fields.
+    """
+
+    __tablename__ = "users"
+
+    # Primary key (required, not provided by SQLAlchemyBaseUserTable)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+
+    # Relationships
+    projects: Mapped[list["Project"]] = relationship(back_populates="user", cascade="all, delete-orphan", lazy="selectin")
 
 
 class Project(Base):
@@ -21,27 +39,25 @@ class Project(Base):
 
     __tablename__ = "projects"
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, init=False, autoincrement=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String, unique=True, index=True)
     project_type: Mapped[str] = mapped_column(String)  # "straipsnis" or "ataskaita"
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), index=True)
     active_version_id: Mapped[int | None] = mapped_column(
-        Integer, ForeignKey("document_versions.id", use_alter=True), default=None, init=False
+        Integer, ForeignKey("document_versions.id", use_alter=True), default=None
     )
-    created_at: Mapped[datetime] = mapped_column(default_factory=datetime.utcnow, init=False)
-    updated_at: Mapped[datetime] = mapped_column(
-        default_factory=datetime.utcnow, onupdate=datetime.utcnow, init=False
-    )
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # Relationships
+    user: Mapped["User"] = relationship(back_populates="projects")
     versions: Mapped[list["DocumentVersion"]] = relationship(
         back_populates="project",
         foreign_keys="DocumentVersion.project_id",
-        default_factory=list,
-        init=False,
         cascade="all, delete-orphan",
     )
     active_version: Mapped["DocumentVersion | None"] = relationship(
-        foreign_keys=[active_version_id], init=False, default=None, viewonly=True
+        foreign_keys=[active_version_id], viewonly=True
     )
 
 
@@ -54,7 +70,7 @@ class DocumentVersion(Base):
         Index("ix_document_versions_project_id", "project_id"),
     )
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, init=False, autoincrement=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     project_id: Mapped[int] = mapped_column(Integer, ForeignKey("projects.id"))
     version_number: Mapped[int] = mapped_column(Integer)
     original_filename: Mapped[str] = mapped_column(String)
@@ -62,14 +78,12 @@ class DocumentVersion(Base):
     original_file_path: Mapped[str] = mapped_column(String)  # Relative path
     markdown_file_path: Mapped[str] = mapped_column(String)  # Relative path
     character_count: Mapped[int] = mapped_column(Integer)
-    created_at: Mapped[datetime] = mapped_column(default_factory=datetime.utcnow, init=False)
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 
     # Relationships
-    project: Mapped["Project"] = relationship(
-        back_populates="versions", foreign_keys=[project_id], init=False
-    )
+    project: Mapped["Project"] = relationship(back_populates="versions", foreign_keys=[project_id])
     evaluations: Mapped[list["Evaluation"]] = relationship(
-        back_populates="document_version", default_factory=list, init=False, cascade="all, delete-orphan"
+        back_populates="document_version", cascade="all, delete-orphan"
     )
 
 
@@ -82,7 +96,7 @@ class Evaluation(Base):
         Index("ix_evaluations_document_version_id", "document_version_id"),
     )
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, init=False, autoincrement=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     evaluation_id: Mapped[str] = mapped_column(String)  # UUID
     document_version_id: Mapped[int] = mapped_column(Integer, ForeignKey("document_versions.id"))
     evaluation_type: Mapped[str] = mapped_column(String)  # "scoring" or "agent"
@@ -91,7 +105,7 @@ class Evaluation(Base):
     status: Mapped[str] = mapped_column(String)
     error_message: Mapped[str | None] = mapped_column(String, default=None)
     duration_seconds: Mapped[float] = mapped_column(default=0.0)
-    created_at: Mapped[datetime] = mapped_column(default_factory=datetime.utcnow, init=False)
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 
     # Relationships
-    document_version: Mapped["DocumentVersion"] = relationship(back_populates="evaluations", init=False)
+    document_version: Mapped["DocumentVersion"] = relationship(back_populates="evaluations")

@@ -1,40 +1,50 @@
 """Database connection and session management."""
 
-from contextlib import contextmanager
+from contextlib import asynccontextmanager, contextmanager
+from typing import AsyncGenerator
 
 from sqlalchemy import create_engine
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
 from ataskaitos.models.database import Base
+from ataskaitos.settings import settings
 
-DATABASE_URL = "sqlite:///:memory:"
+# Get database URLs from settings
+DATABASE_URL = settings.database_url
+# Convert sync database URL to async format for SQLite
+ASYNC_DATABASE_URL = DATABASE_URL.replace("sqlite:///", "sqlite+aiosqlite:///")
 
-# # Use in-memory database in production, file-based locally
-# if os.getenv("ENV") == "production":
-#     DATABASE_URL = "sqlite:///:memory:"
-#     print("Using in-memory SQLite database")
-# else:
-#     # Create data directory if it doesn't exist
-#     DATA_DIR = Path("data/database")
-#     DATA_DIR.mkdir(parents=True, exist_ok=True)
-#     DATABASE_URL = "sqlite:///data/database/ataskaitos.db"
-#     print(f"Using file-based SQLite database: {DATABASE_URL}")
-
-# Create engine with SQLite
+# Create sync engine with SQLite (for existing code)
 engine = create_engine(
     DATABASE_URL,
     echo=False,  # Set to True for SQL query logging
     connect_args={"check_same_thread": False},  # Needed for SQLite with FastAPI
 )
 
-# Create session factory
+# Create async engine with SQLite (for FastAPI-Users)
+async_engine = create_async_engine(
+    ASYNC_DATABASE_URL,
+    echo=False,
+    connect_args={"check_same_thread": False},
+)
+
+# Create session factories
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+AsyncSessionLocal = async_sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False)
+
+
+async def init_db_async():
+    """Create all tables in the async database."""
+    async with async_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    print("✓ Async database initialized")
 
 
 def init_db():
-    """Create all tables in the database."""
+    """Create all tables in the sync database."""
     Base.metadata.create_all(bind=engine)
-    print("✓ Database initialized")
+    print("✓ Sync database initialized")
 
 
 @contextmanager
@@ -56,3 +66,14 @@ def get_session():
         raise
     finally:
         session.close()
+
+
+async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
+    """Get async database session for FastAPI-Users.
+
+    Usage:
+        async with get_async_session() as session:
+            # Do async database operations
+    """
+    async with AsyncSessionLocal() as session:
+        yield session

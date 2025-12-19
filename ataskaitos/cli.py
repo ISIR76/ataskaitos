@@ -7,6 +7,8 @@ import click
 import markitdown
 from pypdf import PdfReader, PdfWriter
 
+from ataskaitos.settings import settings
+
 
 @click.group()
 @click.version_option()
@@ -30,7 +32,7 @@ def ataskaitos():
 @click.argument("file", type=click.Path(exists=True, path_type=Path), required=False)
 @click.option("--batch", type=str, help="Glob pattern for batch evaluation (e.g., 'docs/**/*.docx')")
 @click.option("--agents", "-a", multiple=True, help="Specific agents to run (default: all)")
-@click.option("--concurrency", "-c", type=int, default=5, help="Number of concurrent evaluations")
+@click.option("--concurrency", "-c", type=int, default=settings.batch_evaluation_concurrency, help="Number of concurrent evaluations")
 @click.option("--output", "-o", type=click.Path(path_type=Path), help="Output file path")
 def agent(file: Optional[Path], batch: Optional[str], agents: tuple, concurrency: int, output: Optional[Path]):
     """Run agent-based evaluation for R&D reports.
@@ -87,7 +89,7 @@ def straipsniai():
 @click.argument("file", type=click.Path(exists=True, path_type=Path), required=False)
 @click.option("--batch", type=str, help="Glob pattern for batch evaluation")
 @click.option("--agents", "-a", multiple=True, help="Specific agents to run (default: all)")
-@click.option("--concurrency", "-c", type=int, default=5, help="Number of concurrent evaluations")
+@click.option("--concurrency", "-c", type=int, default=settings.batch_evaluation_concurrency, help="Number of concurrent evaluations")
 @click.option("--output", "-o", type=click.Path(path_type=Path), help="Output file path")
 def agent(file: Optional[Path], batch: Optional[str], agents: tuple, concurrency: int, output: Optional[Path]):
     """Run agent-based evaluation for scientific articles.
@@ -140,13 +142,13 @@ def evals(file: Optional[Path], batch: Optional[str], evaluators: tuple, output:
 
 
 @cli.command()
-@click.option("--host", default="0.0.0.0", help="Host to bind to")
-@click.option("--port", default=8000, help="Port to bind to")
+@click.option("--host", default=settings.server_host, help="Host to bind to")
+@click.option("--port", default=settings.server_port, help="Port to bind to")
 @click.option("--reload", is_flag=True, help="Enable auto-reload")
 def serve(host, port, reload):
     """Start FastAPI server for document evaluation API.
 
-    API documentation will be available at http://localhost:8000/docs
+    API documentation will be available at http://localhost:{port}/docs
     """
     import uvicorn
 

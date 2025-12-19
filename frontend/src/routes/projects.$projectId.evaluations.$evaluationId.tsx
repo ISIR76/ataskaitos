@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { fetchProject, fetchEvaluation } from "../api/projects";
 import { EvaluationResults } from "../components/EvaluationResults";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 import type { components } from "../api/schema";
 
 type UnifiedEvaluationResponse =
@@ -69,22 +70,24 @@ function EvaluationResultsPage() {
   console.log("🎨 Rendering EvaluationResultsPage with:", { project, unifiedResult });
 
   return (
-    <div className="container mx-auto p-8">
-      <div className="mb-6">
-        <Link
-          to="/projects/$projectId"
-          params={{ projectId: String(project.id) }}
-          className="mb-4 inline-block"
-        >
-          ← Atgal į projektą
-        </Link>
-        <h1 className="text-3xl font-bold mb-2">{project.name}</h1>
-        <p className="text-muted-foreground">
-          Vertinimo rezultatai - {project.project_type}
-        </p>
-      </div>
+    <ProtectedRoute>
+      <div className="container mx-auto p-8">
+        <div className="mb-6">
+          <Link
+            to="/projects/$projectId"
+            params={{ projectId: String(project.id) }}
+            className="mb-4 inline-block"
+          >
+            ← Atgal į projektą
+          </Link>
+          <h1 className="text-3xl font-bold mb-2">{project.name}</h1>
+          <p className="text-muted-foreground">
+            Vertinimo rezultatai - {project.project_type}
+          </p>
+        </div>
 
-      <EvaluationResults result={unifiedResult} />
-    </div>
+        <EvaluationResults result={unifiedResult} />
+      </div>
+    </ProtectedRoute>
   );
 }

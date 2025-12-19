@@ -1,57 +1,18 @@
 """FastAPI dependencies for authentication and shared services."""
 
 import os
-from typing import Optional
 
-from fastapi import HTTPException, Security
-from fastapi.security import APIKeyHeader
-
+from ataskaitos.auth import current_active_user
 from ataskaitos.evaluators import EvaluatorRegistry, get_registry
+from ataskaitos.models.database import User
 from ataskaitos.services import DocumentService, EvaluationService
 
 # Environment and security configuration
 ENV = os.getenv("ENV", "development")
-API_KEY = os.getenv("API_KEY", "")
-# Disable authentication by default (set REQUIRE_API_KEY=true to enable)
-REQUIRE_AUTH = os.getenv("REQUIRE_API_KEY", "false").lower() == "true"
 
-# API Key security scheme
-api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
-
-
-async def verify_api_key(api_key: Optional[str] = Security(api_key_header)) -> bool:
-    """Verify API key for protected endpoints.
-
-    Authentication is disabled by default. Set REQUIRE_API_KEY=true to enable.
-    When enabled, X-API-Key header is required and must match API_KEY env var.
-
-    Args:
-        api_key: API key from X-API-Key header
-
-    Returns:
-        True if authenticated
-
-    Raises:
-        HTTPException: If authentication fails
-    """
-    if not REQUIRE_AUTH:
-        # Development mode - no authentication required
-        return True
-
-    if not API_KEY:
-        raise HTTPException(status_code=500, detail="API_KEY not configured on server")
-
-    if not api_key:
-        raise HTTPException(
-            status_code=401,
-            detail="X-API-Key header required",
-            headers={"WWW-Authenticate": "ApiKey"},
-        )
-
-    if api_key != API_KEY:
-        raise HTTPException(status_code=403, detail="Invalid API key")
-
-    return True
+# Use FastAPI-Users authentication
+# current_active_user is a dependency that returns the authenticated User object
+# It will raise 401 Unauthorized if no valid JWT token is provided
 
 
 def get_evaluator_registry() -> EvaluatorRegistry:

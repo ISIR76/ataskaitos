@@ -1,8 +1,8 @@
 """Health check and information endpoints."""
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 
-from ataskaitos.api.dependencies import ENV, REQUIRE_AUTH, get_evaluator_registry
+from ataskaitos.api.dependencies import ENV, get_evaluator_registry
 from ataskaitos.api.models import (
     EvaluatorInfo,
     EvaluatorsListResponse,
@@ -10,6 +10,7 @@ from ataskaitos.api.models import (
     RootResponse,
 )
 from ataskaitos.evaluators import EvaluatorRegistry
+from ataskaitos.settings import settings
 
 router = APIRouter(prefix="/api", tags=["Health & Info"])
 
@@ -20,7 +21,7 @@ async def root():
     return RootResponse(
         message="Ataskaitos API - AI-powered evaluation platform",
         status="healthy",
-        version="0.2.0",
+        version=settings.api_version,
         docs_url="/api/docs",
     )
 
@@ -30,13 +31,24 @@ async def health_check():
     """Detailed health check endpoint with service configuration."""
     return HealthCheckResponse(
         status="healthy",
-        service="ataskaitos-api",
-        version="0.2.0",
+        service=settings.service_name,
+        version=settings.api_version,
         evaluation_methods=["agent", "scoring"],
         document_types=["report", "article"],
         environment=ENV,
-        authentication_required=REQUIRE_AUTH,
+        authentication_required=True,  # FastAPI-Users authentication is always required
     )
+
+
+@router.get("/cors-test")
+async def cors_test(request: Request):
+    """Test endpoint to verify CORS is working correctly."""
+    return {
+        "message": "CORS is working!",
+        "origin": request.headers.get("origin"),
+        "method": request.method,
+        "cors_enabled": True,
+    }
 
 
 @router.get("/v1/evaluators", response_model=EvaluatorsListResponse)

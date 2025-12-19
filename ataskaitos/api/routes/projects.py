@@ -9,7 +9,8 @@ from typing import Literal
 import logfire
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
-from ataskaitos.api.dependencies import get_document_service, get_evaluation_service
+from ataskaitos.api.dependencies import current_active_user, get_document_service, get_evaluation_service
+from ataskaitos.models.database import User
 from ataskaitos.api.models import (
     CreateProjectRequest,
     DocumentVersionDetailResponse,
@@ -87,11 +88,12 @@ def _build_evaluation_history_item(evaluation) -> EvaluationHistoryItem:
 
 
 @router.post("", response_model=ProjectResponse, status_code=201)
-async def create_project(request: CreateProjectRequest):
+async def create_project(request: CreateProjectRequest, user: User = Depends(current_active_user)):
     """Create a new project.
 
     Args:
         request: Project creation request with name and type
+        user: Authenticated user
 
     Returns:
         Created project details
@@ -108,28 +110,30 @@ async def create_project(request: CreateProjectRequest):
         if existing:
             raise HTTPException(status_code=400, detail=f"Project with name '{request.name}' already exists")
 
-        # Create project
-        project = project_repo.create(name=request.name, project_type=request.project_type)
+        # Create project with user_id
+        project = project_repo.create(name=request.name, project_type=request.project_type, user_id=user.id)
 
         return _build_project_response(project, doc_repo)
 
 
 @router.get("", response_model=ProjectListResponse)
-async def list_projects(skip: int = 0, limit: int = 100):
-    """List all projects with pagination.
+async def list_projects(skip: int = 0, limit: int = 100, user: User = Depends(current_active_user)):
+    """List user's projects with pagination.
 
     Args:
         skip: Number of records to skip (default: 0)
         limit: Maximum number of records to return (default: 100)
+        user: Authenticated user
 
     Returns:
-        List of projects with total count
+        List of user's projects with total count
     """
     with get_session() as session:
         project_repo = ProjectRepository(session)
         doc_repo = DocumentVersionRepository(session)
 
-        projects = project_repo.list_all(skip=skip, limit=limit)
+        # Filter projects by user
+        projects = project_repo.list_by_user(user.id, skip=skip, limit=limit)
         total = project_repo.count()
 
         project_responses = [_build_project_response(p, doc_repo) for p in projects]

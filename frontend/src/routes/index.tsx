@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FileText, FileSearch, ArrowRight } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -8,6 +9,7 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
+    <ProtectedRoute>
     <div className="container mx-auto px-6 py-12">
       <div className="max-w-4xl mx-auto space-y-12">
         {/* Hero Section */}
@@ -94,5 +96,6 @@ function HomePage() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }

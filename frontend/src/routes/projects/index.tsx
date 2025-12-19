@@ -3,6 +3,7 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProjectsList } from "@/components/ProjectsList";
 import { CreateProjectDialog } from "@/components/CreateProjectDialog";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import {
   fetchProjects,
   createProject,
@@ -59,26 +60,28 @@ function ProjectsPage() {
   );
 
   return (
-    <div className="container mx-auto p-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Projektai</h1>
-        <Button onClick={createDialog.open}>
-          <Plus className="w-5 h-5 mr-2" />
-          Naujas projektas
-        </Button>
+    <ProtectedRoute>
+      <div className="container mx-auto p-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">Projektai</h1>
+          <Button onClick={createDialog.open}>
+            <Plus className="w-5 h-5 mr-2" />
+            Naujas projektas
+          </Button>
+        </div>
+
+        <ProjectsList
+          projects={projects}
+          onCreateClick={createDialog.open}
+          onDeleteClick={handleDeleteProject}
+        />
+
+        <CreateProjectDialog
+          open={createDialog.isOpen}
+          onOpenChange={createDialog.setIsOpen}
+          onSubmit={handleCreateProject}
+        />
       </div>
-
-      <ProjectsList
-        projects={projects}
-        onCreateClick={createDialog.open}
-        onDeleteClick={handleDeleteProject}
-      />
-
-      <CreateProjectDialog
-        open={createDialog.isOpen}
-        onOpenChange={createDialog.setIsOpen}
-        onSubmit={handleCreateProject}
-      />
-    </div>
+    </ProtectedRoute>
   );
 }

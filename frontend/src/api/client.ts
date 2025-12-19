@@ -2,15 +2,24 @@ import createClient from "openapi-fetch";
 import type { paths } from "./schema";
 
 // Use relative URLs in production (same origin), localhost in dev
-// Single source of truth for API base URL
-export const baseUrl = import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.PROD ? "" : "http://localhost:8000");
+export const baseUrl = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? "" : "http://localhost:8000");
 
-console.log("API Base URL:", baseUrl);
-
-// Create API client with base URL
+// Create API client with base URL and CORS credentials
 export const client = createClient<paths>({
   baseUrl,
+  // Enable CORS credentials (cookies, authorization headers, TLS client certificates)
+  credentials: "include",
+});
+
+// Add middleware to include auth token in all requests
+client.use({
+  onRequest({ request }) {
+    const token = localStorage.getItem("ataskaitos_auth_token");
+    if (token) {
+      request.headers.set("Authorization", `Bearer ${token}`);
+    }
+    return request;
+  },
 });
 
 // Helper functions for common operations

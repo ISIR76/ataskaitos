@@ -5,11 +5,12 @@ from typing import Annotated, Literal, Optional
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
 from ataskaitos.api.dependencies import (
+    current_active_user,
     get_document_service,
     get_evaluation_service,
-    verify_api_key,
 )
 from ataskaitos.api.models import UnifiedEvaluationResponse
+from ataskaitos.models.database import User
 from ataskaitos.services import DocumentService, EvaluationService
 
 router = APIRouter(prefix="/api/v1", tags=["Evaluation"])
@@ -34,7 +35,7 @@ async def evaluate_document(
         None,
         description="Comma-separated list of specific agents to run (for agent mode)",
     ),
-    authenticated: bool = Depends(verify_api_key),
+    user: User = Depends(current_active_user),
     doc_service: DocumentService = Depends(get_document_service),
     eval_service: EvaluationService = Depends(get_evaluation_service),
 ):
@@ -127,7 +128,7 @@ async def evaluate_report(
         Optional[str],
         Form(description="Comma-separated list of evaluators (optional)"),
     ] = None,
-    authenticated: bool = Depends(verify_api_key),
+    user: User = Depends(current_active_user),
     doc_service: DocumentService = Depends(get_document_service),
     eval_service: EvaluationService = Depends(get_evaluation_service),
 ):
@@ -142,7 +143,7 @@ async def evaluate_report(
         document_type="report",
         evaluation_type=evaluation_type,
         evaluators=evaluators,
-        authenticated=authenticated,
+        user=user,
         doc_service=doc_service,
         eval_service=eval_service,
     )
@@ -159,7 +160,7 @@ async def evaluate_article(
         Optional[str],
         Form(description="Comma-separated list of evaluators (optional)"),
     ] = None,
-    authenticated: bool = Depends(verify_api_key),
+    user: User = Depends(current_active_user),
     doc_service: DocumentService = Depends(get_document_service),
     eval_service: EvaluationService = Depends(get_evaluation_service),
 ):
@@ -174,7 +175,7 @@ async def evaluate_article(
         document_type="article",
         evaluation_type=evaluation_type,
         evaluators=evaluators,
-        authenticated=authenticated,
+        user=user,
         doc_service=doc_service,
         eval_service=eval_service,
     )

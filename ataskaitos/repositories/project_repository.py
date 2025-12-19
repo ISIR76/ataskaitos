@@ -19,17 +19,18 @@ class ProjectRepository:
         """
         self.session = session
 
-    def create(self, name: str, project_type: str) -> Project:
+    def create(self, name: str, project_type: str, user_id: int) -> Project:
         """Create a new project.
 
         Args:
             name: Project name (must be unique)
             project_type: Type of project ("straipsnis" or "ataskaita")
+            user_id: ID of the user who owns this project
 
         Returns:
             Created Project instance
         """
-        project = Project(name=name, project_type=project_type)
+        project = Project(name=name, project_type=project_type, user_id=user_id)
         self.session.add(project)
         self.session.flush()  # Get the ID without committing
         return project
@@ -77,6 +78,28 @@ class ProjectRepository:
         """
         query = (
             select(Project)
+            .options(selectinload(Project.versions))
+            .order_by(Project.created_at.desc())
+            .offset(skip)
+            .limit(limit)
+        )
+        result = self.session.execute(query)
+        return list(result.scalars().all())
+
+    def list_by_user(self, user_id: int, skip: int = 0, limit: int = 100) -> list[Project]:
+        """List projects for a specific user with pagination.
+
+        Args:
+            user_id: User ID to filter by
+            skip: Number of records to skip
+            limit: Maximum number of records to return
+
+        Returns:
+            List of Project instances owned by the user
+        """
+        query = (
+            select(Project)
+            .where(Project.user_id == user_id)
             .options(selectinload(Project.versions))
             .order_by(Project.created_at.desc())
             .offset(skip)
