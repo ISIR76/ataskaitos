@@ -108,6 +108,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         body: {
           email,
           password,
+          is_active: true,
+          is_superuser: false,
+          is_verified: false,
         },
       });
 
