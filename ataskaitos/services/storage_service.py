@@ -177,10 +177,12 @@ def get_storage_service() -> StorageBackend:
         Storage service instance based on configuration
     """
     if settings.use_gcs:
+        print("Using GCS storage service")
         from ataskaitos.services.gcs_storage_service import get_gcs_storage_service
 
         return get_gcs_storage_service()
     else:
+        print("Using local storage service")
         return LocalStorageService(base_path=settings.uploads_directory)
 
 

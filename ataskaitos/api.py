@@ -315,7 +315,7 @@ async def _convert_file_to_markdown(file: UploadFile) -> str:
             tmp_path.unlink(missing_ok=True)
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {str(e)}") from e
 
 
 if __name__ == "__main__":

@@ -25,6 +25,7 @@ dependencies = [
     "pytest",
     "fastapi-users[sqlalchemy]>=15.0.1",
     "aiosqlite>=0.22.0",
+    "asyncpg>=0.31.0",
 ]
 
 [build-system]

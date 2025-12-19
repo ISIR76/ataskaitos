@@ -1,7 +1,8 @@
 """Document version repository for data access operations."""
 
 from sqlalchemy import func, select
-from sqlalchemy.orm import Session, selectinload
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from ataskaitos.models.database import DocumentVersion
 
@@ -9,7 +10,7 @@ from ataskaitos.models.database import DocumentVersion
 class DocumentVersionRepository:
     """Repository for DocumentVersion data access operations."""
 
-    def __init__(self, session: Session):
+    def __init__(self, session: AsyncSession):
         """Initialize repository with database session.
 
         Args:
@@ -17,7 +18,7 @@ class DocumentVersionRepository:
         """
         self.session = session
 
-    def create(
+    async def create(
         self,
         project_id: int,
         version_number: int,
@@ -51,10 +52,10 @@ class DocumentVersionRepository:
             character_count=character_count,
         )
         self.session.add(version)
-        self.session.flush()
+        await self.session.flush()
         return version
 
-    def get_by_id(self, version_id: int, load_evaluations: bool = False) -> DocumentVersion | None:
+    async def get_by_id(self, version_id: int, load_evaluations: bool = False) -> DocumentVersion | None:
         """Get document version by ID.
 
         Args:
@@ -69,10 +70,10 @@ class DocumentVersionRepository:
         if load_evaluations:
             query = query.options(selectinload(DocumentVersion.evaluations))
 
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    def get_by_version(self, project_id: int, version_number: int) -> DocumentVersion | None:
+    async def get_by_version(self, project_id: int, version_number: int) -> DocumentVersion | None:
         """Get document version by project and version number.
 
         Args:
@@ -85,10 +86,10 @@ class DocumentVersionRepository:
         query = select(DocumentVersion).where(
             DocumentVersion.project_id == project_id, DocumentVersion.version_number == version_number
         )
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    def list_by_project(self, project_id: int, load_evaluations: bool = False) -> list[DocumentVersion]:
+    async def list_by_project(self, project_id: int, load_evaluations: bool = False) -> list[DocumentVersion]:
         """List all versions for a project.
 
         Args:
@@ -107,10 +108,10 @@ class DocumentVersionRepository:
         if load_evaluations:
             query = query.options(selectinload(DocumentVersion.evaluations))
 
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return list(result.scalars().all())
 
-    def get_next_version_number(self, project_id: int) -> int:
+    async def get_next_version_number(self, project_id: int) -> int:
         """Get the next version number for a project.
 
         Args:
@@ -120,12 +121,12 @@ class DocumentVersionRepository:
             Next version number (1 if no versions exist)
         """
         query = select(func.max(DocumentVersion.version_number)).where(DocumentVersion.project_id == project_id)
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         max_version = result.scalar_one_or_none()
 
         return (max_version or 0) + 1
 
-    def delete(self, version_id: int) -> bool:
+    async def delete(self, version_id: int) -> bool:
         """Delete a document version.
 
         Args:
@@ -134,15 +135,15 @@ class DocumentVersionRepository:
         Returns:
             True if deleted, False if not found
         """
-        version = self.get_by_id(version_id)
+        version = await self.get_by_id(version_id)
         if not version:
             return False
 
-        self.session.delete(version)
-        self.session.flush()
+        await self.session.delete(version)
+        await self.session.flush()
         return True
 
-    def count_by_project(self, project_id: int) -> int:
+    async def count_by_project(self, project_id: int) -> int:
         """Count versions for a project.
 
         Args:
@@ -152,5 +153,5 @@ class DocumentVersionRepository:
             Number of versions
         """
         query = select(func.count(DocumentVersion.id)).where(DocumentVersion.project_id == project_id)
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return result.scalar_one()

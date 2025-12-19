@@ -1,7 +1,7 @@
 """Evaluation repository for data access operations."""
 
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from ataskaitos.models.database import Evaluation
 
@@ -9,7 +9,7 @@ from ataskaitos.models.database import Evaluation
 class EvaluationRepository:
     """Repository for Evaluation data access operations."""
 
-    def __init__(self, session: Session):
+    def __init__(self, session: AsyncSession):
         """Initialize repository with database session.
 
         Args:
@@ -17,7 +17,7 @@ class EvaluationRepository:
         """
         self.session = session
 
-    def create(
+    async def create(
         self,
         evaluation_id: str,
         document_version_id: int,
@@ -54,10 +54,10 @@ class EvaluationRepository:
             error_message=error_message,
         )
         self.session.add(evaluation)
-        self.session.flush()
+        await self.session.flush()
         return evaluation
 
-    def get_by_id(self, id: int) -> Evaluation | None:
+    async def get_by_id(self, id: int) -> Evaluation | None:
         """Get evaluation by database ID.
 
         Args:
@@ -67,10 +67,10 @@ class EvaluationRepository:
             Evaluation instance or None if not found
         """
         query = select(Evaluation).where(Evaluation.id == id)
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    def get_by_uuid(self, evaluation_id: str) -> Evaluation | None:
+    async def get_by_uuid(self, evaluation_id: str) -> Evaluation | None:
         """Get evaluation by UUID.
 
         Args:
@@ -80,10 +80,10 @@ class EvaluationRepository:
             Evaluation instance or None if not found
         """
         query = select(Evaluation).where(Evaluation.evaluation_id == evaluation_id)
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    def list_by_version(self, document_version_id: int) -> list[Evaluation]:
+    async def list_by_version(self, document_version_id: int) -> list[Evaluation]:
         """List all evaluations for a document version.
 
         Args:
@@ -97,10 +97,10 @@ class EvaluationRepository:
             .where(Evaluation.document_version_id == document_version_id)
             .order_by(Evaluation.created_at.desc())
         )
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return list(result.scalars().all())
 
-    def list_by_project(self, project_id: int) -> list[Evaluation]:
+    async def list_by_project(self, project_id: int) -> list[Evaluation]:
         """List all evaluations for a project (across all versions).
 
         Args:
@@ -117,10 +117,10 @@ class EvaluationRepository:
             .where(DocumentVersion.project_id == project_id)
             .order_by(Evaluation.created_at.desc())
         )
-        result = self.session.execute(query)
+        result = await self.session.execute(query)
         return list(result.scalars().all())
 
-    def delete(self, id: int) -> bool:
+    async def delete(self, id: int) -> bool:
         """Delete an evaluation.
 
         Args:
@@ -129,10 +129,10 @@ class EvaluationRepository:
         Returns:
             True if deleted, False if not found
         """
-        evaluation = self.get_by_id(id)
+        evaluation = await self.get_by_id(id)
         if not evaluation:
             return False
 
-        self.session.delete(evaluation)
-        self.session.flush()
+        await self.session.delete(evaluation)
+        await self.session.flush()
         return True

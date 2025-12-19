@@ -8,7 +8,7 @@ from fastapi_users.authentication import AuthenticationBackend, BearerTransport,
 from fastapi_users.db import SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ataskaitos.database import get_async_session
+from ataskaitos.database import get_session
 from ataskaitos.models.database import User
 from ataskaitos.settings import settings
 
@@ -39,7 +39,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         print(f"Verification requested for user {user.id}. Verification token: {token}")
 
 
-async def get_user_db(session: AsyncSession = Depends(get_async_session)):
+async def get_user_db(session: AsyncSession = Depends(get_session)):
     """Get user database adapter."""
     yield SQLAlchemyUserDatabase(session, User)
 

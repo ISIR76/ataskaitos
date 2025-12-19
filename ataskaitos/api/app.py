@@ -26,11 +26,12 @@ logger.addHandler(logfire.LogfireLoggingHandler(level="DEBUG"))
 async def lifespan(app: FastAPI):
     """Application lifespan manager - handles startup and shutdown."""
     # Startup
-    # 1. Initialize databases (sync and async)
-    from ataskaitos.database import init_db, init_db_async
+    # 1. Initialize database
+    from ataskaitos.database import init_db
 
-    init_db()
-    await init_db_async()
+    print("Initializing database...")
+    await init_db()
+    print("Database initialized.")
 
     # 2. Initialize evaluators
     registry = get_registry()
