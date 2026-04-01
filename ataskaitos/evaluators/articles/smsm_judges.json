@@ -149,8 +149,8 @@
     "rubric": "Temos aktualumas ir naujumas\n\nĮvertinama, ar problematika atskleista moksliškai, remiantis tyrimais ir moksliniais šaltiniais (socialiniuose moksluose – ne senesniais nei 5 metų), bei ar pagrįstas mokslinis naujumas.\n\nĮvertinimas (0.0–1.0):\n- Ar problematika atskleista moksliškai?\n- Ar naudojami tyrimai ir moksliniai šaltiniai?\n- Ar šaltiniai socialiniuose moksluose ne senesni nei 5 metai?\n- Ar pagrįstas mokslinis naujumas?\n\nPrivaloma:\n- Nurodyti naudotų šaltinių metus.\n- Įvardyti mokslinio naujumo požymius arba jų trūkumą.\n- Aiškiai įvardyti, ko trūksta aktualumui ar naujumui pagrįsti, ir pateikti konkrečias tobulinimo rekomendacijas."
   },
   {
-    "name": "giedre_tikslas_uzduviniai",
-    "rubric": "Tikslas, uždaviniai arba straipsnio struktūra\n\nVertinama, ar tikslas ir uždaviniai dera su tema, problematika ir išvadomis, bei ar jie suformuluoti tinkamais veiksmažodžiais.\n\nNetinkami veiksmažodžiai: „sužinoti“, „išsiaiškinti“, „rasti“, „gauti“, „įrodyti“.\n\nTinkami veiksmažodžiai: „palyginti“, „ištirti“, „išanalizuoti“, „susisteminti“, „nustatyti“, „parinkti“, „pagrįsti“, „numatyti“, „parengti“, „sukurti“, „atskleisti“, „apibūdinti“.\n\nĮvertinimas (0.0–1.0):\n- Ar tikslas ir uždaviniai dera su tema, problematika ir išvadomis?\n- Ar uždaviniai suformuluoti naudojant tinkamus veiksmažodžius?\n\nPrivaloma:\n- Nurodyti konkretų tikslą ir uždavinius.\n- Pažymėti naudojamus veiksmažodžius.\n- Įvardyti formuluočių trūkumus ir pateikti aiškias pataisytas formuluotes arba rekomendacijas."
+    "name": "giedre_tikslas_uždaviniai_svoris",
+    "rubric": "Tyrimo tikslo ir uždavinių dermė (Svorinis)\n\nĮvertinama, ar suformuluotas tikslas yra aiškus ir ar uždaviniai logiškai veda link tikslo įgyvendinimo.\n\nSkaičiavimas (Maks. 1.0):\n- Ar tyrimo tikslas aiškiai suformuluotas? (+0.4 balo)\n- Ar suformuluoti bent 3 logiški uždaviniai? (+0.3 balo)\n- Ar uždaviniai tiesiogiai siejasi su tikslu (nėra pertekliniai)? (+0.3 balo)\n\nPrivaloma:\n- Jei balas < 1.0, nurodyti, kuris komponentas (tikslas ar uždaviniai) yra silpnas."
   },
   {
     "name": "giedre_teorine_analize",
@@ -165,11 +165,19 @@
     "rubric": "Rezultatai\n\nVertinama, ar tyrimo rezultatai atsako į tyrimo tikslą, interpretuojami teorinės analizės kontekste ir ar tinkamai vizualizuojami.\n\nĮvertinimas (0.0–1.0):\n- Ar rezultatai atsako į tyrimo tikslą?\n- Ar rezultatai interpretuojami remiantis teorinėmis įžvalgomis?\n- Ar naudojamos iliustracijos, lentelės ar kitos vizualizacijos?\n\nPrivaloma:\n- Paaiškinti, kaip rezultatai (ne)atitinka tyrimo tikslą.\n- Nurodyti, kokių interpretacijų ar vizualizacijų trūksta.\n- Pateikti konkrečius pasiūlymus rezultatų pateikimo ir analizės tobulinimui."
   },
   {
-    "name": "giedre_isvados",
-    "rubric": "Išvados\n\nVertinama, ar išvados tiesiogiai siejasi su įvade suformuluotais uždaviniais.\n\nĮvertinimas (0.0–1.0):\n- Ar išvados dera su įvade įvardintais uždaviniais?\n\nPrivaloma:\n- Nurodyti, kurie uždaviniai yra (ne)atsispindėję išvadose.\n- Įvardyti neatitikimus ar trūkumus.\n- Pateikti aiškias rekomendacijas, kaip išvadas suderinti su uždaviniais."
+    "name": "giedre_isvados_kokybe_gradientas",
+    "rubric": "Išvadų pagrįstumas duomenimis (Gradientas)\n\nĮvertinama, kiek išvados yra pagrįstos darbe pateikta analize.\n\nĮvertinimas (Pasirinkti tiksliausią):\n- 0.0 (Nepagrįsta): Išvados neturi ryšio su dėstomu tekstu arba yra bendro pobūdžio.\n- 0.5 (Dalinai pagrįsta): Išvados logiškos, bet trūksta konkrečių sąsajų su tyrimo rezultatais.\n- 1.0 (Visiškai pagrįsta): Išvados tiesiogiai išplaukia iš tyrimo duomenų ir atsako į tikslą.\n\nPrivaloma:\n- Cituoti vieną sakinį iš išvadų, kuris pagrindžia vertinimą."
   },
   {
     "name": "giedre_privaloma_struktura",
     "rubric": "Straipsnio privaloma struktūra\n\nPatikrinkite, ar straipsnyje pateiktos visos privalomos dalys:\n- Pavadinimas\n- Santrauka\n- Bazinės sąvokos (terminai) ir reikšminiai žodžiai\n- Įvadas (problema / probleminis klausimas, tikslas, uždaviniai arba struktūra, metodai)\n- Teorinė analizė\n- Metodologija\n- Tyrimo rezultatai\n- Išvados\n- Sutrumpinimai ir žymėjimai (jei taikoma)\n- Naudota literatūra\n\nĮvertinimas (0.0–1.0):\n- Pagal tai, kiek struktūrinių elementų yra pateikta.\n\nPrivaloma:\n- Konkrečiai išvardyti, kurios dalys yra, o kurių trūksta.\n- Nurodyti struktūrinius trūkumus.\n- Pateikti aiškias rekomendacijas, kaip struktūrą papildyti ar patikslinti."
+  },
+  {
+    "name": "giedre_kalbos_stilius_binarinis",
+    "rubric": "Akademinio stiliaus laikymasis (Binarinis)\n\nĮvertinama, ar tekstas parašytas taisyklinga, formalia akademine kalba be stiliaus klaidų.\n\nĮvertinimas (0.0 arba 1.0):\n- 1.0: Tekstas yra formalus, objektyvus, be žargono ar jaustukų.\n- 0.0: Yra stiliaus klaidų, naudojama „aš\" forma kur netinka, arba buitinė kalba.\n\nPrivaloma:\n- Tai griežtas vertinimas. Jei yra bent vienas ryškus stiliaus pažeidimas, rašyti 0."
+  },
+  {
+    "name": "giedre_citavimas_baudos",
+    "rubric": "Citavimo ir bibliografijos tikslumas (Baudų sistema)\n\nPradinis balas yra 1.0. Mažinkite balą už kiekvieną pastebėtą klaidą.\n\nSkaičiavimas:\n- Pradžia: 1.0\n- Neteisingas formatas tekste: -0.2 už klaidą.\n- Šaltinis bibliografijoje, bet nėra tekste (arba atvirkščiai): -0.5 už atvejį.\n- Minimalus balas: 0.0.\n\nPrivaloma:\n- Išvardinti konkrečias rastas klaidas, dėl kurių sumažintas balas."
   }
 ]
