@@ -1,5 +1,7 @@
 """Article evaluation schemas."""
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 
@@ -31,4 +33,23 @@ class DetailedArticleEvaluation(BaseModel):
     weaknesses: list[str] = Field(min_length=2, max_length=4, description="2-4 key weaknesses or areas for improvement")
     publication_type: str = Field(
         description="Most likely publication type (journal article, conference, monograph, etc.)"
+    )
+
+
+class LLMDetectionResult(BaseModel):
+    """Result of running an LLM-authorship detector on an article."""
+
+    ai_probability: float = Field(
+        ge=0.0, le=1.0, description="Estimated probability the text is AI/LLM-generated"
+    )
+    verdict: Literal["likely_human", "uncertain", "likely_ai"] = Field(
+        description="Coarse verdict bucket derived from ai_probability"
+    )
+    reasoning: str = Field(
+        description="2-4 sentence justification, citing the most decisive observations"
+    )
+    indicators: list[str] = Field(
+        min_length=1,
+        max_length=8,
+        description="Specific stylistic, structural, or content signals that informed the verdict",
     )

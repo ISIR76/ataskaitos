@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ScoresRouteImport } from './routes/scores'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ArticlesRouteImport } from './routes/articles'
@@ -17,6 +18,11 @@ import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects/$projectId'
 import { Route as ProjectsProjectIdEvaluationsEvaluationIdRouteImport } from './routes/projects.$projectId.evaluations.$evaluationId'
 
+const ScoresRoute = ScoresRouteImport.update({
+  id: '/scores',
+  path: '/scores',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsRoute = ReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/articles': typeof ArticlesRoute
   '/auth': typeof AuthRoute
   '/reports': typeof ReportsRoute
+  '/scores': typeof ScoresRoute
   '/projects/$projectId': typeof ProjectsProjectIdRouteWithChildren
   '/projects': typeof ProjectsIndexRoute
   '/projects/$projectId/evaluations/$evaluationId': typeof ProjectsProjectIdEvaluationsEvaluationIdRoute
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/articles': typeof ArticlesRoute
   '/auth': typeof AuthRoute
   '/reports': typeof ReportsRoute
+  '/scores': typeof ScoresRoute
   '/projects/$projectId': typeof ProjectsProjectIdRouteWithChildren
   '/projects': typeof ProjectsIndexRoute
   '/projects/$projectId/evaluations/$evaluationId': typeof ProjectsProjectIdEvaluationsEvaluationIdRoute
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/articles': typeof ArticlesRoute
   '/auth': typeof AuthRoute
   '/reports': typeof ReportsRoute
+  '/scores': typeof ScoresRoute
   '/projects/$projectId': typeof ProjectsProjectIdRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
   '/projects/$projectId/evaluations/$evaluationId': typeof ProjectsProjectIdEvaluationsEvaluationIdRoute
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/articles'
     | '/auth'
     | '/reports'
+    | '/scores'
     | '/projects/$projectId'
     | '/projects'
     | '/projects/$projectId/evaluations/$evaluationId'
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/articles'
     | '/auth'
     | '/reports'
+    | '/scores'
     | '/projects/$projectId'
     | '/projects'
     | '/projects/$projectId/evaluations/$evaluationId'
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/articles'
     | '/auth'
     | '/reports'
+    | '/scores'
     | '/projects/$projectId'
     | '/projects/'
     | '/projects/$projectId/evaluations/$evaluationId'
@@ -117,12 +129,20 @@ export interface RootRouteChildren {
   ArticlesRoute: typeof ArticlesRoute
   AuthRoute: typeof AuthRoute
   ReportsRoute: typeof ReportsRoute
+  ScoresRoute: typeof ScoresRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRouteWithChildren
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/scores': {
+      id: '/scores'
+      path: '/scores'
+      fullPath: '/scores'
+      preLoaderRoute: typeof ScoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports': {
       id: '/reports'
       path: '/reports'
@@ -192,6 +212,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArticlesRoute: ArticlesRoute,
   AuthRoute: AuthRoute,
   ReportsRoute: ReportsRoute,
+  ScoresRoute: ScoresRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRouteWithChildren,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }

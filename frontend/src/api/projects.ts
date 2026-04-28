@@ -7,6 +7,8 @@ export type ProjectDetail = components["schemas"]["ProjectResponse"];
 export type DocumentVersion = components["schemas"]["DocumentVersionResponse"];
 export type EvaluationItem = components["schemas"]["EvaluationHistoryItem"];
 export type EvaluationDetail = components["schemas"]["EvaluationDetailResponse"];
+export type ScoresGrid = components["schemas"]["ScoresGridResponse"];
+export type ScoresGridRow = components["schemas"]["ScoresGridRow"];
 
 /**
  * Fetch all projects
@@ -72,6 +74,35 @@ export async function createProject(name: string, projectType: "straipsnis" | "a
   if (!response.data) {
     throw new Error("Nepavyko sukurti projekto. Pavadinimas gali jau egzistuoti.");
   }
+}
+
+/**
+ * Fetch the cross-project scoring grid for a given document type.
+ */
+export async function fetchScoresGrid(
+  documentType: "article" | "report" = "article"
+): Promise<ScoresGrid> {
+  const response = await client.GET("/api/v1/projects/scores-grid", {
+    params: { query: { document_type: documentType } },
+  });
+  if (!response.data) {
+    throw new Error("Nepavyko įkelti vertinimų lentelės");
+  }
+  return response.data as ScoresGrid;
+}
+
+/**
+ * Toggle the manual quality-verified flag on a project.
+ */
+export async function setProjectMarkedGood(projectId: number, value: boolean): Promise<Project> {
+  const response = await client.PATCH("/api/v1/projects/{project_id}/marked-good", {
+    params: { path: { project_id: projectId } },
+    body: { value },
+  });
+  if (!response.data) {
+    throw new Error("Nepavyko atnaujinti projekto žymėjimo");
+  }
+  return response.data as Project;
 }
 
 /**
@@ -146,6 +177,31 @@ export async function runEvaluation(
     throw new Error(`Nepavyko paleisti vertinimo: ${response.statusText}`);
   }
 
+  const data = await response.json();
+  return data.evaluation_id;
+}
+
+/**
+ * Run the dedicated LLM-detection agent on a version.
+ * Returns the evaluation ID for navigation to results.
+ */
+export async function runLlmDetection(
+  projectId: number,
+  versionId: number
+): Promise<string> {
+  const headers: Record<string, string> = {};
+  const token = localStorage.getItem("ataskaitos_auth_token");
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  const response = await fetch(
+    `${baseUrl}/api/v1/projects/${projectId}/versions/${versionId}/llm-detect`,
+    { method: "POST", headers }
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`AI tikrinimas nepavyko: ${text || response.statusText}`);
+  }
   const data = await response.json();
   return data.evaluation_id;
 }

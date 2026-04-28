@@ -19,8 +19,11 @@ from ataskaitos.api.models import (
     DocumentVersionResponse,
     EvaluationDetailResponse,
     EvaluationHistoryItem,
+    MarkedGoodRequest,
     ProjectListResponse,
     ProjectResponse,
+    ScoresGridResponse,
+    ScoresGridRow,
     UnifiedEvaluationResponse,
 )
 from ataskaitos.database import get_session
@@ -54,6 +57,7 @@ async def _build_project_response(project, doc_repo: DocumentVersionRepository) 
         active_version_id=project.active_version_id,
         active_version_number=active_version.version_number if active_version else None,
         total_versions=0,
+        is_marked_good=bool(getattr(project, "is_marked_good", False)),
         created_at=project.created_at,
         updated_at=project.updated_at,
     )
@@ -156,6 +160,40 @@ async def list_projects(
     return ProjectListResponse(projects=project_responses, total=total)
 
 
+@router.get("/scores-grid", response_model=ScoresGridResponse)
+async def get_scores_grid(
+    document_type: Literal["article", "report"] = "article",
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
+    """Return a cross-project grid of latest scoring evaluations.
+
+    One row per project owned by the user, columns keyed by evaluator name.
+    """
+    project_type = "straipsnis" if document_type == "article" else "ataskaita"
+    eval_repo = EvaluationRepository(session)
+    raw_rows = await eval_repo.get_latest_scoring_per_project(
+        user_id=user.id, project_type=project_type
+    )
+
+    evaluator_names: list[str] = []
+    seen: set[str] = set()
+    for row in raw_rows:
+        for name in row.get("scores", {}):
+            if name not in seen:
+                seen.add(name)
+                evaluator_names.append(name)
+
+    rows: list[ScoresGridRow] = [ScoresGridRow(**row) for row in raw_rows]
+
+    return ScoresGridResponse(
+        document_type=document_type,
+        project_type=project_type,
+        evaluators=evaluator_names,
+        rows=rows,
+    )
+
+
 @router.get("/{project_id}", response_model=ProjectResponse)
 async def get_project(project_id: int, session: AsyncSession = Depends(get_session)):
     """Get project details by ID.
@@ -176,6 +214,30 @@ async def get_project(project_id: int, session: AsyncSession = Depends(get_sessi
     project = await project_repo.get_by_id(project_id, load_versions=True)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+
+    return await _build_project_response(project, doc_repo)
+
+
+@router.patch("/{project_id}/marked-good", response_model=ProjectResponse)
+async def set_project_marked_good(
+    project_id: int,
+    request: MarkedGoodRequest,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
+    """Toggle the manual quality-verified flag on a project."""
+    project_repo = ProjectRepository(session)
+    doc_repo = DocumentVersionRepository(session)
+
+    project = await project_repo.get_by_id(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to modify this project")
+
+    project = await project_repo.set_marked_good(project_id, request.value)
+    await session.commit()
+    await session.refresh(project)
 
     return await _build_project_response(project, doc_repo)
 
@@ -572,6 +634,79 @@ async def evaluate_version(
         logger.info(f"✅ Evaluation saved with ID: {evaluation.id}")
 
     # Return unified response
+    return UnifiedEvaluationResponse(
+        evaluation_id=evaluation_result.evaluation_id,
+        document_type=evaluation_result.document_type,
+        evaluation_type=evaluation_result.evaluation_type,
+        status=evaluation_result.status,
+        markdown_content=markdown_content,
+        results=evaluation_result.results,
+        metadata=evaluation_result.metadata,
+    )
+
+
+@router.post("/{project_id}/versions/{version_id}/llm-detect", response_model=UnifiedEvaluationResponse)
+async def run_llm_detection(
+    project_id: int,
+    version_id: int,
+    user: User = Depends(current_active_user),
+    eval_service: EvaluationService = Depends(get_evaluation_service),
+    session: AsyncSession = Depends(get_session),
+):
+    """Run the LLM-authorship detector agent on an article version.
+
+    Thin wrapper around the agent evaluation flow, locked to a single agent
+    (``llm_detector_agent``) so the frontend can offer it as a one-click action.
+    """
+    start_time = time.time()
+
+    project_repo = ProjectRepository(session)
+    doc_repo = DocumentVersionRepository(session)
+    eval_repo = EvaluationRepository(session)
+
+    project = await project_repo.get_by_id(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
+    if project.project_type != "straipsnis":
+        raise HTTPException(
+            status_code=400, detail="LLM detection is only available for article projects"
+        )
+
+    version = await doc_repo.get_by_id(version_id)
+    if not version or version.project_id != project_id:
+        raise HTTPException(
+            status_code=404, detail=f"Version {version_id} not found in project {project_id}"
+        )
+
+    markdown_content = storage_service.get_markdown_content(project_id, version.version_number)
+
+    try:
+        evaluation_result = await eval_service.evaluate_document(
+            content=markdown_content,
+            document_type="article",
+            evaluation_type="agent",
+            evaluator_names=None,
+            agent_names=["llm_detector_agent"],
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"LLM detection failed: {str(e)}")
+
+    duration = time.time() - start_time
+
+    evaluation = await eval_repo.create(
+        evaluation_id=evaluation_result.evaluation_id,
+        document_version_id=version_id,
+        evaluation_type="agent",
+        evaluators_used=json.dumps(["llm_detector_agent"]),
+        results_json=json.dumps(evaluation_result.results),
+        status=evaluation_result.status,
+        duration_seconds=duration,
+    )
+    await session.commit()
+    await session.refresh(evaluation)
+
     return UnifiedEvaluationResponse(
         evaluation_id=evaluation_result.evaluation_id,
         document_type=evaluation_result.document_type,

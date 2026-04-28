@@ -13,6 +13,7 @@ from .schemas import (
     DetailedArticleEvaluation,
     DetailedReportEvaluation,
     FrascatiClassifierEvaluation,
+    LLMDetectionResult,
     SimpleArticleEvaluation,
     SimpleReportEvaluation,
 )
@@ -49,6 +50,22 @@ class AgentFactory:
         return Agent(
             model=model,
             output_type=SimpleArticleEvaluation,
+            instructions=instructions,
+        )
+
+    @classmethod
+    def create_llm_detector_agent(cls, model: Optional[Model] = None) -> Agent[None, LLMDetectionResult]:
+        """Create an article LLM-detection agent.
+
+        Returns a structured estimate of whether the article was AI-generated.
+        """
+        instructions = cls._load_prompt("articles/llm_detector_agent.txt")
+        if model is None:
+            model_name = cls._get_model_name(settings.default_article_model)
+            model = OpenAIResponsesModel(model_name, settings=cls._settings)
+        return Agent(
+            model=model,
+            output_type=LLMDetectionResult,
             instructions=instructions,
         )
 

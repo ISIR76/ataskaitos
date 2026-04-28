@@ -46,6 +46,7 @@ class Project(Base):
     active_version_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("document_versions.id", use_alter=True), default=None
     )
+    is_marked_good: Mapped[bool] = mapped_column(Boolean, default=False)
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(default=datetime.utcnow, onupdate=datetime.utcnow)
 

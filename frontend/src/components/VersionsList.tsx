@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronUp,
   Play,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,8 +17,11 @@ interface VersionsListProps {
   versionEvaluations: Record<number, EvaluationItem[]>;
   onSetActive: (versionId: number) => void;
   onRunEvaluation: (versionId: number) => void;
+  onRunLlmDetection?: (versionId: number) => void;
+  llmDetectionRunningId?: number | null;
   onToggleExpand: (versionId: number) => void;
   expandedVersionId: number | null;
+  showLlmDetector?: boolean;
 }
 
 export function VersionsList({
@@ -26,8 +30,11 @@ export function VersionsList({
   versionEvaluations,
   onSetActive,
   onRunEvaluation,
+  onRunLlmDetection,
+  llmDetectionRunningId = null,
   onToggleExpand,
   expandedVersionId,
+  showLlmDetector = false,
 }: VersionsListProps) {
   return (
     <div className="space-y-4">
@@ -73,6 +80,18 @@ export function VersionsList({
                 <Play className="w-4 h-4 mr-2" />
                 Paleisti vertinimą
               </Button>
+              {showLlmDetector && onRunLlmDetection && (
+                <Button
+                  variant="outline"
+                  onClick={() => onRunLlmDetection(version.id)}
+                  disabled={llmDetectionRunningId === version.id}
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  {llmDetectionRunningId === version.id
+                    ? "Tikrinama..."
+                    : "Tikrinti AI"}
+                </Button>
+              )}
               <Button
                 variant="ghost"
                 size="sm"

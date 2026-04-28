@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { FileText, Trash2 } from "lucide-react";
+import { CheckCircle2, FileText, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -51,12 +51,20 @@ export function ProjectsList({
         {projects.map((project) => (
           <TableRow key={project.id}>
             <TableCell>
-              <Link
-                to="/projects/$projectId"
-                params={{ projectId: String(project.id) }}
-              >
-                {project.name}
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  to="/projects/$projectId"
+                  params={{ projectId: String(project.id) }}
+                >
+                  {project.name}
+                </Link>
+                {project.is_marked_good && (
+                  <CheckCircle2
+                    className="w-4 h-4 text-green-600"
+                    aria-label="Pažymėtas kaip geras"
+                  />
+                )}
+              </div>
             </TableCell>
             <TableCell>
               <Badge variant="secondary">{project.project_type}</Badge>

@@ -1,5 +1,12 @@
 import React from "react";
-import { CheckCircle2, XCircle, AlertCircle, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  CheckCircle2,
+  XCircle,
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+  Sparkles,
+} from "lucide-react";
 import type { components } from "../api/schema";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -133,6 +140,86 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
     );
   };
 
+  const isLlmDetectionPayload = (payload: any): boolean => {
+    return (
+      payload &&
+      typeof payload.ai_probability === "number" &&
+      typeof payload.verdict === "string" &&
+      Array.isArray(payload.indicators)
+    );
+  };
+
+  const renderLlmDetection = (payload: any) => {
+    const probability = Math.max(0, Math.min(1, payload.ai_probability));
+    const percent = Math.round(probability * 100);
+    const verdict: string = payload.verdict;
+    const verdictLabel =
+      verdict === "likely_ai"
+        ? "Tikėtina AI"
+        : verdict === "likely_human"
+        ? "Tikėtina žmogaus"
+        : "Neaišku";
+    const verdictTone =
+      verdict === "likely_ai"
+        ? "bg-red-600"
+        : verdict === "likely_human"
+        ? "bg-green-600"
+        : "bg-amber-500";
+    const barTone =
+      probability >= 0.65
+        ? "bg-red-500"
+        : probability >= 0.35
+        ? "bg-amber-500"
+        : "bg-green-500";
+
+    return (
+      <div className="border rounded-lg p-6 space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="font-semibold flex items-center gap-2">
+            <Sparkles className="w-5 h-5" />
+            AI generavimo aptikimas
+          </h3>
+          <Badge className={`${verdictTone} text-white`}>{verdictLabel}</Badge>
+        </div>
+
+        <div>
+          <div className="flex items-baseline justify-between mb-1">
+            <span className="text-sm text-muted-foreground">
+              AI tikimybė
+            </span>
+            <span className="text-2xl font-bold">{percent}%</span>
+          </div>
+          <div className="h-3 bg-muted rounded-full overflow-hidden">
+            <div
+              className={`h-full ${barTone} transition-all`}
+              style={{ width: `${percent}%` }}
+            />
+          </div>
+        </div>
+
+        {payload.reasoning && (
+          <div>
+            <h4 className="text-sm font-semibold mb-1">Pagrindimas</h4>
+            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+              {payload.reasoning}
+            </p>
+          </div>
+        )}
+
+        {payload.indicators && payload.indicators.length > 0 && (
+          <div>
+            <h4 className="text-sm font-semibold mb-2">Pastebėti požymiai</h4>
+            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+              {payload.indicators.map((indicator: string, i: number) => (
+                <li key={i}>{indicator}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const renderAgentResults = () => {
     const agentOutput = result.results as any;
 
@@ -143,20 +230,34 @@ export function EvaluationResults({ result }: EvaluationResultsProps) {
 
       return (
         <div className="space-y-6">
-          {agentNames.map((agentName) => (
-            <div key={agentName} className="border rounded-lg p-6">
-              <h3 className="font-semibold mb-4 capitalize">
-                {agentName.replace(/_/g, " ")}
-              </h3>
-              <div className="prose prose-sm dark:prose-invert max-w-none">
-                <pre className="whitespace-pre-wrap text-sm bg-muted/50 p-4 rounded-md overflow-auto">
-                  {JSON.stringify(evaluations[agentName], null, 2)}
-                </pre>
+          {agentNames.map((agentName) => {
+            const payload = evaluations[agentName];
+            if (isLlmDetectionPayload(payload)) {
+              return (
+                <React.Fragment key={agentName}>
+                  {renderLlmDetection(payload)}
+                </React.Fragment>
+              );
+            }
+            return (
+              <div key={agentName} className="border rounded-lg p-6">
+                <h3 className="font-semibold mb-4 capitalize">
+                  {agentName.replace(/_/g, " ")}
+                </h3>
+                <div className="prose prose-sm dark:prose-invert max-w-none">
+                  <pre className="whitespace-pre-wrap text-sm bg-muted/50 p-4 rounded-md overflow-auto">
+                    {JSON.stringify(payload, null, 2)}
+                  </pre>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       );
+    }
+
+    if (isLlmDetectionPayload(agentOutput)) {
+      return renderLlmDetection(agentOutput);
     }
 
     // Fallback for legacy single agent output

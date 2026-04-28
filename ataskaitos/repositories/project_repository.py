@@ -109,6 +109,28 @@ class ProjectRepository:
         result = await self.session.execute(query)
         return list(result.scalars().all())
 
+    async def set_marked_good(self, project_id: int, value: bool) -> Project:
+        """Set the manual quality-verified flag on a project.
+
+        Args:
+            project_id: Project ID
+            value: True to mark as GOOD, False to unmark
+
+        Returns:
+            Updated Project instance
+
+        Raises:
+            ValueError: If project not found
+        """
+        project = await self.get_by_id(project_id)
+        if not project:
+            raise ValueError(f"Project {project_id} not found")
+
+        project.is_marked_good = value
+        project.updated_at = datetime.utcnow()
+        await self.session.flush()
+        return project
+
     async def update_active_version(self, project_id: int, version_id: int | None) -> Project:
         """Update the active version for a project.
 

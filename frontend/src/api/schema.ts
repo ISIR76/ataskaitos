@@ -346,6 +346,28 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/projects/scores-grid": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Scores Grid
+         * @description Return a cross-project grid of latest scoring evaluations.
+         *
+         *     One row per project owned by the user, columns keyed by evaluator name.
+         */
+        get: operations["get_scores_grid_api_v1_projects_scores_grid_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/projects/{project_id}": {
         parameters: {
             query?: never;
@@ -385,6 +407,26 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/marked-good": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Set Project Marked Good
+         * @description Toggle the manual quality-verified flag on a project.
+         */
+        patch: operations["set_project_marked_good_api_v1_projects__project_id__marked_good_patch"];
         trace?: never;
     };
     "/api/v1/projects/{project_id}/versions": {
@@ -567,6 +609,29 @@ export interface paths {
          *         HTTPException: If project or version not found, or evaluation fails
          */
         post: operations["evaluate_version_api_v1_projects__project_id__versions__version_id__evaluate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/projects/{project_id}/versions/{version_id}/llm-detect": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Run Llm Detection
+         * @description Run the LLM-authorship detector agent on an article version.
+         *
+         *     Thin wrapper around the agent evaluation flow, locked to a single agent
+         *     (``llm_detector_agent``) so the frontend can offer it as a one-click action.
+         */
+        post: operations["run_llm_detection_api_v1_projects__project_id__versions__version_id__llm_detect_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1103,6 +1168,17 @@ export interface components {
             authentication_required: boolean;
         };
         /**
+         * MarkedGoodRequest
+         * @description Request to toggle the marked-good flag on a project.
+         */
+        MarkedGoodRequest: {
+            /**
+             * Value
+             * @description True to mark as GOOD, False to unmark
+             */
+            value: boolean;
+        };
+        /**
          * ProjectListResponse
          * @description Response for list of projects.
          */
@@ -1154,6 +1230,12 @@ export interface components {
              */
             total_versions: number;
             /**
+             * Is Marked Good
+             * @description Manually marked as quality-verified
+             * @default false
+             */
+            is_marked_good: boolean;
+            /**
              * Created At
              * Format: date-time
              * @description Creation timestamp
@@ -1191,6 +1273,87 @@ export interface components {
              * @description URL to API documentation
              */
             docs_url: string;
+        };
+        /**
+         * ScoresGridResponse
+         * @description Aggregated scoring grid across all projects of a given type.
+         */
+        ScoresGridResponse: {
+            /**
+             * Document Type
+             * @description Logical document type
+             * @enum {string}
+             */
+            document_type: "article" | "report";
+            /**
+             * Project Type
+             * @description Underlying project type
+             * @enum {string}
+             */
+            project_type: "straipsnis" | "ataskaita";
+            /**
+             * Evaluators
+             * @description Union of evaluator names appearing in any row
+             */
+            evaluators: string[];
+            /**
+             * Rows
+             * @description One row per project
+             */
+            rows: components["schemas"]["ScoresGridRow"][];
+        };
+        /**
+         * ScoresGridRow
+         * @description One row in the cross-project scoring grid.
+         */
+        ScoresGridRow: {
+            /**
+             * Project Id
+             * @description Project ID
+             */
+            project_id: number;
+            /**
+             * Project Name
+             * @description Project name
+             */
+            project_name: string;
+            /**
+             * Project Type
+             * @description Project type (straipsnis | ataskaita)
+             */
+            project_type: string;
+            /**
+             * Is Marked Good
+             * @description Whether the project is manually quality-verified
+             */
+            is_marked_good: boolean;
+            /**
+             * Active Version Id
+             * @description ID of the active version (if any)
+             */
+            active_version_id: number | null;
+            /**
+             * Active Version Number
+             * @description Version number of the active version
+             */
+            active_version_number: number | null;
+            /**
+             * Evaluation Id
+             * @description UUID of the latest scoring evaluation, if any
+             */
+            evaluation_id: string | null;
+            /**
+             * Evaluated At
+             * @description When the latest scoring evaluation finished
+             */
+            evaluated_at: string | null;
+            /**
+             * Scores
+             * @description Scores keyed by evaluator name
+             */
+            scores?: {
+                [key: string]: number;
+            };
         };
         /**
          * UnifiedEvaluationResponse
@@ -1952,6 +2115,37 @@ export interface operations {
             };
         };
     };
+    get_scores_grid_api_v1_projects_scores_grid_get: {
+        parameters: {
+            query?: {
+                document_type?: "article" | "report";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScoresGridResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_project_api_v1_projects__project_id__get: {
         parameters: {
             query?: never;
@@ -2000,6 +2194,41 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    set_project_marked_good_api_v1_projects__project_id__marked_good_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MarkedGoodRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProjectResponse"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -2219,6 +2448,38 @@ export interface operations {
                 "application/x-www-form-urlencoded": components["schemas"]["Body_evaluate_version_api_v1_projects__project_id__versions__version_id__evaluate_post"];
             };
         };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnifiedEvaluationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    run_llm_detection_api_v1_projects__project_id__versions__version_id__llm_detect_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                project_id: number;
+                version_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {

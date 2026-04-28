@@ -115,8 +115,15 @@ class ProjectResponse(BaseModel):
     active_version_id: int | None = Field(description="Active version ID")
     active_version_number: int | None = Field(description="Active version number")
     total_versions: int = Field(description="Total number of versions")
+    is_marked_good: bool = Field(default=False, description="Manually marked as quality-verified")
     created_at: datetime = Field(description="Creation timestamp")
     updated_at: datetime = Field(description="Last update timestamp")
+
+
+class MarkedGoodRequest(BaseModel):
+    """Request to toggle the marked-good flag on a project."""
+
+    value: bool = Field(description="True to mark as GOOD, False to unmark")
 
 
 class ProjectListResponse(BaseModel):
@@ -161,3 +168,26 @@ class EvaluationDetailResponse(EvaluationHistoryItem):
     """Response for an evaluation with full results."""
 
     results: dict[str, Any] = Field(description="Full evaluation results")
+
+
+class ScoresGridRow(BaseModel):
+    """One row in the cross-project scoring grid."""
+
+    project_id: int = Field(description="Project ID")
+    project_name: str = Field(description="Project name")
+    project_type: str = Field(description="Project type (straipsnis | ataskaita)")
+    is_marked_good: bool = Field(description="Whether the project is manually quality-verified")
+    active_version_id: int | None = Field(description="ID of the active version (if any)")
+    active_version_number: int | None = Field(description="Version number of the active version")
+    evaluation_id: str | None = Field(description="UUID of the latest scoring evaluation, if any")
+    evaluated_at: datetime | None = Field(description="When the latest scoring evaluation finished")
+    scores: dict[str, float] = Field(default_factory=dict, description="Scores keyed by evaluator name")
+
+
+class ScoresGridResponse(BaseModel):
+    """Aggregated scoring grid across all projects of a given type."""
+
+    document_type: Literal["article", "report"] = Field(description="Logical document type")
+    project_type: Literal["straipsnis", "ataskaita"] = Field(description="Underlying project type")
+    evaluators: list[str] = Field(description="Union of evaluator names appearing in any row")
+    rows: list[ScoresGridRow] = Field(description="One row per project")

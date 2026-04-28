@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useMatches, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Upload, FileText } from "lucide-react";
+import { Upload, FileText, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
@@ -13,6 +13,8 @@ import {
   fetchVersionEvaluations,
   uploadVersion,
   setActiveVersion,
+  setProjectMarkedGood,
+  runLlmDetection,
   type EvaluationItem,
 } from "../../api/projects";
 import { useRouterMutation, useDialog, useExpandableData } from "@/hooks";
@@ -77,6 +79,28 @@ function ProjectDetailPage() {
     evaluationDialog.open();
   };
 
+  const handleToggleMarkedGood = useRouterMutation(async () => {
+    await setProjectMarkedGood(projectId, !project.is_marked_good);
+  });
+
+  const [llmDetectionRunningId, setLlmDetectionRunningId] = useState<number | null>(null);
+
+  const handleRunLlmDetection = async (versionId: number) => {
+    setLlmDetectionRunningId(versionId);
+    try {
+      const evaluationId = await runLlmDetection(projectId, versionId);
+      navigate({
+        to: "/projects/$projectId/evaluations/$evaluationId",
+        params: { projectId: String(projectId), evaluationId },
+      });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "AI tikrinimas nepavyko";
+      alert(message);
+    } finally {
+      setLlmDetectionRunningId(null);
+    }
+  };
+
   const handleEvaluationComplete = useRouterMutation(async (evaluationId: string) => {
     // Close modal first
     evaluationDialog.close();
@@ -110,8 +134,28 @@ function ProjectDetailPage() {
           </Link>
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-3xl font-bold mb-2">{project.name}</h1>
-              <Badge variant="secondary">{project.project_type}</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold">{project.name}</h1>
+                {project.is_marked_good && (
+                  <Badge className="bg-green-600 hover:bg-green-700 text-white">
+                    <CheckCircle2 className="w-4 h-4 mr-1" />
+                    Patikrinta
+                  </Badge>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                <Badge variant="secondary">{project.project_type}</Badge>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleToggleMarkedGood()}
+                >
+                  <CheckCircle2 className="w-4 h-4 mr-1" />
+                  {project.is_marked_good
+                    ? "Pašalinti pažymėjimą"
+                    : "Pažymėti kaip gerą"}
+                </Button>
+              </div>
             </div>
             <Button onClick={uploadDialog.open}>
               <Upload className="w-5 h-5 mr-2" />
@@ -137,8 +181,11 @@ function ProjectDetailPage() {
             )}
             onSetActive={handleSetActive}
             onRunEvaluation={handleRunEvaluation}
+            onRunLlmDetection={handleRunLlmDetection}
+            llmDetectionRunningId={llmDetectionRunningId}
             onToggleExpand={handleToggleExpand}
             expandedVersionId={versionEvaluationsData.expandedId}
+            showLlmDetector={project.project_type === "straipsnis"}
           />
         )}
 

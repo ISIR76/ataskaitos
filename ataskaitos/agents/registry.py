@@ -131,6 +131,16 @@ def get_agent_registry() -> AgentRegistry:
             },
         )
 
+        registry.register(
+            "article",
+            "llm_detector_agent",
+            factory.create_llm_detector_agent(),
+            metadata={
+                "description": "Estimates whether the article is LLM-generated",
+                "output_type": "LLMDetectionResult",
+            },
+        )
+
         # Register report agents
         registry.register(
             "report",
