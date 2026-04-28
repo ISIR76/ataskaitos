@@ -580,6 +580,7 @@ async def evaluate_version(
             evaluation_type=evaluation_type,
             evaluator_names=evaluator_names,
             agent_names=agent_names,
+            session=session,
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Evaluation failed: {str(e)}")

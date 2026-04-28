@@ -1,15 +1,19 @@
 """Health check and information endpoints."""
 
-from fastapi import APIRouter, Depends, Request
+import json
 
-from ataskaitos.api.dependencies import ENV, get_evaluator_registry
+from fastapi import APIRouter, Depends, Request
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from ataskaitos.api.dependencies import ENV
 from ataskaitos.api.models import (
     EvaluatorInfo,
     EvaluatorsListResponse,
     HealthCheckResponse,
     RootResponse,
 )
-from ataskaitos.evaluators import EvaluatorRegistry
+from ataskaitos.database import get_session
+from ataskaitos.repositories.evaluator_repository import EvaluatorRepository
 from ataskaitos.settings import settings
 
 router = APIRouter(prefix="/api", tags=["Health & Info"])
@@ -53,38 +57,36 @@ async def cors_test(request: Request):
 
 @router.get("/v1/evaluators", response_model=EvaluatorsListResponse)
 async def list_evaluators(
-    registry: EvaluatorRegistry = Depends(get_evaluator_registry),
+    session: AsyncSession = Depends(get_session),
 ):
-    """List all available evaluators grouped by document type.
+    """List active evaluators grouped by document type.
 
-    Returns information about each evaluator including:
-    - Name
-    - Source file/module
-    - Whether it has assertions
-    - Additional metadata
-
-    Useful for discovering what evaluators are available and how to use them.
+    Reads from the DB-backed ``evaluators`` table so picker UIs reflect any
+    runtime edits made through the settings page. Inactive evaluators are
+    omitted because they are not selectable for evaluation runs.
     """
-    # Get all evaluators from registry
-    available = registry.list_available()
+    repo = EvaluatorRepository(session)
+    rows = await repo.list_all()
 
-    # Convert to EvaluatorInfo models
-    evaluators_by_type = {}
+    evaluators_by_type: dict[str, list[EvaluatorInfo]] = {"article": [], "report": []}
     total_count = 0
-
-    for doc_type, evaluators_list in available.items():
-        evaluators_info = [
+    for row in rows:
+        if not row.is_active:
+            continue
+        try:
+            meta = json.loads(row.extra_metadata or "{}")
+        except json.JSONDecodeError:
+            meta = {}
+        evaluators_by_type.setdefault(row.document_type, []).append(
             EvaluatorInfo(
-                name=eval_dict["name"],
-                source=eval_dict.get("source"),
-                has_assertion=eval_dict.get("has_assertion", False),
-                rubric=eval_dict.get("rubric"),
-                metadata={k: v for k, v in eval_dict.items() if k not in ["name", "source", "has_assertion", "rubric"]},
+                name=row.name,
+                source=row.source,
+                has_assertion=bool(row.has_assertion),
+                rubric=row.rubric,
+                metadata=meta,
             )
-            for eval_dict in evaluators_list
-        ]
-        evaluators_by_type[doc_type] = evaluators_info
-        total_count += len(evaluators_info)
+        )
+        total_count += 1
 
     return EvaluatorsListResponse(
         evaluators=evaluators_by_type,

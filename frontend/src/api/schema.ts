@@ -73,15 +73,11 @@ export interface paths {
         };
         /**
          * List Evaluators
-         * @description List all available evaluators grouped by document type.
+         * @description List active evaluators grouped by document type.
          *
-         *     Returns information about each evaluator including:
-         *     - Name
-         *     - Source file/module
-         *     - Whether it has assertions
-         *     - Additional metadata
-         *
-         *     Useful for discovering what evaluators are available and how to use them.
+         *     Reads from the DB-backed ``evaluators`` table so picker UIs reflect any
+         *     runtime edits made through the settings page. Inactive evaluators are
+         *     omitted because they are not selectable for evaluation runs.
          */
         get: operations["list_evaluators_api_v1_evaluators_get"];
         put?: never;
@@ -700,6 +696,74 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/evaluators-admin": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Evaluators
+         * @description List all evaluators, optionally filtered by document type / active flag.
+         */
+        get: operations["list_evaluators_api_v1_evaluators_admin_get"];
+        put?: never;
+        /**
+         * Create Evaluator
+         * @description Create a new custom evaluator.
+         */
+        post: operations["create_evaluator_api_v1_evaluators_admin_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/evaluators-admin/{evaluator_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Evaluator
+         * @description Delete a custom evaluator. Defaults can only be deactivated, not removed.
+         */
+        delete: operations["delete_evaluator_api_v1_evaluators_admin__evaluator_id__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update Evaluator
+         * @description Update an evaluator. Renaming is only allowed for ``source='custom'`` rows.
+         */
+        patch: operations["update_evaluator_api_v1_evaluators_admin__evaluator_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/evaluators-admin/{evaluator_id}/active": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Toggle Active
+         * @description Enable or disable an evaluator. Works for both default and custom rows.
+         */
+        patch: operations["toggle_active_api_v1_evaluators_admin__evaluator_id__active_patch"];
+        trace?: never;
+    };
     "/{full_path}": {
         parameters: {
             query?: never;
@@ -1064,6 +1128,28 @@ export interface components {
              */
             created_at: string;
         };
+        /** EvaluatorActiveToggle */
+        EvaluatorActiveToggle: {
+            /** Is Active */
+            is_active: boolean;
+        };
+        /** EvaluatorCreate */
+        EvaluatorCreate: {
+            /** Name */
+            name: string;
+            /**
+             * Document Type
+             * @enum {string}
+             */
+            document_type: "article" | "report";
+            /** Rubric */
+            rubric: string;
+            /**
+             * Has Assertion
+             * @default false
+             */
+            has_assertion: boolean;
+        };
         /**
          * EvaluatorInfo
          * @description Information about an evaluator.
@@ -1097,6 +1183,47 @@ export interface components {
             metadata?: {
                 [key: string]: unknown;
             };
+        };
+        /**
+         * EvaluatorRecord
+         * @description Public representation of a stored evaluator.
+         */
+        EvaluatorRecord: {
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            /**
+             * Document Type
+             * @enum {string}
+             */
+            document_type: "article" | "report";
+            /** Rubric */
+            rubric: string;
+            /** Has Assertion */
+            has_assertion: boolean;
+            /** Is Active */
+            is_active: boolean;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "default" | "custom";
+            /** Metadata */
+            metadata?: {
+                [key: string]: unknown;
+            };
+        };
+        /** EvaluatorUpdate */
+        EvaluatorUpdate: {
+            /** Name */
+            name?: string | null;
+            /** Rubric */
+            rubric?: string | null;
+            /** Has Assertion */
+            has_assertion?: boolean | null;
+            /** Is Active */
+            is_active?: boolean | null;
         };
         /**
          * EvaluatorsListResponse
@@ -2552,6 +2679,170 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["EvaluationDetailResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_evaluators_api_v1_evaluators_admin_get: {
+        parameters: {
+            query?: {
+                document_type?: ("article" | "report") | null;
+                only_active?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvaluatorRecord"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_evaluator_api_v1_evaluators_admin_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EvaluatorCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvaluatorRecord"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_evaluator_api_v1_evaluators_admin__evaluator_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                evaluator_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_evaluator_api_v1_evaluators_admin__evaluator_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                evaluator_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EvaluatorUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvaluatorRecord"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    toggle_active_api_v1_evaluators_admin__evaluator_id__active_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                evaluator_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EvaluatorActiveToggle"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvaluatorRecord"];
                 };
             };
             /** @description Validation Error */

@@ -6,8 +6,9 @@ from typing import Any, Dict, List, Literal, Optional
 import logfire
 from pydantic_evals import Dataset
 from pydantic_evals.reporting import EvaluationReport
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from ataskaitos.evaluators import EvaluatorRegistry
+from ataskaitos.evaluators import EvaluatorRegistry, build_judges_from_db
 from ataskaitos.models import EvaluationResult, RDActivity, ScientificArticle
 
 logger = logging.getLogger(__name__)
@@ -35,6 +36,7 @@ class EvaluationService:
         agent_names: Optional[List[str]] = None,
         metadata: Optional[Dict[str, Any]] = None,
         filename: str = "document",
+        session: Optional[AsyncSession] = None,
     ) -> EvaluationResult:
         """Evaluate document with specified method.
 
@@ -57,7 +59,9 @@ class EvaluationService:
         if evaluation_type == "agent":
             return await self._evaluate_with_agent(content, document_type, agent_names, metadata)
         else:
-            return await self._evaluate_with_scoring(content, document_type, evaluator_names, metadata, filename)
+            return await self._evaluate_with_scoring(
+                content, document_type, evaluator_names, metadata, filename, session
+            )
 
     async def _evaluate_with_agent(
         self,
@@ -151,21 +155,21 @@ Provide a structured evaluation covering:
         evaluator_names: Optional[List[str]],
         metadata: Dict[str, Any],
         filename: str,
+        session: Optional[AsyncSession] = None,
     ) -> EvaluationResult:
         """Evaluate using LLM judge scoring.
 
-        Args:
-            content: Markdown content
-            document_type: Type of document
-            evaluator_names: Optional specific evaluators to run
-            metadata: Document metadata
-            filename: Source filename
-
-        Returns:
-            EvaluationResult with scoring data
+        When ``session`` is provided, judges are built fresh from the
+        ``evaluators`` table on each request — picking up edits made via the
+        settings UI. Without a session, falls back to the in-memory registry
+        for backward compatibility (e.g. CLI / standalone use).
         """
-        # Get evaluators from registry
-        evaluators = self.registry.get_evaluators(document_type, evaluator_names)
+        if session is not None:
+            evaluators = await build_judges_from_db(
+                session=session, document_type=document_type, names=evaluator_names
+            )
+        else:
+            evaluators = self.registry.get_evaluators(document_type, evaluator_names)
 
         if not evaluators:
             available = self.registry.list_available(document_type)

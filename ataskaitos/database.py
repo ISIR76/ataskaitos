@@ -38,11 +38,17 @@ async_engine = create_async_engine(
 AsyncSessionLocal = async_sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False)
 
 
-async def _apply_additive_migrations(conn) -> None:
-    """Add new columns to pre-existing tables. SQLite-safe; ignores duplicates."""
+async def _apply_additive_migrations() -> None:
+    """Add new columns to pre-existing tables.
+
+    Each ALTER runs in its own transaction so a duplicate-column error on one
+    table can't poison the transaction and roll back unrelated changes (such
+    as fresh ``CREATE TABLE`` calls performed earlier in the same lifespan).
+    """
     for table, column, ddl in _ADDITIVE_COLUMNS:
         try:
-            await conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {column} {ddl}"))
+            async with async_engine.begin() as conn:
+                await conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {column} {ddl}"))
             logger.info("Added column %s.%s", table, column)
         except Exception as exc:  # noqa: BLE001
             msg = str(exc).lower()
@@ -55,7 +61,7 @@ async def init_db():
     """Create all tables in the async database."""
     async with async_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-        await _apply_additive_migrations(conn)
+    await _apply_additive_migrations()
     print("✓ Async database initialized")
 
 

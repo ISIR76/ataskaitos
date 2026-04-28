@@ -10,10 +10,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from ataskaitos.evaluators import get_registry, initialize_default_evaluators
+from ataskaitos.evaluators import get_registry, initialize_default_evaluators, seed_default_evaluators
 from ataskaitos.settings import settings
 
-from .routes import auth_router, evaluate_router, health_router, projects_router
+from .routes import auth_router, evaluate_router, evaluators_router, health_router, projects_router
 
 logfire.configure(send_to_logfire="if-token-present")
 logfire.instrument_pydantic()
@@ -41,6 +41,13 @@ async def lifespan(app: FastAPI):
     counts = registry.count()
     for doc_type, count in counts.items():
         print(f"  - {doc_type}: {count} evaluators")
+
+    # 3. Seed default evaluators into the DB-backed table (idempotent)
+    from ataskaitos.database import AsyncSessionLocal
+
+    async with AsyncSessionLocal() as session:
+        seeded = await seed_default_evaluators(session)
+    print(f"✓ Seeded {seeded} default evaluator definitions into DB (idempotent)")
 
     yield
 
@@ -109,6 +116,7 @@ def create_app() -> FastAPI:
     app.include_router(auth_router)
     app.include_router(evaluate_router)
     app.include_router(projects_router)
+    app.include_router(evaluators_router)
 
     # Serve frontend static files (only if frontend/dist exists)
     frontend_dist = Path(__file__).parent.parent.parent / "frontend" / "dist"

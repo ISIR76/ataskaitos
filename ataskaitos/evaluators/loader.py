@@ -1,12 +1,32 @@
 """Evaluator loading utilities."""
 
 import json
+import logging
 from pathlib import Path
 from typing import Any, Dict, List
 
 from pydantic_evals.evaluators import LLMJudge
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from .base import EvaluatorRegistry
+
+logger = logging.getLogger(__name__)
+
+
+def _build_judge(name: str, rubric: str, has_assertion: bool) -> LLMJudge:
+    """Construct an ``LLMJudge`` from a name/rubric/assertion triple."""
+    judge_params: Dict[str, Any] = {
+        "rubric": rubric,
+        "include_input": False,
+        "score": {"evaluation_name": name, "include_reason": True},
+    }
+    if has_assertion:
+        assertion_name = f"{name.replace('_score', '')}_qualified"
+        judge_params["assertion"] = {
+            "evaluation_name": assertion_name,
+            "include_reason": True,
+        }
+    return LLMJudge(**judge_params)
 
 
 def load_evaluators_from_json(
@@ -162,3 +182,64 @@ def initialize_default_evaluators(registry: EvaluatorRegistry) -> None:
     reports_json = evaluators_dir / "reports" / "frascati_judges.json"
     if reports_json.exists():
         load_evaluators_from_json(json_path=reports_json, document_type="report", registry=registry)
+
+
+def _read_default_configs() -> List[Dict[str, Any]]:
+    """Return all evaluator configurations bundled with the package, tagged with type."""
+    evaluators_dir = Path(__file__).parent
+    sources = [
+        ("article", evaluators_dir / "articles" / "smsm_judges.json"),
+        ("report", evaluators_dir / "reports" / "frascati_judges.json"),
+    ]
+    out: List[Dict[str, Any]] = []
+    for document_type, path in sources:
+        if not path.exists():
+            continue
+        with open(path, "r", encoding="utf-8") as fh:
+            for cfg in json.load(fh):
+                out.append({"document_type": document_type, **cfg})
+    return out
+
+
+async def seed_default_evaluators(session: AsyncSession) -> int:
+    """Insert any JSON-defined evaluators that are not yet in the database.
+
+    Idempotent: existing rows (matched by ``(name, document_type)``) are not
+    touched, so user edits to seeded defaults are preserved across restarts.
+    Returns the number of attempted inserts (some may have been no-ops).
+    """
+    from ataskaitos.repositories.evaluator_repository import EvaluatorRepository
+
+    repo = EvaluatorRepository(session)
+    configs = _read_default_configs()
+    for cfg in configs:
+        await repo.upsert_default(
+            name=cfg["name"],
+            document_type=cfg["document_type"],
+            rubric=cfg["rubric"],
+            has_assertion=bool(cfg.get("has_assertion", False)),
+            extra_metadata=json.dumps(cfg.get("metadata", {})),
+        )
+    await session.commit()
+    return len(configs)
+
+
+async def build_judges_from_db(
+    session: AsyncSession,
+    document_type: str,
+    names: List[str] | None = None,
+) -> List[LLMJudge]:
+    """Build ``LLMJudge`` instances for active evaluators of a given type.
+
+    Reads from the ``evaluators`` table at request time, so edits in the
+    settings UI take effect on the very next evaluation run without any
+    process restart.
+    """
+    from ataskaitos.repositories.evaluator_repository import EvaluatorRepository
+
+    repo = EvaluatorRepository(session)
+    rows = await repo.list_by_type(document_type, only_active=True)
+    if names is not None:
+        wanted = set(names)
+        rows = [row for row in rows if row.name in wanted]
+    return [_build_judge(row.name, row.rubric, bool(row.has_assertion)) for row in rows]

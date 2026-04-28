@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 
 from fastapi_users.db import SQLAlchemyBaseUserTable
-from sqlalchemy import Boolean, ForeignKey, Index, Integer, String, UniqueConstraint
+from sqlalchemy import Boolean, ForeignKey, Index, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, MappedAsDataclass, mapped_column, relationship
 
 if TYPE_CHECKING:
@@ -86,6 +86,31 @@ class DocumentVersion(Base):
     evaluations: Mapped[list["Evaluation"]] = relationship(
         back_populates="document_version", cascade="all, delete-orphan"
     )
+
+
+class Evaluator(Base):
+    """User-editable evaluator definition.
+
+    Defaults are seeded from JSON files on startup with ``source='default'``;
+    user-created entries use ``source='custom'``.
+    """
+
+    __tablename__ = "evaluators"
+    __table_args__ = (
+        UniqueConstraint("name", "document_type", name="uq_evaluator_name_type"),
+        Index("ix_evaluators_document_type", "document_type"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String, index=True)
+    document_type: Mapped[str] = mapped_column(String)  # "article" | "report"
+    rubric: Mapped[str] = mapped_column(Text)
+    has_assertion: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    source: Mapped[str] = mapped_column(String, default="custom")  # "default" | "custom"
+    extra_metadata: Mapped[str] = mapped_column(String, default="{}")  # JSON string
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
 class Evaluation(Base):

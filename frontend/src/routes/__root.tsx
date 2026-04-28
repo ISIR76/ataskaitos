@@ -1,5 +1,5 @@
 import { Link, Outlet, createRootRoute, useNavigate } from "@tanstack/react-router";
-import { Home, FolderOpen, LogOut, User, Grid3x3 } from "lucide-react";
+import { Home, FolderOpen, LogOut, User, Grid3x3, Settings } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 
@@ -57,6 +57,16 @@ function RootLayout() {
                   >
                     <Grid3x3 className="h-4 w-4" />
                     Vertinimų lentelė
+                  </Link>
+                  <Link
+                    to="/settings/evaluators"
+                    className="px-3 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors flex items-center gap-2"
+                    activeProps={{
+                      className: "bg-muted",
+                    }}
+                  >
+                    <Settings className="h-4 w-4" />
+                    Vertintojai
                   </Link>
                 </div>
               )}

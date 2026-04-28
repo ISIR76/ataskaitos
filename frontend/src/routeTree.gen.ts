@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ArticlesRouteImport } from './routes/articles'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as SettingsEvaluatorsRouteImport } from './routes/settings.evaluators'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects/$projectId'
 import { Route as ProjectsProjectIdEvaluationsEvaluationIdRouteImport } from './routes/projects.$projectId.evaluations.$evaluationId'
 
@@ -48,6 +49,11 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsEvaluatorsRoute = SettingsEvaluatorsRouteImport.update({
+  id: '/settings/evaluators',
+  path: '/settings/evaluators',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
   id: '/projects/$projectId',
   path: '/projects/$projectId',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/reports': typeof ReportsRoute
   '/scores': typeof ScoresRoute
   '/projects/$projectId': typeof ProjectsProjectIdRouteWithChildren
+  '/settings/evaluators': typeof SettingsEvaluatorsRoute
   '/projects': typeof ProjectsIndexRoute
   '/projects/$projectId/evaluations/$evaluationId': typeof ProjectsProjectIdEvaluationsEvaluationIdRoute
 }
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/reports': typeof ReportsRoute
   '/scores': typeof ScoresRoute
   '/projects/$projectId': typeof ProjectsProjectIdRouteWithChildren
+  '/settings/evaluators': typeof SettingsEvaluatorsRoute
   '/projects': typeof ProjectsIndexRoute
   '/projects/$projectId/evaluations/$evaluationId': typeof ProjectsProjectIdEvaluationsEvaluationIdRoute
 }
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/reports': typeof ReportsRoute
   '/scores': typeof ScoresRoute
   '/projects/$projectId': typeof ProjectsProjectIdRouteWithChildren
+  '/settings/evaluators': typeof SettingsEvaluatorsRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/$projectId/evaluations/$evaluationId': typeof ProjectsProjectIdEvaluationsEvaluationIdRoute
 }
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/scores'
     | '/projects/$projectId'
+    | '/settings/evaluators'
     | '/projects'
     | '/projects/$projectId/evaluations/$evaluationId'
   fileRoutesByTo: FileRoutesByTo
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/scores'
     | '/projects/$projectId'
+    | '/settings/evaluators'
     | '/projects'
     | '/projects/$projectId/evaluations/$evaluationId'
   id:
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/scores'
     | '/projects/$projectId'
+    | '/settings/evaluators'
     | '/projects/'
     | '/projects/$projectId/evaluations/$evaluationId'
   fileRoutesById: FileRoutesById
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   ReportsRoute: typeof ReportsRoute
   ScoresRoute: typeof ScoresRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRouteWithChildren
+  SettingsEvaluatorsRoute: typeof SettingsEvaluatorsRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings/evaluators': {
+      id: '/settings/evaluators'
+      path: '/settings/evaluators'
+      fullPath: '/settings/evaluators'
+      preLoaderRoute: typeof SettingsEvaluatorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/$projectId': {
       id: '/projects/$projectId'
       path: '/projects/$projectId'
@@ -214,6 +234,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReportsRoute: ReportsRoute,
   ScoresRoute: ScoresRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRouteWithChildren,
+  SettingsEvaluatorsRoute: SettingsEvaluatorsRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
