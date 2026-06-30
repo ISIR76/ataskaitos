@@ -1,1569 +1,996 @@
-Article
-Development of a Methodology for the Monitoring of
-Socio-Economic Indicators of Private Forest Owners towards
-Sustainable Forest Management: The Case of Lithuania
+![Paveikslėlis, kuriame yra Šriftas, tekstas, Elektrinė mėlyna spalva, mėlynas  Automatiškai sugeneruotas aprašymas](data:image/png;base64...)
 
-Mindaugas Šk˙ema 1
-Hélder Fernando Pedrosa e Sousa 4,5
+Mokslinių tyrimų veiklos Nr. [1.1] ataskaita
 
-, Asta Doftart˙e 2, Dalia Perkumien˙e 2,*, Marius Aleinikovas 1
+Projekto pavadinimas: Nurodyti projekto Nr.
 
-, Aidanas Perkumas 3,
+Projekto numeris: 0X-0XX-X-XXX
 
-, Maria Alzira Pimenta Dinis 6,7,*
+Projekto vykdytojas: *UAB „Įmonė1“*
 
-and Olegas Beriozovas 1
+Projekto partneris/-iai: UAB „Įmonė2“ (jei yra)
 
-1
+Veiklos numeris: 1.1
 
-2
+Veiklos pavadinimas: **Optimalių komponentų parinkimas, sąveikos problemų sprendimų metodikos**
 
-3
+Ataskaitos data: 2025-05-30
 
-Institute of Forestry, Lithuanian Research Centre for Agriculture and Forestry, Instituto al. 1,
-LT-58344 Akademija, Lithuania; mindaugas.skema@lammc.lt (M.Š.); marius.aleinikovas@lammc.lt (M.A.);
-olegas.beriozovas@lammc.lt (O.B.)
-Landscape Engineering and Forestry Department, Lithuanian Engineering University of Applied Sciences,
-Liepu˛ Str. 1, LT-53101 Girionys, Lithuania; a.doftarte@kmaik.lt
-Faculty of Alytus, Kauno Kolegija Higher Education Institution, Pramones pr. 20, LT-50468 Kaunas, Lithuania;
-aperkum@gmail.com
+Lapų skaičius: ***Nurodyti***
 
-4 Departamento de Matemática, Universidade de Trás-os-Montes e Alto Douro, Quinta de Prados,
+**Turinys**
 
-5000-801 Vila Real, Portugal; hfps@utad.pt
+[1. Veiklos tikslas 3](#_Toc389153652)
 
-5 Center for Computational and Stochastic Mathematics, Department of Mathematics, Instituto Superior
+[2. Veiklos užduotys 3](#_Toc389153653)
 
-6
+[3. Mokslinis neapibrėžtumas 3](#_Toc389153654)
 
-Técnico, Universidade de Lisboa, Av. Rovisco Pais 1, 1049-001 Lisboa, Portugal
-Fernando Pessoa Research, Innovation and Development Institute (FP-I3ID), University Fernando
-Pessoa (UFP), Praça 9 de Abril 349, 4249-004 Porto, Portugal
+[4. Tyrimų metodika 3](#_Toc389153655)
 
-7 Marine and Environmental Sciences Centre (MARE), University of Coimbra, Edifício do Patronato,
+[5. Tyrimo eiga 3](#_Toc389153656)
 
-Rua da Matemática 49, 3004-517 Coimbra, Portugal
+[6. Įvykdyti paslaugų pirkimai 3](#_Toc389153657)
 
-* Correspondence: perkum@gmail.com (D.P.); madinis@ufp.edu.pt (M.A.P.D.)
+[7. Užduočių atlikimas 4](#_Toc389153660)
 
-Abstract: The development of a monitoring system for the socio-economic indicators of private
-forest owners includes the comprehensive collection of various socio-economic data. These data
-encompass general information about private forests owners, the need for monitoring, periodicity,
-and other relevant factors. This holistic approach allows for a detailed assessment of the social and
-economic conditions of private forest owners, as well as the economic efficiency of their operations,
-ultimately aiming to achieve sustainable forest management. This research builds upon previous
-studies by the authors that investigated the need for monitoring of the socio-economic indicators of
-private forests and involved interviews with forest experts. Based on the data obtained from these
-earlier efforts, this study aims to present a refined methodology for monitoring of the socio-economic
-indicators of Lithuanian private forest owners. Based on the findings of this research, it is highly
-recommended that monitoring be implemented at the state level across the entire territory of the
-Republic of Lithuania. The results of this research show that the monitoring of the economic and
-social indicators of private forest owners benefits not only the owners but also the state and society as
-a whole. Residence size, property size, and association membership emerged as the most significant
-factors influencing the need for forest monitoring, while knowledge in forestry, distance to the forest,
-and gender showed weaker but still notable effects. The research results suggest that monitoring can
-help to ensure the sustainable management of forests and the maintenance of ecosystem services,
-in addition to contributing to the region’s economic development. It is recommended that this
-monitoring be conducted every five years.
+[8. Pasiekti tyrimų rezultatai 4](#_Toc389153662)
 
-Keywords: development of monitoring system; private forest owners; social and economic indicators;
-sustainable forest management
+[9. Nepasiekti tyrimų rezultatai 4](#_Toc389153663)
 
-1. Introduction
+[10. Veiklos vykdymo metu atliktų tyrimų eigos pakeitimai 4](#_Toc389153664)
 
-Forest monitoring in private forests typically involves collecting data on the economic
-activities, management practices, and socio-demographic characteristics of forest own-
+[11. Nauda projekto rezultatams 4](#_Toc389153665)
 
-Citation: Šk ˙ema, M.; Doftart ˙e, A.;
+# Veiklos tikslas
 
-Perkumien ˙e, D.; Aleinikovas, M.;
+(Tikslas vienu sakiniu)
 
-Perkumas, A.; Sousa, H.F.P.e.; Pimenta
+**Veiklos tikslas** – Sukurti metodiką, kuri atsakytų kaip integravimo ir optimizavimo metodus pritaikyti skirtingiems hibridinio įrenginio komponentams, kad jie efektyviai veiktų kaip vientisas mechanizmas.
 
-Dinis, M.A.; Beriozovas, O.
+# Veiklos užduotys
 
-Development of a Methodology for
+Šiuo metu nėra žinomas modelis/metodika, kaip reikėtų integruoti ir apjungti į visumą įrenginio komponentus, kurie atlieka skirtingas funkcijas. Todėl reikalinga atlikti vystomo hibridinio įrenginio skirtingų komponentų parinkimą, aptarti jų integravimą, tarpusavio sąsajų nustatymą ir funkcionalumą, kad įrenginys veiktų efektyviai kaip vientisa sistema. Todėl šiam tikslui įgyvendinti buvo iškelti šie veiklos uždaviniai:
 
-the Monitoring of Socio-Economic
+1. **Nustatyti, kokie yra pagrindiniai hibridinio įrenginio komponentai, jų savybės, reikalavimai ir galimi veikimo modeliai.**
+2. **Išnagrinėti kiekvieno komponento funkcionavimą atskirai ir su kitais komponentais.**
+3. **Sukurti matematinį ir/arba kompiuterinį modelį, kuris atspindės hibridinio įrenginio veikimą.**
+4. **Sukurtame virtualiame modelyje pritaikyti skirtingus integravimo ir optimizavimo metodus, siekiant išsiaiškinti, kurie komponentai apjungti tarpusavyje veikia geriausiai.**
 
-Indicators of Private Forest Owners
+# Mokslinis neapibrėžtumas
 
-towards Sustainable Forest
+Trumpai aprašyti veikloje tiriamą problematiką bei nurodyti esamus neapibrėžtumus, kas buvo nežinoma iki veiklos pradžios
 
-Management: The Case of Lithuania.
+Pastatų valdymo sistemos, dar vadinamos pastatų automatizavimo sistemomis (angl. *Building Management System*, BMS), skirtos palaikyti pastato funkcionalumui, tačiau dėl sparčios technologijų raidos, pastarųjų integracijos sudėtingumo ir kintančių vartotojų bei saugumo reikalavimų susiduria su visa eile problemų. Tai ir optimalaus architektūrinio sprendimo parinkimas (centralizuota ar decentralizuota architektūra), įvairių technologinių standartų ir protokolų suderinamumo klausimai, sistemos plėtros ir efektyvaus architektūros modifikavimo ribotumas, neapibrėžta dirbtinio intelekto modelių integracija, ypač vertinant energijos vartojimą ir prognozuojant jos poreikį, taip pat labai svarbus ir BMS sistemos kibernetinis atsparumas. Be išvardintų problemų egzistuoja ir jutiklių tikslumo ir duomenų vientisumo bei valdymo algoritmų ir jų optimizavimo problematika, taip pat ir gyventojų komforto ir jų tipinio elgesio neįvertinimas.
 
-Forests 2024, 15, 1657. https://
+Panašaus pobūdžio problematika yra sprendžiama naujausiuose tyrimuose, kurie orientuojasi į pastatų valdymo ir automatizavimo sistemų (BAMS) ir intelektualiųjų pastatų (angl. *Smart Buildings*) architektūrų tobulinimą. BIM-to-BRICK metodika semantinei sąveikai užtikrinti siūlomas automatinis BIM (angl. *Building Information Modeling*) duomenų transformavimas į BRICK semantinį modelį, kuris leidžia efektyviau identifikuoti įrenginius ir jų funkcijas, užtikrinant automatinį topologijos ir funkcinių ryšių atvaizdavimą BMS sistemose [1]. Šis požiūris yra artimas dinaminio valdymo algoritmo sudarymo idėjai, nes remiasi automatiniu įrenginių atpažinimu ir priskyrimu valdymo struktūroms. IoT kaip atskirų modulių integracija į BMS/BAS išmaniuosiuose pastatuose rankinio konfigūravimo pagalba nagrinėjama [2]. Pabrėžiamas pilnai išvystytų PnP mechanizmų poreikis, kurie leistų naujus įrenginius dinamiškai įtraukti į sistemą be rankinių veiksmų [3,4].
 
-doi.org/10.3390/f15091657
+Dabartiniai komerciniai pastatų automatikos sprendimai neturi funkcionalumo, kuris leistų realiu laiku automatiškai generuoti valdymo algoritmus pagal įrenginių paskirtį ir funkcijas. Dažniausiai šios sistemos remiasi rankiniu būdu sudaromais algoritmais, kuriuos kuria ir pritaiko inžinierius, o tai riboja sistemos gebėjimą greitai prisitaikyti prie kintančių sąlygų [3]. Ši problema tampa ypač akivaizdi diegiant sudėtingesnes pastatų automatikos sistemas, kuriose įrenginių skaičius ir funkcijų įvairovė sparčiai auga. Šiuolaikinės sistemos negeba integruoti semantinių duomenų struktūrų su automatizuotu valdymo logikos kūrimu [3]. 1 paveikslėlyje pavaizduota DevOps įrankių grandinė inžineriniams procesams paremti, kurioje tačiau neišvengiama rankinio darbo [3].
 
-Academic Editors: Panagiotis P.
+![Paveikslėlis, kuriame yra tekstas, ekrano kopija, Šriftas, diagrama  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-Koulelis, Zacharoula S. Andreopoulou
+**1 pav.** DevOps įrankių grandinė [3]
 
-and Dimitris Fotakis
+Ši grandinė leidžia efektyviau organizuoti darbą, bet nesprendžia automatinio algoritmų generavimo uždavinio, todėl akivaizdus poreikis plėtoti programinės įrangos galimybes šioje srityje (1 pav.).
 
-Received: 16 July 2024
+Semantinės duomenų integracijos modelyje 2 pav.) orientuojamasi į efektyvesnę informacijos struktūrą, tačiau pats valdymo algoritmų kūrimas tebėra paliktas operatoriui [3].
 
-Revised: 17 September 2024
+![Paveikslėlis, kuriame yra tekstas, Šriftas, ekrano kopija  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-Accepted: 18 September 2024
+**2 pav.** Semantinės integracijos modelis [3]
 
-Published: 19 September 2024
+Šis modelis atskleidžia, kaip galima struktūruoti duomenis pastatų automatikos sistemoje, tačiau pateikta koncepcija nenumato realiu laiku automatiškai generuojamų algoritmų pagal įrenginių funkcines savybes (2 pav.). Tai tik patvirtina, kad vien semantinių modelių nepakanka — būtina kurti sudėtingesnes, platesnio funkcionalumo programines platformas.
 
-Copyright: © 2024 by the authors.
+Tad, nors semantinių duomenų modeliai ir dirbtinio intelekto metodai yra aktyviai tiriami, jų pritaikymas realiuoju laiku valdymo algoritmų generacijai komercinėse sistemose tebėra tik koncepcijos pateikimo lygmenyje.
 
-Licensee MDPI, Basel, Switzerland.
+Nors siūloma B-SMART architektūra koncepciniu lygmeniu numato autonominį įrenginių valdymą, tačiau svarstoma tik jos bendroji struktūra, o ne realiai veikianti automatinės algoritmų generacijos sistema 3 pav. a) [4]. Tai tik įrodo, kad praktikoje dar nepasiektas visiškas automatizacijos lygmuo, kuris leistų sistemoms pačioms generuoti valdymo logiką pagal įrenginių paskirtį. 3 paveikslėlyje (b)) pateiktos B-SMART architektūros pagrindu teoriškai galėtų būti realizuota autonominė algoritmų kūrimo sistema, tačiau praktinė komercinių produktų įgyvendinimo stadija tokio funkcionalumo dar neturi [4]. Ir tai tik išryškina atotrūkį tarp koncepcinių tyrimų rezultatų ir realių rinkoje esančių sprendimų.
 
-This article is an open access article
-
-distributed under the terms and
+![Paveikslėlis, kuriame yra tekstas, ekrano kopija, diagrama, Planas  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-conditions of the Creative Commons
-
-Attribution (CC BY) license (https://
-
-creativecommons.org/licenses/by/
-
-4.0/).
-
-Forests 2024, 15, 1657. https://doi.org/10.3390/f15091657
-
-https://www.mdpi.com/journal/forests
-
-Forests 2024, 15, 1657
-
-2 of 19
-
-ers. These data are used to inform policies and actions that aim to maintain and enhance
-the ecosystem services provided by forests. In contrast, state-owned forests benefit from
-more consistent management approaches and monitoring systems supported by pub-
-lic institutions and funding, leading to a more straightforward process for maintaining
-ecosystem services.
-
-Private forests are vital for the delivery of ecosystem services such as air and water
-purification, climate change mitigation, and biodiversity conservation. Developing a mon-
-itoring system for the socio-economic indicators of private forest owners is essential to
-effectively understanding and analysing their activities [1,2].
-
-The monitoring of socio-economic indicators among private forest owners is an es-
-sential component of sustainable forest management, particularly in Lithuania, where
-private ownership of forests plays a significant role in the overall landscape and economy.
-Forests cover approximately one-third of Lithuania’s territory, and a substantial portion
-of these forests is privately owned. Understanding the socio-economic factors that influ-
-ence the decisions and behaviours of these private forest owners is crucial in developing
-policies that support both sustainable forest management and the economic well-being of
-forest-dependent communities.
-
-In Lithuania, private forest ownership is characterized by a diverse range of owners,
-from individuals with small forest estates to legal entities managing large forest areas.
-This diversity presents unique challenges in monitoring and analysing socio-economic
-indicators, as the motivations, management practices, and economic outcomes of these
-owners can vary significantly. Moreover, the transition from state-owned to privately
-owned forests, which began after Lithuania regained independence in 1990, has led to
-a complex and evolving landscape of forest ownership. The socio-economic profiles of
-private forest owners today are shaped by historical, cultural, and economic factors specific
-to Lithuania, making this topic particularly important to understanding the country’s
-forest sector.
-
-When making decisions about the rational and sustainable use of forests, we face
-various socio-economic factors that are becoming more and more complex. This situation
-related to the implementation of a monitoring system is determined by the changing needs
-of consumers, the increasing influence of non-state sectors, and the growth of private
-forest areas [3–6]. In this context, when discussing methods for monitoring the social and
-economic development of private forest owners, data must be obtained that are not only
-technically reliable but also relevant and accessible to interested parties. Such a system is
-useful both for private forest owners themselves and for society, as it allows for a deeper
-understanding and evaluation of forest management practices and their impact in the
-socio-economic context [5–8].
-
-Depending on the goals and needs of private forest owners, a monitoring system
-can be developed at different levels, i.e., from simple indicators such as statistic data to
-more complex models that include various factors and their interactions [9,10]. Based on
-the monitoring results, private forest owners can perform an analysis of their operational
-efficiency and identify which aspects require improvement or changes. This can help
-optimize forest management processes to improve economic benefits and public well-being.
-Such a system also enables management authorities and political decision makers to obtain
-valuable information about the status and performance of the forest sector. This can also
-help to create consistent and effective policies and measures for forest owners to promote
-sustainable forest management. Finally, such a monitoring system can contribute to a better
-understanding and awareness of forest management in society by promoting dialogue and
-cooperation between forest owners, the public, the business sector, and other stakeholders.
-This is an important factor in increasing the sustainability of the forest sector [11–13].
-
-2. Literature Review
-
-A socio-economic indicator monitoring system for private forest owners is a necessary
-tool to determine the effectiveness and sustainability of their forest management pro-cesses,
-
-Forests 2024, 15, 1657
-
-3 of 19
-
-identify social and economic indicators, and improve support measures and policies for forest
-owners. To create an effective monitoring system, it is necessary to carry out a detailed analysis,
-including the identification of social and economic indicators, the de-sign of data collection
-and monitoring methodologies, the development of a communication strategy with forest
-owners, and the analysis of results [14–16]. It is also important to pay attention to social aspects,
-such as the demographic characteristics of private forest owners, the number and quality of
-jobs, forest care and management practices, under-standing of sustainability principles, etc.
-These indicators can help to understand the social situation, needs, expectations, and possible
-difficulties of private forest owners in forest management and use [17].
-
-Currently, only statistical data on private forests in Lithuania are publicly available, which
-include different social and economic indicators, such as the scale of forestry activities, wood
-utilization, income of forest owners, etc. [16,17]. However, such data need reorganization to
-make them more accurate and efficient, considering modern technologies and forest manage-
-ment challenges. For the implementation of a monitoring system of socio-economic indicators
-of private forest owners, closer cooperation with forest owners and other stakeholders can be
-sought based on their own experience and professional knowledge [1,18–20].
-
-A comprehensive understanding of forest management policies in Lithuania is hin-
-dered by the lack of detailed information and an incomplete picture of the situation. This
-gap is largely due to insufficient monitoring of data on private forest owners and a scarcity
-of scientific research on the subject. Therefore, we cannot gain comprehensive insights into
-forest management or understand all the social and economic factors that influence the
-behaviour of forest owners and influence forest management. There is a lack of re-search
-providing accurate data on the behaviour of forest owners to improve and balance current
-and future forest management [12,13,16,21].
-
-Policy makers and representatives of the forestry sector are increasingly concerned
-about the growing number and diversity of private forest owners in Europe. This phe-
-nomenon is alarming because of how intensively these private forests are managed. Given
-the increasing demand for forest products, including bioenergy, one of the priorities of
-forest policy is the mobilization of forest resources, especially from private forests [22].
-It is also important to consider societal expectations with respect to forests and their
-owners—to provide not only wood services but also serve other purposes, such as their
-use for recreation, tourism, health support, and carbon dioxide absorption. To effectively
-manage forests, there is a need to categorize forest owners according to their actual or
-intended management behaviour, so researchers are working on improving private forest
-owner typologies, also known as non-industrial private forest owner typologies [21]. When
-formulating private forest policy, it is important to have the following comprehensive infor-
-mation: demographic data on private forest owners, the size of forest holdings, activities
-performed by forest owners, and farming and its changes [23].
-
-Monitoring systems of socio-economic indicators of private forest owners include:
-
--
-
--
-
-Statistical information: It is important to have data on the number of private forest
-owners, the size of managed estates and forest areas, and tax indicators of forest
-estates. Such information helps to determine the total amount of private forests and
-their condition in the country [1,24].
-Socio-economic information: It is also important to obtain data on the social structure
-of forest owners, as well as their education, goals, problems, attitudes toward property,
-values, farming goals, motivation, types of behaviour, etc. With the help of this
-information, the needs and aspirations of private forest owners can be understood
-and considered [25–27].
-
-- Monitoring the change in forest ownership: Change among private forest owners is
-a dynamic process. Forest holdings can be inherited, transferred to other families,
-or bought/sold to third parties. Therefore, it is important to continuously monitor
-this change to identify development trends and update forest policies to take account
-of new owners and their farming practices [28–30]. This information is essential for
-decision making regarding the development of forest policy and the successful man-
-
-Forests 2024, 15, 1657
-
-4 of 19
-
-agement of private forestry. It allows for an understanding of the needs of private
-forest owners, adapting policies to different farming methods and needs, allocating
-sufficient resources, and supporting sustainable forestry development. Research on
-socio-economic data and perceptions of private forest owners is conducted to under-
-stand how private forest owners value and manage their forest assets and how this
-affects their quality of life and economic situation. Various scholars are involved in
-such studies and research; these studies cover areas related to socio-economic de-
-mographic analysis, including the collection of demographic data on private forest
-owners, such as age, gender, education, and income.
-
-These data can help identify who the typical owner of private forests is and how
-their socio-economic characteristics can influence their actions [31–34]. Forest management
-and planning studies examine how private forest owners manage their forest assets and
-make decisions about logging, forest maintenance, regeneration, and other activities. They
-also examine what strategies and methods are used by owners in forest planning and
-management [29–31,34]. Forestry economics and profitability studies investigate the level
-of forestry entrepreneurship of private forest owners, as well as their return on investment,
-profitability, and economic utility. This may include analysis of forest valuation and
-accounting systems, profit and cost analysis, and other financial analyses [35,36]. Research
-on forest policy and law examines what legal and policy measures states use to encourage
-private forest owners to maintain and manage their forests’ sustainably. The opinions
-and perceptions of private forest owners about forest policy, legislation, and other means
-of influence can also be analysed. All these studies help researchers to delve into the
-social and economic factors of private forest owners and to evaluate the sustainable forest
-management practices of private forest owners. This provides an opportunity to understand
-private forest owners as an important factor in forest development and protection.
-
-This article aims to introduce a methodology that was developed for monitoring of the
-socio-economic progress of private forest owners in Lithuania, with a focus on promoting
-sustainable forest management. The outcome should be an efficient and dependable system
-for monitoring of the socio-economic indicators of private forest owners. This system
-will serve as a foundation in enhancing forest management policies, preserving forest
-resources, and fostering the sustainable development of forests in Lithuania. To ensure
-accurate and reliable data collection, the development of a monitoring system should
-include standardized and systematic methods and procedures that are adapted to the
-context and needs of private forest owners. In addition, it is important to ensure the
-confidentiality and privacy of data to obtain a true and objective picture of the activities
-and results of private forest owners.
-
-This research has the potential to serve as a model for other countries with similar
-socio-economic contexts. Monitoring the socio-economic indicators of private forest owners
-is not only essential for the sustainable management of Lithuania’s forests but also offers a
-valuable opportunity to deepen our understanding of forest ownership dynamics within
-a distinctive socio-economic and historical context. This research aims to contribute to
-the development of a monitoring system that can support the long-term sustainability of
-Lithuania’s forest resources while also informing broader regional and global discussions
-on private forest ownership.
-
-3. Materials and Methods
-
-There are various ways to monitor economic and social data. They are used to obtain
-objective, research-based data about the current state and changes. Some of the more com-
-mon monitoring methods include questionnaire surveys, the collection of statistical data,
-research and experiments, social network analysis, and focus group discussions [37–42].
-The choice of monitoring method depends on what data need to be obtained and what
-research and analysis objectives are pursued. Questionnaire surveys, statistical data collec-
-tion, research and experiments, social network analysis, and focus group discussions are
-
-Forests 2024, 15, 1657
-
-5 of 19
-
-the most common and effective ways to obtain objective and accurate data on economic
-and social trends.
-
-A quantitative survey was selected for this pilot research, seeking to understand the
-significance of the issue and assess the current situation accurately. This research method
-aims to elicit the experiences and attitudes of private forest owners with respect to forest
-management towards sustainability and monitoring needs. This research method was
-chosen for systematic data collection and analysis. The scope of the study is calculated
-according to Paniotto’s formula.
-
-n =
-
-1
-∆2 + 1
-N
-
-where n represents the sample size, ∆ represents the sample error size (=0.05), and N repre-
-sents the size of the population under study.
-
-Respondents in this pilot study were private forest owners. The sample had 95% relia-
-bility and a 5% error rate. To test the newly developed monitoring system for private forest
-owners, a pilot study with 252 respondents was conducted.
-
-The survey was conducted from 4 September 2023 to 19 November 2023.
-In this article, we present particular information about the prepared questionnaire. The
-modified questionnaire is presented in Appendix A. It consists of 2 general blocks; the first
-block is composed according to personal information, and the second block is composed
-according to monitoring needs with respect to the social and economic development of
-Lithuanian private forest owners. SPSS (Statistical Package for Social Science) version 24.0
-was used for statistical analysis of research data. The following methods of data analysis
-were used:
-
--
-
--
-
-Descriptive statistics (frequency tables and data location characteristics). Frequency
-tables were used to determine the distributions of respondents’ answers. Nominal
-variables are presented as percentages and frequencies. The mean (M) was derived
-from the positional characteristics of the data.
-Tests for establishing statistical relationships (Spearman). These tests are used to
-test hypotheses that state that there is a statistical relationship between variables.
-Spearman’s correlation was used to determine the relationship between statement
-ratings and demographic factors. Data are considered statistically reliable when
-p < 0.05. The strength of relationships was interpreted using estimates [37].
-
-To formulate a methodology for monitoring of the socio-economic development of
-private forest owners, experts were interviewed in a previous study [43]. This research
-identified the necessary stages for the development of a methodology to monitor the
-socio-economic progress of private forest owners. Based on this study, empirical research
-was prepared, which is necessary to create a methodology for monitoring of the social and
-economic development of Lithuanian private forest owners (Figure 1).
-
-Figure 1. Methodology for monitoring of the socio-economic development of private forest owners.
-
-The first step (see Figure 1), i.e., respondent selection, is a particularly important
-element of the research process when conducting surveys. When planning a survey study,
-it is important to make a reasonable decision about how many respondents need to be
-interviewed and how they will be selected and included in the study. The sample size for
-this study was determined based on the expert survey data of the previous study [43].
-
-The second step (see Figure 1) was to prepare a questionnaire for private forest
-owners based on the insights of the experts selected for the study [43]. After analysing
-literature sources [7,43–46] and experts’ interviews about the monitoring of social and
-
-Forests 2024, 15, x FOR PEER REVIEW 5 of 20   There are various ways to monitor economic and social data. They are used to obtain objective, research-based data about the current state and changes. Some of the more com-mon monitoring methods include questionnaire surveys, the collection of statistical data, research and experiments, social network analysis, and focus group discussions [37–42]. The choice of monitoring method depends on what data need to be obtained and what research and analysis objectives are pursued. Questionnaire surveys, statistical data col-lection, research and experiments, social network analysis, and focus group discussions are the most common and eﬀective ways to obtain objective and accurate data on eco-nomic and social trends. A quantitative survey was selected for this pilot research, seeking to understand the signiﬁcance of the issue and assess the current situation accurately. This research method aims to elicit the experiences and a itudes of private forest owners with respect to forest management towards sustainability and monitoring needs. This research method was chosen for systematic data collection and analysis. The scope of the study is calculated according to Panio o’s formula. n= 1∆ +1N  where n represents the sample size, ∆ represents the sample error size (=0.05), and N rep-resents the size of the population under study. Respondents in this pilot study were private forest owners. The sample had 95% re-liability and a 5% error rate. To test the newly developed monitoring system for private forest owners, a pilot study with 252 respondents was conducted. The survey was conducted from 4 September 2023 to 19 November 2023. In this article, we present particular information about the prepared questionnaire. The modiﬁed questionnaire is presented in Appendix A. It consists of 2 general blocks; the ﬁrst block is composed according to personal information, and the second block is composed according to monitoring needs with respect to the social and economic devel-opment of Lithuanian private forest owners. SPSS (Statistical Package for Social Science) version 24.0 was used for statistical analysis of research data. The following methods of data analysis were used: - Descriptive statistics (frequency tables and data location characteristics). Frequency tables were used to determine the distributions of respondents’ answers. Nominal variables are presented as percentages and frequencies. The mean (M) was derived from the positional characteristics of the data. - Tests for establishing statistical relationships (Spearman). These tests are used to test hypotheses that state that there is a statistical relationship between variables. Spear-man’s correlation was used to determine the relationship between statement ratings and demographic factors. Data are considered statistically reliable when p < 0.05. The strength of relationships was interpreted using estimates [37]. To formulate a methodology for monitoring of the socio-economic development of private forest owners, experts were interviewed in a previous study [43]. This research identiﬁed the necessary stages for the development of a methodology to monitor the so-cio-economic progress of private forest owners. Based on this study, empirical research was prepared, which is necessary to create a methodology for monitoring of the social and economic development of Lithuanian private forest owners (Figure 1).  Forests 2024, 15, 1657
-
-6 of 19
-
-economic indicators of private forest owners, a questionnaire for private forest owners
-was created. The questions for private forest owners were divided into the following
-two groups: (1) general information about the forest owner and (2) information about the
-need for monitoring and forest policy development. The first group of questions includes
-general information about forest owners. In terms of socio-economic demographic analysis,
-such a study may include the collection of demographic data on private forest owners,
-such as age, gender, education, and income [47–49]. These data can help identify who
-the typical owner of private forests is and how their socio-economic characteristics can
-influence their actions and decisions [50–52]. The following general information about
-forest owners was collected: gender (male or female), place of residence (city or village),
-age (years), education (not completed secondary, secondary, or higher), knowledge of
-forestry (higher education in forestry, forestry experience, courses and seminars, public
-information tools, or have no knowledge), relations with organizations (member of forest
-owners’ organization, member of other organizations, or not owned by anyone), nature of
-activity (manager, clerk, worker, farmer, unemployed, retired, or student), average monthly
-income (EUR/month). The second group of questions about the need for monitoring
-includes information about the need for monitoring of the socio-economic development
-of private forest owners, the benefits of monitoring socio-economic development, private
-forest owners’ expectations with respect to this monitoring, motivation to participate in
-the monitoring, survey methods that can be used in monitoring, and how often surveys of
-private forest owners should be conducted.
-
-The third step (see Figure 1) involved administering the survey to 252 respondents for
-testing and adjustment the questionnaire. The purpose of the survey was to check whether
-the questionnaire is appropriate and how it works in practice. All owners of private forests
-were potential participants in the sample. Non-probability quota sampling was used for
-this study. After analysing the experience of foreign countries [7,53–55] in the initial stage,
-with only statistical data, it is recommended that respondents be selected according to the
-following criteria: the country’s administrative units (municipalities) and the size of the
-available forest holdings. To protect the identity of the interviewees and to obtain more
-appropriate answers, the questionnaires of the respondents were coded, so the questions
-were answered anonymously.
-
-The fourth step (see Figure 1) involved using multiple methods to obtain survey feedback,
-
-namely a telephone survey, personal survey, postal survey, and electronic survey [56–58].
-
-The fifth step (see Figure 1) determined the periodicity of monitoring based on data
-
-from the expert survey [43].
-
-Finally, the sixth step (see Figure 1) involved recommendations for establishing a data
-collection base, namely creating a data repository, determining the data collection format,
-and ensuring the database’s reliability and security [43].
-
-4. Results
-4.1. Testing and Validating the New Monitoring Method
-
-Data collection and analysis were essential steps in evaluating the effectiveness and
-reliability of the newly proposed monitoring system. By applying the monitoring method to
-real-world data, we aimed to demonstrate how the system can accurately capture relevant
-socio-economic indicators of private forest owners. This process is a key component in
-developing any new monitoring tool, as it ensures that the method is practical, scalable,
-and capable of generating meaningful insights. In this part of the manuscript, we present
-the systematized and summarized results of the third through sixth steps (see Figure 1).
-As previously mentioned, the survey was administered to a group of 252 private forest
-owners who were interviewed in order to test and adjust the questionnaire used in this
-study. The purpose of the research is to check whether the completed questionnaire is
-adequate, to ensure a high quality of data, to present monitoring methods and periodicity,
-and to prepare the background for a data collection and compilation base.
+a)
 
-Forests 2024, 15, 1657
+![Paveikslėlis, kuriame yra tekstas, ekrano kopija, kvitas, Šriftas  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-7 of 19
-
-4.2. General Information about Forest Owners
+b)
 
-The summarized results of the pilot survey show that the number of women and
-men was almost evenly distributed; 48% of respondents were men, and 52% were women.
-The largest proportion of respondents was over 60 years old (35%) (40–60 years, 25%;
-25–39 years, 30%; under 25 years, 10%).
+**3 pav.** B-SMART architektūra: a) schema; b) struktūra [4]
 
-Most of the respondents who participated in the study were city residents (70%) (small
-
-towns, 15%; villages, 15%).
-
-A proportion of 14% of respondents had university-level higher education, 54% had
-non-university higher education, 15% had secondary education, and 17% had special
-secondary education. An analysis of the summarized results is presented in Table 1.
-
-Table 1. Characteristics of respondents (%).
-
-Variable
+Tad ši spraga lemia didelį rankinio darbo poreikį projektuojant, diegiant ir prižiūrint pastatų valdymo sistemas, o mokslinė bendruomenė šiuo metu siūlo konceptualius modelius, kurie galėtų šią problemą spręsti ateityje [3] [4].
 
-Gender
+Įdiegus semantinius aprašus į keitiklių programinę įrangą, galima užtikrinti, jog naujai aptikti įrenginiai dinamiškai būtų integruojami į bendrą valdymo logiką [3] [5]. „B‑SMART“ aprašo architektūrą autonominių pastato valdymo sistemų sukūrimui, kurioje valdymo ciklai generuojami realių duomenų pagrindu [3]. Ši architektūra iš esmės orientuota į dinamišką prisitaikymą, nes remiasi nuolat besimokančių sistemų principais, kurių dėka atpažįstami nauji įrenginiai ir savarankiškai koreguojamos valdymo strategijos. Tad, siekiant automatizacijos lygio, kuris užtikrintų valdymo algoritmų automatinį generavimą pagal įrenginių paskirtį ir funkcijas, tikslinga plėtoti programinės įrangos funkcionalumą, nes egzistuojantys sprendimai dažniausiai apsiriboja tik duomenų struktūrizavimu ir inžinerinių procesų palaikymu, bet nesudaro sąlygų visiškai autonominiam valdymo logikos kūrimui.
 
-Age
+Semantinės ir ontologijomis paremtos sistemos daugiausia orientuotos į suderinamumo užtikrinimą tarp skirtingų įrenginių bei paslaugų [5] (4 pav.).
 
-Residence size
+![Paveikslėlis, kuriame yra diagrama, tekstas, linija, Planas  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-Knowledge in the field
-of forestry
+a)
 
-Category
+![Paveikslėlis, kuriame yra tekstas, diagrama, linija, Planas  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-Male
+b)
 
-Up to 25 years
+**4 pav**. a) Sąveika tarp IoT įrenginių ir paslaugų:
 
-25–39 years
+a) funkcinė schema; b) semantine sąveika ir ontologija grįsta schema [5]
 
-40–60 years
+Nors siūlomas sprendimas (4 pav., a)) ir sukuria sąlygas efektyvesniam įrenginių tarpusavio suderinamumui, tačiau neapima automatinio valdymo algoritmų kūrimo funkcijos (4 pav.) 4 paveikslėlyje (b) parodyta semantinė sąveika tarp IoT įrenginių ir paslaugų užtikrina informacijos keitimą, bet neapima valdymo logikos kūrimo proceso: sistema / architektūra užtikrina, kad įrenginiai ir paslaugos gali tarpusavyje bendrauti, t. y. dalintis duomenimis, suprasti vieni kitus per ***semantinius modelius*** ir ***ontologiją*** (pvz., temperatūros jutiklis gali perduoti reikšmę šildymo įrenginiui, nes abu supranta, ką ta reikšmė reiškia), tačiau pati sistema pagal gautą informaciją nenumato automatinio valdymo taisyklių ar algoritmų sukūrimo (pvz., ji nesukuria sprendimo, pvz., „jei temperatūra < 20 °C, įjunk šildymą“, nebent žmogus tą taisyklę apibrėžia rankiniu būdu). Tokia sistema labai pagerina duomenų perdavimą ir įrenginių tarpusavio komunikavimą, tačiau nesugeneruoja valdymo strategijos pagal įrenginio paskirtį (pvz., kad šildytuvai šildytų ar žaliuzės užsivertų nuo saulės), taip pat nekuria realiu laiku taisyklių ar algoritmų, kurie apimtų įrenginių logiką pagal situaciją. Tai tik dar kartą pabrėžia poreikį programinės įrangos funkcionalumo plėtrai. Todėl be papildomų programinių sprendimų neįmanoma pasiekti visiškos autonomijos.
 
->60 years
+Semantinės sąveikos tarp IoT įrenginių ir paslaugų modeliavimo efektyvumas, kurio įvesties parametrai IoT įrenginių skaičius 100–500, ryšio protokolai MQTT, CoAP, HTTP; duomenų formatai JSON, XML, CSV; apdorojimo sluoksniai Edge, Cloud, atskleidžiamas 5 paveikslėlyje [5] [6].
 
-Village
+![Paveikslėlis, kuriame yra tekstas, ekrano kopija, diagrama, linija  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...) ![Paveikslėlis, kuriame yra tekstas, ekrano kopija, diagrama, linija  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-Small town
+a) b)
 
-City
+**5 pav.** Semantinės sąveikos tarp IoT įrenginių modeliavimo rezultatai:
 
-Higher education in forestry
+a) ryšio protokolai; b) apdorojimo sluoksniai [5]
 
-Experience in the field of
-forestry education
+Sistemos išteklių naudojimo efektyvumas lyginant lokalių įrenginių (angl. *Edge*) ir *debesijos* (angl. Cloud) sprendimus buvo analizuojamas tyrime [5]. Eksperimento metu buvo vertinama, kaip skiriasi atsako laikas tarp lokalių įrenginių ir *debesijos*, kai vykdomi semantinių paslaugų užklausų apdorojimai. Rezultatai parodė, kad lokalių įrenginių sprendimai užtikrina daug mažesnę delsą realaus laiko scenarijuose, nei *debesijos* sprendimai dėl tinklo sąlygojamų duomenų perdavimo trukmių bei duomenų apdorojimo proceso *debesijos* infrastruktūroje. Kraštinių įrenginių architektūros pranašumas ypač ryškus tada, kai būtinas greitas atsakas, pvz. realaus laiko valdymo ar saugos scenarijuose (5 pav. b)). Tyrimas taip pat parodė, kad abiem atvejais vis dar nerealizuotas automatinio valdymo logikos kūrimas [5].
 
-Courses and seminars and
-from mass media
+Šiuolaikinės BAMS sistemos tampa vis sudėtingesnės dėl didėjančio įvairių įrenginių ir protokolų įvairovės (6 pav.).
 
-Association membership
+![Paveikslėlis, kuriame yra tekstas, ekrano kopija, diagrama, dizainas  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-Hunters
+a)![Paveikslėlis, kuriame yra tekstas, diagrama, ekrano kopija, Šriftas  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-Forest owners/cooperative
+b)
 
-No forest-related organization
-or society
+**6 pav**. Semantinių skaitmeninių dvynių a) veikimo schema; b) ontologija [9]
 
-Number of Respondents (%)
+Integruojant įvairių gamintojų įrenginius (pvz., HVAC, apšvietimo, saugos sistemas), tenka spręsti protokolų suderinamumo problemas (Modbus, BACnet, CAN, M-Bus ir kt.). Mašininio mokymosi priemonės, integruotos su semantine architektūra, suteikia galimybę ne tik atpažinti įrenginius, bet ir iš jų veikimo duomenų kurti optimalius valdymo algoritmus [6-8]. Vienas iš pažangių sprendimų yra semantinių skaitmeninių dvynių naudojimas [9], kuris remiasi dirbtiniu intelektu (DI), siekiant automatiškai aptikti ir apibūdinti įrenginius bei sudaryti jiems tinkamus valdymo algoritmus (6 pav.). Tokios sistemos leidžia efektyviau valdyti įvairių protokolų įrenginius, užtikrinti duomenų srauto standartizavimą bei informacijos išsaugojimą konvertuojant skirtingų protokolų duomenis į pasirinktą bendrą standartą. Tai suteikia galimybę dinamiškai adaptuoti BAMS, įvedus naujus komponentus be būtinybės iš anksto numatyti kiekvieno įrenginio integracijos žingsnius [10]. Tokio funkcionalumo įgyvendinimui būtinos DI paremtos architektūros, kuriose būtų integruotos *Discovery, Subscribe* i*r PnP* funkcijos, galinčios realiu laiku kurti valdymo objektus ir algoritmus pagal įrenginių funkcijas [10, 11]. Tad, būtina plėsti programinės įrangos funkcionalumą, apimantį ne tik duomenų suderinamumą, bet ir autonominį valdymo logikos kūrimą.
 
-48
+**Probleminės analizės apibendrinimas**
 
-10
+1. Atsižvelgus į tai, kadBMS sistemai būtinas lankstumas, atvirų standartų laikymasis bei adaptavimasis prie įvairių vidinių bei išorinių veiksnių, duomenų srauto standartizavimas yra pagrindinis tikslas, siekiant suderinti įvairių protokolų įrenginių sąveiką, kartu neprarandant informacijos ir užtikrinant sistemos lankstumą bei dinaminį prisitaikymą.
+2. Lokalių sprendimų atsako laikas yra daug mažesnis lyginant su *debesijos* sprendimais, o tai patvirtina, kad skaičiavimo resursų paskirstymas arčiau valdomų įrenginių gali gerokai pagerinti visos sistemos efektyvumą. Tačiau, šuo metu tokiam resursų paskirstymui dažnai reikia rankinio derinimo, o tai riboja sistemų autonomiją. Tad, siekiant užtikrinti efektyvią sistemų veiklą, būtina ne tik pagerinti automatizavimo funkcionalumą, bet ir diegti išmaniuosius resursų skaičiavimo ir paskirstymo mechanizmus, kurie leistų dinamiškai valdyti apkrovą tarp įvairių skaičiavimo sluoksnių (lokalių ir *debesijos*).
+3. Šiuolaikiniai komerciniai sprendimai neturi pakankamai pažangių funkcijų, todėl naujai kuriama sistema turi būti grindžiama automatizuotą integraciją palaikančiomis technologijomis ir kuri dinamiškai sudarytų valdymo algoritmus, leidžiančius automatiškai aptikti naujus įrenginius. Tradicinės keitiklių programinės įrangos architektūros yra ribotos, nes jos daugiausia skirtos rankiniam įrenginių konfigūravimui ir statiniam jų valdymo algoritmų sudarymui (esami protokolų keitikliai nenaudoja automatinių *subscribe, discovery, plug&play* funkcijų). Minėtų problemų sprendimui būtina šias funkcijas integruoti, įgyvendinant DI veikimu pagrįstą architektūrą. Naudojant semantines ontologijas, mašininį mokymąsi bei DI principais grįstą valdymą galima automatiškai atpažinti naujus įrenginius, generuoti jiems valdymo objektus bei algoritmus, taip sumažinant rankinio darbo apimtis ir galimus konfigūravimo netikslumus.
+4. Dabartinių komercinių sprendimų programinė įranga neapima analizės modelių ar autonominių valdymo algoritmų sudarymo mechanizmų, todėl kyla būtinybė naujiems programiniams sprendimams, kurie užtikrintų pažangios dinaminės valdymo sistemos veikimą. Taip pat, nors dauguma sukurtų BMS sprendimų remiasi programinės įrangos naudojimu, kuri leidžia valdyti pastatų sistemas nuotoliu, tačiau, nėra įrenginio, kuris galėtų veikti nepriklausomai nuo Interneto ar *debesyse* esančios programinės įrangos ir kuris lanksčiai apimtų visus reikalingus protokolus visapusiškam pastato valdymui. Visa tai ir būtų pagrindinis kuriamo įrenginio išskirtinumas.
 
-30
+Išskiriami šie moksliniai neapibrėžtumai:
 
-25
+**Iš pirmojo uždavinio** (Nustatyti, kokie yra pagrindiniai hibridinio įrenginio komponentai, jų savybės, reikalavimai ir galimi veikimo modeliai**):**
 
-35
+1. kokie hibridinio įrenginio architektūriniai sprendimai realizuotų naujų BAS įrenginių automatinį atpažinimą, generuoti jiems valdymo objektus bei algoritmus, taip sumažinant rankinio darbo apimtis ir galimus konfigūravimo netikslumus?
+2. kokie hibridinio įrenginio komponentų specifikaciniai reikalavimai leistų palaikyti semantinių duomenų modelius?
 
-15
+**Iš antrojo uždavinio** (Išnagrinėti kiekvieno komponento funkcionavimą atskirai ir su kitais komponentais)**:**
 
-15
+1. kaip realizuoti *stand alone* (kitaip, black box) principą, kad įrenginys gebėtų pilnavertiškai valdyti visas pastato sistemas, nutrūkus belaidžio Interneto ryšiui (ryšiui su ESE duomenų baze)? Kokiomis technologijomis realizuoti automatizuotą naujų įrenginių integraciją?
+2. kaip užtikrinti įvairių pastato funkcionavimą palaikančių sistemų patikimą kontrolę?
+3. kaip realizuoti black box išmaniąsias funkcijas(*subscribe, discovery, plug&play*), kurios bus paremtos protokolų keitikliais?
 
-70
+**Iš trečio uždavinio (**Sukurti matematinį ir/arba kompiuterinį modelį, aprašantį hibridinio įrenginio veikimą):
 
-8
+1) kiek jutiklių gali efektyviai aptarnauti hibridinis įrenginys arba koks turėtų būti jo užklausų dažnis, kuris užtikrintų optimalų duomenų surinkimą, neviršijant sisteminių resursų ribų?
 
-55
+2) kokio dydžio resursai turi būti parenkami apdorojančiame mazge bei ryšio magistralėje (koks jos pralaidumas), remiantis srauto vėlinimo parametru?
 
-12
+3) kokio pralaidumo *Ethernet* kanalo reikia tarp pagrindinio valdymo mazgo ir komutatoriaus?
 
-4
+**Iš ketvirtojo uždavinio (**Virtualiame modelyje taikyti skirtingus integravimo ir optimizavimo metodus, siekiant išsiaiškinti, kurie komponentai apjungti tarpusavyje veikia geriausiai)**:**
 
-21
+1. kokios spartos duomenų perdavimo magistralė turėtų būti naudojama, siekiant išvengti duomenų blokavimo?
+2. kiek protokolų valdiklių būtina numatyti projektuojamame hibridiniame įrenginyje, siekiant užtikrinti reikiamas duomenų srauto apdorojimo charakteristikas?
+3. kokią būtina parinkti protokolų valdiklio buferio talpą?
 
-75
+# Tyrimų metodika
 
-The respondents were asked about their knowledge in the field of forestry. Respon-
-dents’ answers about their knowledge in the field of forestry were distributed as follows:
-8% of respondents had a higher education in forestry, 55% of respondents did not have a
-forestry education but had work experience in the field of forestry, and 12% of respondents
-acquired knowledge from courses and seminars and from mass media (press, television,
-internet, etc.) 25%.
+1. Mokslinės literatūros ir dokumentikos skaitmeninių išteklių analizė, sisteminimas, lyginimas, interpretavimas ir apibendrinimas.
+2. Teletrafiko teorijos principai bei sukuriamų paraiškų srautų apdorojimo analizės metodai, leidžiantys kiekybiškai įvertinti kiekvieno komponento įtaką bendrosioms duomenų srautų charakteristikoms (hibridinio įrenginio komponentų parametrizavimo uždavinys).
+3. Imitacinis modeliavimas hibridinio įrenginio funkcionavimo įvertinimui.
 
-Private forest owners who participated in the study were also asked whether they
-belong to associations, societies, or organizations related to forests. After analysing the
-collected data, it was found that 4% of interviewees belong to a hunters’ group, 21% are
-members of an association of forest owners/cooperative, and 75% do not belong to any
-forest-related organization or society.
+# Tyrimo eiga
 
-The answers of the respondents to the question about what subjects they are engaged
-in were distributed as follows: 4% are top- or mid-level managers, 6% are specialists or
-clerks, 10% are workers or technical workers, 8% work under a business certificate or
-have individual activities, 32% are farmers, 10% are unemployed, 25% are pensioners, and
-5% are students or pupils.
+Aprašyti tyrimų eigą (atskleidžiant darbo procesą):
 
-Respondents were also asked what their average monthly income is. A proportion of
-17% interviewees stated that their monthly income is up to EUR 840 (minimum salary), the
+* kas analizuota, kokia apimtimi, kiek tyrimų, bandymų ar eksperimentų atlikta šios veiklos metu, kokie rezultatai pasiekti, ar įvykdytos visos užduotys, ar pasiektas veiklos tikslas, kaip buvo pasiekti užsibrėžti uždaviniai, kokius tarpinius veiksmus reikėjo atlikti. Aprašyti ir tuos veiksmus, kurie buvo atlikti, tačiau nedavė rezultato.
 
-Forests 2024, 15, 1657
+Rekomenduojama apimtis – iki 5 psl.
 
-8 of 19
+**1. Nustatyti, kokie yra pagrindiniai hibridinio įrenginio komponentai, jų savybės, reikalavimai ir galimi veikimo modeliai.**
 
-income of 33% of the persons who participated in the study ranges from EUR 841 to 1200,
-8% have an income of EUR 1201 to 3000, 17% have an income of EUR 1201 to 3000, and
-25% of respondents did not answer this question.
+Tam būtina išanalizuoti rinkoje esančius pastatų valdymo sistemos analogus. Taip pat tikslinga atlikti valdymo sistemų ir protokolų keitiklių bei visų reikalingų komponentų analizę bei sudaryti įrenginio koncepciją/struktūrinę schemą. Taip pat, atliekant šį uždavinį, tikslinga apžvelgti atskirų sistemų charakteristikas. Šio įrenginio paskirtis bei jo eksploataciniai reikalavimai atspindimi sudarytoje įrenginio specifikacijoje.
 
-4.3. Monitoring Need and Forest Policy Development
+*Nagrinėjamas objektas* yra tipinės pastato valdymo (automatizacijos) sistemos (angl*. Building Automation Systems,* BAS), kurių pagrindinės sudedamosios dalys ir jų tarpusavio ryšys pateiktas 7 pav. Šiuo metu rinkoje naudojami skirtingi pastato valdymo sistemų valdikliai (angl. *Building Management System*, BMS), kurie valdo skirtingus pastato įrenginius (P1 pav. a). Dauguma šiuolaikinių rinkoje tiekiamų BMS valdiklių pagrindinės funkcijos yra realizuotos (veikia) debesyse. **Todėl yra atsiradęs poreikis, kad esant interneto trikdžiams, ar visai nesant internetinio ryšio BMS sistemos galėtų valdyti įvairius išorinius elementus.**
 
-Analysing the second group of questions about the need for monitoring, private forest
-owners were asked their opinion of whether it is necessary to monitor the socio-economic
-development of private forest owners in Lithuania. A proportion of 61% of respondents
-supported this idea, 23% disagreed with the need for monitoring of the socio-economic
-development of private forest owners, and 15% of respondents had no opinion.
+*Kuriamas valdiklis* automatiškai valdytų pastato įrenginius bei valdytų įrenginių suvartojamą energiją, juos išjungiant ar įjungiant pagal užduotą algoritmą. *Pagrindinis tikslas* **savarankiškai ir izoliuotai valdyti įrenginius be interneto ryšio** (7 pav. b.), interneto ryšys naudojamas paimti /
 
-Essential expectations of private forest owners with respect to such monitoring are
+![Paveikslėlis, kuriame yra tekstas, apskritimas, animacija, Šriftas  Dirbtinio intelekto sugeneruotas turinys gali būti neteisingas.](data:image/png;base64...)
 
-presented in Table 2.
+a) b)
 
-Table 2. Relations between respondent preferences in forest activities and education, place of residence,
-age, gender, knowledge in the field of forestry, and association membership (statistical significance of
-change, p < 0.05).
+7 pav. Pastato valdymo (automatizacijos) sistemos architektūra: esamos sistemos, b) kuriama sistema
 
-Variable
+pateikti reikiamą informaciją į / iš ESE (centrinė renkamos informacijos sistema debesyse), valdymas taip pat bus pateikiamas kaip debesijos paslauga. Įrenginys sektų Nordpool prognozes: kadangi tai mokama paslauga, todėl visi duomenys iš pradžių keliautų į ESE, o iš jo būtų perduodami kuriamam įrenginiui. ESE analizuotų Nordpool prognozes ir **dinamiškai sudarytų valdymo algoritmus automatiškai aptinkamiems naujiems sistemos įrenginiams,** *kas**yra kuriamo įrenginio naujumas*. Kuriamas įrenginys valdo pagrindines pastato sistemas kaip šildymas/šaldymas, apšvietimas, apsauga, generuojamos energijos kaupimas ir paskirstymas ir kt. Įrenginys taupys elektros energiją, nes bus kontroliuojamas energijos suvartojimas įvairiuose pastato elementuose, atsižvelgiant į elektros kainą rinkoje. Visų BMS valdiklių visuma bus apjungta viename įrenginyje. Kuriamas įrenginys apima visas BMS valdiklių funkcijas ir gali veikti izoliuotai, t. y. savarankiškai be interneto (7 pav. b.).
 
-Age
+Pastato valdymo sistemų (BMS) gamintojai siūlo platų valdiklių spektrą, skirtą įvairioms pastato inžinerinėms sistemoms valdyti ir integruoti (1.1 lentelė). Vieni iš lyderiaujančių gamintojų pasaulyje yra Siemens, Schneider Electric, Honeywell, Johnson Controls, Tridium (Niagara Framework), ABB, Delta Controls ir kt. Šių gamintojų valdikliai pasižymi universalumu, atvirų komunikacijos protokolų palaikymu ir galimybe integruotis su debesijos platformomis.
 
-Gender
+L1 lentelė: Komunikacijos protokolai pagal gamintojus ir sistemas
 
-Place of residence
+|  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **Gamintojas** | **Baterijų krovimas** | **Išmanūs skaitikliai** | **Šildymo sistemos** | **Apšvietimo sistemos** | **Apsauga / praėjimas** | **Gaisro apsauga** | **Vėdinimas / rekuperacija** |
+| **Siemens** | Modbus, BACnet, CAN | Modbus, M-Bus, CAN | BACnet, Modbus, CAN | DALI, BACnet | BACnet, CAN | BACnet | BACnet, Modbus, CAN |
+| **Schneider Electric** | Modbus, BACnet, CAN | Modbus, M-Bus, CAN | BACnet, Modbus, CAN | DALI, BACnet | BACnet, Modbus, CAN | BACnet, Modbus | BACnet, Modbus, CAN |
+| **Honeywell** | Modbus, BACnet, CAN | Modbus, M-Bus, CAN | BACnet, CAN | BACnet, DALI | BACnet, Modbus, CAN | BACnet | BACnet, CAN |
+| **Johnson Controls** | BACnet, Modbus, CAN | BACnet, M-Bus, CAN | BACnet, CAN | BACnet, DALI | BACnet, Modbus, CAN | BACnet | BACnet, CAN |
+| **ABB** | Modbus, CAN | Modbus, M-Bus, CAN | Modbus, CAN | DALI | CAN | Modbus | Modbus, CAN |
+| **Tridium (Niagara)** | Modbus, BACnet, CAN | Modbus, M-Bus, CAN | BACnet, CAN | BACnet, DALI | BACnet, Modbus, CAN | BACnet | BACnet, CAN |
+| **Delta Controls** | BACnet, CAN | BACnet, CAN | BACnet, CAN | BACnet, DALI | BACnet, CAN | BACnet | BACnet, CAN |
 
-Knowledge in the field of forestry
+**Baterijų krovimo valdymas:** dažniausiai realizuojamas su integruotais energijos valdymo valdikliais. Siemens (pvz., Desigo CC platforma), Schneider Electric (EcoStruxure Power), ir ABB (Ability Energy Manager) siūlo sprendimus, leidžiančius stebėti akumuliatorių būklę, valdyti krovimo / iškrovimo procesus ir optimizuoti energijos srautus.
 
-Association membership
+**Išmanūs skaitikliai:** integruojami į BMS siekiant realiu laiku stebėti energijos, vandens ar kitų resursų suvartojimą. Siemens, Schneider Electric, ABB ir Honeywell siūlo išmaniųjų skaitiklių sprendimus, kurie perduoda duomenis į valdymo sistemas per Modbus, M-Bus, BACnet ar kitus protokolus. Šie sprendimai padeda optimizuoti energijos sąnaudas, identifikuoti nuostolius ir užtikrinti tikslų atsiskaitymą.
 
-Motivation to
-Participate in
-Monitoring
+**Šildymo sistemos:** valdymui Honeywell, Johnson Controls ir Siemens siūlo pažangius HVAC valdiklius. Šie įrenginiai palaiko zoninį reguliavimą, šilumos punktų valdymą ir sąveiką su termomodernizacijos sprendimais.
 
-Permanent
-Member of
-the Group
+**Apšvietimo sistemos:** integruojamos naudojant valdiklius, galinčius dirbti su DALI, KNX ar BACnet. Schneider Electric (SpaceLogic), ABB (i-bus KNX) ir Siemens (GAMMA Instabus) produktai užtikrina lankstų ir energiją taupantį apšvietimo valdymą, įskaitant scenarijų kūrimą ir automatinį pritaikymą prie natūralios šviesos.
 
-The Need for
-Monitoring
+**Apsaugos ir praėjimo kontrolės sistemos:** dažniausiai diegiamos naudojant Honeywell (Pro-Watch), Johnson Controls (C CURE), ir Siemens (SiPass) sprendimus. Šios sistemos suderinamos su pastato BMS ir užtikrina tiek apsaugos įrenginių valdymą, tiek duomenų mainus su kitomis pastato sistemomis.
 
-0.234
+**Gaisro apsaugos sistemos:** valdymui dominuoja Siemens (Cerberus PRO), Honeywell (Notifier, Esser) ir Johnson Controls (Simplex) sprendimai. Šios sistemos dažnai naudoja adresinius detektorius ir sąveikauja su BMS platformomis per BACnet ar Modbus.
 
-0.432
+**Ventiliacijos ir rekuperacijos sistemos:** daugiausia valdomos Siemens, Johnson Controls ir Honeywell HVAC valdikliais. Jie užtikrina oro kokybės, srautų ir energijos efektyvumo kontrolę, dažnai integruojami į bendrą energijos valdymo sistemą.
 
-0.567
+**Valdymo debesijos sprendimai:** didieji BMS gamintojai siūlo debesijos sprendimus, leidžiančius centralizuotai stebėti, valdyti ir optimizuoti pastato inžinerines sistemas. Schneider Electric EcoStruxure suteikia prieigą prie energijos suvartojimo analizės, įrangos būklės stebėsenos ir įspėjimų apie trikdžius. Siemens Desigo CC Cloud siūlo nuotolinę priežiūrą, analitinius įrankius ir integraciją su dirbtinio intelekto sprendimais, skirtais energijos optimizavimui. Honeywell Forge platforma orientuojasi į didelių objektų valdymą, siūlydama skalę pramonės ir komercinių pastatų segmentams. Johnson Controls OpenBlue debesijos sprendimas suteikia galimybę kurti skaitmeninius pastato dvynius ir valdyti energijos efektyvumą realiu laiku. Šie debesijos sprendimai dažniausiai naudoja šifruotus ryšio kanalus ir API sąsajas integracijai su kitomis BAS sistemomis.
 
-0.576
+**L2 lentelė:** Valdiklių, keitiklių ir įrenginių matrica pagal gamintojus ir komunikacinius protokolus
 
-0.795
+|  |  |  |  |
+| --- | --- | --- | --- |
+| **Sistema** | **Valdiklis**  **(protokolas)** | **Keitiklis**  **(protokolas)** | **Įrenginys**  **(protokolas)** |
+| **Baterijų krovimas** | Schneider SmartX MP-C  (BACnet, Modbus) | HMS Anybus Modbus TCP ↔ CANopen gateway | Victron Quattro inverter (CANopen) |
+| **Išmanūs skaitikliai** | Siemens Desigo PX  (BACnet/IP) | Phoenix Contact EEM-MA600 M-Bus ↔ Modbus | Kamstrup Multical 603  (M-Bus) |
+| **Šildymo sistemos** | Johnson FX-PCG  (BACnet MS/TP, Modbus) | HMS Anybus Modbus ↔ CAN gateway | Wilo Stratos MAXO siurblys  (CAN) |
+| **Apšvietimo sistemos** | Tridium JACE 8000  (BACnet, Modbus) | Helvar DIGIDIM 910 DALI ↔ BACnet Ethernet | Philips DALI LED driver  (DALI) |
+| **Apsauga / praėjimo kontrolė** | Schneider EcoStruxure Automation Server  (BACnet/IP) | HMS Anybus BACnet ↔ CANopen gateway | HID VertX V2000  (CAN) |
+| **Gaisro apsaugos sistemos** | Honeywell XLS3000  (BACnet/IP) | nereikalingas (tiesioginė BACnet integracija) | Honeywell gaisro detektoriai  (BACnet) |
+| **Ventiliacija / rekuperacija** | Siemens Climatix POL904  (BACnet MS/TP, Modbus) | HMS Anybus Modbus ↔ CAN gateway | Systemair Topvex  (CAN) |
 
-0.345
+Pagrindiniai BMS gamintojai siūlo universalius sprendimus, kurie palaiko atvirus komunikacijos protokolus, leidžiančius integruoti skirtingų gamintojų įrangą. Modbus ir BACnet dominuoja kaip pagrindiniai protokolai, o M-Bus, CAN ir DALI naudojami specifinėms pastato sistemoms (apskaitai, apšvietimui, HVAC). Debesijos sprendimai tampa standartine BMS dalimi, suteikdami galimybę nuotoliniu būdu valdyti sistemas, analizuoti duomenis ir didinti pastatų energinį efektyvumą. Apibendrinus L1 ir L2 lenteles, galime matyti, kad pastato valdymo sistemos naudoja įvairius komunikacijos protokolus, todėl **sklandžiai integracijai yra būtini protokolų keitikliai (**pavyzdinė (P1 pav. a) sistema galėtų būti sudaryta iš komponentų, pateiktų L2 lentelėje):
 
-0.164
+**Valdikliai:**
 
-0.678
+* Schneider Electric SmartX MP-C – išmanus pastatų automatikos valdiklis, skirtas šildymo, vėdinimo, oro kondicionavimo ir kitų pastato inžinerinių sistemų valdymui. Palaikomi protokolai: BACnet MS/TP, BACnet/IP, Modbus TCP, paskirtis: patalpų klimato kontrolė, energijos valdymas, integracija su kitomis sistemomis.
+* Siemens Desigo PX – modulinis BMS valdiklis su stipria BACnet integracija, tinkamas didelėms pastatų sistemoms. Palaikomi protokolai: BACnet/IP, Modbus (per priedus), paskirtis: energijos valdymas, šildymas, vėdinimas, apšvietimas, apsauga.
+* Johnson Controls FX-PCG – lankstus valdiklis, skirtas patalpų ir įrangos kontrolei. Palaikomi protokolai: BACnet MS/TP, Modbus, paskirtis: HVAC įrangos valdymas, siurblių, vožtuvų, ventiliatorių kontrolė.
+* Tridium JACE 8000 –atvira platforma su Niagara Framework, skirta integruoti įvairias pastato sistemas. Palaikomi protokolai: BACnet, Modbus, SNMP, LON, DALI (per papildinius), paskirtis: universalus tinklų, pastato sistemų integratorius.
+* Schneider EcoStruxure Automation Server – pastato automatikos serveris, skirtas integruoti įvairias BMS funkcijas vienoje platformoje. Palaikomi protokolai: BACnet/IP, Modbus TCP, LonWorks (priedai), paskirtis: bendras sistemų valdymas ir monitoringas.
+* Honeywell XLS3000 – pažangus gaisro apsaugos valdiklis su BACnet integracija. Palaikomi protokolai: BACnet/IP, paskirtis: gaisro signalizacijos sistema, tiesioginis ryšys su BMS.
+* Siemens Climatix POL904 – valdiklis skirtas HVAC įrangos kontrolei, palaiko išorinę komunikaciją. Palaikomi protokolai: BACnet MS/TP, Modbus RTU/TCP, paskirtis: šildymo, vėdinimo, rekuperacijos sistemų valdymas.
 
-0.867
+**Protokolų keitikliai:**
 
-0.933
+* HMS Anybus X-gateway – universalūs keitikliai, leidžiantys integruoti skirtingus pramoninius protokolus. Galimi variantai: Modbus ↔ CANopen, BACnet ↔ CANopen, Modbus ↔ CAN, paskirtis: ryšio tiltas tarp skirtingų protokolų (Modbus, BACnet, CAN magistralės).
+* Phoenix Contact EEM-MA600 –keitiklis, skirtas surinkti duomenis iš M-Bus skaitiklių ir perduoti į Modbus tinklą. Palaikomi protokolai: M-Bus (slave), Modbus TCP/RTU (master), paskirtis: energijos skaitiklių duomenų surinkimas.
+* Helvar DIGIDIM 910 router – DALI apšvietimo valdymo tinklo maršrutizatorius su BACnet integracija. Palaikomi protokolai: DALI, BACnet/IP, paskirtis: apšvietimo kontrolė, ryšys tarp BMS ir DALI šviestuvų.
 
-0.611
+**Įrenginiai:**
 
-0.235
+* Victron Energy Quattro inverter/charger – inverteris/įkroviklis su CAN sąsaja, skirtas sudėtingoms akumuliatorių sistemoms. Paskirtis: baterijų įkrovimas, energijos srautų valdymas hibridinėse sistemose.
+* Kamstrup Multical 603 – šilumos skaitiklis su M-Bus ryšiu. Paskirtis: šilumos suvartojimo matavimas, duomenų perdavimas.
+* Wilo Stratos MAXO – išmanus siurblys su integruota CAN magistralės sąsaja. Paskirtis: šildymo ir vėsinimo sistemų hidraulinis valdymas.
+* Philips DALI LED driver – LED šviestuvų maitinimo blokas su DALI valdymu. Paskirtis: apšvietimo valdymas (šviesos intensyvumo reguliavimas).
+* HID VertX V2000 – Praėjimo kontrolės modulis su CAN ryšiu. Paskirtis: praėjimo punktų ir durų užraktų valdymas.
+* Honeywell gaisro detektoriai – prie BACnet tinklo jungiami detektoriai. Paskirtis: gaisro signalizacijos informacijos perdavimas.
+* Systemair Topvex – rekuperacijos įrenginys su CAN ryšiu. Paskirtis: vėdinimas ir rekuperacija.
 
-0.258
+Siekiant įvertinti sistemos sudėtingumą ir integracijos kaštus, atliekama analizė, kuri pagal sprendinių struktūrą (valdiklis → keitiklis → įrenginys) ir naudojamus protokolus sprendžia kiekskirtingų programinių sprendimų / platformų reikėtų valdyti šiai sistemai:
 
-0.773
+* **Pastato valdymo pagrindinė platforma (BMS)** – tai valdymo sistema, jungianti visus BACnet, Modbus protokolą. Ši platforma centralizuotai surenka, apdoroja ir vizualizuoja duomenis. Galimi variantai:
+  + Tridium Niagara Framework (pvz., su JACE 8000)
+  + Schneider EcoStruxure Building Operation
+  + Siemens Desigo CC
+* **Protokolų keitiklių konfigūravimo įrankiai** – kiekvienam keitikliui reikės savo konfigūravimo programinės įrangos, skirta sukonfigūruoti ryšio parametrus tarp valdiklių ir įrenginių.:
+  + HMS Anybus Configuration Manager
+  + Phoenix Contact M-Bus konfiguratorius
+  + Helvar Toolbox / Designer (DALI tinklams)
+* **Specializuotų įrenginių valdymo ir monitoringo programos** – kai kurie įrenginiai turi savo sąsajas / programinę įrangą, naudojama įrenginių stebėsenai, parametrų derinimui, aparinės programinės įrangos (angl. firmware) atnaujinimams:
+  + Victron VRM Portal / VictronConnect (baterijų sistemoms)
+  + HID VertX NGC programinė įranga (praėjimo kontrolei)
+  + Systemair Connect (rekuperacijos įrenginiui)
+* **Gaisro sistemos konfigūravimo programinė įranga** – skirta gaisro aptikimo logikai, zonų ir prietaisų nustatymams konfigūruoti:
+  + Honeywell XLS-CAB Configurator
+* **Cloud platformos / nuotolinio valdymo sprendimai** –valdyti nuotoliniu būdu arba naudoti debesijos analizę:
+  + EcoStruxure Building Advisor (Schneider)
+  + Niagara Cloud Suite
+  + Desigo CC Cloud (Siemens)
+* **Papildomas programinis sprendimas** energijos analizėms, nuotoliniam monitoringui.
 
-0.819
+Įvertinus rinkos analogus pagal jų galimybes užtikrinti sudarytoje įrenginio specifikacijoje nurodytas charakteristikas, pasiūloma projektuojamo hibridinio įrenginio principinė schema (8 pav.), apimanti tiek funkcinius hibridinio įrenginio blokus, jų paskirtį, tiek ir jų tarpusavio ryšius.
 
-This analysis also proves that the following. Motivation to participate in monitoring
-and permanent group memberships are very important for people who live in cities.
-Indicators such “motivation to participate in monitoring”, “permanent group membership”,
-and “the need for monitoring” are highly valued among respondents with knowledge in
-the field of forestry and those with association memberships.
+![A screenshot of a computer  Description automatically generated](data:image/png;base64...)
 
-Association membership was found to be related to “motivation to participate in
+**8 pav.** Principinė hibridinio įrenginio schema
 
-monitoring”, “permanent group membership”, and “the need for monitoring”.
+**Pagrindiniai reikalavimai kuriant pastato valdymo sistemą:**
 
-The opinions of the interviewees about the benefits of monitoring the socio-economic
-development of private forest owners was divided as follows: 70% of the persons who
-participated in the study believed that it is useful not only for forest owners themselves
-but also for the state and society, 65% of respondents thought it can help to ensure sustain-
-able forest management, under 52% believed it will maintain the provision of ecosystem
-services, and 41% respondents were of the opinion that it will contribute to the economic
-development of the region.
+1. **Lankstumas.** Modulinė struktūra sukonfigūruojama pagal kliento poreikius ir pritaikoma individualiam vartotojui su galimybė išplėsti protokolo taškų skaičių pagal poreikius.
+2. **Universalumas.** Turi tikti visiems vienos linijos prietaisams, t. y. visiems pasirinkto protokolo prietaisams ar vieno tipo prietaisams. Tokiu būdu neprisirišama prie konkretaus modelio ar konkrečios kompanijos modulių linijos. Visi unikalūs valdikliai lieka išorėje.
+3. **Plug-and-play (PnP) modelis.** Galimybė automatiškai prijungti išorinius prietaisus, modulius ir valdiklius, kurių parametrai yra iš anksto surašyti kuriamo įrenginio kompiuterio duomenų bazėje arba yra parenkami/pritaikomi pagal įrenginio atliekamas funkcijas.
+4. **Suderinamumas**. Naujo komponento jungimas nedaro reikšmingos įtakos ir sistemai nesukleipia sistemos veikimo sutrikimo ir nereikalauja esminio sistemos perkonfigūravimo.
 
-We also asked private forest owners if they had any other observations that were
-not listed in the questionnaire. After analysing the opinions of private forest owners
-about monitoring need and encouraging them to participate in the survey, the following
-four sub-themes were distinguished from the obtained results (Table 3):
+Sistema, sudaryta iš skirtingų valdiklių, keitiklių ir įrenginių, nors funkcionaliai apimtų visas reikiamas pastato inžinerines sistemas, tik iš dalies atitinka pagrindinius reikalavimus valdymo sistemai, nes:
 
--
--
--
--
+1. **Sistema nėra lanksti**: dėl skirtingų gamintojų įrangos ir daug skirtingų protokolų reikia specifinių keitiklių ir programinės įrangos kiekvienam komponentui konfigūruoti. Modulinė struktūra tokiu atveju tampa fragmentuota, o bet kokia plėtra (pvz., protokolo taškų ar prietaisų papildymas) reikalauja naujų keitiklių arba atskirų sprendimų derinimo, o ne paprasto modulio pridėjimo prie bendros sistemos.
+2. **Sistemos universalumas** stipriai priklauso nuo konkrečių gamintojų komponentų ir jų protokolų: kiekvienas įrenginys (pvz., siurblys, gaisro detektorius ar inverteris) dažnai reikalauja specifinio valdiklio arba keitiklio, tad nesusiformuoja vieninga „vienos linijos“ architektūra, kurioje visi įrenginiai būtų keičiami ar papildomi nepriklausomai nuo gamintojo. Tai reiškia, kad įsigijus ar integruojant kitų tiekėjų įrangą, sistemos pritaikymas tampa sudėtingas ir brangus.
+3. **Sistema neatitinka Plug-and-play (PnP) principo**: naujų įrenginių prijungimas reikalauja rankinio konfigūravimo, specifinės programinės įrangos ir suderinimo veiksmų. Nėra galimybės, kad įrenginiai būtų automatiškai atpažįstami ir integruojami į sistemą pagal iš anksto apibrėžtus šablonus ar funkcijas.
+4. **Sistema neužtikrina reikalaujamo suderinamumo**: naujo komponento jungimas gali turėti reikšmingos įtakos visos sistemos veikimui, sukelti veikimo sutrikimus ar reikalauti esminio sistemos perkonfigūravimo. Dėl daugybės skirtingų protokolų ir keitiklių kiekvienas pakeitimas sistemoje tampa jautrus ir reikalauja papildomų suderinimo darbų. Tai sumažina sistemos patikimumą ir apsunkina jos administravimą. Taip pat tokia heterogeninė sistema negali užtikrinti esminių reikalavimų, keliamų pažangioms valdymo platformoms - ***dinamiškai sudaryti valdymo algoritmus automatiškai aptinkamiems naujiems sistemos įrenginiams***. Ši funkcija yra esminė, nes jos dėka būtų galima savarankiškai atpažinti naujus komponentus, juos integruoti į bendrą valdymo struktūrą ir užtikrinti sklandų jų veikimą be sudėtingo rankinio konfigūravimo ar perprogramavimo.
 
-Obtaining information;
-Giving opinions;
-Privileges;
-The opportunity to participate in the development of private forest policy.
+Todėl siūloma pasirinkti pagrindinius protokolus – BACnet, Modbus, M-Bus, CAN ar DALI –kaip centrinę komunikacinę ašį kuriamame įrenginyje. Šiuo metu nėra galutinai žinoma, kuris protokolas tinkamiausias įgyvendinti Discovery, Subscribe ir PnP funkcijas, kurios būtinos, kad sistema galėtų automatiškai atpažinti naujus prietaisus ir dinamiškai sudaryti jiems pritaikytus valdymo algoritmus. Tokia analizė turi apimti kiekvieno protokolo galimybes palaikyti duomenų srauto standartizavimą, užtikrinti duomenų vientisumą konvertuojant tarp skirtingų protokolų ir realiu laiku kurti naujus valdymo scenarijus pagal aptiktų įrenginių funkcijas.
 
-When monitoring the social and economic indicators of private forest owners, it is
-important to motivate the respondents. Maintaining motivation throughout the research
-process can help to ensure more active participation of respondents in surveys. It does not
-matter what methods are used to motivate and encourage respondents; the most important
-thing is to ensure the confidentiality of the respondents. After conducting the research, it
+Preliminariai galima teigti, kad BACnet turi daugiausia potencialo dėl savo objektinio modelio, prenumeratos galimybių ir atviros architektūros, tačiau šis pasirinkimas turi būti pagrįstas išsamiais tyrimų ir praktinių bandymų rezultatais.
 
-Forests 2024, 15, 1657
+Tam, kad būtų įgyvendinta dinaminė sistema, keitiklių programinėje įrangoje turi būti įdiegtos naujos **Discovery**, **Subscribe** ir **PnP** funkcijos, galinčios automatiškai identifikuoti įrenginius ir sukurti jiems tinkamus valdymo objektus ir algoritmus.
 
-9 of 19
+Esama keitiklių programinė įranga šiandien šio tikslo pasiekti negali, nes ji neturi mechanizmų automatiškai kurti naujų objektų ir pritaikyti valdymo algoritmus pagal įrenginių funkcijas realiu laiku. Todėl būtina kurti naujus programinius sprendimus, kurie užtikrintų duomenų srauto standartizavimą, konvertavimą į pasirinktą pagrindinį protokolą (potencialiai BACnet) neprarandant informacijos ir užtikrinant, kad kiekvienam naujam įrenginiui būtų automatiškai sudaromi valdymo algoritmai pagal jo savybes ir funkcijas. Tik tokiu keliu galima pasiekti tikros pažangios valdymo sistemos viziją, atitinkančią modernius pastatų valdymo reikalavimus
 
-became clear that it is important for the respondents to receive feedback about the results
-of the research, so we recommend that the obtained monitoring results be made public and
-available to respondents [59,60].
+**Kuriamas hibridinis įrenginys išlaiko pagrindinius reikalavimus kuriant pastato valdymo sistemas ir praplečia pastato valdymo sistemos funkcionalumą:**
 
-Table 3. The sample (compiled by the authors based on the results of the proposed methodology for
-monitoring the socio-economic development of private forest owners).
+1. **Lankstumas.** Modulinė struktūra sukonfigūruojama pagal kliento poreikius ir pritaikoma individualiam vartotojui su galimybė išplėsti protokolo taškų skaičių pagal poreikius.
+2. **Universalumas.** Turi tikti visiems vienos linijos prietaisams, t. y. visiems pasirinkto protokolo prietaisams ar vieno tipo prietaisams. Tokiu būdu neprisirišama prie konkretaus modelio ar konkrečios kompanijos modulių linijos. Visi unikalūs valdikliai lieka išorėje.
+3. **Plug-and-play (PnP) modelis.** Galimybė automatiškai prijungti išorinius prietaisus, modulius ir valdiklius, kurių parametrai yra iš anksto surašyti kuriamo įrenginio kompiuterio duomenų bazėje arba yra parenkami/pritaikomi pagal įrenginio atliekamas funkcijas.
+4. **Suderinamumas**. Naujo komponento jungimas nedaro reikšmingos įtakos ir sistemai nesukleipia sistemos veikimo sutrikimo ir nereikalauja esminio sistemos perkonfigūravimo.
+5. **Duomenų srauto standartizavimas**. Galimybė skirtingų protokolų duomenis konvertuoti į vieną (pagrindinį) komunikacinį protokolą, neprarandant informacijos, kas leis lanksčiau integruoti kuriamą įrenginį į esamas pastato valdymo sistemas.
+6. **Apima visas BMS valdiklių funkcijas.** Kuriamas įrenginys panaikina poreikį sistemą sudaryti iš skirtingų gamintojų BMS, kas centralizuoja ir unifikuoja valdymo ir konfigūravimo programinę įrangą.
+7. **Dinaminė konfigūracija.** Įrenginys sudarytų valdymo algoritmus automatiškai aptinkamiems naujiems sistemos įrenginiams.
+8. **Gali veikti izoliuotai.** Turi valdymo algoritmus ir scenarijų šablonus, todėl gali funkcionuoti savarankiškai be interneto ryšio.
 
-Sub-Theme
+Esminis kuriamo įrenginio naujumas tai **duomenų srauto standartizavimas, dinaminė konfigūracija ir galimybė veikti izoliuotai –** tai funkcijos kurių trūksta daugeliui esamų BMS / BAS sprendimų. Ši funkcija leidžia skirtingų protokolų (pvz., Modbus, BACnet, M-Bus, CAN, DALI) duomenis konvertuoti į pasirinktą pagrindinį komunikacinį protokolą be informacijos praradimo, taip užtikrinant sklandų ir patikimą skirtingų sistemų tarpusavio bendradarbiavimą (8 pav.). Tokia galimybė ženkliai sumažina integracijos kaštus ir klaidų riziką, nes duomenys yra vienodai apdorojami ir atvaizduojami nepriklausomai nuo jų pradinio šaltinio. Kuriamas įrenginys automatiškai aptinka naujus sistemos komponentus ir sudaro jiems pritaikytus valdymo algoritmus ir scenarijus. Tai reiškia, kad sistema sugeba savarankiškai prisitaikyti prie naujų įrenginių įdiegimo realiu laiku, be papildomos rankinės konfigūracijos. Toks gebėjimas šiuo metu nėra būdingas standartiniams BMS/BAS, kurie dažniausiai reikalauja sudėtingo rankinio įrenginių įvedimo ir algoritmų sudarymo, nepriklausomai nuo interneto ryšio ar išorinių serverių. Jame integruoti valdymo algoritmai ir scenarijų šablonai užtikrina pastato inžinerinių sistemų funkcionavimą net ir nutraukus ryšį su debesijos paslaugomis. Ši savybė suteikia sistemos veiklai patikimumo ir saugumo kritinėse situacijose, kai būtina užtikrinti nenutrūkstamą pastato inžinerinių sistemų darbą.
 
-Statements of Private Forest Owners
+Įrenginys iš esmės **centralizuoja BMS funkcijas**, nes apjungia visų valdiklių darbą į vieningą programinės įrangos aplinką. Tai eliminuoja poreikį naudoti skirtingų gamintojų BMS sprendimus, kurie dažnai apsunkina integraciją dėl tarpusavyje nesuderinamų valdymo ir konfigūravimo įrankių. Visa valdymo logika ir konfigūravimas vykdomi per vieną platformą, todėl sumažinamas administravimo sudėtingumas ir klaidų tikimybė. Apibendrinant galima teigti, kad kuriamas įrenginys ženkliai pranoksta tradicinius BMS / BAS sprendimus, nes siūlo centralizuotą, lankstų, savarankišką ir dinamiškai prisitaikantį valdymo sprendimą, kuris atveria naujas galimybes efektyviai ir patikimai valdyti modernius pastatus.
 
-Obtaining information
+Įrenginio komponentai (8 pav.): pagrindinis kompiuteris/valdiklis, tinklo analizatorius ND30BAC, protokolų keitikliai (MODBUS/BACNet, DALI/BACNet, M-BUS/BACNet, BACNet/CAN), išmanaus pastato kontroleris ISMA-B-MIX18-IP, ABB galios komutatorius OTM63F4C21D400C, vidinė rezervinė galios baterija QUINT4-CAP/24DC/10/8KJ, du maitinimo šaltiniai +24V STEP3-PS/1AC/24DC/Į/PT, USB jungtis, skirta programuoti ESP32, naudojant Arduino IDE. Pusinio dupleksinio ryšio RS485 prievadas. Integruota EEPROM mikroschema duomenų saugojimui. Dvi programuojamos LED indikacijos. (Tx ir Rx LED) Pasirenkamas RS485 siųstuvo-imtuvo įtampos lygis. (5 V ir 3,3 V) Pramoninis korpusas su DIN tvirtinimu ir kompaktišku PCB dydžiu. Didžiausia darbinė įtampa Un 415 V (AC), nominali ilgalaikė srovė In 63 A, nominali trumpalaikė srovė 2.5 kA, apsaugos klasė IP20, ilgis – 131 mm, plotis – 283 mm, aukštis – 103 mm, svoris – 2,11 kg. Pagal realią srovę konkrečiame pastate šį perjungiklį galima pakeisti su didesne In (125, 200, 400). Šis perjungiklis palaiko BACnet protokolą.
 
-Giving your opinion
+Įrenginys turi galimybę matuoti sroves ir energijos srautus bei jų pagrindu vertinti sistemos efektyvumą. Siekiant nustatyti hibridinio įrenginio pagrindinių komponentų integracijos įrenginyje lygmenį, buvo tikslinga įvertinti inverterių panaudojimo klausimą.
 
-Privileges
+Kuriamas įrenginys taip pat gali apimti vieną pagrindinių saulės elektrinių funkcijų - įtampos tipo keitimą. Paprastai šią funkciją atlieka inverteriai, kurie sumontuojami kartu su kitais elektrinės elementais statybos metu. Inverterių kiekis ir galia gali būti labai įvairūs, nes statomų elektrinių galia skiriasi nuo kelių kW iki kelių MW. Taip pat, vykstant elektros konvertavimui, išsiskiria dideli šilumos kiekiai. Iki 5 % nuo konvertuojamos galios pavirsta šilumos nuostoliais. Montuojant inverterį kuriamo prietaiso viduje, tampa neapibrėžti jo išoriniai matmenys, taip pat atsiranda aušinimo poreikis, kuris pagrįstas žemiau pateiktais skaičiavimais.
 
-Formation of private
-forest policy
+Priimama, kad iki 2 % procentų inverterio turimos galios pavirsta šilumos nuostoliais, tad naudojant 120 kW inverterį, išsiskiria apie 2,4 kW šilumos (1):
 
-“Increasing the knowledge bag”
-“Getting information”
-“Acquire knowledge, follow innovations and opportunities”
-“Knowing the results”
+![A black background with letters  AI-generated content may be incorrect.](data:image/png;base64...) (1)
 
-“Say your opinion”
-“Opportunity to express your opinion”
-“Sharing Experience”
-“I believe that forestry and nature conservation can be combined
-and we need to find a way to do that. And I think that these polls
-could at least help a little”
+čia *Rth –* šiluminė varža, [K/W], kuri susideda iš šilumos laidumo ir konvekcijos, where *q* – šilumos srautas statmenas jos paviršiui *A*, [W], *T* – temperatūra [K].
 
-“Free consultations in a forest plot”
-“Incentive gifts received for survey participation”
-“Priority scores when applying for aid”
-“Organization of training and courses (free of charge)”
+Bendrai šiluminei varžai reikia įvertinti korpuso ir patalpos temperatūrą. Dažniausiai elektronikos prietaisų korpuso temperatūra neturi viršyti 40-45 °C, tam, kad būtų saugu prilietus korpusą. Toks reikalavimas taikomas ir inverterio išorės įrenginio korpusui. Patalpos temperatūra laikoma apie 20 °C. Bendra viso inverterio šiluminė varža apskaičiuojama:
 
-“The desire for as much clarity as possible”
-“More people would know the needs of forest owners”
-“Improving the legal framework of forestry”
-“Perhaps my answers would serve to improve the prestige of
-forest owners in society, creating rules or laws for forest use”
-“I want to contribute to a more comprehensive understanding and
-management of private forest management”
-“Changes in forest management policy”
-“The opportunity to contribute to an important statistical study
-and to reflect/represent the practices applied in your holding
-(your decisions)”
-“The opportunity to keep a sharp mind for longer, to submit
-proposals to forest policy makers on forest use, restoration,
-development of protected areas and other issues through a
-survey questionnaire”
+![A black background with white text  AI-generated content may be incorrect.](data:image/png;base64...) (2)
 
-A proportion of 57% respondents expected the formation of sustainable private forest
-policy as a result of monitoring, 32% expected a contribution to sustainable forest devel-
-opment, 59% expected the prevention of climate change, and 78% expected community
-involvement and the promotion of social responsibility.
+Dėžės šiluminė talpa:
 
-To investigate the need for monitoring, during the survey, the respondents were
-asked whether they would agree to be a permanent member of the group. A proportion of
-17.3% of respondents agreed to participate in ongoing monitoring activities as a permanent
-member of the group. It is important that when forming a group of regular respondents, the
-principles of research ethics be followed, that respondents be informed about the objectives
-of the study, and that their personal data be stored and used only for that purpose.
+![](data:image/png;base64...) (3)
 
-A proportion of 87% respondents who agreed to participate in monitoring were moti-
-vated by privileges, 45% by the provision of consultations and information, 48% by personal
-motivation, and 65% by practical benefits. Encouraging and motivating respondents are
-very important in the process of conducting research. By encouraging respondents and
-ensuring their motivation, it is possible to increase the accuracy of answers, ensure good
-results, and reduce the number of refusals [55].
+čia *Vi* – esančios medžiagos tūris [m3], *ρ* – medžiagos tankis [kg/m3], *cp* – specifinė šiluminė talpa [J/(kg·K)], *C –* šiluminė talpa, [J/kg]. Šiluminė talpa (*C*) apskaičiuojama orui ir korpuso metalui. Oro specifinė šiluminė talpa 1.006kJ/kgK, o oro tankis – 1,293 kg/m3. Kuriamo įrenginio dėžės matmenys 1000 x 750 x 300 mm, medžiaga - metalas.
 
-After summarizing the results of the respondents’ answers, it can be said that the
-benefit of monitoring the economic and social indicators of forest owners are not only
-enjoyed by the owners themselves but also by the state and society. A proportion of 95% of
+Dėžės korpuso sienelių šiluminė varža:
 
-Forests 2024, 15, 1657
+![](data:image/png;base64...) (4)
 
-10 of 19
+čia
 
-the respondents agreed with this statement, 82% of respondents stated that monitoring can
-help ensure sustainable forest management, 75% believed that the monitoring system for
-private forest owners can help maintain the provision of ecosystem services, and 68% of
-respondents agreed that such a system can contribute to the economic development of
-the region.
+![A black background with blue and red text  AI-generated content may be incorrect.](data:image/png;base64...), ![A black background with blue and red text  AI-generated content may be incorrect.](data:image/png;base64...) (5)
 
-Based on the systematized survey data, a periodicity of monitoring of one year is rec-
-ommended. A proportion of 17% of those surveyed indicated this frequency, 23% indicated
-once in 2 years, 10% indicated once in 3 years, 10% indicated once in 10 years, and 40% of
-survey participants recommend conducting surveys every 5 years.
+čia *k* – medžiagos šilumos laidumas [W/(m·K)], *A* – paviršiaus plotas per kurį teka šiluma [m2], *L* – medžiagos storis per kurią teka šiluma, [m], *h* – konvekcinis šilumos perdavimo koeficientas [W/m2K]. Dažniausiai metalinių korpusų šilumos laidumas yra apie 50 – 55 [W/(m·K)]. Konvekcinis šilumos perdavimo koeficientas skaičiuojama natūraliai konvekcijai, kuri yra daugiausiai taikoma išorei ir vidui apie 5 W/(m2K).
 
-4.4. Tested Survey Methods, Periodicity, and Background for Monitoring Database
+Šilumos atidavimui modeliuojama tuščia uždara dėžė, kurioje sumontuotas inverteris. Modeliavimui sudaryta RC grandinė, kuri simuliuota naudojant *Ltspice* programinę įrangą (9 pav.).
 
-During the study, all possible survey methods were tested. The following four main
-survey methods are distinguished depending on the method of administration: telephone
-survey, personal survey, postal survey, and electronic survey [31,37,59]. The telephone survey
-method can be used in the later stages of monitoring of private forest owners if a constant
-group of respondents is formed. The data of respondents were obtained from the Real Estate
-Register and cadastral database of the Public Enterprise Register Centre, indicating the status
-and institution name [43]. After using the available information, contact information was
-found on the Internet, i.e., contact phone number. Forest owners were interviewed, and the
-feedback evaluation was 100%. On average, the conversation lasted 45 min. The shortest
-questionnaire response time was 22 min, and the longest was 75 min.
-
-Face-to-face evaluation of questionnaire feedback was provided by 35.8% of respon-
-dents. During the survey, 50 persons could not be found, 3 persons refused to participate
-in the survey, 19 persons stated that their forest property had been sold or otherwise trans-
-ferred to others, and 5 persons included in the survey lists were deceased. The availability
-of the respondents was determined by their declared place of residence (i.e., city or village),
-the selected survey time in terms of the week (i.e., working day or weekend), and the day
-(standard working hours from 8:00 a.m. to 5:00 p.m. or after-work hours from 6:00 p.m.
-to 9:00 p.m.). The average travel distance to reach one respondent was 54.7 km, and the
-average duration of the conversation was 38 min. The shortest questionnaire response time
-was 19 min, and the longest was 60 min.
-
-Online questionnaires were posted on the social media pages of the Lithuanian Private
-Forest Owners Association (PMSA) and the Lithuanian Forest and Landowners Association
-(LSMA). PMSA’s social website is followed by 11,000 people, and LMSA has 8200 followers,
-of which 6500 belong to the association of forest owners. A total of 55 respondents answered
-the questionnaire, assuming that the questionnaire reached all association members on both
-social networks. With respect to questionnaire feedback, the reversibility was determined to
-be 0.85%. The average questionnaire response time was 10 min. The shortest questionnaire
-response time was 3 min, and the longest was 46 min. After analysing the applied survey
-methods based on respondent availability and feedback evaluation, it was found that the
-most appropriate and reliable method for obtaining information from legal entities is a
-telephone survey, while for individuals, a personal survey is preferred initially. The most
-economical survey methods are telephone or Internet surveys. Although personal surveys
-are the most demanding in terms of material costs, they are the best way to obtain objective,
-detailed, and accurate data and are suitable for the selection and formation of a permanent
-group of respondents.
-
-After conducting a survey of forest owners and summarizing the obtained results,
-it became clear that, in the opinion of the respondents, the most acceptable method of
-surveying is via the Internet or by telephone. A proportion of 91% of the survey participants
-were in favour of and online survey, and 75 percent of the respondents were in favour of
-a telephone survey. According to the authors, when monitoring the social and economic
-indicators of forest owners, it is recommended to apply combinations of research methods,
-considering the status of the group of interviewed respondents.
-
-Forests 2024, 15, 1657
-
-11 of 19
-
-Based on the research results, a correlation analysis was performed between the
-dependent variable (the need for a monitoring system for the socio-economic indicators of
-private forest owners) and eight independent variables (Table 4).
-
-Table 4. The need a for monitoring system for the socio-economic indicators of private forest owners
-and correlations between the independent variables.
-
-No.
-
-Independent Variable
-
-Correlation Coefficient
-
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-
-Property size
-Distance from residence to forest property
-Respondent age
-Gender
-Knowledge in the field of forestry
-Residence size
-Total income
-Belong to associations
-
-* Significant at 10%; ** significant at 5%.
-
-0.461 **
-−0.104 **
-−0.099 *
-−0.159 **
-0.184 **
-0.848 **
-0.065
-0.311 **
-
-p
-
-0.000
-0.042
-0.054
-0.000
-0.002
-0.000
-0.204
-0.000
-
-The following six independent variables were found to have significant correlations:
-property size (p = 0.000), distance from residence to forest property (p = 0.042), gender
-(p = 0.000), knowledge in forestry (p = 0.002), residence size (p = 0.000), and association
-membership (p = 0.000). A strong and reliable correlation exists between the need for forest
-monitoring and residence size (r = 0.848), with moderate correlations with property size
-(r = 0.461) and association membership (r = 0.311). Meanwhile, weaker but still reliable
-correlations were observed with knowledge in forestry (r = 0.184), distance from residence
-to the forest property (r = −0.104), and gender (r = −0.159) (see Table 4). In summary, the
-analysis shows that residence size, property size, and association membership are the most
-influential factors related to the need for forest monitoring. Knowledge in forestry, distance
-from the forest, and gender also play a role but with weaker correlations.
-
-Periodicity of monitoring is extremely important, allowing for consistent and long-term
-data acquisition and adequate assessment of economic and social development; however,
-specific needs and circumstances must be considered. By combining different monitoring
-methods and properly planning the periodicity, it is possible to obtain accurate, clear, and
-necessary data for decision making with respect to business and social development. Both the
-experts from the previous study [43] and private forest owners who participated in the survey
-indicated monitoring of social and economic indicators should be carried out every 5 years.
-Establishing databases for the collection and monitoring of respondent data is an
-important process that allows an organization to collect, organize, manage, and monitor
-information about the characteristics and behaviour of respondents [7]. This information
-can be used for a variety of purposes, such as strategic development, policy formulation, or
-performance evaluation. Based on the insights derived from the literature analysis, expert
-surveys [43], and respondent evaluations, the following eight steps are recommended to
-create a respondent database (Figure 2):
-
-Figure 2. Steps for creating a respondent data collection database (compiled by authors based on the
-research results).
-
-First, it must be determined what data need to be collected and stored. This may include
-respondents’ personal information, demographic characteristics, behavioural data, etc. Once
-the required data are identified, a data structure must be created that is easy to understand
-and manage. When establishing data handling and management procedures, the first step is
-
-Forests 2024, 15, x FOR PEER REVIEW 12 of 20   or performance evaluation. Based on the insights derived from the literature analysis, ex-pert surveys [43], and respondent evaluations, the following eight steps are recommended to create a respondent database (Figure 2):  Figure 2. Steps for creating a respondent data collection database (compiled by authors based on the research results). First, it must be determined what data need to be collected and stored. This may include respondents’ personal information, demographic characteristics, behavioural data, etc. Once the required data are identiﬁed, a data structure must be created that is easy to understand and manage. When establishing data handling and management pro-cedures, the ﬁrst step is to decide how the data will be collected, entered into the system, stored, and updated. This includes procedures and guidelines to help ensure data accu-racy, integrity, and conﬁdentiality. Then, the data collection system must be prepared. This includes creating a database or system to store respondent and monitoring data. This can be a database management system or popular tools such as Microsoft Excel or Access. Data collection and input into the system: Data can be collected in a variety of ways, such as by surveys, monitoring tools, or passive participant studies. The data must then be en-tered into the system in such a way as to ensure their accuracy and integrity. The database must be constantly updated whenever new data on respondents or monitoring results are available. This may include updating, changing, or deleting data if necessary. After com-pleting the process of creating the database, the data can be used to analyse and interpret the respondents’ characteristics, behaviour, and monitoring results. This can help an or-ganization be er understand its target audience and make research-based decisions. Re-spondent data must be protected from illegal actions. This may include encrypting da-tasets, passwords, or data backups; restricting access to data; and preventing unwanted data loss or corruption. Collecting respondent monitoring data is an important activity that allows organizations to obtain valuable information about their respondents’ behav-iour, activities, and future planning. Creating monitoring data storage databases is a com-plex process that requires properly prepared technological solutions. The main ﬁve steps to be followed in the development of respondent monitoring data collection systems are outlined in Figure 3.  Figure 3. Steps in the development of a respondent monitoring data collection system. To create a proper database, it is ﬁrst necessary to determine what information the organization wants to obtain from respondent monitoring and how this information will be used. This will help determine the needs and structure of the base. It is important to Forests 2024, 15, 1657
-
-12 of 19
-
-to decide how the data will be collected, entered into the system, stored, and updated. This
-includes procedures and guidelines to help ensure data accuracy, integrity, and confiden-
-tiality. Then, the data collection system must be prepared. This includes creating a database
-or system to store respondent and monitoring data. This can be a database management
-system or popular tools such as Microsoft Excel or Access. Data collection and input into
-the system: Data can be collected in a variety of ways, such as by surveys, monitoring tools,
-or passive participant studies. The data must then be entered into the system in such a
-way as to ensure their accuracy and integrity. The database must be constantly updated
-whenever new data on respondents or monitoring results are available. This may include
-updating, changing, or deleting data if necessary. After completing the process of creating
-the database, the data can be used to analyse and interpret the respondents’ characteristics,
-behaviour, and monitoring results. This can help an organization better understand its
-target audience and make research-based decisions. Respondent data must be protected
-from illegal actions. This may include encrypting datasets, passwords, or data backups;
-restricting access to data; and preventing unwanted data loss or corruption. Collecting
-respondent monitoring data is an important activity that allows organizations to obtain
-valuable information about their respondents’ behaviour, activities, and future planning.
-Creating monitoring data storage databases is a complex process that requires properly
-prepared technological solutions.
-
-The main five steps to be followed in the development of respondent monitoring data
-
-collection systems are outlined in Figure 3.
-
-Figure 3. Steps in the development of a respondent monitoring data collection system.
-
-To create a proper database, it is first necessary to determine what information the
-organization wants to obtain from respondent monitoring and how this information will
-be used. This will help determine the needs and structure of the base. It is important to
-provide easy-to-manage information for quality data collection, processing, and storage
-when designing a data collection system architecture. When creating databases, attention
-should be paid to the collection of respondent observation data, which can include a large
-amount of data, so it is important to create efficient data systems. This may mean creating a
-database, creating indexes, and implementing other means of organizing data. Respondent
-monitoring data are often sensitive and require certain safeguards. Measures should be put
-in place to ensure data security and privacy.
-
-5. Discussion
-
-The development of a well-structured methodology for monitoring of the social
-and economic progress of private forest owners is critical in establishing an effective
-system for tracking their development in Lithuania. Such a system plays a key role in
-ensuring the ongoing assessment of socio-economic indicators relevant to private forest
-owners, enabling the identification of challenges and the formulation of recommendations
-to enhance sustainable forest management policies. Furthermore, the implementation of a
-monitoring system for these indicators will assist authorities and stakeholders in gaining
-a deeper understanding of the strategies, needs, and challenges faced by private forest
-owners [41,43,53]. This could allow for more effective planning and the implementation
-of measures and programs to support and promote a sustainable forestry sector. The
-development of a monitoring system for the socio-economic indicators of private forest
-owners is a complex and long-term task that requires cooperation and dialogue with all
-parties involved in this sector to ensure sustainable management and use of forests and
-promote social and economic well-being [43].
-
-Forests 2024, 15, x FOR PEER REVIEW 12 of 20   or performance evaluation. Based on the insights derived from the literature analysis, ex-pert surveys [43], and respondent evaluations, the following eight steps are recommended to create a respondent database (Figure 2):  Figure 2. Steps for creating a respondent data collection database (compiled by authors based on the research results). First, it must be determined what data need to be collected and stored. This may include respondents’ personal information, demographic characteristics, behavioural data, etc. Once the required data are identiﬁed, a data structure must be created that is easy to understand and manage. When establishing data handling and management pro-cedures, the ﬁrst step is to decide how the data will be collected, entered into the system, stored, and updated. This includes procedures and guidelines to help ensure data accu-racy, integrity, and conﬁdentiality. Then, the data collection system must be prepared. This includes creating a database or system to store respondent and monitoring data. This can be a database management system or popular tools such as Microsoft Excel or Access. Data collection and input into the system: Data can be collected in a variety of ways, such as by surveys, monitoring tools, or passive participant studies. The data must then be en-tered into the system in such a way as to ensure their accuracy and integrity. The database must be constantly updated whenever new data on respondents or monitoring results are available. This may include updating, changing, or deleting data if necessary. After com-pleting the process of creating the database, the data can be used to analyse and interpret the respondents’ characteristics, behaviour, and monitoring results. This can help an or-ganization be er understand its target audience and make research-based decisions. Re-spondent data must be protected from illegal actions. This may include encrypting da-tasets, passwords, or data backups; restricting access to data; and preventing unwanted data loss or corruption. Collecting respondent monitoring data is an important activity that allows organizations to obtain valuable information about their respondents’ behav-iour, activities, and future planning. Creating monitoring data storage databases is a com-plex process that requires properly prepared technological solutions. The main ﬁve steps to be followed in the development of respondent monitoring data collection systems are outlined in Figure 3.  Figure 3. Steps in the development of a respondent monitoring data collection system. To create a proper database, it is ﬁrst necessary to determine what information the organization wants to obtain from respondent monitoring and how this information will be used. This will help determine the needs and structure of the base. It is important to Forests 2024, 15, 1657
-
-13 of 19
-
-When making decisions regarding the rational and sustainable utilization of forests, we
-encounter increasingly complex socio-economic factors that must be carefully considered
-and navigated. These factors encompass a wide range of economic, social, and environ-
-mental dimensions, each influencing the overall management and conservation strategies
-for forest resources [19,54]. This situation is shaped by evolving consumer demands, the
-expanding impact of non-state sectors, and the growth of privately owned forest lands. In
-this context, when discussing methods for monitoring of the social and economic devel-
-opment of private forest owners, it is essential to gather data that are not only technically
-reliable but also relevant and accessible to stakeholders [44,45]. When formulating private
-forest policies, it is necessary to know the most important information about the owners of
-private forests, as well as farming and its changes, in private forest estates [46].
-
-Currently, data monitoring of private forest owners and the conducted scientific re-
-search provide only partial, unfocused, or incomplete information about forest management
-policy [61]. There is a lack of more detailed and comprehensive socio-economic data that
-could influence and improve forest management and the determinants of forest owners’
-behaviour and balance forest management now and in the future.
-
-This study highlights the various benefits of monitoring the socio-economic indicators
-of private forest owners. One of the key advantages of such monitoring its contribution
-to the evaluation of economic benefits, such as income and profits, generated from the
-management of this critical natural resource. Such insights are crucial for the planning
-and optimization of forest resource utilization, ultimately leading to an increase in the
-overall value of the forest. First, the benefits of monitoring of the economic-social indicators
-of private forest owners can be diverse. Such monitoring contributes to the assessment
-of economic benefits. By monitoring the economic indicators of the management of this
-natural resource, it is possible to assess the income and profit of forest owners [48]. Secondly,
-the monitoring of social indicators allows for an assessment of the forest’s impact on local
-communities and society at large. Factors such as the aesthetic value of forested landscapes
-and the recreational potential of forests can be appraised, aiding in the formulation of forest
-use plans that align with the needs of the local community [49]. This can help to plan and
-optimize the use of forest resources and increase the value of the forest. The benefits of
-monitoring socio-economic indicators extend beyond individual forest owners, positively
-impacting the state and society at large. This approach contributes significantly to the
-promotion of sustainable forest management, the preservation of ecosystem services, and
-the fostering of regional economic development [50]. Lastly, by monitoring and analysing
-the socio-economic indicators of forest owners, valuable insights can be obtained into how
-legal and political measures influence private forest management. This information is
-instrumental in assessing the effectiveness of current legislation and policy implementation,
-thereby offering suggestions for enhancements when necessary.
-
-By monitoring social indicators, it is possible to assess the impact of forests on the local
-community and society in general. For example, the aesthetic value of a forested landscape
-or the recreational potential of forests can be assessed. This can help to plan appropriate
-forms of forest use that meet the needs of the local community.
-
-Forests provide many ecosystem services, such as air and water purification, mitigation
-of climate change variability, biodiversity conservation, etc. By monitoring forests, as well
-as socio-economic and ecological indicators, it is possible to assess how forest management
-contributes to the provision of ecosystem services [48–51]. This can lead to a more effective
-understanding of the functions of forest ecosystems and their impact on all forms of life. By
-monitoring and analysing the socio-economic indicators of forest owners, it is possible to
-obtain data on how legal and political measures affect the management of private forests.
-This can help assess the current effectiveness of legislation and policy implementation and
-provide suggestions for improvement in this area, if necessary.
-
-As the analysis of the research results show, a monitoring system for the socio-economic
-indicators of private forest owners may include various indicators, such as general informa-
-tion about the forest owner, information about the forest estate, and activities of the owner
-
-Forests 2024, 15, 1657
-
-14 of 19
-
-in the forest estate. Based on the data from the analysis of the survey results, it is recom-
-mended that monitoring be carried out every 5 years to obtain long-term and consistently
-comparable data on the development of the activities and management of private forests.
-Such periodic monitoring is carried out in many foreign countries to evaluate or achieve
-certain goals, determine the needs of economic and social policy, predict future trends, and
-make necessary decisions based on these data. A monitoring periodicity of every 5 years
-also avoids excessive data collection and administrative costs. It also gives analysts and
-policy makers enough time to evaluate the obtained results, identify long-term economic
-and social policy developments, and develop adequate and effective actions. However, it
-should be noted that the 5-year interval may be too long to analyse certain situations. Some
-economic and social indicators may change during such a period, which may complicate
-the interpretation of these data and the assessment of the current situation. Therefore, other
-follow-up intervals (e.g., 3 years or 10 years) may be available depending on specific needs
-and circumstances.
-
-Another important step in the analysis of socio-economic data is the creation of
-databases for the collection of respondent data. Such databases would allow organizations
-to collect, organize, and manage information on the characteristics and behaviour of
-respondents and monitoring data.
-
-The limitation of this research lies in its adaptation of the methodology for monitoring
-of the socio-economic indicators of private forest owners according to Lithuanian needs
-and standards, with a future vision in mind. There is also a possibility that not all persons
-who answered the questionnaire were forest owners. To achieve ambitious plans, similar
-studies are needed in other European countries, looking for similarities and differences
-to create a common European private forest monitoring system, which would help to
-adopt relevant legal acts, political decisions, and supporting programs so that European
-forests are sustainable and an ecological–economical balance is maintained. This common
-European private forest monitoring system should include various functions, such as
-forest condition monitoring and assessment, verification of the accuracy of wood origin
-and destination, sustainable forest planning and management, tracking of forest owners’
-incomes and expenses, monitoring of the scope and structure of forestry activities, etc. In
-addition, the monitoring system should be able to be integrated with existing national
-monitoring systems to obtain accurate data on the state and activity of forests across Europe.
-This would allow more effective planning and management of forest resources, as well as
-the implementation of sustainable forestry policy.
-
-6. Conclusions
-
-To effectively monitor the socio-economic indicators of private forest owners, it is
-essential to establish specific intervals and conditions for conducting surveys. Ensuring the
-representativeness of the data is also essential. Therefore, it is recommended that physical
-private forest owners be selected based on the size of their managed forest estate, applying
-the same criterion for legal entities. Surveys should be conducted anonymously using a
-structured questionnaire administered either through personal interviews or online.
-
-The research results highlight that monitoring of the economic and social indicators
-of forest owners benefits not only the owners but also the state and society. According
-to respondents, such monitoring can promote sustainable forest management, maintain
-ecosystem services, and contribute to regional economic development.
-
-To ensure high-quality monitoring, it is important to motivate respondents by clearly
-communicating the study’s objectives and the potential benefits to participants. When
-respondents understand how they might benefit from the research, they are more likely to
-participate openly and provide detailed responses. Valuing their opinions and emphasizing
-the importance of their contributions can further encourage cooperation. Residence size,
-property size, and association membership are the most influential factors driving the need
-for forest monitoring, while knowledge of forestry, distance to the forest, and gender have
-weaker but still significant effects.
-
-Forests 2024, 15, 1657
-
-15 of 19
-
-Additionally, the creation of a database for the storage of respondent and monitoring
-data is important. Such a system would facilitate the collection, processing, and man-
-agement of data on respondent characteristics and behaviours, as well as monitoring
-results. This database would support both quantitative and qualitative data, including
-demographic information, behavioural insights, and opinions, all of which are critical for
-sustainable forest management.
-
-Author Contributions: Conceptualization, D.P., A.D., M.A. and A.P.; methodology, A.D. and D.P.;
-validation, A.D. and D.P.; formal analysis, A.D., D.P., A.P. and M.Š.; investigation, M.A., A.P., A.D.
-and O.B.; resources, M.A.; data curation, A.D., D.P. and A.P.; writing—original draft preparation, D.P.
-and A.D.; writing—review and editing, D.P., A.D., M.Š., H.F.P.e.S. and M.A.P.D.; visualization, D.P.,
-A.D., O.B. and A.P.; project administration, D.P. and A.D.; funding acquisition, M.A. and M.A.P.D.
-All authors have read and agreed to the published version of the manuscript.
-
-Funding: This work was supported by the Ministry of Environment of the Republic of Lithuania
-(project number VPS-2022-6-SBM ¯URP).
-
-Data Availability Statement: Data are unavailable due to privacy or ethical restrictions.
-
-Conflicts of Interest: The authors declare no conflicts of interest.
-
-Appendix A. Private Forest Owners Questionnaire
-
-A. GENERAL INFORMATION ABOUT THE OWNER OF THE FOREST
-
-1.
-
-2.
-
-You are (check the answer option):
-Female □ Male □ I don’t want to specify □
-Your age (circle the answer option):
-
-(a) up to 25 years
-(b) 25–39 years old.
-(c) 40–60 years old.
-(d) older than 60 years.
-(e)
-
-I don’t want to specify.
-
-3.
-
-Your place of residence (circle the answer option):
-
-(a) city;
-(b) small town;
-(c) village;
-(d) other (specify) __________________________
-
-4.
-
-Your education (circle the answer option):
-
-secondary;
-
-(a) high university education;
-(b) non-university high education;
-(c)
-(d) special secondary education;
-(e)
-(f) other (specify)________________________________
-
-incomplete secondary education;
-
-5.
-
-Your knowledge in the field of forestry (circle the answer option, there may be
-more options):
-
-I do not have a forestry education, but I have work experience in the field of forestry;
-
-(a) higher/higher education in forestry/forestry;
-(b)
-(c) courses and seminars;
-(d) mass media (press, television, internet, etc.);
-(e)
-(f) other (specify) _________________________________
-
-I don’t know anything;
-
-Forests 2024, 15, 1657
-
-16 of 19
-
-6. Are you a member of associations, societies, etc. member of organizations that are related
-to forests and/or activities in them. (circle the answer option, there may be more options):
-
-(a) hunters group;
-(b) association of forest owners/cooperative;
-(c)
-(d) other (specify) _________________________________
-
-I do not belong to any forest-related organization, society, etc.;
-
-7.
-
-You are:
-
-top, mid-level manager;
-
-(a)
-(b) specialist, clerk;
-(c) worker, technical worker;
-(d) working under a business certificate/individual activity;
-(e)
-farmer;
-(f) unemployed;
-(g) pensioner;
-(h) student, pupil.
-
-8. What is your average monthly income, before taxes, i.e., “on paper”? (circle the answer
-
-option) (personal income, not from the forest estate)
-
-from 841 to 1200 EUR;
-from 1201 to 3000 EUR (average salary);
-
-(a) up to 840 EUR (minimum salary);
-(b)
-(c)
-(d) 3001 EUR and more;
-(e)
-(f)
-(g) other (specify) ______________________________________
-
-I have no monthly income;
-I do not want to answer;
-
-B. OPINION ON THE NEED FOR MONITORING
-
-9.
-
-In your opinion, is it necessary to monitor the socio-economic development of private
-forest owners in Lithuanian private forests?
-
-(a) Yes;
-(b) No;
-(c)
-
-I don’t know;
-
-10.
-
-In your opinion, what are the benefits of monitoring the socio-economic development
-of private forest owners? (choose all the answers that are acceptable to you)
-
-(a)
-
-it will be useful not only for the forests‘ owners themselves, but also for the state
-and society;
-it will help to ensure sustainable forest management;
-it will maintain the provision of ecosystem services;
-it will contribute to the economic development of the region;
-
-(b)
-(c)
-(d)
-(e) other (specify) _________________________________
-
-11. What do you expect from this monitoring?
-
-(a) Formation of sustainable private forest policy;
-(b) Contribution to sustainable forest development;
-(c) Prevention of climate change;
-(d) Community involvement and promotion of social responsibility;
-(e) other (specify) ________________________________
-
-12. What would motivate you to participate in this monitoring?
-
-(a) Privileges _________________________________
-(b) Provision of consultations and information;
-(c) Personal motivation;
-(d) Practical benefits;
-(e) other (specify)________________________________
-
-Forests 2024, 15, 1657
-
-17 of 19
-
-13. Would you agree to be a permanent member of the group?
-
-(a) Yes;
-(b) No;
-(c)
-(d) other (specify) _________________________________
-
-I don’t know;
-
-14. How often do you think surveys of private forest owners should be conducted?
+![A diagram of a circuit  AI-generated content may be incorrect.](data:image/png;base64...)
 
-(a) once a year;
-(b) once every 2 years;
-(c) once every 3 years;
-(d) once every 5 years;
-(e) once every 10 years.
-(f) other
+**9 pav.** RC grandinė skirta modeliuoti temperatūrai (detalus modelis)
 
-15. Do you have any other observations that are not listed in this questionnaire? If so,
+Atlikus simuliaciją, nustatyta, jog 120 kW inverteris gali įkaisti dėžės viduje iki 308 °C. Tai parodo, kad, norint integruoti dėžės viduje tokius inverterius, reikia specialiai projektuoti aušinimą, o tai reikalauja papildomų lėšų, nes be visa to, kiekvienu inverterio atveju, būtų reikalinga įvertinti skirtingą aušinimo poreikį dėl skirtingų inverterių. Tai taip pat turėtų įtakos tokio įrenginio patikimumui.
 
-please specify them.
+Kitas svarbus aspektas - inverterių gabaritai, kadangi jie gaminami skirtingų dydžių. Dauguma iki 120 kW galios inverterių yra gana dideli ir turi panašius matmenis, kaip kuriamo įrenginio korpusas. O, norint montuoti jų daugiau vienoje dėžėje, tai tampa keblu, nes kiekvienu atveju reiktų gaminti vis skirtingą dėžę, kas išbrangina tokio įrenginio gamybą.
 
-References
+Trečiasis argumentas - saulės elektrinių inverteriai, paprastai, yra sukurti montavimui pastato viduje arba išorėje, todėl montuojami pastato viduje ar lauke ant sienos, bet nėra dedami į uždarą bloką. Visi šie faktoriai ir lėmė, kad nuspręsta atsisakyti vidinio inverterio.
 
-1.
+**2. Išnagrinėti kiekvieno komponento funkcionavimą atskirai ir su kitais komponentais**
 
-2.
+Hibridinis įrenginys realizuojamas moduliniu principu, taip užtikrinant nepriklausomą kiekvieno funkcinio bloko kūrimą, testavimą/modifikavimą, taip palengvinant galimą įrenginio išplėtimą ir jo priežiūrą. Norint parinkti ir išnagrinėti kaip vidiniai komponentai funkcionuos atskirai ir su kitais komponentais, buvo suformuoti šie reikalavimai hibridiniam įrenginiui:
 
-3.
+* *lankstumas* (modulinė struktūra sukonfigūruojama pagal kliento poreikius ir pritaikoma individualiam vartotojui su plėtros galimybe). Galimybė išplėsti protokolo taškų skaičių pagal poreikius.
+* *universalumas* (tinka visiems pasirinkto protokolo ar vieno tipo prietaisams, nes neprisirišama prie konkretaus modelio ar konkrečios kompanijos modulių linijos, kai unikalūs valdikliai lieka išorėje),
+* *duomenų srauto standartizavimas* (visų protokolų duomenys konvertuojami į BACNet/IP protokolą),
+* *suderinamumas* (visi integruoti į vieningą sistemą įrenginio komponentai funkcionuoja korektiškai),
+* realizuotas *Plug-and-play modelis* (PnP), t.y. galimybė automatiškai prijungti išorinius prietaisus, modulius ir valdiklius, kurių parametrai yra surašyti kuriamo įrenginio kompiuterio duomenų bazėje).
+* Subscribe funkcija. Ji ne BaCNet protokoluose nėra numatyta dėl Meistras – Pavaldinys (Master – Slave) architektūros. Tai reiškia, kad pavaldus prietaisas (o tai galinis valdiklis, skaitliukas ar jutiklis) negali pats inicializuoti komunikacijos nei su Meistru, nei su kitu pavaldiniu. Todėl sumanymas yra toks, kad ją turėtų inicijuoti ir realizuoti protololų keitiklis pasinaudodamas Discovery procedūra savo protokolo (ModBus, Dali, MBus ir t.t. ) tinkle. T.y. protokolo keitiklis pats periodiškai apklausinėja (Pooling arba sudėtingesnis mechanizmas) galutinio valdiklio registrą (Duomenų tašką), ir aptikęs jo vertės pakeitimą, išsiunčia jo vertę kaip BaCNet objektą į BacNet/IP magistralę pagrindiniam BlackBox kompiuteriui.
+* Discovery funkcija. BacNet protokole tai yra realizuojama kaip užklausos Who-is, Who-has. Tačiau kituose protokoluose jos nėra, arba ji labai ribota. Todėl kiekvienas protokolų keitiklis Discovery funkciją turėtų realizuoti per konkrečias procedūras savo protokole. Modbus vienaip, Dali kitaip, M-BUS dar kitaip ir t.t. Discovery funkcija numato naujo galinio valdiklio prijungimo ir atjungimo automatinį aptikimą ir jo adreso magistralėje nustatymą. Be to aptinkami prietaiso registrai ir jų adresai. Taip pat Discovery funkcija leidžia aptikti konfliktus magistralėje, kai du ar daugiau galinių prietaisų turi tą patį adresą.
 
-4.
+Galima teigti, kad šiuo metu rinkoje naudojami įvairūs pastatų valdymo sistemų (angl. Building Management System – BMS) valdikliai. Šie valdikliai veikia *debesyse,* tačiau, esant interneto trikdžiams, BMS sistemoms aktualu išlaikyti įvairių išorinių elementų valdymą ir todėl nuspręsta atsisakyti standartinių išmaniųjų BMS valdiklių (SmartX Controller AS-P), o skirtingų valdiklių funkcijas apjungti į vieną įrenginį. Jo funkcijas atlieka kuriamo įrenginio kompiuteris, kuris valdytų pagrindinius protokolų keitiklius bei kitus būtinus komponentus reikalingus pastato efektyviam energijos valdymui ir greitam duomenų apdorojimui. Įrenginys komunikuoja su išorės įrenginiais per laidinę terpę (interneto kabeliu). Tai leis padidinti sistemos patikimumą, pagreitės įrenginio instaliavimas.
 
-5.
+Įrenginyje bus integruoti standartiniai ir plačiai paplitę komunikacijos protokolų keitikliai (DALI, ModBus, Mbus, CAN), kurie konvertuoja į Bacnet protokolą ir taip užtikrina įrenginio sąveiką su įvairiomis sistemomis. Remiantis minėtais reikalavimais, pagrindinis tikslas, jog visi parinkti komponentai veiktų ir komunikuotų su pagrindiniu kompiuteriu nepriklausomai vienas nuo kito.
 
-6.
+Įprasti protokolų keitikliai dažnai negali patenkinti visų techninių reikalavimų, nes jie apima tik pagrindines funkcijas. Todėl priimtas sprendimas naudoti atskirus protokolų keitiklius, atliekančius specifines funkcijas tam tikram išoriniam prijungtam moduliui. Šie keitikliai gali palaikyti mažiau populiarius arba nestandartinius protokolus, kuriems nėra rinkoje universalių sprendimų. Taip pat vienu metu galima palaikyti kelis protokolus ir tiesiogiai bendrauti su valdymo sistema per centralizuotą sąsają. Toks sprendimas optimizuoja konversijos procesus (sumažina atsako laiką, padidina sistemos reakcijos greitį ir duomenų perdavimo efektyvumą). Tiesioginė vidinė komunikacija su valdančiuoju kompiuteriu sumažina duomenų srauto delsą, kas yra ypač svarbu realiuoju laiku veikiančioms sistemoms, pasiekiant aukštesnį funkcionalumo, universalumo, saugumo ir sistemos našumo lygį. Tokie keitikliai taip pat leidžia ir lengviau prisitaikyti prie ateities poreikių.
 
-7.
+Remiantis šiais išvardintais reikalavimais, buvo sudaryta įrenginio vidinė sujungimų schema, kuri pateikta 10 paveikslėlyje:
 
-Blanco, V.; Brown, C.; Holzhauer, S.; Vulturius, G.; Rounsevell, M.D. The importance of socio-ecological system dynamics in
-understanding adaptation to global change in the forestry sector. J. Environ. Manag. 2017, 196, 36–47. [CrossRef] [PubMed]
-Riccioli, F.; Fratini, R.; Marone, E.; Fagarazzi, C.; Calderisi, M.; Brunialti, G. Indicators of sustainable forest management to
-evaluate the socio-economic functions of coppice in Tuscany, Italy. Socio-Econ. Plan. Sci. 2020, 70, 100732. [CrossRef]
-Brukas, V.; Sallnäs, O. Forest management plan as a policy instrument: Carrot, stick or sermon? Land Use Policy 2012, 29, 605–613.
-[CrossRef]
-Sotirov, M.; Sallnäs, O.; Eriksson, L.O. Forest owner behavioral models, policy changes, and forest management. An agent-based
-framework for studying the provision of forest ecosystem goods and services at the landscape level. For. Policy Econ. 2019,
-103, 79–89. [CrossRef]
-Liubachyna, A.; Secco, L.; Pettenella, D. Reporting practices of state forest enterprises in Europe. For. Policy Econ. 2017, 78, 162–172.
-[CrossRef]
-Falcone, P.M.; Tani, A.; Tartiu, V.E.; Imbriani, C. Towards a sustainable forest-based bioeconomy in Italy: Findings from a SWOT
-analysis. For. Policy Econ. 2020, 110, 101910. [CrossRef]
-Feliciano, D.; Bouriaud, L.; Brahic, E.; Deuffic, P.; Dobsinska, Z.; Jarsky, V.; Ficko, A. Understanding private forest owners’
-conceptualisation of forest management: Evidence from a survey in seven European countries. J. Rural. Stud. 2017, 54, 162–176.
-[CrossRef]
+![A diagram of a computer  AI-generated content may be incorrect.](data:image/jpeg;base64...)
 
-8. Weiss, G.; Lawrence, A.; Hujala, T.; Lidestav, G.; Nichiforel, L.; Nybakk, E.; Živojinovi´c, I. Forest ownership changes in Europe:
+**10 pav.** Kuriamo įrenginio pirminė vidinė pajungimų schema
 
-State of knowledge and conceptual foundations. For. Policy Econ. 2019, 99, 9–20. [CrossRef]
+Visi parinkti schemoje komponentai bendrauja su pagrindiniu kompiuteriu naudojant Bacnet protokolą kaip pagrindinį komunikacijos protokolą. Preliminarūs dėžės signaliniai prievadai yra naudojami šie:
 
-9. Wolfslehner, B.; Vacik, H.; Lexer, M.J. Application of the analytic network process in multi-criteria analysis of sustainable forest
+1. Ethernet prievadai internetui į išorinį tinklą,
 
-management. For. Ecol. Manag. 2005, 207, 157–170. [CrossRef]
+2. Trys Ethernet prievadai (vidiniam BACNet/IP).
 
-10. Dressel, S.; Ericsson, G.; Sandström, C. Mapping social-ecological systems to understand the challenges underlying wildlife
+3. Du RS-485 prievadai,
 
-11.
+4. Du USB įrenginio prievadai, vidiniam PC.
 
-management. Environ. Sci. Policy 2018, 84, 105–112. [CrossRef]
-Skulska, I.; Colaço, M.C.; Aggarwal, S.; Didier, H.; Monteiro, M.D.L.; Rego, F.C. Assessment of portuguese community forestry
-using the voluntary guidelines on the responsible governance of tenure and FAO community-based forestry framework. Soc. Nat.
-Resour. 2020, 33, 101–121. [CrossRef]
+5. HDMI prievadas vidinio PC monitoriui.
 
-12. Rodriguez Franco, C.; Conje, J. The evolution of the dialogue and perspectives on sustainable forest management with special
+6. RS485 du prievadai.
 
-emphasis on the United States of America. J. Sustain. For. 2023, 42, 747–791. [CrossRef]
+7. ESO Elektros tinklo trifazės srovės AC 360V prievadas
 
-13. Pour, M.D.; Barati, A.A.; Azadi, H.; Scheffran, J.; Shirkhani, M. Analyzing forest residents’ perception and knowledge of forest
+8. Atsarginio rezervinio tinklo trifazės srovės AC360V prievadas.
 
-ecosystem services to guide forest management and biodiversity conservation. For. Policy Econ. 2023, 146, 102866.
+Kaip matyti iš pateiktos įrenginio sujungimų schemos, vidiniai komponentai yra naudojami šie:
 
-14. Warziniack, T.; Allor, L.; Bunn, D.; McHale, M. Forests as social–ecological systems. In Future Forests; McNulty, S.G., Ed.; Elsevier:
+* ModBUS (RS485)-Bacnet protokolų keitiklis MGate 5217, kuris konvertuoja Modbus RTU/ACSII/TCP į BACnet/IP protokolą
+* iSMA-B-MIX18-IP išplėtimo modulis, lengvai konfigūruojamas 18 įėjimų/išėjimų (5UI, 5DI, 4AO, 4DO) išplėtimo modulis yra vienas iš universaliausių ir ekonomiškai optimaliausių sprendimų su RS485 ir 2x Ethernet sąsajomis palaiko atviro tipo Modbus (ASCII, RTU, TCP/IP) ir  BACnet (MSTP, IP) protokolus
+* M-bus-Bacnet protokolų keitiklis su Mbus impulsų skaitiklis, MBHS-8
+* Dali-Bacnet protokolų keitiklisCAN - BACNet/IP (ethernet) protokolų keitikliai. Galimybė prijungti 30 galinių prietaisų (600 – 1200 duomenų taškų).
+* Tinklo analizatorius ND30bac (1 ir 3 fazių elektros tinklo skaitiklis komunikuojantis per BACnet protokolą)
+* ABB 360V el. tinklo perjungėjas OTM63F4C21D400C PERJUNGIKLIS perjungia maitinimą iš rezervinės linijos arba generatorių.
+* Industrinis PC - Pagrindinis kompiuteris, serveris (2 Ethernet prievadai).
+* Ethernet HUB, tinkantis BACnet/IP standartui.
+* Baterija QUINT4-CAP/ 24DC/10/8KJ
+* Įrenginys turės kontrolerį, du 24 V maitinimo šaltinius (STEP3-PS/1AC/24DC/5/PT).
 
-Amsterdam, The Netherlands, 2024; pp. 265–278.
+Kuriame įrenginyje BACNet skirtas komunikacijai su vidiniais komponentais, kurie palaiko BACNet protokolą. Jo pagrindinis tikslas – per jį stebėti, valdyti ir konfigūruoti pastatų automatizacijos sistemas (šildymą, vėdinimą, oro kondicionavimą, apšvietimą ir kt.).
 
-15. Eggers, J.; Roos, U.; Lind, T.; Sandström, P. Adapted Forest management to improve the potential for reindeer husbandry in
+Komunikacijai su išoriniais įrenginiais, šiuo atveju ModBus protokolas naudoja RS485 magistralę. Įrenginyje yra vienas RS485 prievadas, todėl galime naudoti Modbus/RTU, „Modbus ASCII“, ir BacNet/IP. Šis keitiklis konvertuoja Modbus RTU/ACSII/TCP į BACnet/IP protokolą ir o pagrindinės savybės:
 
-Northern Sweden. Ambio 2024, 53, 46–62. [CrossRef]
+* Palaiko pramoninę įtampą iki 6–35 V nuolatinės srovės.
+* Integruoti **„Wi-Fi“** ir **Ethernet** interneto ryšiui.
+* **100 Mb** Ethernet sąsaja.
+* ESP32-WROOM-32D WiFi/BLE modulis. ( **Dviejų branduolių** galimybės).
+* USB jungtis, skirta lengvai programuoti **ESP32** naudojant Arduino IDE.
+* Pusiau dvipusis **RS485 ryšio** prievadas **.**
+* Integruota **EEPROM** mikroschema duomenims saugoti.
+* Automatinis duomenų srauto valdymas RS485.
+* Du programuojami LED indikatoriai. (kaip siųstuvo ir imtuvo LED indikatorius)
+* Pasirenkamas RS485 siųstuvo-imtuvo įtampos lygis (5 V ir 3,3 V).
+* Pramoninis korpusas su DIN tvirtinimu ir kompaktišku PCB dydžiu.
 
-16. Tadesse, T.; Teklay, G.; Mulatu, D.W.; Rannestad, M.M.; Meresa, T.M.; Woldelibanos, D. Forest benefits and willingness to pay for
+RS485 sąsaja naudoja diferencinę įtampą, kad ryšys būtų be klaidų. Todėl reikalinga RS485 siųstuvo-imtuvo, kuris konvertuos įprastus TTL signalus į RS485 diferencinės įtampos signalus.
 
-sustainable forest management. For. Policy Econ. 2022, 138, 102721. [CrossRef]
+1. MAX485 (veikia esant 5 V įėjimo įtampai)
+2. MAX3485 (veikia esant 3,3 V įėjimo įtampai)
 
-17. Bowditch, E.A.; McMorran, R.; Smith, M.A. Right connection, right insight engaging private estate managers on woodland
+RS485 naudojamas tolimojo nuotolio laidiniam ryšiui modulis palaiko ryšį iki 1 km atstumu, jei duomenų perdavimo sparta buvo 9600 bodų. Šiuo atveju, RS485 magistralės apsaugai panaudojome nedidelį SM712 serijos 600 W asimetrinį TVS diodų masyvą. SM712 yra specialiai sukurtas apsaugoti RS-485 taikymus su asimetrinėmis darbinėmis įtampomis (nuo -7 V iki 12 V) nuo pažeidimų dėl elektrostatinės iškrovos (ESD), greitųjų elektros pereinamųjų procesų (EFT) ir žaibo sukeltų viršįtampių.
 
-expansion issues in times of uncertainty. Land Use Policy 2023, 124, 106437. [CrossRef]
+Remiantis duomenų lapu, jis suteikia šias apsaugos priemones:
 
-18. Makrickiene, E.; Brukas, V.; Brodrechtova, Y.; Mozgeris, G.; Sedmák, R.; Šálka, J. From command-and-control to good forest
+* ESD, IEC 61000-4-2, ±30 kV kontaktinis, ±30 kV oru
+* EFT, IEC 61000-4-4, 50A (5/50ns)
+* Saugiklis, IEC 61000-4-5 2-asis leidimas, 19 A (tP = 8/20 μs)
 
-governance: A critical interpretive analysis of Lithuania and Slovakia. For. Policy Econ. 2019, 109, 102024. [CrossRef]
+Pramoninis korpusas su DIN tvirtinimu ir kompaktišku PCB dydžiu.
 
-Forests 2024, 15, 1657
+Komunikacijai tarp BacNet/IP- Modbus protokolo keitiklio pateikta žemiau principinė schema (11 pav.):
 
-18 of 19
+![A screenshot of a computer program  AI-generated content may be incorrect.](data:image/png;base64...)![A screenshot of a computer  AI-generated content may be incorrect.](data:image/png;base64...)
 
-19. Haji, L.; Valizadeh, N.; Hayati, D. The role of local communities in sustainable land and forest management. In Spatial Modeling
-in Forest Resources Management: Rural Livelihood and Sustainable Development, 1st ed.; Shit, P.K., Pourghasemi, H.R., Das, P.,
-Bhunia, G.S., Eds.; Springer International Publishing: Cham, Switzerland, 2020; pp. 473–503.
+**11 pav.** Modbus keitiklio principinė schema
 
-20. Kalinauskas, M.; Bogdzeviˇc, K.; Gomes, E.; Inácio, M.; Barcelo, D.; Zhao, W.; Pereira, P. Mapping and assessment of recreational
+Dali protokolų keitiklis….
 
-cultural ecosystem services supply and demand in Vilnius (Lithuania). Sci. Total Environ. 2023, 855, 158590. [CrossRef]
+CAN protokolų keitiklis ….
 
-21. Roitsch, D.; Abruscato, S.; Lovri´c, M.; Lindner, M.; Orazio, C.; Winkel, G. Close-to-nature forestry and intensive forestry–Two
+MQTT komunikuoja tiesiai per Bacnet.
 
-response patterns of forestry professionals towards climate change adaptation. For. Policy Econ. 2023, 154, 103035. [CrossRef]
+Mbus protokolų keitiklis ….
 
-22. Niedziałkowski, K.; Chmielewski, P. Challenging the dominant path of forest policy? Bottom-up, citizen forest management
+iSMA-B-MIX18-IP išplėtimo modulis komunikuoja per maršrutizatorių su pagrindiniu kompiuteriu
 
-initiatives in a top-down governance context in Poland. For. Policy Econ. 2023, 154, 103009. [CrossRef]
+Tinklo analizatorius komunikuoja naudodamas Bacnet protokolą ir per mašrutizatorių su pagrindiniu kompiuteriu…..
 
-23. Thomas, J.; Brunette, M.; Leblois, A. The determinants of adapting forest management practices to climate change: Lessons from
+ABB 360V el. tinklo perjungėjas OTM63F4C21D400C PERJUNGIKLIS
 
-a survey of French private forest owners. For. Policy Econ. 2022, 135, 102662. [CrossRef]
+Po vieną pastraipą parašyti kiekvienam protokolų keitikliui. Komponentų funkcionavimas gali būti paaiškinimas per pateiktą 10 pav. schemą.
 
-24. Pezdevšek Malovrh, Š.; Krajnc, N.; Triplat, M. Factors Influencing Private Forest Owners’ Readiness to Perform Forest Manage-
+**Po susitikimo (2025-07-17) papildomi komentarai:**
 
-25.
+* Komponentai veikia pagal savo paskirtį ir dar tiesiogiai „*bendrauja*“ su kompiuteriu. Todėl reiktų aprašyti atskirai veikiančius komponentus, akcentuojant jų funkcionalumą.
+* Nesieti naujumų prie tinklo analizatoriaus bei galios keitiklio, nes jie nėra pagrindiniai viso kuriamo įrenginio objektai, o tik sudedamosios dalys. Geriau koncentruotis į protokolų keitiklius.
 
-ment Services Within a Machinery Ring. Small-Scale For. 2022, 21, 661–679. [CrossRef]
-Joshi, S.; Arano, K.G. Determinants of private forest management decisions: A study on West Virginia NIPF landowners.
-For. Policy Econ. 2009, 11, 118–125. [CrossRef]
+Tam būtina atlikti technologijų analizę, įvertinus kokiais realizavimo būdais komponentas gali būti įgyvendintas, taip pat nustatyti komponentų integravimo ir optimizavimo metodų įtaką hibridinio įrenginio funkcionalumui, kartu pasiūlant optimalų sprendimą.
 
-26. Tiebel, M.; Mölder, A.; Plieninger, T. Conservation perspectives of small-scale private forest owners in Europe: A systematic
+1. **Sukurti matematinį ir/arba kompiuterinį modelį, kuris aprašytų hibridinio įrenginio veikimą**
 
-review. Ambio 2022, 51, 836–848. [CrossRef] [PubMed]
+Hibridinio įrenginio protokolų keitiklio sistemos parametrizavimui, įvertinus ir jos rezervavimo poreikį, **s**ukurtas analitinis mazgo (protokolų keitiklio) modelis, kuriame taikomi skirtingi integravimo ir optimizavimo metodai (5 pav.).
 
-27. Quiroga, S.; Suarez, C.; Ficko, A.; Feliciano, D.; Bouriaud, L.; Brahic, E.; Nybakk, E. What influences European private forest
+![A diagram of a computer  AI-generated content may be incorrect.](data:image/png;base64...)
 
-owners’ affinity for subsidies? For. Policy Econ. 2019, 99, 136–144. [CrossRef]
+**5 pav.** Apibendrintos protokolų keitiklio sistemos struktūros modelis
 
-28. Larsen, J.B.; Angelstam, P.; Bauhus, J.; Carvalho, J.F.; Diaci, J.; Dobrowolska, D.; Schuck, A. Closer-to-Nature Forest Management.
+Protokolų keitiklio sistema (5 pav.) yra hierarchinė ir susideda iš pagrindinio valdymo įrenginio (angl. Main Control Unit (MCU)), Ethernet komutatoriaus bei prie jo prijungtų įvairių žemesnės hierarchijos protokolų valdiklių (angl. Control arba Master Devices (MD)) su magistralėmis (BACnet, DALI, Modbus, CAN r kt.), kurios jungia jutiklius, skaitiklius, aktuatorius ar kitus valdikliui pavaldžius galinius įrenginius (angl. Subordinate arba Slave Devices (SD)). Duomenų atnaujinimui MCU siunčia užklausas arba komandas MD įrenginiams, o šie turi sau pavaldžius SD įrenginius, iš kurių informaciją surenka juos apklausiant. Dažnai toks apklausų ciklas yra determinuotas ir periodinis, todėl jį ir galima sumodeliuoti įvertinant apklausų dažnumą, surenkamų duomenų kiekį, trukmę. Apdorojęs duomenis iš SD surinktus duomenis, MD persiunčia juos atgal į MCU.
 
-29.
+Kadangi MQTT, M-bus, DALI, Modbus ir CAN įrenginiai turi ribotą komunikacijos spartą, būtina įvertinti, kaip valdiklio užklausų dažnis veikia jų veikimą. Jei užklausos siunčiamos per dažnai, tai gali atsirasti duomenų praradimas arba dideli vėlavimai. Nors komutatorius užtikrina aukštą pralaidumą, tačiau kritinė sąsaja yra tarp MCU ir komutatoriaus, nes per ją keliauja visos užklausos ir atsakymai. Modeliavimas galėtų padėti nustatyti, kokio pralaidumo turėtų būti ryšio sąsajos, koks yra optimalus užklausų intensyvumas ir kaip paskirstyti apkrovą tarp jutiklių ir valdiklių. Modeliuojant duomenų srautus galima įvertinti apkrovas skirtinguose tinklo segmentuose, duomenų paketų vėlinimus ir praradimus, dinaminius tinklo pokyčius ir reagavimo strategijas. Pagrindinis valdiklis ir protokolų keitikliai gali inicijuoti užklausas galiniams įrenginiams, todėl analitinis modelis gali padėti nustatyti, kaip tinkamai paskirstyti ar valdyti srautus tarp skirtingų technologijų keitiklių, kad būtų išvengta perteklinio apkrovimo.
 
-From Science to Policy; European Forest Institute: Joensuu, Finland, 2022; Volume 12, pp. 1–54.
-Stojanovski, V. Policy Processes in the Institutionalisation of Private Forestry in the Republic of North Macedonia. Sustainability
-2022, 14, 4018. [CrossRef]
+Analitinis modelis įvertina kiekvieno protokolo/valdiklio užklausų intensyvumą, skirtingų protokolų atsako laiką ir apkrovų pasiskirstymą tinkle. Modeliuojant srautus taikomi *Puasono* procesai arba *Markovo* modeliai, kurie leidžia nustatyti, pavyzdžiui, kiek sensorių gali būti aptarnaujama efektyviai, arba koks turėtų būti užklausų dažnis, kuris užtikrina optimalų duomenų surinkimą, neviršijant sisteminių resursų ribų.
 
-30. Westin, K.; Bolte, A.; Haeler, E.; Haltia, E.; Jandl, R.; Juutinen, A.; Schueler, S. Forest values and application of different
-management activities among small-scale forest owners in five EU countries. For. Policy Econ. 2023, 146, 102881. [CrossRef]
-Juutinen, A.; Tolvanen, A.; Koskela, T. Forest owners’ future intentions for forest management. For. Policy Econ. 2020, 118, 102220.
-[CrossRef]
+**Sistemos mazgo analitinis matematinis modelis**
 
-31.
+Kiekvienas sistemos komponentas laikomas atskiru mazgu, kuriam taikomi analitiniai matematiniai modeliai. Taikant analitinį modelį, analizuoti tokioje sistemoje sukuriamų užklausų srautai pagal jų atėjimo intensyvumą, apdorojimo intensyvumus, skirtingų protokolų atsako laikus ir atskirose tinklo dalyse sukuriamas apkrovas.
 
-32. Haugen, K.; Karlsson, S.; Westin, K. New Forest owners: Change and continuity in the characteristics of Swedish non-industrial
+Ši protokolų keitiklio sistema (5 pav.) sumodeliuota kaip ryšių kanalais sujungtų mazgų tinklas, o kiekvienas mazgas ar duomenų perdavimo kanalas sumodeliuotas naudojant teletrafiko teorijoje taikomus aptarnavimo sistemų su eilėmis modelius (6 pav.). Taip buvo įvertinta mazgui tenkanti apkrova, užklausų (duomenų paketų) praradimai, vėlinimas eilėse ar bendra užklausų (paraiškų, paketų) aptarnavimo trukmė sistemoje.
 
-private forest owners (NIPF owners) 1990–2010. Small-Scale For. 2016, 15, 533–550. [CrossRef]
+![A white and black logo  AI-generated content may be incorrect.](data:image/png;base64...)
 
-33. Mook, A.; Dwivedi, P. Exploring links between education, forest management intentions, and economic outcomes in light of
+**6 pav.** Aptarnavimo sistemos atskiro mazgo modelis
 
-gender differences in the United States. For. Policy Econ. 2022, 145, 102861. [CrossRef]
+Įvertinti šie aptarnavimo sistemos mazgo su eile modelio pradiniai **parametrai,** apibūdinantys paraiškųatėjimo į sistemą srautą:
 
-34. Degnet, M.B.; Hansson, H.; Hoogstra-Klein, M.A.; Roos, A. The role of personal values and personality traits in environmental
+* $Δt$ – laikotarpių tarp gretimų paraiškų aritmetinis vidurkis,
+* $σ\_{Δt}$ – laikotarpių tarp gretimų paraiškų standartinis nuokrypis,
+* $λ=1/Δt $– paraiškų atėjimo intensyvumas,
 
-35.
+apibūdinantys paraiškųaptarnavimą (apdorojimą):
 
-concern of non-industrial private forest owners in Sweden. For. Policy Econ. 2022, 141, 102767. [CrossRef]
-Janová, J.; Hampel, D.; Kadlec, J.; Vrška, T. Motivations behind the forest managers’ decision making about mixed forests in the
-Czech Republic. For. Policy Econ. 2022, 144, 102841. [CrossRef]
+* + - $τ$ – paraiškos aptarnavimo vidutinė trukmė,
+    - $σ\_{τ}$– paraiškos aptarnavimo trukmės standartinis nuokrypis.
+    - $μ=1/τ$ – paraiškų aptarnavimo (apdorojimo) intensyvumas,
+    - $n$ – kanalų skaičius,
+    - $B$ – buferio talpa.
 
-36. Deuffic, P.; Sotirov, M.; Arts, B. “Your policy, my rationale”: How individual and structural drivers influence European forest
+Apskaičiuojami parametrai:
 
-owners’ decisions. Land Use Policy 2018, 79, 1024–1038. [CrossRef]
+* $A$ – apkrovos intensyvumas,
+* $λ\_{a}$ – aptarnautų paraiškų intensyvumas,
+* $λ\_{o}$ – išeinančių paraiškų intensyvumas,
+* $λ\_{b}$ – prarastų arba blokuotų paraiškų intensyvumas,
+* $P\_{b}$ – paraiškų blokavimo (praradimo) tikimybė,
+* $W\_{q}$ – vidutinis laukimo laikas eilėje,
+* $N\_{q}$ – vidutinis eilėje laukiančių paraiškų skaičius,
+* $W=W\_{q}+τ$ – vidutinis aptarnautos paraiškos buvimo laikas mazge.
 
-37. Aithal, A.; Aithal, P.S. Development and validation of survey questionnaire & experimental data–a systematical review-based
+Tolimesnei analizei ir apibendrintam sistemos modeliui sudaryti naudojami vienkanalių sistemų su eilėmis modeliai. Buferių užimtumai ir rekomenduotinas jų dydis bus įvertinti atliekant atitinkamus skaičiavimus pagal sukuriamas apkrovas ir vidutines laukimo eilėse trukmes pagal *Little‘o* formulę. Tokie modeliai leidžia įvertinti mazgų parametrus skirtingo pobūdžio srautams ir skirtingiems aptarnavimo trukmių skirstiniams.
 
-statistical approach. Int. J. Manag. Technol. Soc. Sci. IJMTS 2020, 5, 233–251.
+Analitiniai modeliai skirtingiems duomenų srautams ir aptarnavimo trukmių skirstiniams dažnai apibūdinami pagal *Kendall‘o* pasiūlytą žymėjimą: X/Y/1/K, X – nusako paraiškų srauto pobūdį, Y – aptarnavimo trukmių skirstinį, 1 – vienas kanalas, K – mazgo talpa (kiek paraiškų gali tilpti mazge – eilėje ir kanale, jei nenurodyta, tai $\infty $). Galima išskirti tris pagrindinius paraiškų srautų tipus: M – paprastasis (arba Puasono – laikotarpiai tarp paraiškų pasiskirstę pagal eksponentinį skirstinį), D –  determinuotas (laikotarpiai tarp paraiškų determinuoti – vienodi) ir G  – bendrasis (laikotarpių tarp paraiškų skirstinys apibūdinamas pasirenkant $Δt$ ir $σ\_{Δt}$). Tomis pačiomis raidėmis žymimas ir aptarnavimo trukmių skirstinys: M – eksponentinis, D –  determinuotas, G – bendrasis. Pavyzdžiui, žymėjimas M/D/1 reiškia, kad paraiškų srautas yra paprastasis, o aptarnavimo trukmė determinuota.
 
-38. Rassel, G.; Leland, S.; Mohr, Z.; O’Sullivan, E. Research Methods for Public Administrators; Routledge: Abington, UK, 2020.
-39. Hennink, M.; Hutter, I.; Bailey, A. Qualitative Research Methods; Sage: Thousand Oaks, CA, USA, 2020.
-40. Tracy, S.J. Qualitative Research Methods: Collecting Evidence, Crafting Analysis, Communicating Impact; John Wiley & Sons: Hoboken,
+Paprastasis arba Puasono paraiškų srautas yra ordinarus (vienu laiko momentu gali ateiti tik viena paraiška), o laiko intervalų tarp gretimų paraiškų trukmės yra nepriklausomi atsitiktiniai dydžiai, pasiskirstę pagal eksponentinį skirstinį (jam $σ\_{Δt}=Δt$).
 
-NJ, USA, 2019.
+**Protokolo valdiklio ir jam pavaldžių galinių įrenginių tinklo modelis**
 
-41. Krueger, R.A. Focus Groups: A Practical Guide for Applied Research; Sage Publications: Thousand Oaks, CA, USA, 2014.
-42. Eriksson, L.; Fries, C. Relations between structural characteristics, forest involvement, and forest knowledge among private forest
+Protokolo valdiklio (MD) ir jam pavaldžių SD įrenginių posistemę galima sumodeliuoti naudojant mazgų analitines formules. Tačiau parenkant modelio parametrus reikia atsižvelgti į skirtingų technologijų specifiką ar techninius parametrus, pavyzdžių kokio dydžio yra duomenų paketai, koks magistralės, prie kurios prijungti SD įrenginiai, pralaidumas, kaip tie srautai formuojami.
 
-owners in Sweden. Eur. J. For. Res. 2021, 140, 51–63. [CrossRef]
+Nagrinėjamoje hierarchinėje struktūroje (5 pav.) MCU yra pagrindinis valdiklis. Tam, kad atnaujintų duomenis, MCU siunčia užklausas arba komandas MD įrenginiams, o šie turi sau pavaldžius SD įrenginius iš kurių informaciją surenka juos apklausiant. Dažnai toks apklausų ciklas yra determinuotas ir periodinis, todėl jį galima sumodeliuoti įvertinant apklausų dažnumą, surenkamų duomenų kiekį, trukmę. Apdorojęs duomenis iš SD surinktus duomenis MD persiunčia juos atgal į MCU.
 
-43. Perkumien ˙e, D.; Doftart ˙e, A.; Šk ˙ema, M.; Aleinikovas, M.; Elvan, O.D. The Need to Establish a Social and Economic Database of
+**Protokolo valdiklio posistemės duomenų srautai**
 
-Private Forest Owners: The Case of Lithuania. Forests 2023, 14, 476. [CrossRef]
+Galima išskirti tris pagrindinius duomenų srautus protokolo valdiklio posistemėje.
 
-44. Eriksson, L.; Fries, C. The knowledge and value basis of private forest management in Sweden: Actual knowledge, confidence,
+**MCU → MD: Užklausų srautas**
 
-and value priorities. Environ. Manag. 2020, 66, 549–563. [CrossRef]
+Užklausų iš MCU srautas modeliuojamas kaip $λ\_{mcu\_{i}}$ intensyvumo Puasono paraiškų srautas, kuris paduodamas į *i*-ojo MD eilę (buferį). Kiekviena užklausa inicijuoja apklausos ciklą MD potinklyje (7 pav.). Pavyzdžiui, jei naudojamas BACnet protokolas, tai apklausiant SD įrenginius naudojama ReadProperty užklausa, o SD atsakas yra ReadProperty response.
 
-45. Baranovskis, G, .; Nikodemus, O.; Br ¯umelis, G.; Elferts, D. Biodiversity conservation in private forests: Factors driving landowner’s
+![](data:image/png;base64...)
 
-46.
+**7 pav.** Valdiklio ir jam pavaldžių SD įrenginių potinklio modelio schema
 
-attitude. Biol. Conserv. 2022, 266, 109441. [CrossRef]
-Johnsson, F.; Beery, T. Outdoor recreation and the private forest owner: Place attachment, social values, and public access.
-Front. Conserv. Sci. 2023, 3, 1058557. [CrossRef]
+MD posistemę galima sumodeliuoti naudojant M/M/1/K modelį, kuris leidžia įvertinti ne tik MD buferio apkrautumą, bet ir paraiškų praradimus, jei jų intensyvumas yra per didelis.
 
-47. Gaižauskait ˙e, I.; Valaviˇcien ˙e, N. Socialiniu˛ Tyrimu˛ Metodai: Kokybinis Interviu; Registru˛ Centras: Vilnius, Lithuania, 2016.
-48. Glastonbury, B.; MacKean, J. Survey methods. In Handbook for Research Students in the Social Sciences; Routledge: Abington, UK,
+**MD užklausų ciklas: Vidinis valdomųjų SD apklausimas**
 
-2020; pp. 225–247.
+Modeliuojamas procesas (8 pav.), kurio metu *i*-asis MD cikliškai apklausia $S\_{i}$ jam pavaldžių SD įrenginių. Jei kiekvienas SD atsako su fiksuoto dydžio paketu, tai tokį procesą galima sumodeliuoti naudojant M/D/1 modelį. Jei atsakų į užklausas paketų dydžiai nėra vienodi arba dėl duomenų perdavimo bendra magistrale atsiranda perdavimo trukmių variacijos, tai tokį procesą galima sumodeliuoti M/M/1, M/G/1 arba G/G/1 modeliais.
 
-49. Meirte, J.; Hellemans, N.; Anthonissen, M.; Denteneer, L.; Maertens, K.; Moortgat, P.; Van Daele, U. Benefits and disadvantages of
+![A diagram of a diagram of a diagram  AI-generated content may be incorrect.](data:image/png;base64...)
 
-electronic patient-reported outcome measures: Systematic review. JMIR Perioper. Med. 2020, 3, e15588. [CrossRef]
+**8 pav.** Apklausų ciklo MD potinklyje tarp SD įrenginių laikinė diagrama
 
-Forests 2024, 15, 1657
+Jei *i*-asis MD apklausia $S\_{i}$ įrenginių, tai bendra MD mazgo duomenų ciklo surinkimo trukmė
 
-19 of 19
+$τ= \sum\_{j=1}^{S\_{i}}τ\_{poll}\_{j}$*.* (6)
 
-50. Valli, R. Creating a questionnaire for a scientific study. Int. J. Res. Stud. Educ. 2017, 6, 15–27. [CrossRef]
-51. Eggers, J.; Holmgren, S.; Nordström, E.M.; Lämås, T.; Lind, T.; Öhman, K. Balancing different forest values: Evaluation of forest
+čia $τ\_{poll}\_{j}$– kiekvieno $j$-ojo SD įrenginio apklausos ciklo trukmė
 
-management scenarios in a multi-criteria decision analysis framework. For. Policy Econ. 2019 103, 55–69. [CrossRef]
+$τ\_{poll\_{j}}=τ\_{ifg\_{i}}+τ\_{req\_{j}}+τ\_{resp\_{j}}$, (7)
 
-52. Grošelj, P.; Zandebasiri, M.; Pezdevšek Malovrh, Š. Evaluation of the European experts on the application of the AHP method in
+čia $τ\_{ifg\_{i}}$ – laiko intervalas (angl. interframe gap) tarp kadrų [s], kuris priklauso nuo *i*-ojo MD su SD jungiančios magistralės protokolo (pvz., 10 ms BACnet MP/TP atveju), bei atitinkamos duomenų užklausos ir atsako kadrų perdavimo trukmės
 
-sustainable forest management. Environ. Dev. Sustain. 2023, 4, 1–27. [CrossRef]
+$τ\_{req\_{j}}= \frac{8⋅L\_{req\_{j}}}{C\_{i}}$[s]*,* (8)
 
-53. Korhonen, J.; Panwar, R.; Henderson, J.; Fernholz, K.; Leggett, Z.; Meyer, E.; Bhuta, A.A. Gaps in diversity representation and
+$τ\_{resp\_{j}}= \frac{8⋅L\_{resp\_{j}}}{C\_{i}}$[s]*,* (9)
 
-data insufficiencies in the US forest sector workforce analysis. Trees For. People 2024, 15, 100486.
+čia $C\_{i}$ –magistralės duomenų perdavimo bitų sparta [bps] (1 lentelė), $L\_{req}\_{j}$ir$L\_{resp}\_{j}$yra atitinkamai užklausos nuskaityti *j*-ojo SD įrenginio duomenis ir atsako kadrų dydžiai [B].
 
-54. Paluš, H.; Marcineková, L.; Šálka, J. Was stakeholder participation in the PEFC revision process successful in Slovakia? For. Policy
+**1 lentelė.** Skirtingų protokolų parametrų suvestinė
 
-55.
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **Protokolas** | **Paketo ilgis, baitai** | **Bitų sparta** | **Dalinimosi mechanizmas** | **Max SD** | **Paketų antraščių dedamosios** |
+| **BACnet MS/TP** | ~488 | 9.6 – 115.2 kbps | Token passing | 32 (iki  128) | Preamble, Frame Type, Src/Dst Addr, CRC |
+| **BACnet/IP** | ~1518 (Ethernet) | 100 Mbps – 1  Gbps | Ethernet/  IP switching | 100-ai–1000-ai | Ethernet, IP, UDP, BVLC |
+| **BACnet/LonTalk** | ~250–300 | 78 kbps | CSMA/CA | 64–254 | Preamble, Control, Addressing, CRC |
+| **BACnet/IPv6** | ~1280 | Kintanti (Ethernet, 6LoWPAN) | IP-based | Neribotai | Ethernet, IPv6, UDP, BVLC |
+| **MQTT** | 10–100 (tipinis) | 100 Mbps+ (TCP/IP) | Broker pub/sub over TCP/IP | 1000-ai | Fixed + Variable + Optional Payload |
+| **M-Bus** | 6–260 | 300 – 9600 bps | Master–slave polling | 250 | Start, Control, Addr, Control Info, Checksum |
+| **DALI** | 2 + 1 | 1200 bps | Master–slave | 64 | Addr/Cmd (1B), Data (1B), Response (1B) |
+| **Modbus RTU** | 4–256 | Iki 115.2 kbps | Master–slave polling | 247 | Slave Addr, Func Code, Data, CRC |
+| **Modbus TCP** | Iki 260 | 100 Mbps+ | TCP/IP | Neribotai | MBAP (7B) + PDU |
+| **CAN (Classical)** | ~6–16 | 10 kbps – 1  Mbps | CSMA/CR (priority by ID) | ~110 | Identifier, Control, DLC, CRC |
+| **CAN FD** | ~8–72 | Iki 5 Mbps | CSMA/CR | ~110 | Tas pats kaip Classical, daugiau talpina duomenų |
 
-56.
+**2 lentelė**. Antraščių ir naudingos duomenų dalies palyginimas skirtingiems protokolams
 
-57.
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| **Protokolas** | **Antraštė, baitai** | **Naudingų duomenų dalis, baitai** | **Suminis paketo ilgis, baitai** | **Pastabos** |
+| **BACnet MS/TP** | 8 | 1–480 (tipinis: 32) | 40 (tipinis) iki 488 | MSTP talpina iki 480 baitų |
+| **Modbus RTU** | 3  (addr  +  function  +  CRC) | 1–252 | 4–256 | Standartinis RTU paketas per RS485 |
+| **MQTT over TCP/IP** | ~12 (TCP/IP) + 2– 4  MQTT  hdr | 1–1024+ (pvz.  JSON) | 30–1000+ | Priklauso nuo transportinio lygmens (TCP/IP) |
+| **M-Bus (wired)** | 9 (control  +  header) | 1–252 (tipinis: 64) | ~70–270 |  |
+| **DALI** | 1 | 1 | 2 | 8-bit komanda + 8-bit adresas |
+| **CAN (2.0A)** | 5 | 0–8 | 13 | Max = 8 baitai (standartinis kadras) |
+| **CAN FD** | 5 | 0–64 | 13–77 | Palaiko kintančio ilgio kadrus |
 
-Econ. 2024, 158, 103118. [CrossRef]
-Sari, R.R.; Tanika, L.; Speelman, E.N.; Saputra, D.D.; Hakim, A.L.; Rozendaal, D.M.; van Noordwijk, M. Farmer Options and
-Risks in Complex Ecological-Social systems: The FORCES game designed for agroforestry management of upper watersheds.
-Agric. Syst. 2024, 213, 103782. [CrossRef]
-Fernandes, M.E.; Simões, P. Private Forest owners’ organizations adherence to policy tools. Insights from Portugal. For. Policy
-Econ. 2024, 160, 103147. [CrossRef]
-Fassnacht, F.E.; White, J.C.; Wulder, M.A.; Næsset, E. Remote sensing in forestry: Current challenges, considerations and
-directions. For. Int. J. For. Res. 2024, 97, 11–37. [CrossRef]
+Duomenų kadrų paketus sudaro
 
-58. Brandstedt, E.; Busch, H.; Lycke, E.; Ramasar, V. Winds of change: An engaged ethics approach to energy justice. Energy Res. Soc.
+$L\_{read}\_{j}=L\_{header\_{i}}+L\_{req\\_data}\_{j}$*,* (10)
 
-Sci. 2024, 110, 103427. [CrossRef]
+$L\_{resp}\_{j}=L\_{header\_{i}}+L\_{resp\\_data}\_{j}$*,* (11)
 
-59. King, S.; Agra, R.; Zolyomi, A.; Keith, H.; Nicholson, E.; de Lamo, X.; Brown, C. Using the system of environmental-economic
-accounting ecosystem accounting for policy: A case study on forest ecosystems. Environ. Sci. Policy 2024, 152, 103653. [CrossRef]
-60. Ghazoul, J.; Schweizer, D. Forests for the Future: Restoration Success at Landscape Scale—What Will It Take and What Have We Learned;
+čia $L\_{header\_{i}}$ – *i*-ojo MD magistralės duomenų kadrų antraštės, o $L\_{req\\_data}\_{j}$ ir $L\_{resp\\_data}\_{j}$ yra naudingų duomenų (angl.  data payload) dalis (2 lentelė). Toks atskyrimas yra naudingas, nes tolimesniam perdavimui ir saugojimui bus naudojama tik $L\_{resp\\_data}\_{j}$ naudingų duomenų dalis.
 
-ETH Zurich: Zürich, Switzerland, 2021.
+**MD → MCU: Atsako srautas**
 
-61. Loomis, J.J.; Souza, F.D.A.; Angel, M.; Fabbri, A. Technology-enhanced community forest management in tropical regions: A state
+Kiekvieno apklausos ciklo metu iš SD gauti atsakai išsaugomi MD atminties registruose. Užbaigus apklausos ciklą, MD surinktus duomenis sugrupuoja į didesnius duomenų paketus ir siunčia juos į MCU. Suminis naudingų duomenų kiekis surinktas apklausos ciklo metu yra
 
-of the art. J. Environ. Manag. 2024, 350, 119651. [CrossRef] [PubMed]
+$L\_{poll\_{i}}=\sum\_{j=1}^{S\_{i}}L\_{resp\\_data}\_{j}$*.* (12)
 
-Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
-author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
-people or property resulting from any ideas, methods, instructions or products referred to in the content.
+Jei iš *j*-ojo SD užklausos metu surenkama$N\_{prop}\_{j}$objekto savybių (angl. object properties), tai bendras taip vadinamų duomenų taškų (angl. data points) skaičius surinktas užklausų ciklo metu:
 
+$N\_{dp}\_{i}=\sum\_{j=1}^{S\_{i}}N\_{prop}\_{j}.$(13)
+
+Jei bus *p*-ojo tipo objektų skaičius $O\_{p}$, kurių duomenys užima $L\_{p}$ baitų (pvz., 3 lentelė), tai
+
+$L\_{resp\\_data}\_{j}= \sum\_{p=1}^{N\_{prop}\_{j}}[O\_{p}⋅L\_{p}]$*.* (14)
+
+**3 lentelė.** Tipinės BACnet savybės, jų duomenų tipai ir dydžiai
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| **Objekto savybės pavadinimas** | **BACnet duomenų tipas** | **Tipinis ilgis, baitai** | **Pastabos** |
+| object-identifier | BACnetObjectIdentifier | 4 | 4 baitai (fiksuota) |
+| object-name | CharacterString | Kintantis  (1– 64+) | UTF-8 arba ANSI, tipinis  ≤  64 |
+| object-type | BACnetObjectType (enum) | 1 | Enum, telpa 1 baite |
+| present-value | Priklauso nuo objekto tipo | 1–8 | Pvz., BOOLEAN (1), REAL (4), ENUM (1) |
+| status-flags | BitString (4 bitai) | 1 | Telpa 1 baite |
+| event-state | BACnetEventState (enum) | 1 | Enum |
+| out-of-service | BOOLEAN | 1 | True/False |
+| units | BACnetEngineeringUnits | 2 | UINT16 enum |
+| description | CharacterString | Kintantis | Dažnai ≤ 64 chars |
+| device-type | CharacterString | Kintantis | Dažnai ≤ 64 chars |
+| location | CharacterString | Kintantis | Nebūtinas, tekstas |
+| vendor-identifier | Unsigned (UINT16) | 2 | Vendor ID |
+| protocol-version | Unsigned (UINT8) | 1 | Normally = 1 |
+| protocol-revision | Unsigned (UINT8) | 1 | Version number |
+| segmentation-supported | BACnetSegmentation (enum) | 1 | Enum |
+| apdu-timeout | Unsigned (UINT16) | 2 | ms |
+| number-of-APDU-retries | Unsigned (UINT8) | 1 | Pakartojimai (Retries) |
+
+Kadangi MD su MCU sujungti per Ethernet komutatorių, tai visi apklausos ciklo metu surinkti duomenys bus perduodami toliau Ethernet kadrais. Maksimalus Ethernet kadre telpančių naudingų duomenų kiekis, jei naudojami IP ir UDP yra 1460 B, todėl Ethernet kadrų skaičius, kurio reikės apklausos ciklo metu surinktiems duomenims perduoti
+
+$N\_{eth\_{i}}=\left⌈L\_{poll\_{i}}/1460\right⌉$*.* (15)
+
+Taip sukuriamas *i*-ojo MD duomenų srautas į MCU, kurio intensyvumas
+
+$λ\_{md}\_{i}=λ\_{mcu}\_{i}⋅(1-P\_{b\_{i}})/N\_{eth}\_{i}$. (16)
+
+Jo perdavimas per Ethernet komutatorių, suminio srauto suformavimas už komutatoriaus, kai sutankinami kitų MD siunčiami srautai, ir jo apdorojimas MCU įrenginyje irgi gali būti analizuojamas taikant kiekvienam etapui analitinius mazgų su eilėmis modelius.
+
+**Analitinio protokolų keitiklio tinklo modelio taikymas**
+
+Protokolo valdiklio (MD) ir jam pavaldžių įrenginių (SD) posistemės veikimas modeliuotas naudojant mazgų analitines formules. Tačiau, parenkant modelio parametrus, buvo būtina atsižvelgti į skirtingų technologijų specifiką ar techninius parametrus: kokio dydžio yra duomenų paketai, koks magistralės, prie kurios prijungti pavaldūs įrenginiai, pralaidumas, kaip tie srautai formuojami.
+
+Analitiškai aprašyti trys protokolo valdiklio posistemės duomenų srautai:
+
+1. MCU – MD;
+2. MD užklausų ciklas: vidinis valdomųjų SD apklausimas;
+3. MD → MCU: atsako srautas.
+
+Atsižvelgus į protokolų keitiklio sistemos veikimo principus, sudarytas visos sistemos analitinis modelis AnalitinisModelis.slx MATLAB *Simulink* aplinkoje (9 pav.), panaudojus teletrafiko teorijos principus bei sukuriamų paraiškų srautų apdorojimo analizės metodus. Sugeneruoti užklausų srautai analizuojami, įvertinant jų atvykimo ir apdorojimo intensyvumus, skirtingų protokolų parametrus bei šių srautų paskirstymą tinkle. Taip galima kiekybiškai įvertinti kiekvieno komponento įtaką bendram duomenų srauto elgesiui.
+
+![A diagram of a computer  AI-generated content may be incorrect.](data:image/png;base64...)
+
+**9 pav.** Protokolų keitiklio tinklo modelis *Simulink* aplinkoje
+
+Buvo priimta, kad protokolų keitiklio tinklas veikia BACnet/IP technologijos pagrindu. Pagrindinis valdymo įrenginys (MCU) su žemesnės hierarchijos valdiklių (master arba MD) įrenginiais komunikuoja per Ethernet komutatorių. MCU siunčia duomenų nuskaitymo arba valdymo užklausas, o MD įrenginiai nuskaito duomenis iš prie jų prijungtų pavaldžių (slave tipo (SD)) įrenginių arba juos valdo ir grąžina MCU nuskaitytus duomenis.
+
+Kiekvienas tinklo mazgas yra *Simulink* komponentų posistemė.
+
+Nagrinėjamu atveju sudarytas modelis, kai naudojami 4 MD įrenginiai. Kiekvienas MD mazgas atitinka MD tinklą su jam pavaldžiais SD įrenginiais, kurių skaičių galima keisti. Taip pat kiekvienam mazgui galima nurodyti kokio protokolo magistralė yra naudojama prijungti SD įrenginiams, kiek savybių (angl. Properties arba Data Points) kiekvienas SD turi, kokio tipo analitinį modelį (M/M/1, M/D/1, M/M/1/K) jam taikyti, kokį MD buferio dydį naudoti.
+
+Nagrinėjamu atveju protokolų keitiklio tinklas veikia BACnet/IP technologijos pagrindu. Pagrindinis valdymo įrenginys (MCU) su žemesnės hierarchijos valdiklių (angl. Master arba MD) įrenginiais komunikuoja per Ethernet komutatorių. MCU siunčia duomenų nuskaitymo arba valdymo užklausas, o MD įrenginiai nuskaito duomenis iš prie jų prijungtų pavaldžių (slave tipo (SD)) įrenginių arba juos valdo ir grąžina MCU nuskaitytus duomenis.
+
+Kiekvienas tinklo mazgas yra *Simulink* komponentų posistemė, kurią galima atidaryti ir pažiūrėti kas yra jos viduje, kokie parametrai ar vidinės funkcijos naudojamos.
+
+**Parametrų nustatymas**
+
+Modeliuojant MD parametrai apskaičiuojami automatiškai naudojant *evaluate\_params* funkciją, į kurią paduodami parametrai: protokolo tipas (galimi variantai: BACnet MSTP, BACnet IP, Modbus RTU, Modbus TCP, MQTT TCP/IP, MBus wired, DALI, CAN Classical, CAN FD, KNX TP1, KNXnet IP), SD įrenginių skaičius ir iš SD nuskaitomų savybių skaičius. Pagal protokolo tipą parenkamos tipinės parametrų reikšmės, kurios naudojamos pasirinktiems protokolams. Jos gali būti pakoreguotos funkcijos viduje konkrečiam taikymui, pavyzdžiui, žinant konkrečius parametrų tipus pagal realią situaciją.
+
+Nagrinėjamas scenarijus, kai protokolo keitiklio tinkle yra 4 skirtingų protokolų MD. Nurodomi kiekvieno MD tinklo protokolai, SD įrenginių skaičius, objektų skaičius užklausos pakete, savybių (data points arba properties) skaičius. Apskaičiuoti kiekvieno MD užklausų ir atsakų paketų dydžiai, jų perdavimo trukmės, aptarnavimo intensyvumas.
+
+**Pastaba:** Pilnas taikymo pavyzdžio ir *evaluate\_params* funkcijos kodas, kuris leidžia įvertinti ir kitų protokolų naudojimą arba atlikti modeliavimą su kitais parametrais yra pateiktas AnalitinioModelioValdymoScriptas.mlx faile (žr. į priedą).
+
+**Protokolų keitiklio tinklo parametrų modeliavimas taikant analitinį modelį**
+
+Analitinio modelio dėka įvertinama MCU siunčiamų užklausų srauto į MD intensyvumo įtaka skirtingiems MD parametrams analizuojamame protokolų keitiklio tinkle. Modeliuojant galima įvertinti kiekvieno 5 paveikslėlyje parodyto tinklo mazgo parametrus. Pavyzdžiui, 4 lentelėje parodytas vėlinimas tinklo mazguose, kai MCU siunčia užklausas į kiekvieną MD tokiais intensyvumais: $λ\_{md}\_{1}$=54 req/s, $λ\_{md}\_{2}$=75 req/s, $λ\_{md}\_{3}$=34 req/s, $λ\_{md}\_{4}$=43  req/s.
+
+**4 lentelė. Vėlinimo verčių tinklo mazguose vertės**
+
+|  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  | Wmcu\_sw, s | Wsw\_md, s | Wmd, s | Wmd\_sw, s | Wsw\_mcu, s | Wmcu proc, s | Wtotal\_md, s |
+| MD1 | 5.7684e-05 | 2.4833e-05 | 0.0184 | 6.6316e-05 | 9.7781e-05 | 3.9616e-05 | 0.0187 |
+| MD2 | 5.7684e-05 | 6.9027e-05 | 0.0134 | 1.0377e-04 | 9.7781e-05 | 3.9616e-05 | 0.0138 |
+| MD3 | 5.7684e-05 | 1.1033e-04 | 0.0303 | 1.1149e-04 | 9.7781e-05 | 3.9616e-05 | 0.0307 |
+| MD4 | 5.7684e-05 | 1.4569e-05 | 0.0233 | 3.5414e-05 | 9.7781e-05 | 3.9616e-05 | 0.0236 |
+
+Atlikus gautų rezultatų analizę, pastebėta, kad didžiausią įtaką duomenų surinkimo trukmei turi MD potinkliai, kurių duomenų perdavimo sparta yra daug kartų mažesnė už tinklo mazgus apjungiančio Ethernet komutatoriaus kanalų spartą. Todėl toliau pateikiami tik MD parametrų modeliavimo rezultatai.
+
+Sukūrus analitinį modelį, atlikta visa eilė modeliavimų, keičiant MCU siunčiamų užklausų į MD įrenginius intensyvumą. Modeliuojama sistemos atsako trukmė (10 pav.), blokuotos apkrovos priklausomybė (11 pav.), taip pat aptarnauta ir blokuota apkrova (12 pav.) bei atliktas užklausų intensyvumo modeliavimas, tiriant apkrovos (Erlangais) priklausomybes (13 pav.).
+
+|  |  |
+| --- | --- |
+| ![](data:image/x-emf;base64...) | ![](data:image/x-emf;base64...) |
+| **10 pav.** $W\_{md}$ priklausomybė nuo $λ\_{md}$ | **11 pav.** $P\_{b md}$ priklausomybė nuo $λ\_{md}$ |
+| ![](data:image/x-emf;base64...) | ![](data:image/x-emf;base64...) |
+| **12 pav.** Aptarnautos ir blokuotos apkrovos priklausomybė nuo $λ\_{md}$ | **13 pav.** Duomenų surinkimo trukmės $T\_{dp poll}$ priklausomybė nuo $λ\_{md}$ |
+
+**Užklausos ir atsako trukmės modeliavimas**
+
+Iš gautų rezultatų matyti (10 pav.), kad $W\_{md}$ didėja, kai didėja $λ\_{md}$, bet nevienodai skirtingiems protokolams; šiuo atveju MD potinkliuose suformuojami skirtingo dydžio duomenų paketai, o ir jų duomenų perdavimo magistralių sparta skiriasi. Nuo to priklauso ir MD paraiškų aptarnavimo intensyvumas $μ\_{md}$. Todėl $W\_{md}$ pradeda didėti greičiau dėl vėlinimo eilėje trukmės didėjimo, kai paraiškų intensyvumo $λ\_{md}$ vertė priartėja prie paraiškų aptarnavimo intensyvumo $μ\_{md}$ vertės.
+
+**Paraiškų blokavimo tikimybės modeliavimas**
+
+Kaip nuo MCU siunčiamų užklausų į MD įrenginius intensyvumo $λ\_{md}$ priklauso paraiškų blokavimo tikimybė MD mazge $P\_{b md} $parodyta 11 pav. Gauti rezultatai rodo, kad $P\_{b md}$ pradeda staigiai didėti, kai paraiškų intensyvumo $λ\_{md}$ vertė priartėja prie paraiškų aptarnavimo intensyvumo $μ\_{md}$ vertės dėl to, kad MD nebespėja aptarnauti paraiškų ir jo buferis perpildomas.
+
+**Aptarnauta ir blokuota apkrova**
+
+Aptarnautos ir blokuotos apkrovos dalis priklauso taip pat priklauso nuo paraiškų intensyvumo $λ\_{md} $(12 pav.). Didėjant paraiškų intensyvumui $λ\_{md}$, didėja ir aptarnauta apkrovos dalis, bet ji nusistovi ties 1, kai $λ\_{md}$ viršija paraiškų aptarnavimo intensyvumą $μ\_{md}$ (12 pav.). Blokuotos apkrovos dalis tiesiogiai priklauso nuo $P\_{b md}$.
+
+**Užklausų intensyvumo optimizavimas**
+
+Siekiant nustatyti optimalų užklausų siuntimo dažnį $λ\_{md}$, kai reikia apklausti žinomą kiekį SD tipo įrenginių ir siekiama kuo greičiau surinkti visų savybių (angl. data points) reikšmes, galima naudotis duomenų surinkimo trukmės $T\_{dp poll}$ priklausomybės nuo $λ\_{md}$ grafiku (13 pav.).
+
+Jame kiekvieno *i*-ojo valdiklio (MD) iš jam pavaldžių SD įrenginių savybių surinkimo trukmių $T\_{dp poll\_{i}}$ vertės apskaičiuojamos pagal formulę:
+
+$T\_{dp poll\_{i}}=S\_{i}⋅min⁡(\frac{1}{λ\_{md\_{i}}},W\_{md\_{i}})$(17)
+
+čia $S\_{i}$ – i-ojo valdiklio SD įrenginių skaičius, $λ\_{md\_{i}}$ – paraiškų nuskaityti duomenis dažnis, $W\_{md\_{i}}$ – duomenų nuskaitymo (polling) trukmė, kuri gauta įvertinant kiek savybių (data points) yra nuskaitoma, laukimo eilėje (buferyje) laikus ir jų priklausomybes nuo konkretaus protokolo duomenų paketų dydžių, duomenų perdavimo magistralės spartos.
+
+Kai užklausų intensyvumas yra žemas, kiekvieno atsakymo trukmė būna trumpesnė už laikotarpį tarp užklausų, dėl to visas duomenų surinkimo ciklas trunka ilgiau ir grafike galime matyti, kad prie mažų $λ\_{md}$ verčių $T\_{dp poll}$ yra didelis. Didinant $λ\_{md}$ intensyvumą, duomenų surinkimo trukmė mažėja, kol pasiekiamas optimalus taškas. Viršijus šį tašką, pradeda formuotis užklausų eilės, sistemos apkrova didėja, o bendras duomenų surinkimo laikas vėl pradeda augti.
+
+1. **Įvertinti atskirų komponentų charakteristikų įtaką viso įrenginio funkcionavimui (remiantis duomenų srautų iš įvairių sistemų modeliavimu**
+
+Imitaciniam duomenų srautų perduodamų protokolų keitiklio tinkle modeliavimui pasirinktas MATLAB *SimEvents* diskretinių įvykių modeliavimo paketas (14 pav.).
+
+![A diagram of a computer  AI-generated content may be incorrect.](data:image/png;base64...)
+
+**14 pav**. Imitacinis protokolų keitiklio tinklo modelis
+
+Kiekvienas tinklo mazgas imituojamas naudojant *SimEvents* eilės komponentą *Entity Queue*, skirtą buferiui, laukimo laikui eilėje ir praradimams įvertinti, ir *Entity Server* komponentą duomenų kanalui. Kiekvienas 14 paveikslėlyje pavaizduoto tinkle mazgas yra *Simulink* posistemė, kurios viduje yra iš komponentų ir papildomų MATLAB funkcijų sudarytas tinklo mazgo modelis. Tokios mazgo posistemės pavyzdys parodytas 15 paveikslėlyje:
+
+![A diagram of a computer program  AI-generated content may be incorrect.](data:image/png;base64...)
+
+**15 pav.** Imitacinio modelio posistemės pavyzdys
+
+Naudojant imitacinį modelį imituojamas kiekvieno paketo perdavimas. Todėl MCU mazge yra *Entity Generator* tipo *SimEvents* blokas, kurio viduje yra funkcija, aprašanti, kokio pobūdžio srautas turėtų būti generuojamas, pavyzdžiui, nurodant laikotarpių tarp gretimų paraiškų atsitiktinio generavimo parametrus ar determinuotas vertes.
+
+**Pastaba**: Detaliau su kiekvienu mazgu ir jų vidinėmis funkcijomis galima susipažinti atsidarius Simulink formato “ImitacinisModelis.slx” failą.
+
+Modeliuojant protokolų keitiklio parametrus, sudarytas BACnet IP protokolo pagrindu veikiančio protokolų keitiklio modelis, kuriame naudojami 4 žemesnės hierarchijos MD valdikliai, nuskaitantys iš jiems pavaldžių SD įrenginių duomenis.
+
+Paketų dydžiai apskaičiuojami automatiškai, naudojant tam sukurtas funkcijas, pagal tai, kiek objektų yra duomenų pakete, koks transportinis protokolas naudojamas ir ar naudojami masyvo indeksų masyvai. Kontrolei apskaičiuojami paketų dydžiai buvo patikrinti su realiais duomenimis ir buvo analizuojami su Wireshark programa (16 pav.).
+
+![A screenshot of a computer  AI-generated content may be incorrect.](data:image/png;base64...)
+
+**16 pav.** Realaus BACnet MS/TP atsako paketo pavyzdys
+
+Nustatyta, kad sukurtos funkcijos, prie tų pačių parametrų apskaičiuoja tokį patį užklausos ir atsako paketų dydį:
+
+n\_prop\_per\_obj = 1; n\_obj\_per\_packet=1; with\_array\_index=true; transport\_md='mstp'; avg\_value\_size=4;
+
+L\_req\_from\_md\_to\_sd = bacnet\_readmultiple\_request\_size(transport\_md, n\_obj\_per\_packet, n\_prop\_per\_obj, with\_array\_index)
+
+L\_req\_from\_md\_to\_sd = 34
+
+L\_resp\_from\_sd\_to\_md = bacnet\_readmultiple\_response\_size(transport\_md, n\_obj\_per\_packet, n\_prop\_per\_obj, with\_array\_index, avg\_value\_size)
+
+L\_resp\_from\_sd\_to\_md = 41
+
+Tinklo darbingumo parametrų įvertinimui buvo sukurti atskiri scenarijai MATLAB aplinkoje, kurie keičia parametrus ir juos pritaiko imitaciniam tinklo modeliui, o gautus modeliavimo rezultatus išsaugo \*.mat tipo failuose.
+
+Toliau pateikiama gautų rezultatų analizė.
+
+**MD potinklio magistralės spartos įtaka parametrams**
+
+Šiuo tyrimu buvo siekiama nustatyti kaip pagrindiniai BACnet MS/TP valdiklio darbingumo parametrai: duomenų surinkimo trukmė $W\_{md}$ ir blokavimo tikimybė $P\_{b md}$, priklauso nuo MCU generuojamo suminio paraiškų intensyvumo $λ\_{mcuΣ}$, esant skirtingai MD duomenų perdavimo magistralės spartai $C\_{md}$. Tokia analizė būtina, siekiant įvertinti kokios spartos duomenų perdavimo magistralė turėtų būti naudojama arba kokią spartą nustatyti konfigūruojant, jei siekiama užtikrinti tam tikrą kritinį $W\_{md}$, arba jei siekiama išvengti paraiškų blokavimo, kuris gali būti kai dėl nepakankamo pralaidumo MD nebespėja surinkti duomenų iš SD įrenginių.
+
+$W\_{md} $priklausomybė nuo $λ\_{mcuΣ}$ prie skirtingų $C\_{md}$, kai imitacinio modelio parametrai atitinka analitinio modelio M/D/1 srautų pobūdį, buferio talpa – 4 req., savybių skaičius kiekvienam obj. – 4, vidutinis savybės duomenų dydis – 4 baitai, o paraiškų srautas nukreipiamas į vieną MD potinklį pateikta 17 paveikslėlyje. Gauti rezultatai rodo, kad $W\_{md} $yra mažesnė prie didesnių $C\_{md}$ verčių. Taip yra todėl, kad prie didesnių $C\_{md}$ verčių gaunamas ir didesnis paraiškų aptarnavimo intensyvumas $μ\_{md}$. Prie didesnių $λ\_{mcuΣ}$ verčių $W\_{md}$ pakyla iki slenkstinio lygio, kuris kaip parodys kituose skyreliuose analizuojami rezultatai, priklauso nuo buferio dydžio, bet yra nevienodas skirtingoms $C\_{md}$ vertėms. Taip pat prie skirtingų $C\_{md}$ verčių yra tam tikras slenkstinis $λ\_{mcuΣ}$, kurį pasiekus $W\_{md}$ kreivėje matomas pakilimas iki nusistovėjusios vertės.
+
+Paraiškų blokavimo tikimybės $P\_{b md} $priklausomybės nuo $λ\_{mcuΣ}$ prie skirtingų $C\_{md}$ kreivės, gautos prie tų pačių aukščiau aprašytų sistemos pradinių parametrų, pateiktos 18 paveikslėlyje. Iš gautų $P\_{b md}$ grafikų taip pat matome, kad blokavimo tikimybė auga didėjant $λ\_{mcuΣ}$, kai pasiekiamas kanalo pralaidumas. Todėl iš šio grafiko galima nustatyti didžiausią $λ\_{mcuΣ}$, pagal tam tikrą $P\_{b md}$ ribą, pavyzdžiui (0,001), kuri neturėtų būti viršyta.
+
+|  |  |
+| --- | --- |
+| ![](data:image/x-emf;base64...)  **17 pav.** $W\_{md}$ priklausomybė nuo $λ\_{mcuΣ}$ prie skirtingų $C\_{md}$ | ![](data:image/x-emf;base64...)  **18 pav.** $P\_{b md}$ priklausomybė nuo $λ\_{mcuΣ}$ prie skirtingų $C\_{md}$ |
+
+**MD įrenginių skaičiaus įtaka parametrams**
+
+Šis tyrimas parodo kas būtų, jei MCU generuojamų paraiškų srautas, kurio intensyvumas $λ\_{mcuΣ}$, būtų paskirstytas tarp kelių tokio paties tipo MD įrenginių. Tai leidžia imituoti situaciją, kai įvertinami rezervavimo scenarijai ar bandoma įvertinti kokią įtaką daro srautų paskirstymas jų perdavimo ir aptarnavimo parametrams.
+
+19 ir 20 paveikslėliuose, atitinkamai, parodytos $W\_{md} $ir $P\_{b md}$ priklausomybės nuo $λ\_{mcuΣ}$, jei paraiškų srautas nukreipiamas į skirtingą skaičių to paties tipo ir parametrų MD įrenginių, kai $C\_{md}$ = 19200 bps, imitacinio modelio parametrai atitinka analitinio modelio M/D/1 srautų pobūdį, buferio talpa – 4 req., savybių skaičius kiekvienam obj. – 4, vidutinis savybės duomenų dydis – 4 baitai.
+
+|  |  |
+| --- | --- |
+| ![](data:image/x-emf;base64...)  **19 pav.** $W\_{md}$ priklausomybė nuo $λ\_{mcuΣ}$, kai naudojamas skirtingas MD skaičius | ![](data:image/x-emf;base64...)  **20 pav.** $P\_{b md}$ priklausomybė nuo $λ\_{mcuΣ}$, kai naudojamas skirtingas MD skaičius |
+
+Gauti rezultatai (19, 20 pav.) rodo, kad kuo didesnis MD skaičius, tarp kurių paskirstomas bendras MCU generuojamų paraiškų intensyvumas $λ\_{mcuΣ}$, tuo mažesnė apkrova tenka kiekvienam MD įrenginiui. Tokiu būdu, gaunami rezultatai gali būti panaudoti įvertinant, kiek MD įrenginių reikėtų parinkti, siekiant tam tikro kriterijaus, pavyzdžiui, kad nebūtų viršyta tam tikra kritinė $W\_{md}$ arba $P\_{b md}$ vertė.
+
+**MD įrenginių buferio talpos įtaka parametrams**
+
+Buferis leidžia patalpinti gaunamas paraiškas į eilę, jei, pavyzdžiui, nauja paraiška nuskaityti duomenis atėjo dar negavus ankstesnės paraiškos duomenų. Todėl, jei laikotarpiai tarp ateinančių paraiškų yra nevienodi, tai didesnis buferis leidžia sumažinti jų blokavimo (arba išmetimo dėl buferio perkrovimo) tikimybę. 21 ir 22 paveikslėliuose, atitinkamai, parodytos $W\_{md} $ir $P\_{b md}$ priklausomybės nuo $λ\_{mcuΣ}$, jei naudojama nevienoda buferio talpa, kai $C\_{md}$ = 38400 bps, imitacinio modelio parametrai atitinka analitinio modelio M/D/1 srautų pobūdį, buferio talpa – 4 req., savybių skaičius kiekvienam obj. – 4, vidutinis savybės duomenų dydis – 4 baitai, o paraiškų srautas nukreipiamas į vieną MD potinklį.
+
+|  |  |
+| --- | --- |
+| ![](data:image/x-emf;base64...)  **21 pav.** $W\_{md}$ priklausomybė nuo $λ\_{mcuΣ}$, kai naudojama skirtinga MD buferio talpa | ![](data:image/x-emf;base64...)  **22 pav.** $P\_{b md}$ priklausomybė nuo $λ\_{mcuΣ}$, kai naudojama skirtinga MD buferio talpa |
+
+Iš gautų rezultatų (21, 22 pav.) matyti, kad esant didesnei buferio talpai gaunama mažesnė $P\_{b md}$ prie tos pačios $λ\_{mcuΣ}$ vertės, o $W\_{md}$ galioja atvirkštinė priklausomybė, nes kuo didesnė buferio talpa, tuo didesnis galimas aptarnautų paraiškų laukimo eilėje laikas.
+
+**Paraiškų srautų pobūdžio įtaka parametrams**
+
+Naudojant imitacinį modelį, galima įvertinti paraiškų srauto pobūdžio įtaką protokolų valdiklio tinklo srautų aptarnavimo parametrams. Nuo jo priklauso koks yra laikotarpių tarp gretimų paraiškų skirstinys. Tai leidžia įvertinti atvejus, kai, pavyzdžiui, dėl papildomų duomenų srautų tinkle, kurie nėra tiesiogiai susiję su MCU paraiškomis ir jų atsakais, pastarieji yra įtakojami nes kanalų pralaidumai yra naudojami kitų duomenų perdavimui. Dėl to gali pasireikšti vėlinimų ir laikotarpių tarp gretimų paraiškų fluktuacijos. Jei laikotarpiai tarp paraiškų yra nevienodi, tai toks paraiškų srautas gali būti įvertintas taikant M/D/1 modelio atitikmenį, kai paraiškų srautas yra paprastasis, o laikotarpiai tarp paraiškų pasiskirstę pagal eksponentinį skirstinį. Kitas atvejis būtų, jei tinklas yra pilnai susinchronizuotas arba suderintas, t.y., kai laikotarpiai tarp paraiškų ir jų aptarnavimo trukmės yra determinuoti – atitinka D/D/1 modelį.
+
+23 ir 24 paveikslėliuose, atitinkamai, parodytos $W\_{md} $ir $P\_{b md}$ priklausomybės nuo $λ\_{mcuΣ}$, kai paraiškų srauto pobūdis atsitiktinis arba determinuotas, prie $C\_{md}$ = 9600, 19200, 38400 bit/s, buferio talpa – 4 req., savybių skaičius kiekvienam obj. – 4, vidutinis savybės duomenų dydis – 4 baitai, o paraiškų srautas vienodai paskirstomas tarp keturių vienodų MD potinklių.
+
+|  |  |
+| --- | --- |
+| ![](data:image/x-emf;base64...)  **23 pav.** $W\_{md}$ priklausomybė nuo $λ\_{mcuΣ}$, prie skirtingų $C\_{md}$, kai srautas atsitiktinis ir determinuotas | ![](data:image/x-emf;base64...)  **24 pav.** $P\_{b md}$ priklausomybė nuo $λ\_{mcuΣ}$, prie skirtingų $C\_{md}$, kai srautas atsitiktinis ir determinuotas |
+
+Išanalizavus gautus rezultatus (23 ir 24 pav.), matyti, kad, esant determinuotam srautų pobūdžiui, net kai kiti parametrai yra tokie patys, yra gaunamos tinkamesnės charakteristikos – mažesnis vėlinimas ir blokavimo tikimybė. Taip yra todėl, kad šiuo atveju teoriškai galima eliminuoti laukimo laikus eilėse, kol paraiškos bus aptarnaujamos iki ateis nauja paraiška, bet taip gali būti tik kol paraiškų srauto intensyvumas yra mažesnis už jų aptarnavimo intensyvumą.
+
+# Įvykdyti paslaugų pirkimai
+
+Išvardinti veiklos metu įvykdytus paslaugų pirkimus bei aprašyti kaip jie įtakojo veiklos rezultatus. Naudoti lentelės formą). Reagentų/medžiagų/mažaverčio inventoriaus pirkimų čia nurodyti nereikia.
+
+| **Nr.** | **Pirkimo objektas** | **Tiekėjas** | **Paslaugos aprašymas ir nauda veiklai** |
+| --- | --- | --- | --- |
+| *Projekto vykdytojas/partneris:* **UAB XXXXX** | | | |
+| 1. |  |  |  |
+| 2. |  |  |  |
+| 3. |  |  |  |
+
+Kartu su ataskaita prašome pateikti įsigytos paslaugos rezultatą (ataskaitą, tyrimo protokolą ar pan.), jei nebuvo pateikta anksčiau.
+
+# Užduočių atlikimas
+
+Pateikti informaciją, kokios užduotys buvo atliktos projektą vykdančių asmenų, kas jas atliko, kiek laiko tam skyrė, naudoti lentelės formą.
+
+| **Nr.** | **Užduotis** | **Darbuotojai/darbovietė** | **Laiko sąnaudos valandomis** |
+| --- | --- | --- | --- |
+| 1. |  |  |  |
+| 2. |  |  |  |
+| 3. |  |  |  |
+| 4. |  |  |  |
+| 5. |  |  |  |
+
+Jeigu tai pačiai užduočiai atlikti buvo įsigytos paslaugos ir skirtas projektą vykdančių asmenų darbo laikas bei išmokėtas darbo užmokestis, būtina atskirti paslaugos teikėjo ir projektą vykdančių asmenų indėlį į rezultatą, paaiškinti, kaip paslaugos rezultatus papildė projektą vykdančių asmenų darbas.
+
+# Pasiekti tyrimų rezultatai
+
+Trumpai aprašyti pasiektus rezultatus, sprendžiant šios ataskaitos 3 punkte nurodytus neapibrėžtumus. Rekomenduojama apimtis - 2 psl. kiekvienam rezultatui.
+
+**I.** Nustatyti, kokie yra pagrindiniai hibridinio įrenginio komponentai, jų savybės, reikalavimai ir galimi veikimo modeliai
+
+**1. Išspręstas neapibrėžtumas:** kokie hibridinio įrenginio architektūriniai sprendimai leistų efektyviai realizuotinaujų BAS įrenginių atpažinimą, generuoti jiems valdymo objektus bei algoritmus, taip sumažinant rankinio darbo apimtis ir galimus konfigūravimo netikslumus?
+
+Naudojant semantines ontologijas, mašininį mokymąsi bei DI principais grįstą valdymą galima automatiškai atpažinti naujus įrenginius, generuoti jiems valdymo objektus bei algoritmus, taip sumažinant rankinio darbo apimtis ir galimus konfigūravimo netikslumus. Tam būtina kurti naujus programinius sprendimus, kurie užtikrintų pažangios dinaminės valdymo sistemos veikimą.
+
+Šie sprendimai – tai .... Aš manau, jog semantines ontologijas reikės išmesti iš teksto, koncentruotis vien tik trimis smart subscribe, P&P, discovery funkcijomis. Martynas min4jo, jog DI jie neplanuoja naudoti.
+
+**2. Išspręstas neapibrėžtumas**: kokie hibridinio įrenginio komponentų specifikaciniai reikalavimai leistų palaikyti semantinių duomenų modelius?
+
+....aprašyti konkrečius reikalavimus atskiriems projektuojamo įrenginio komponentams, kurie leistų išspręsti neapibrėžtume nurodytą funkcionalumą
+
+**II.** Išnagrinėti kiekvieno komponento funkcionavimą atskirai ir su kitais komponentais
+
+**1. Išspręstas neapibrėžtumas:** kaip realizuoti *stand alone* (kitaip, black box) principą, kad įrenginys gebėtų pilnavertiškai valdyti visas pastato sistemas, nutrūkus belaidžio Interneto ryšiui (ryšiui su ESE duomenų baze)? Kokiomis technologijomis realizuoti automatizuotą naujų įrenginių integraciją?
+
+Šiuo metu rinkoje naudojami įvairūs pastatų valdymo sistemų BMS valdikliai, kurie veikia *debesyse*. Tačiau, esant interneto trikdžiams, BMS sistemoms aktualu išlaikyti įvairių išorinių elementų valdymą, ir todėl nuspręsta atsisakyti standartinių išmaniųjų BMS valdiklių (SmartX Controller AS-P), o skirtingų valdiklių funkcijas apjungti į vieną įrenginį - kuriamo įrenginio kompiuterį. Hibridinis įrenginys komunikuoja su išorės įrenginiais per laidinę terpę (interneto kabeliu). Tai padidina sistemos patikimumą, be to, supaprastėjo įrenginio instaliavimas.
+
+**2. Išspręstas neapibrėžtumas:** kaip užtikrinti įvairių pastato funkcionavimą palaikančių sistemų patikimą kontrolę?
+
+Hibridiniame įrenginyje naudojami mikrovaldikliai ir mikroprocesoriai pastato efektyviam energijos valdymui ir greitam duomenų apdorojimui.
+
+Integruoti standartiniai, plačiai paplitę komunikacijos protokolai (ModBus, BACNet) užtikrins įrenginio sąveiką su įvairiomis sistemomis. Tačiau, įvertinus tai, kad įprasti protokolų keitikliai dažnai negali patenkinti visų techninių reikalavimų, nes jie apima tik pagrindines funkcijas, priimtas sprendimas naudoti atskirus protokolų keitiklius, atliekančius specifines funkcijas tam tikram išoriniam moduliui. Šie keitikliai palaikys ir mažiau populiarius arba nestandartinius protokolus, kuriems nėra rinkoje universalių sprendimų. Taip pat vienu metu bus galima palaikyti kelis protokolus ir tiesiogiai bendrauti su valdymo sistema per centralizuotą sąsają. Toks sprendimas leis optimizuoti konversijos procesus (sumažinti atsako laiką, padidinti sistemos reakcijos greitį ir duomenų perdavimo efektyvumą).
+
+Taip pat tiesioginė vidinė komunikacija su valdančiuoju kompiuteriu sumažina duomenų srauto delsą, kas yra ypač svarbu realaus laiko sistemoms, pasiekiant aukštesnį funkcionalumo, universalumo, saugumo ir sistemos našumo lygį. Tokie keitikliai taip pat leidžia ir lengviau prisitaikyti prie ateities poreikių.
+
+**3. Išspręstas neapibrėžtumas:** kaip realizuoti black box išmaniąsias funkcijas(*subscribe, discovery, plug&play*), kurios bus paremtos protokolų keitikliais?
+
+Aprašyti
+
+**III.** Sukurti matematinį ir/arba kompiuterinį modelį, aprašantį hibridinio įrenginio veikimą
+
+Sudarytas visos protokolų keitiklio kaip juodos dėžės (angl. black box) sistemos tinklo modelis. Parametrizuoti įvairūs hibridinio įrenginio mazgai (pagrindinis valdymo įrenginys, protokolų keitiklis ir pan.), modeliuojant įvairias srauto charakteristikas: sukuriamų užklausų srautų intensyvumą, apdorojimo intensyvumą, skirtingų protokolų atsako laiką, apkrovos pasiskirstymą tinkle ir pan. Modeliuojant srautus buvo taikomi *Puasono* procesai arba *Markovo* modeliai, kurie leido nustatyti kiek jutiklių gali būti aptarnaujama efektyviai, arba koks turi būti užklausų dažnis, kuris užtikrina optimalų duomenų surinkimą, neviršijant sisteminių resursų ribų.
+
+Nustatyta, jog, nors komutatorius užtikrina aukštą pralaidumą, tačiau kritinė sąsaja yra tarp pagrindinio valdymo įrenginio ir komutatoriaus, nes per ją perduodamos visos užklausos ir atsakymai. Modeliavimas padėjo nustatyti, kokio pralaidumo turėtų būti ryšio sąsajos, koks yra optimalus užklausų intensyvumas ir kaip paskirstyti apkrovą tarp jutiklių ir valdiklių.
+
+Taip pat modeliavimas leido įvertinti apkrovas skirtinguose tinklo segmentuose, duomenų paketų vėlinimą ir praradimus, dinaminius tinklo pokyčius ir reagavimo strategijas.
+
+Pagrindinis valdiklis ir protokolų valdikliai gali inicijuoti užklausas galiniams įrenginiams, todėl analitinis modelis padėjo nustatyti, kaip tinkamai paskirstyti ar valdyti srautus tarp skirtingų technologijų keitiklių, kad būtų išvengta perteklinio apkrovimo.
+
+**1. Išspręstas neapibrėžtumas**: kiek jutiklių gali būti efektyviai aptarnaujama hibridinio įrenginio arba koks turėtų būti užklausų dažnis, kuris užtikrina optimalų duomenų surinkimą, neviršijant sisteminių resursų ribų?
+
+Kadangi MQTT, M-bus, DALI, Modbus ir CAN įrenginiai turi ribotą komunikacijos spartą, buvo būtina įvertinti valdiklio užklausų dažnio įtaką minėtų įrenginių veikimui. Jei užklausos siunčiamos per dažnai, duomenys prarandami arba atsiranda dideli vėlinimai. Jei registruojamų duomenų reikšmės kinta lėtai, tai nėra pagrindo siųsti užklausas dideliu intensyvumu – tokiu atveju duomenų bazėje galimai kauptųsi pertekliniai duomenys, o tinklo mazgai būtų be reikalo apkraunami. Minimalus užklausų dažnis pagal klasikinę diskretizavimo teoriją, turi būti bent daugiau nei dvigubai didesnis už registruojamų parametrų kitimo dažnį, arba turi būti parenkamas pagal konkrečią specifiką.
+
+Nors komutatorius ir užtikrina aukštą pralaidumą (kokios jo charakteristikos?), kritinė sąsaja yra tarp pagrindinio valdymo įrenginio ir komutatoriaus, nes per ją perduodamos visos užklausos ir atsakymai. Gauti rezultatai leido įvertinti optimalų duomenų srauto intensyvumą, kuris priklauso nuo dviejų pagrindinių veiksnių: 1) nuo techninės įrangos ar protokolo, naudojamo duomenims surinkti, ypatybių t. y. kokiu dažniu ir per kiek laiko įrenginiai gali atsakyti į užklausas, ir 2) nuo optimizavimo kriterijų, pagal kuriuos vertinamas surinkimo proceso efektyvumas, pavyzdžiui, ar siekiama minimizuoti tinklo apkrovą, ar kuo greičiau atnaujinti visų duomenų taškų reikšmes.
+
+Tai kiek konkrečiai jutiklių galėtų būti efektyviai aptarnaujama hibridinio įrenginio?
+
+**2. Išspręstas neapibrėžtumas**: kokie turi būti parenkami apdorojančio mazgo resursai bei ryšio magistralės pralaidumas?
+
+Vertinant poreikį magistralės pralaidumui, reikėjo atsižvelgti į tai, koks bus užklausų duomenų surinkimo intensyvumas (arba periodas) ir kokio dydžio duomenų paketai bus suformuojami, priklausomai nuo protokolo tipo ir juose talpinamų duomenų. Kokie protokolai bus naudojami ir kiek duomenų sugeneruojama, paprastai, priklauso nuo to, iš kokių galinių įrenginių bus nuskaitomi duomenys. Pagal tai buvo galima įvertinti sukuriamų užklausų ir atsakų į jas duomenų paketų dydžius. Tam galima buvo panaudoti tipinius paketų dydžius skirtingiems protokolams arba pasiūlyta naudoti analitinio bei imitacinio modelio funkcijas, kurios apskaičiuoja duomenų paketų dydžius. Tai leido įvertinti kiek laiko truks duomenų surinkimas ir perdavimas (apskaičiuojamas reikiamas aptarnavimo intensyvumas), ir pagal tai apsprendžiami reikiamo dydžio resursai apdorojančiame mazge bei ryšio magistralėje. Tai žinant, galima apskaičiuoti kokia yra sugeneruojama duomenų sparta, pagal kurią parenkami įrangos ir kanalų pralaidumai (turi būti už ją didesni). Modeliavimo rezultatuose tai atitiko atvejus, kai paraiškų intensyvumas yra mažesnis už paraiškų aptarnavimo intensyvumą.
+
+Kaip rodo atliktų tyrimų rezultatai, jei paraiškų atėjimo intensyvumas yra mažesnis nei 60-70% paraiškų aptarnavimo intensyvumo, tai net ir esant atsitiktiniam srautų pobūdžiui ir vėlinimas, ir blokavimo tikimybė bus nereikšmingi. Tai kokio dydžio resursai turi būti konkrečiai?
+
+**3.** **Išspręstas neapibrėžtumas**: kokio pralaidumo *Ethernet* kanalo reikia tarp pagrindinio valdymo mazgo ir komutatoriaus?
+
+Žemesnės hierarchijos valdikliai surenka duomenis iš jiems pavaldžių galinių įrenginių per magistrales, kurių duomenų sparta yra daug kartų mažesnė nei juos jungiančio *Ethernet* komutatoriaus. Nustatyta, kad būtent šie valdikliai, kurie surenka duomenis iš jiems pavaldžių galinių įrenginių per magistrales, turi didžiausią įtaką bendram duomenų surinkimo vėlinimui. Todėl iš jų sukuriamas duomenų srautas nesudaro reikšmingos apkrovos duomenų kanale, kuris yra tarp pagrindinio valdiklio ir komutatoriaus. Priešingu atveju reikėtų arba pasirinkti didesnės spartos *Ethernet* komutatorių arba dalį perteklinę apkrovą generuojančių žemesnės hierarchijos valdiklių prijungti prie kito pagrindinio valdiklio. Tai kokio pralaidumo *Ethernet* kanalo reikia tarp pagrindinio valdiklio ir komutatoriaus?
+
+**IV.** Virtualiame modelyje taikyti skirtingus integravimo ir optimizavimo metodus, siekiant išsiaiškinti, kurie komponentai apjungti tarpusavyje veikia geriausiai
+
+**1. Išspręstas neapibrėžtumas:** kokios spartos duomenų perdavimo magistralė turėtų būti naudojama, siekiant išvengti duomenų blokavimo?
+
+Iš pateiktų priklausomybių nustatytas leistinas duomenų srauto intensyvumas $λ\_{mcuΣ}$, pagal tam tikrą blokavimo tikimybės $P\_{b md}$ ribą, kuri neturėtų būti viršyta. Tai leido apspręsti poreikį duomenų perdavimo magistralės dydžiui, kuris turi būti.....
+
+**2. Išspręstas neapibrėžtumas:** kiek protokolų valdiklių būtina numatyti projektuojamame hibridiniame įrenginyje, siekiant užtikrinti reikiamas duomenų srauto apdorojimo charakteristikas?
+
+Atliktas tyrimas atskleidė protokolų valdiklių skaičiaus poreikį, tiriant situaciją, kai pagrindinio valdymo įrenginio generuojamų paraiškų srautas yra paskirstytas tarp kelių protokolų valdiklių.
+
+Modeliuojant protokolų keitiklio parametrus, sudarytas BACnet IP protokolo pagrindu veikiančio protokolų keitiklio modelis, kuriame panaudoti 4 žemesnės hierarchijos protokolų valdikliai, nuskaitantys iš jiems pavaldžių įrenginių duomenis. Paketų dydžiai buvo apskaičiuoti automatiškai, panaudojus tam sukurtas funkcijas (kiek objektų yra duomenų pakete, koks transportinis protokolas naudojamas ir ar naudojami masyvo indeksų masyvai). Kontrolei apskaičiuoti paketų dydžiai buvo patikrinti su realiais duomenimis (*Wireshark* pagalba). Tai leido modeliuoti situaciją su rezervavimo scenarijais, taip pat įvertinti, kokią įtaką srautų paskirstymas turi jų perdavimo ir aptarnavimo parametrams. Akivaizdu, kad kuo daugiau protokolų valdiklių įrenginyje, tarp kurių paskirstomas bendras pagrindinio valdymo įrenginio generuojamų paraiškų srautas, tuo jiems tenka mažesnė apkrova. Gautos priklausomybės leido įvertinti protokolų valdiklių kiekį, būtiną siekiant tam tikro kriterijaus, pavyzdžiui, kad nebūtų viršyta tam tikra kritinė $W\_{md}$ arba $P\_{b md}$ vertė. Nustatyta, jog būtinas protokolų valdiklių kiekis turi būti....
+
+**3. Išspręstas neapibrėžtumas:** kokią būtina parinkti protokolų valdiklio buferio talpą?
+
+Įvertinus ateinančio duomenų srauto iš skirtingų BAS valdomų įrenginių intensyvumą ir kad laikotarpiai tarp jų yra nevienodi, sudarytos priklausomybės leido nustatyti protokolų valdiklio buferio talpos poreikį, siekiant sumažinti duomenų blokavimo (arba jų išmetimo dėl buferio perkrovimo) tikimybę. Nustatyta, jog....
+
+# Veiklos vykdymo metu atliktų tyrimų eigos pakeitimai
+
+Aprašyti darbų, kurie turėjo būti atlikti pagal MTEP veiklų planą ir faktiškai atliktų darbų skirtumus, paaiškinti, kokios aplinkybės lėmė jų atsiradimą. Išvardinti MTEP veiklų plane planuotus, bet nepasiektus užduočių rezultatus, jei tokių buvo, ir pateikti pagrindimą, kodėl jie nebuvo pasiekti. Išvardinti tolimesnių veiklų pakeitimus, jei po šios veiklos atsiranda poreikis korekcijoms ir pateikti pagrindimą, nurodant priežastis.
+
+Nebuvo pakeitimų
+
+# Nauda projekto rezultatams
+
+Trumpai paaiškinti, kaip gauti veiklos rezultatai prisidėjo prie galutinio projekto rezultato, kodėl jie būtini. Rekomenduojama apimtis - 1 psl.
+
+Būtina aptarti visų išsikeltų uždavinių rezultatus
+
+**Literatūra**
+
+[1] Vittori, Filippo & Fu Tan, Chuan & Pisello, Anna Laura & Chong ,Adrian & Miller, Clayton (2023). BIM-to-BRICK: Using graph modeling for IoT/BMS and spatial semantic data interoperability. arXiv preprint arXiv:2307.13197. <https://doi.org/10.48550/arXiv.2307.13197>
+
+[2] Ożadowicz, Andrzej. (2023). Generic IoT for Smart Buildings and Field-level Automation - Challenges, Threats, Approaches and Solutions. 10.20944/preprints202312.1994.v1. <https://doi.org/10.3390/computers13020045>
+
+[3] Mitzutani, Iori & Ramanathan, Ganesh & Mayer, Simon. (2021). Semantic data integration with DevOps to support engineering process of intelligent building automation systems. 294-297. 10.1145/3486611.3492413. <http://dx.doi.org/10.1145/3486611.3492413>
+
+[4] Genkin, A., & McArthur, J. (2022). B-SMART: A Reference Architecture for Artificially Intelligent Autonomic Smart Buildings. Journal of Building Engineering, 57, 104942. <https://doi.org/10.48550/arXiv.2211.03219>
+
+[5] Ranpara, Ripal. (2025). A semantic and ontology-based framework for enhancing interoperability and automation in IoT systems. Discover Internet of Things. 5. 10.1007/s43926-025-00122-8. <http://dx.doi.org/10.1007/s43926-025-00122-8>
+
+[6] Qaswar, Fahad & Mokhtar, Rahmah & Raza, Muhammad & Ahmad, Noraziah & Alkazemi, Basem & Fauziah, Zulvy & Hassan, Mohd Khairul Azmi & Sharaf, Ahmed. (2022). Applications of Ontology in the Internet of Things: A Systematic Analysis. Electronics. 12. 111. 10.3390/electronics12010111. <http://dx.doi.org/10.3390/electronics12010111>
+
+[7] Ruta, Michele & Scioscia, Floriano & Loseto, Giuseppe & Pinto, Agnese & Di Sciascio, Eugenio. (2018). Machine learning in the Internet of Things: A semantic-enhanced approach. Semantic Web. 10. 183-204. 10.3233/SW-180314. <http://dx.doi.org/10.3233/SW-180314>
+
+[8] Liu, Fagui & Li, Ping & Deng, Dacheng. (2017). Device-Oriented Automatic Semantic Annotation in IoT. Journal of Sensors. 2017. 1-14. 10.1155/2017/9589064. <http://dx.doi.org/10.1155/2017/9589064>
+
+[9] Ramanathan, G., & Mayer, S. (2024). A Match Made in Semantics: Physics‑infused Digital Twins for Smart Building Automation. arXiv preprint arXiv:2406.13247. <https://doi.org/10.48550/arXiv.2406.13247>
+
+[10] Iddianozie, C., & Palmes, P. (2020). AI‑big data: Addressing semantic heterogeneity in building management systems using discriminative models. arXiv preprint arXiv:2008.07414. <https://doi.org/10.48550/arXiv.2008.07414>
+
+[11] Himeur, Y & Elnour, M & Fadli, F·& Meskin, N & Petri, I & Rezgui, Y & Bensaali, F & Amira, A. (2022). AI‑big data analytics for building automation and management systems: a survey, actual challenges and future perspectives. Artificial Intelligence Review. <https://doi.org/10.1007/s10462-022-10286-2>
