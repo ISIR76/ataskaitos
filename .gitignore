@@ -29,11 +29,15 @@ straipsniai_evaluation_results.json
 straipsniai_dataset.json
 frascati_rd_dataset.json
 
-# Analysis outputs
+# Analysis outputs (docs/ itself is the mkdocs source and IS tracked)
 docs/out/
-docs/*
+docs/reference_documents/
 agent_evaluation_*.csv
 agent_evaluation_*.pkl
+
+# mkdocs build output
+site/
+ataskaitos-docs.pdf
 
 # Temporary files
 tmp.txt

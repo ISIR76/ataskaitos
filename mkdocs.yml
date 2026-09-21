@@ -1,0 +1,95 @@
+site_name: Ataskaitos
+site_description: Mokslinių dokumentų (MTEP ataskaitų ir straipsnių) vertinimo platforma
+site_author: Ataskaitos komanda
+
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+
+# Šie katalogai yra generuojami arba vidinės darbinės pastabos, ne dokumentacija.
+exclude_docs: |
+  out/
+  reference_documents/
+  evaluator-service-plan.md
+  frascati_evaluation_str.md
+
+theme:
+  name: material
+  language: lt
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - content.code.copy
+    - content.tabs.link
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Perjungti į tamsią temą
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Perjungti į šviesią temą
+
+nav:
+  - Pradžia: index.md
+  - Pirmi žingsniai: getting-started.md
+  - Architektūra: architecture.md
+  - Vertinimas:
+      - Balų vertintojai: evaluators.md
+      - Agentai: agents.md
+  - Žinynas:
+      - HTTP API: api.md
+      - Konfigūracija: configuration.md
+  - Eksploatacija:
+      - Modeliai ir tokenų kaštai: models-and-tokens.md
+      - Našumas ir mastelis: scaling.md
+      - Diegimas: deployment.md
+  - Kūrimas: development.md
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  # lunr.js neturi lietuvių kalbos kamieninimo, tad paieška indeksuojama
+  # angliškuoju tokenizatoriumi. Sąsajos kalbą nustato theme.language.
+  - search
+  # print-site turi būti paskutinis: jis suformuoja visus puslapius į vieną
+  # spausdinamą dokumentą adresu /print_page/ (naršyklės „Spausdinti į PDF“
+  # arba `make docs-pdf`).
+  - print-site:
+      add_to_navigation: false
+      print_page_title: Ataskaitos dokumentacija
+      add_cover_page: true
+      add_table_of_contents: true
+      enumerate_headings: false
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn

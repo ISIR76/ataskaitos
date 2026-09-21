@@ -37,3 +37,10 @@ include = ["ataskaitos*", "straipsniai*"]
 
 [tool.ruff]
 line-length = 120
+
+[dependency-groups]
+docs = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.7.7",
+    "mkdocs-print-site-plugin>=2.9",
+]

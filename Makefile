@@ -28,6 +28,16 @@ pdf-latest:
 combine-results:
 	uv run python scripts/utils/combine_results.py
 
+# Documentation
+docs-serve:
+	uv run --group docs mkdocs serve --dev-addr localhost:8001
+
+docs-build:
+	uv run --group docs mkdocs build --strict
+
+docs-pdf: docs-build
+	uv run python scripts/report/build_pdf.py site/print_page/index.html ataskaitos-docs.pdf
+
 # Linting
 lint:
 	uv run ruff check
@@ -52,4 +62,4 @@ restore-backup:
 deploy:
 	./deploy.sh
 
-.PHONY: dev eval-agent eval-reports eval-articles convert-latest analyze-latest show-latest pdf-latest combine-results lint lint-fix pipeline clean restore-backup deploy
+.PHONY: docs-serve docs-build docs-pdf dev eval-agent eval-reports eval-articles convert-latest analyze-latest show-latest pdf-latest combine-results lint lint-fix pipeline clean restore-backup deploy
