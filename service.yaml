@@ -1,27 +1,25 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: ataskaitos-api
+  name: ataskaitos
   annotations:
     run.googleapis.com/ingress: all
-    run.googleapis.com/launch-stage: BETA
 spec:
   template:
     metadata:
       annotations:
-        # Auto-scaling configuration
+        # Auto-scaling configuration (kept at 1 — see docs/scaling.md)
         autoscaling.knative.dev/minScale: '0'
-        autoscaling.knative.dev/maxScale: '10'
-        # CPU throttling (can be disabled for CPU-intensive workloads)
-        run.googleapis.com/cpu-throttling: 'true'
+        autoscaling.knative.dev/maxScale: '1'
         # Startup CPU boost
         run.googleapis.com/startup-cpu-boost: 'true'
+        # Cloud SQL connector (unix socket at /cloudsql/<connection name>)
+        run.googleapis.com/cloudsql-instances: innate-client-508813-e6:europe-west1:ataskaitos-prod
     spec:
-      # Service account for Cloud Run
-      serviceAccountName: cloud-run-service-account
-      # Container configuration
+      # Dedicated runtime identity (not the default compute service account)
+      serviceAccountName: ataskaitos-run@innate-client-508813-e6.iam.gserviceaccount.com
       containers:
-      - image: REGION-docker.pkg.dev/PROJECT_ID/ataskaitos/ataskaitos-api:latest
+      - image: europe-west1-docker.pkg.dev/innate-client-508813-e6/cloud-run-source-deploy/ataskaitos:latest
         ports:
         - containerPort: 8080
           name: http1
@@ -29,39 +27,46 @@ spec:
         # Environment mode (development/production)
         - name: ENV
           value: "production"
-        # API key for authentication (set via Secret Manager)
-        - name: API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: ataskaitos-api-key
-              key: latest
+        # File storage: Google Cloud Storage (container disk does not survive restarts)
+        - name: USE_GCS
+          value: "true"
+        - name: GCS_BUCKET_NAME
+          value: "ataskaitos-prod-687594214295"
+        - name: GCS_PROJECT_ID
+          value: "innate-client-508813-e6"
         # OpenAI API Key (set via Secret Manager)
         - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
               name: openai-api-key
               key: latest
-        # Google API Key (set via Secret Manager)
-        - name: GOOGLE_API_KEY
+        # API key — still injected, no longer read by the app
+        - name: API_KEY
           valueFrom:
             secretKeyRef:
-              name: google-api-key
+              name: ataskaitos-api-key
               key: latest
-        # Anthropic API Key (set via Secret Manager)
-        - name: ANTHROPIC_API_KEY
+        # PostgreSQL connection string (set via Secret Manager)
+        - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: anthropic-api-key
+              name: ataskaitos-database-url
+              key: latest
+        # JWT signing secret (set via Secret Manager)
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ataskaitos-jwt-secret
               key: latest
         # Resource limits
         resources:
           limits:
             cpu: '2'
-            memory: 2Gi
-        # Startup probe for slow-starting containers
+            memory: 1Gi
+        # Startup probe — must hit /api/health, not /health (see docs/deployment.md)
         startupProbe:
           httpGet:
-            path: /health
+            path: /api/health
             port: 8080
           initialDelaySeconds: 0
           timeoutSeconds: 10
@@ -70,7 +75,7 @@ spec:
         # Liveness probe
         livenessProbe:
           httpGet:
-            path: /health
+            path: /api/health
             port: 8080
           initialDelaySeconds: 30
           timeoutSeconds: 10
