@@ -194,7 +194,11 @@ async def get_scores_grid(
 
 
 @router.get("/{project_id}", response_model=ProjectResponse)
-async def get_project(project_id: int, session: AsyncSession = Depends(get_session)):
+async def get_project(
+    project_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get project details by ID.
 
     Args:
@@ -213,6 +217,8 @@ async def get_project(project_id: int, session: AsyncSession = Depends(get_sessi
     project = await project_repo.get_by_id(project_id, load_versions=True)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     return await _build_project_response(project, doc_repo)
 
@@ -242,7 +248,11 @@ async def set_project_marked_good(
 
 
 @router.delete("/{project_id}", status_code=204)
-async def delete_project(project_id: int, session: AsyncSession = Depends(get_session)):
+async def delete_project(
+    project_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Delete a project and all its versions.
 
     Args:
@@ -257,6 +267,8 @@ async def delete_project(project_id: int, session: AsyncSession = Depends(get_se
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     # Delete all files for this project
     storage_service.delete_project_files(project_id)
@@ -273,6 +285,7 @@ async def delete_project(project_id: int, session: AsyncSession = Depends(get_se
 async def upload_version(
     project_id: int,
     file: UploadFile = File(...),
+    user: User = Depends(current_active_user),
     doc_service: DocumentService = Depends(get_document_service),
     session: AsyncSession = Depends(get_session),
 ):
@@ -298,6 +311,8 @@ async def upload_version(
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     # Convert document to markdown
     try:
@@ -335,7 +350,11 @@ async def upload_version(
 
 
 @router.get("/{project_id}/versions", response_model=list[DocumentVersionResponse])
-async def list_versions(project_id: int, session: AsyncSession = Depends(get_session)):
+async def list_versions(
+    project_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """List all versions for a project.
 
     Args:
@@ -355,6 +374,8 @@ async def list_versions(project_id: int, session: AsyncSession = Depends(get_ses
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     versions = await doc_repo.list_by_project(project_id)
 
@@ -362,7 +383,12 @@ async def list_versions(project_id: int, session: AsyncSession = Depends(get_ses
 
 
 @router.get("/{project_id}/versions/{version_id}", response_model=DocumentVersionDetailResponse)
-async def get_version(project_id: int, version_id: int, session: AsyncSession = Depends(get_session)):
+async def get_version(
+    project_id: int,
+    version_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get document version details with markdown content.
 
     Args:
@@ -383,6 +409,8 @@ async def get_version(project_id: int, version_id: int, session: AsyncSession = 
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     version = await doc_repo.get_by_id(version_id)
     if not version or version.project_id != project_id:
@@ -407,7 +435,12 @@ async def get_version(project_id: int, version_id: int, session: AsyncSession = 
 
 
 @router.get("/{project_id}/versions/{version_id}/markdown")
-async def get_version_markdown(project_id: int, version_id: int, session: AsyncSession = Depends(get_session)):
+async def get_version_markdown(
+    project_id: int,
+    version_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get markdown content for a version.
 
     Args:
@@ -427,6 +460,8 @@ async def get_version_markdown(project_id: int, version_id: int, session: AsyncS
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     version = await doc_repo.get_by_id(version_id)
     if not version or version.project_id != project_id:
@@ -440,7 +475,12 @@ async def get_version_markdown(project_id: int, version_id: int, session: AsyncS
 
 
 @router.post("/{project_id}/versions/{version_id}/set-active", response_model=ProjectResponse)
-async def set_active_version(project_id: int, version_id: int, session: AsyncSession = Depends(get_session)):
+async def set_active_version(
+    project_id: int,
+    version_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Set a version as the active version for the project.
 
     Args:
@@ -460,6 +500,8 @@ async def set_active_version(project_id: int, version_id: int, session: AsyncSes
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     version = await doc_repo.get_by_id(version_id)
     if not version or version.project_id != project_id:
@@ -477,7 +519,12 @@ async def set_active_version(project_id: int, version_id: int, session: AsyncSes
 
 
 @router.delete("/{project_id}/versions/{version_id}", status_code=204)
-async def delete_version(project_id: int, version_id: int, session: AsyncSession = Depends(get_session)):
+async def delete_version(
+    project_id: int,
+    version_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Delete a document version.
 
     Args:
@@ -494,6 +541,8 @@ async def delete_version(project_id: int, version_id: int, session: AsyncSession
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     version = await doc_repo.get_by_id(version_id)
     if not version or version.project_id != project_id:
@@ -526,6 +575,7 @@ async def evaluate_version(
     evaluation_type: Literal["agent", "scoring"] = Form("scoring"),
     evaluators: str = Form(None),
     agents: str = Form(None),
+    user: User = Depends(current_active_user),
     eval_service: EvaluationService = Depends(get_evaluation_service),
     session: AsyncSession = Depends(get_session),
 ):
@@ -556,6 +606,8 @@ async def evaluate_version(
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     version = await doc_repo.get_by_id(version_id)
     if not version or version.project_id != project_id:
@@ -719,7 +771,12 @@ async def run_llm_detection(
 
 
 @router.get("/{project_id}/versions/{version_id}/evaluations", response_model=list[EvaluationHistoryItem])
-async def list_version_evaluations(project_id: int, version_id: int, session: AsyncSession = Depends(get_session)):
+async def list_version_evaluations(
+    project_id: int,
+    version_id: int,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """List all evaluations for a document version.
 
     Args:
@@ -740,6 +797,8 @@ async def list_version_evaluations(project_id: int, version_id: int, session: As
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     version = await doc_repo.get_by_id(version_id)
     if not version or version.project_id != project_id:
@@ -751,7 +810,12 @@ async def list_version_evaluations(project_id: int, version_id: int, session: As
 
 
 @router.get("/{project_id}/evaluations/{evaluation_id}", response_model=EvaluationDetailResponse)
-async def get_evaluation(project_id: int, evaluation_id: str, session: AsyncSession = Depends(get_session)):
+async def get_evaluation(
+    project_id: int,
+    evaluation_id: str,
+    user: User = Depends(current_active_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get evaluation details by UUID.
 
     Args:
@@ -771,6 +835,8 @@ async def get_evaluation(project_id: int, evaluation_id: str, session: AsyncSess
     project = await project_repo.get_by_id(project_id)
     if not project:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    if project.user_id != user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to access this project")
 
     evaluation = await eval_repo.get_by_uuid(evaluation_id)
     if not evaluation:

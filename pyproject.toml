@@ -24,6 +24,7 @@ dependencies = [
     "uvicorn[standard]>=0.34.0",
     "pytest",
     "fastapi-users[sqlalchemy]>=15.0.1",
+    "httpx>=0.28.1",
     "aiosqlite>=0.22.0",
     "asyncpg>=0.31.0",
 ]

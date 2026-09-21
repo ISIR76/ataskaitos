@@ -11,6 +11,18 @@ export type ScoresGrid = components["schemas"]["ScoresGridResponse"];
 export type ScoresGridRow = components["schemas"]["ScoresGridRow"];
 
 /**
+ * Authorization header for raw fetch() calls.
+ *
+ * Requests made through `client` receive this from its middleware. The calls
+ * below use raw fetch() to send multipart bodies, so they must set it
+ * themselves -- without it the request reaches the API unauthenticated.
+ */
+function authHeaders(): Record<string, string> {
+  const token = localStorage.getItem("ataskaitos_auth_token");
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
+/**
  * Fetch all projects
  */
 export async function fetchProjects(): Promise<Project[]> {
@@ -140,6 +152,7 @@ export async function uploadVersion(projectId: number, file: File): Promise<void
 
   const response = await fetch(`${baseUrl}/api/v1/projects/${projectId}/versions`, {
     method: "POST",
+    headers: authHeaders(),
     body: formData,
   });
 
@@ -170,6 +183,7 @@ export async function runEvaluation(
 
   const response = await fetch(`${baseUrl}/api/v1/projects/${projectId}/versions/${versionId}/evaluate`, {
     method: "POST",
+    headers: authHeaders(),
     body: formData,
   });
 
@@ -189,14 +203,9 @@ export async function runLlmDetection(
   projectId: number,
   versionId: number
 ): Promise<string> {
-  const headers: Record<string, string> = {};
-  const token = localStorage.getItem("ataskaitos_auth_token");
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
   const response = await fetch(
     `${baseUrl}/api/v1/projects/${projectId}/versions/${versionId}/llm-detect`,
-    { method: "POST", headers }
+    { method: "POST", headers: authHeaders() }
   );
   if (!response.ok) {
     const text = await response.text();
