@@ -22,7 +22,7 @@ def convert_docx(input_path: str, output_path: str | None = None) -> None:
         print(f"Error: File not found: {input_file}")
         sys.exit(1)
 
-    if not input_file.suffix.lower() == ".docx":
+    if input_file.suffix.lower() != ".docx":
         print(f"Warning: File doesn't have .docx extension: {input_file}")
 
     # Determine output path

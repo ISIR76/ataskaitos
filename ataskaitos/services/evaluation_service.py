@@ -1,7 +1,7 @@
 """Evaluation orchestration service."""
 
 import logging
-from typing import Any, Dict, List, Literal, Optional
+from typing import Any, Literal
 
 import logfire
 from pydantic_evals import Dataset
@@ -32,11 +32,11 @@ class EvaluationService:
         content: str,
         document_type: Literal["report", "article"],
         evaluation_type: Literal["agent", "scoring"] = "scoring",
-        evaluator_names: Optional[List[str]] = None,
-        agent_names: Optional[List[str]] = None,
-        metadata: Optional[Dict[str, Any]] = None,
+        evaluator_names: list[str] | None = None,
+        agent_names: list[str] | None = None,
+        metadata: dict[str, Any] | None = None,
         filename: str = "document",
-        session: Optional[AsyncSession] = None,
+        session: AsyncSession | None = None,
     ) -> EvaluationResult:
         """Evaluate document with specified method.
 
@@ -67,8 +67,8 @@ class EvaluationService:
         self,
         content: str,
         document_type: Literal["report", "article"],
-        agent_names: Optional[List[str]],
-        metadata: Dict[str, Any],
+        agent_names: list[str] | None,
+        metadata: dict[str, Any],
     ) -> EvaluationResult:
         """Evaluate using PydanticAI agent(s).
 
@@ -152,10 +152,10 @@ Provide a structured evaluation covering:
         self,
         content: str,
         document_type: Literal["report", "article"],
-        evaluator_names: Optional[List[str]],
-        metadata: Dict[str, Any],
+        evaluator_names: list[str] | None,
+        metadata: dict[str, Any],
         filename: str,
-        session: Optional[AsyncSession] = None,
+        session: AsyncSession | None = None,
     ) -> EvaluationResult:
         """Evaluate using LLM judge scoring.
 
@@ -241,7 +241,7 @@ Provide a structured evaluation covering:
             metadata=metadata,
         )
 
-    def _convert_eval_results(self, result: EvaluationReport) -> Dict[str, Any]:
+    def _convert_eval_results(self, result: EvaluationReport) -> dict[str, Any]:
         """Convert EvaluationReport to JSON-serializable dictionary.
 
         Args:

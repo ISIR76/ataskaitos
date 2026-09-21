@@ -1,13 +1,12 @@
 import csv
 import json
 from pathlib import Path
-from typing import Optional
 
 
 def combine_evaluation_results(
     input_file: str,
     output_file: str,
-    status_keywords: Optional[dict[str, str]] = None,
+    status_keywords: dict[str, str] | None = None,
     verbose: bool = True,
 ) -> dict:
     """

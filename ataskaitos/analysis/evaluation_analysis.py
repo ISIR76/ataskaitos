@@ -127,7 +127,7 @@ def analyze_model_performance(results: EvaluationResults, model_name: str) -> Mo
 def compare_models(results: EvaluationResults) -> list[ModelPerformance]:
     """Compare performance across all models."""
     performances = []
-    for model in results.by_model().keys():
+    for model in results.by_model():
         perf = analyze_model_performance(results, model)
         performances.append(perf)
 

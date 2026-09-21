@@ -1,5 +1,4 @@
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent, ModelSettings, NativeOutput
@@ -186,7 +185,7 @@ class MTEPVertinimas(BaseModel):
         "This is your reasoning before assigning the final score. 4-6 sentences."
     )
 
-    score: Optional[Decimal] = Field(
+    score: Decimal | None = Field(
         ge=0,
         le=1,
         decimal_places=2,
@@ -197,7 +196,7 @@ class MTEPVertinimas(BaseModel):
     )
 
 
-def create_mtep_agent(model: Optional[object] = None) -> Agent[None, MTEPVertinimas]:
+def create_mtep_agent(model: object | None = None) -> Agent[None, MTEPVertinimas]:
     """Create MTEP (Lithuanian R&D standard) evaluation agent.
 
     Args:

@@ -3,7 +3,7 @@
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 from pydantic_evals.evaluators import LLMJudge
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def _build_judge(name: str, rubric: str, has_assertion: bool) -> LLMJudge:
     """Construct an ``LLMJudge`` from a name/rubric/assertion triple."""
-    judge_params: Dict[str, Any] = {
+    judge_params: dict[str, Any] = {
         "rubric": rubric,
         "include_input": False,
         "score": {"evaluation_name": name, "include_reason": True},
@@ -33,8 +33,8 @@ def load_evaluators_from_json(
     json_path: str | Path,
     document_type: str,
     registry: EvaluatorRegistry,
-    filter_names: List[str] | None = None,
-) -> List[LLMJudge]:
+    filter_names: list[str] | None = None,
+) -> list[LLMJudge]:
     """Load evaluators from JSON configuration file.
 
     Args:
@@ -113,10 +113,10 @@ def load_evaluators_from_json(
 
 
 def load_evaluators_from_dict(
-    evaluators_dict: List[Dict[str, Any]],
+    evaluators_dict: list[dict[str, Any]],
     document_type: str,
     registry: EvaluatorRegistry,
-) -> List[LLMJudge]:
+) -> list[LLMJudge]:
     """Load evaluators from Python dictionary (programmatic configuration).
 
     Args:
@@ -184,14 +184,14 @@ def initialize_default_evaluators(registry: EvaluatorRegistry) -> None:
         load_evaluators_from_json(json_path=reports_json, document_type="report", registry=registry)
 
 
-def _read_default_configs() -> List[Dict[str, Any]]:
+def _read_default_configs() -> list[dict[str, Any]]:
     """Return all evaluator configurations bundled with the package, tagged with type."""
     evaluators_dir = Path(__file__).parent
     sources = [
         ("article", evaluators_dir / "articles" / "smsm_judges.json"),
         ("report", evaluators_dir / "reports" / "frascati_judges.json"),
     ]
-    out: List[Dict[str, Any]] = []
+    out: list[dict[str, Any]] = []
     for document_type, path in sources:
         if not path.exists():
             continue
@@ -227,8 +227,8 @@ async def seed_default_evaluators(session: AsyncSession) -> int:
 async def build_judges_from_db(
     session: AsyncSession,
     document_type: str,
-    names: List[str] | None = None,
-) -> List[LLMJudge]:
+    names: list[str] | None = None,
+) -> list[LLMJudge]:
     """Build ``LLMJudge`` instances for active evaluators of a given type.
 
     Reads from the ``evaluators`` table at request time, so edits in the

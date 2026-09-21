@@ -8,11 +8,9 @@ from typing import Literal
 
 import logfire
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
-
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ataskaitos.api.dependencies import current_active_user, get_document_service, get_evaluation_service
-from ataskaitos.models.database import User
 from ataskaitos.api.models import (
     CreateProjectRequest,
     DocumentVersionDetailResponse,
@@ -27,6 +25,7 @@ from ataskaitos.api.models import (
     UnifiedEvaluationResponse,
 )
 from ataskaitos.database import get_session
+from ataskaitos.models.database import User
 from ataskaitos.repositories.document_repository import DocumentVersionRepository
 from ataskaitos.repositories.evaluation_repository import EvaluationRepository
 from ataskaitos.repositories.project_repository import ProjectRepository
@@ -304,7 +303,7 @@ async def upload_version(
     try:
         markdown_content = await doc_service.convert_to_markdown(file)
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Failed to convert document: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"Failed to convert document: {e!s}")
 
     # Get next version number
     version_number = await doc_repo.get_next_version_number(project_id)
@@ -583,7 +582,7 @@ async def evaluate_version(
             session=session,
         )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Evaluation failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Evaluation failed: {e!s}")
 
     # Store evaluation in database
     duration = time.time() - start_time
@@ -692,7 +691,7 @@ async def run_llm_detection(
             agent_names=["llm_detector_agent"],
         )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"LLM detection failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"LLM detection failed: {e!s}")
 
     duration = time.time() - start_time
 

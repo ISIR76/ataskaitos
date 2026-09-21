@@ -4,15 +4,23 @@ import os
 
 from ataskaitos.auth import current_active_user
 from ataskaitos.evaluators import EvaluatorRegistry, get_registry
-from ataskaitos.models.database import User
 from ataskaitos.services import DocumentService, EvaluationService
 
 # Environment and security configuration
 ENV = os.getenv("ENV", "development")
 
-# Use FastAPI-Users authentication
-# current_active_user is a dependency that returns the authenticated User object
-# It will raise 401 Unauthorized if no valid JWT token is provided
+# Use FastAPI-Users authentication.
+# current_active_user is a dependency that returns the authenticated User object;
+# it raises 401 Unauthorized if no valid JWT token is provided. It is imported
+# here purely to be re-exported, so the route modules have a single place to get
+# their dependencies from. __all__ keeps linters from treating it as unused.
+__all__ = [
+    "ENV",
+    "current_active_user",
+    "get_document_service",
+    "get_evaluation_service",
+    "get_evaluator_registry",
+]
 
 
 def get_evaluator_registry() -> EvaluatorRegistry:

@@ -15,4 +15,3 @@ class TestAgent:
         # TODO: Test AgentFactory.create_simple_report_agent
         # TODO: Test agent evaluation with mock responses
         # TODO: Test SimpleReportEvaluation schema validation
-        pass

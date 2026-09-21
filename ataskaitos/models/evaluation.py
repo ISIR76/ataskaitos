@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
-from typing import Any, Dict, Literal
+from typing import Any, Literal
 from uuid import uuid4
 
 
@@ -23,11 +23,11 @@ class EvaluationResult:
     evaluation_type: Literal["agent", "scoring"] = "scoring"
     status: str = "success"
     markdown_content: str = ""
-    results: Dict[str, Any] = field(default_factory=dict)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    results: dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
     created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
         return {
             "evaluation_id": self.evaluation_id,

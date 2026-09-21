@@ -1,6 +1,6 @@
 """Base evaluator registry and management."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pydantic_evals.evaluators import LLMJudge
 
@@ -9,11 +9,11 @@ class EvaluatorRegistry:
     """Central registry for all evaluators."""
 
     def __init__(self):
-        self._evaluators: Dict[str, Dict[str, LLMJudge]] = {
+        self._evaluators: dict[str, dict[str, LLMJudge]] = {
             "report": {},
             "article": {},
         }
-        self._metadata: Dict[str, Dict[str, Dict[str, Any]]] = {
+        self._metadata: dict[str, dict[str, dict[str, Any]]] = {
             "report": {},
             "article": {},
         }
@@ -23,7 +23,7 @@ class EvaluatorRegistry:
         document_type: str,
         name: str,
         evaluator: LLMJudge,
-        metadata: Optional[Dict[str, Any]] = None,
+        metadata: dict[str, Any] | None = None,
     ):
         """Register an evaluator for a document type."""
         if document_type not in self._evaluators:
@@ -32,11 +32,11 @@ class EvaluatorRegistry:
         self._evaluators[document_type][name] = evaluator
         self._metadata[document_type][name] = metadata or {}
 
-    def get_evaluator(self, document_type: str, name: str) -> Optional[LLMJudge]:
+    def get_evaluator(self, document_type: str, name: str) -> LLMJudge | None:
         """Get a specific evaluator by name."""
         return self._evaluators.get(document_type, {}).get(name)
 
-    def get_evaluators(self, document_type: str, names: Optional[List[str]] = None) -> List[LLMJudge]:
+    def get_evaluators(self, document_type: str, names: list[str] | None = None) -> list[LLMJudge]:
         """Get evaluators for document type.
 
         Args:
@@ -54,7 +54,7 @@ class EvaluatorRegistry:
 
         return [all_evaluators[name] for name in names if name in all_evaluators]
 
-    def list_available(self, document_type: Optional[str] = None) -> Dict[str, List[Dict[str, Any]]]:
+    def list_available(self, document_type: str | None = None) -> dict[str, list[dict[str, Any]]]:
         """List all available evaluators with metadata.
 
         Args:
@@ -82,7 +82,7 @@ class EvaluatorRegistry:
 
         return result
 
-    def count(self, document_type: Optional[str] = None) -> Dict[str, int]:
+    def count(self, document_type: str | None = None) -> dict[str, int]:
         """Count evaluators by document type."""
         if document_type:
             return {document_type: len(self._evaluators.get(document_type, {}))}

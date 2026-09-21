@@ -17,7 +17,7 @@ def analyze_features(csv_file: str):
 
     # Prepare features
     feature_cols = [c for c in df.columns if c not in ["file", "model", "is_rd", "overall_score"]]
-    X = df[feature_cols]  # noqa: N806
+    X = df[feature_cols]
     y = df["is_rd"]
     print(f"\nFeatures: {len(feature_cols)} | Target: {y.value_counts().to_dict()}\n")
 

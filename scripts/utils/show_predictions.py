@@ -32,7 +32,7 @@ for result in data["results"]:
     rows.append(row)
 
 # Get all criteria (excluding file)
-criteria = [k for k in rows[0].keys() if k != "file"]
+criteria = [k for k in rows[0] if k != "file"]
 
 # Print header
 print(f"{'File':<15}", end="")

@@ -11,10 +11,10 @@ from .loader import (
 
 __all__ = [
     "EvaluatorRegistry",
-    "get_registry",
-    "load_evaluators_from_json",
-    "load_evaluators_from_dict",
-    "initialize_default_evaluators",
-    "seed_default_evaluators",
     "build_judges_from_db",
+    "get_registry",
+    "initialize_default_evaluators",
+    "load_evaluators_from_dict",
+    "load_evaluators_from_json",
+    "seed_default_evaluators",
 ]

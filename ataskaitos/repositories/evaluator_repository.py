@@ -1,7 +1,6 @@
 """Evaluator repository — DB-backed CRUD for editable evaluator definitions."""
 
 from datetime import datetime
-from typing import Optional
 
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert as pg_insert
@@ -34,12 +33,12 @@ class EvaluatorRepository:
         result = await self.session.execute(query)
         return list(result.scalars().all())
 
-    async def get_by_id(self, evaluator_id: int) -> Optional[Evaluator]:
+    async def get_by_id(self, evaluator_id: int) -> Evaluator | None:
         query = select(Evaluator).where(Evaluator.id == evaluator_id)
         result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    async def get_by_name(self, document_type: str, name: str) -> Optional[Evaluator]:
+    async def get_by_name(self, document_type: str, name: str) -> Evaluator | None:
         query = select(Evaluator).where(
             Evaluator.document_type == document_type, Evaluator.name == name
         )
@@ -73,10 +72,10 @@ class EvaluatorRepository:
         self,
         evaluator_id: int,
         *,
-        rubric: Optional[str] = None,
-        has_assertion: Optional[bool] = None,
-        is_active: Optional[bool] = None,
-        name: Optional[str] = None,
+        rubric: str | None = None,
+        has_assertion: bool | None = None,
+        is_active: bool | None = None,
+        name: str | None = None,
     ) -> Evaluator:
         evaluator = await self.get_by_id(evaluator_id)
         if evaluator is None:

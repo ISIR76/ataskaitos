@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field, computed_field, field_validator
 
@@ -55,7 +55,7 @@ class NoveltyAssessment(BaseModel):
     level: NoveltyLevel = Field(description="Novelty classification")
     beyond_state_of_art: bool = Field(description="Exceeds current knowledge")
     evidence: str = Field(description="Specific evidence of novelty")
-    knowledge_gap: Optional[str] = Field(None, description="What knowledge gap is addressed")
+    knowledge_gap: str | None = Field(None, description="What knowledge gap is addressed")
 
 
 class CreativityAssessment(BaseModel):
@@ -65,7 +65,7 @@ class CreativityAssessment(BaseModel):
     non_obvious_approach: bool = Field(description="Requires creative problem-solving")
     new_methods_developed: bool = Field(description="Novel methodology created")
     evidence: str = Field(description="Specific creative elements")
-    innovation_type: Optional[str] = Field(None, description="Type of creative innovation")
+    innovation_type: str | None = Field(None, description="Type of creative innovation")
 
 
 class UncertaintyAssessment(BaseModel):

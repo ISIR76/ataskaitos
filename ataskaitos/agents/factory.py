@@ -1,7 +1,6 @@
 """Factory for creating evaluation agents."""
 
 from pathlib import Path
-from typing import Optional
 
 from pydantic_ai import Agent, ModelSettings
 from pydantic_ai.models import Model
@@ -37,7 +36,7 @@ class AgentFactory:
         return prompt_path.read_text().strip()
 
     @classmethod
-    def create_simple_article_agent(cls, model: Optional[Model] = None) -> Agent[None, SimpleArticleEvaluation]:
+    def create_simple_article_agent(cls, model: Model | None = None) -> Agent[None, SimpleArticleEvaluation]:
         """Create simple article evaluation agent - quick assessment.
 
         Args:
@@ -54,7 +53,7 @@ class AgentFactory:
         )
 
     @classmethod
-    def create_llm_detector_agent(cls, model: Optional[Model] = None) -> Agent[None, LLMDetectionResult]:
+    def create_llm_detector_agent(cls, model: Model | None = None) -> Agent[None, LLMDetectionResult]:
         """Create an article LLM-detection agent.
 
         Returns a structured estimate of whether the article was AI-generated.
@@ -70,7 +69,7 @@ class AgentFactory:
         )
 
     @classmethod
-    def create_detailed_article_agent(cls, model: Optional[Model] = None) -> Agent[None, DetailedArticleEvaluation]:
+    def create_detailed_article_agent(cls, model: Model | None = None) -> Agent[None, DetailedArticleEvaluation]:
         """Create detailed article evaluation agent - comprehensive analysis.
 
         Args:
@@ -87,7 +86,7 @@ class AgentFactory:
         )
 
     @classmethod
-    def create_simple_report_agent(cls, model: Optional[Model] = None) -> Agent[None, SimpleReportEvaluation]:
+    def create_simple_report_agent(cls, model: Model | None = None) -> Agent[None, SimpleReportEvaluation]:
         """Create simple R&D report evaluation agent.
 
         Args:
@@ -105,7 +104,7 @@ class AgentFactory:
 
     @classmethod
     def create_frascati_classifier_agent(
-        cls, model: Optional[Model] = None
+        cls, model: Model | None = None
     ) -> Agent[None, FrascatiClassifierEvaluation]:
         """Create Frascati classifier agent - focused on R&D vs non-R&D discrimination.
 
@@ -123,7 +122,7 @@ class AgentFactory:
         )
 
     @classmethod
-    def create_detailed_report_agent(cls, model: Optional[Model] = None) -> Agent[None, DetailedReportEvaluation]:
+    def create_detailed_report_agent(cls, model: Model | None = None) -> Agent[None, DetailedReportEvaluation]:
         """Create detailed R&D report evaluation agent - comprehensive Frascati analysis.
 
         Args:

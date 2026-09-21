@@ -88,7 +88,7 @@ def print_summary(records: list[dict]):
     if records:
         print(f"\nFeatures: {len(records[0]) - 3} (excluding file, model, is_rd)")
         print("\nFeature names:")
-        features = [k for k in records[0].keys() if k not in ["file", "model", "is_rd"]]
+        features = [k for k in records[0] if k not in ["file", "model", "is_rd"]]
         for i, feat in enumerate(features, 1):
             print(f"  {i:2d}. {feat}")
 

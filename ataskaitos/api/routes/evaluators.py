@@ -2,7 +2,7 @@
 
 import json
 import logging
-from typing import Any, Literal, Optional
+from typing import Any, Literal
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
@@ -39,10 +39,10 @@ class EvaluatorCreate(BaseModel):
 
 
 class EvaluatorUpdate(BaseModel):
-    name: Optional[str] = Field(default=None, min_length=1, max_length=200)
-    rubric: Optional[str] = Field(default=None, min_length=1)
-    has_assertion: Optional[bool] = None
-    is_active: Optional[bool] = None
+    name: str | None = Field(default=None, min_length=1, max_length=200)
+    rubric: str | None = Field(default=None, min_length=1)
+    has_assertion: bool | None = None
+    is_active: bool | None = None
 
 
 class EvaluatorActiveToggle(BaseModel):
@@ -68,7 +68,7 @@ def _to_record(evaluator: Evaluator) -> EvaluatorRecord:
 
 @router.get("", response_model=list[EvaluatorRecord])
 async def list_evaluators(
-    document_type: Optional[Literal["article", "report"]] = None,
+    document_type: Literal["article", "report"] | None = None,
     only_active: bool = False,
     _: User = Depends(current_active_user),
     session: AsyncSession = Depends(get_session),

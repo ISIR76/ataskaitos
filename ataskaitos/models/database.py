@@ -1,21 +1,16 @@
 """Database models using SQLAlchemy 2.0+ with MappedAsDataclass."""
 
 from datetime import datetime
-from typing import TYPE_CHECKING
 
 from fastapi_users.db import SQLAlchemyBaseUserTable
 from sqlalchemy import Boolean, ForeignKey, Index, Integer, String, Text, UniqueConstraint
-from sqlalchemy.orm import DeclarativeBase, Mapped, MappedAsDataclass, mapped_column, relationship
-
-if TYPE_CHECKING:
-    pass
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 # Use single DeclarativeBase for all models (FastAPI-Users requires non-dataclass base)
 class Base(DeclarativeBase):
     """Base class for all database models."""
 
-    pass
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):

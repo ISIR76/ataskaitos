@@ -58,7 +58,7 @@ class DocumentService:
             # Re-raise HTTP exceptions
             raise
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {e!s}")
 
     def convert_file_to_markdown(self, file_path: str | Path) -> str:
         """Convert a file path to markdown (sync version for CLI/scripts).
@@ -87,4 +87,4 @@ class DocumentService:
             result = self.converter.convert(str(file_path))
             return result.text_content
         except Exception as e:
-            raise ValueError(f"Error converting file to markdown: {str(e)}")
+            raise ValueError(f"Error converting file to markdown: {e!s}")

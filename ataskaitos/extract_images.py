@@ -3,8 +3,8 @@
 
 import base64
 import re
+from collections import Counter
 from pathlib import Path
-from typing import Counter
 
 
 def extract_images(markdown_file: Path, output_dir: Path) -> int:
@@ -27,7 +27,7 @@ def extract_images(markdown_file: Path, output_dir: Path) -> int:
     image_counter = Counter[str]()
 
     for match in re.finditer(pattern, content):
-        alt_text, image_type, base64_data = match.groups()
+        _alt_text, image_type, base64_data = match.groups()
 
         # Generate filename
         image_counter[image_type] += 1

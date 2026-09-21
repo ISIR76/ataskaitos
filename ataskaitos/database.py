@@ -1,7 +1,7 @@
 """Database connection and session management."""
 
 import logging
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
@@ -50,7 +50,7 @@ async def _apply_additive_migrations() -> None:
             async with async_engine.begin() as conn:
                 await conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {column} {ddl}"))
             logger.info("Added column %s.%s", table, column)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             msg = str(exc).lower()
             if "duplicate column" in msg or "already exists" in msg:
                 continue
@@ -65,6 +65,6 @@ async def init_db():
     print("✓ Async database initialized")
 
 
-async def get_session() -> AsyncGenerator[AsyncSession, None]:
+async def get_session() -> AsyncGenerator[AsyncSession]:
     async with AsyncSessionLocal() as session:
         yield session

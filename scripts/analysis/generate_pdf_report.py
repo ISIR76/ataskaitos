@@ -110,7 +110,7 @@ def create_score_color(score: float) -> str:
 def create_pdf_report(json_path: Path, output_path: Path | None = None):
     """Generate PDF report from evaluation JSON."""
     # Register fonts
-    font_regular, font_bold, font_italic = register_fonts()
+    font_regular, font_bold, _font_italic = register_fonts()
 
     # Load evaluation data
     data = load_evaluation(json_path)
@@ -214,7 +214,7 @@ def create_pdf_report(json_path: Path, output_path: Path | None = None):
 
     # Metadata - show model prominently
     # Extract unique models from results
-    models = list(set(result.get("model", "N/A") for result in results))
+    models = list({result.get("model", "N/A") for result in results})
     model_display = models[0] if len(models) == 1 else ", ".join(models)
 
     # Model name in a highlighted box

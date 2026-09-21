@@ -1,6 +1,6 @@
 """Agent registry for managing multiple agents per document type."""
 
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydantic_ai import Agent
 from pydantic_ai.output import NativeOutput
@@ -15,11 +15,11 @@ class AgentRegistry:
     """Registry for managing multiple agents per document type."""
 
     def __init__(self):
-        self._agents: Dict[str, Dict[str, Agent]] = {
+        self._agents: dict[str, dict[str, Agent]] = {
             "article": {},
             "report": {},
         }
-        self._metadata: Dict[str, Dict[str, Dict[str, Any]]] = {
+        self._metadata: dict[str, dict[str, dict[str, Any]]] = {
             "article": {},
             "report": {},
         }
@@ -29,7 +29,7 @@ class AgentRegistry:
         document_type: str,
         name: str,
         agent: Agent,
-        metadata: Optional[Dict[str, Any]] = None,
+        metadata: dict[str, Any] | None = None,
     ):
         """Register an agent for a document type."""
         if document_type not in self._agents:
@@ -38,11 +38,11 @@ class AgentRegistry:
         self._agents[document_type][name] = agent
         self._metadata[document_type][name] = metadata or {}
 
-    def get_agent(self, document_type: str, name: str) -> Optional[Agent]:
+    def get_agent(self, document_type: str, name: str) -> Agent | None:
         """Get a specific agent by name."""
         return self._agents.get(document_type, {}).get(name)
 
-    def get_agents(self, document_type: str, names: Optional[list[str]] = None) -> Dict[str, Agent]:
+    def get_agents(self, document_type: str, names: list[str] | None = None) -> dict[str, Agent]:
         """Get agents for document type.
 
         Args:
@@ -59,7 +59,7 @@ class AgentRegistry:
 
         return {name: all_agents[name] for name in names if name in all_agents}
 
-    def list_available(self, document_type: Optional[str] = None) -> Dict[str, list[Dict[str, Any]]]:
+    def list_available(self, document_type: str | None = None) -> dict[str, list[dict[str, Any]]]:
         """List all available agents with metadata."""
         result = {}
 

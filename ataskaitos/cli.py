@@ -1,7 +1,7 @@
 """CLI for Ataskaitos - Scientific Document Evaluation Platform."""
 
 from pathlib import Path
-from typing import Literal, Optional
+from typing import Literal
 
 import click
 import markitdown
@@ -14,7 +14,6 @@ from ataskaitos.settings import settings
 @click.version_option()
 def cli():
     """AI-powered platform for evaluating scientific documents (R&D reports and articles)."""
-    pass
 
 
 # ============================================================================
@@ -25,7 +24,6 @@ def cli():
 @cli.group()
 def ataskaitos():
     """Evaluate R&D reports against Frascati Manual standards."""
-    pass
 
 
 @ataskaitos.command()
@@ -34,7 +32,7 @@ def ataskaitos():
 @click.option("--agents", "-a", multiple=True, help="Specific agents to run (default: all)")
 @click.option("--concurrency", "-c", type=int, default=settings.batch_evaluation_concurrency, help="Number of concurrent evaluations")
 @click.option("--output", "-o", type=click.Path(path_type=Path), help="Output file path")
-def agent(file: Optional[Path], batch: Optional[str], agents: tuple, concurrency: int, output: Optional[Path]):
+def agent(file: Path | None, batch: str | None, agents: tuple, concurrency: int, output: Path | None):
     """Run agent-based evaluation for R&D reports.
 
     Examples:
@@ -59,7 +57,7 @@ def agent(file: Optional[Path], batch: Optional[str], agents: tuple, concurrency
 @click.option("--batch", type=str, help="Glob pattern for batch evaluation")
 @click.option("--evaluators", "-e", multiple=True, help="Specific evaluators to run (default: all)")
 @click.option("--output", "-o", type=click.Path(path_type=Path), help="Output file path")
-def evals(file: Optional[Path], batch: Optional[str], evaluators: tuple, output: Optional[Path]):
+def evals(file: Path | None, batch: str | None, evaluators: tuple, output: Path | None):
     """Run evals-based (scoring) evaluation for R&D reports.
 
     Examples:
@@ -82,7 +80,6 @@ def evals(file: Optional[Path], batch: Optional[str], evaluators: tuple, output:
 @cli.group()
 def straipsniai():
     """Evaluate scientific articles against SMSM standards."""
-    pass
 
 
 @straipsniai.command()
@@ -91,7 +88,7 @@ def straipsniai():
 @click.option("--agents", "-a", multiple=True, help="Specific agents to run (default: all)")
 @click.option("--concurrency", "-c", type=int, default=settings.batch_evaluation_concurrency, help="Number of concurrent evaluations")
 @click.option("--output", "-o", type=click.Path(path_type=Path), help="Output file path")
-def agent(file: Optional[Path], batch: Optional[str], agents: tuple, concurrency: int, output: Optional[Path]):
+def agent(file: Path | None, batch: str | None, agents: tuple, concurrency: int, output: Path | None):
     """Run agent-based evaluation for scientific articles.
 
     Examples:
@@ -116,7 +113,7 @@ def agent(file: Optional[Path], batch: Optional[str], agents: tuple, concurrency
 @click.option("--batch", type=str, help="Glob pattern for batch evaluation")
 @click.option("--evaluators", "-e", multiple=True, help="Specific evaluators to run (default: all)")
 @click.option("--output", "-o", type=click.Path(path_type=Path), help="Output file path")
-def evals(file: Optional[Path], batch: Optional[str], evaluators: tuple, output: Optional[Path]):
+def evals(file: Path | None, batch: str | None, evaluators: tuple, output: Path | None):
     """Run evals-based (scoring) evaluation for scientific articles.
 
     Examples:
@@ -274,7 +271,7 @@ def split(source, pages, output):
 # ============================================================================
 
 
-def _run_single_agent_evaluation(file: Path, doc_type: Literal["report", "article"], agents: tuple, output: Optional[Path]):
+def _run_single_agent_evaluation(file: Path, doc_type: Literal["report", "article"], agents: tuple, output: Path | None):
     """Run agent-based evaluation on a single file."""
     import asyncio
     import json
@@ -319,7 +316,7 @@ def _run_single_agent_evaluation(file: Path, doc_type: Literal["report", "articl
         raise click.Abort()
 
 
-def _run_batch_agent_evaluation(pattern: str, doc_type: str, agents: tuple, concurrency: int, output: Optional[Path]):
+def _run_batch_agent_evaluation(pattern: str, doc_type: str, agents: tuple, concurrency: int, output: Path | None):
     """Run agent-based evaluation on multiple files."""
     click.echo(f"Batch evaluation with pattern: {pattern}")
     click.echo(f"Document type: {doc_type}, Concurrency: {concurrency}")
@@ -332,7 +329,7 @@ def _run_batch_agent_evaluation(pattern: str, doc_type: str, agents: tuple, conc
     click.echo(f'  Run: uv run python scripts/evaluation/run_agent.py "{pattern}" {concurrency}')
 
 
-def _run_single_evals_evaluation(file: Path, doc_type: Literal["report", "article"], evaluators: tuple, output: Optional[Path]):
+def _run_single_evals_evaluation(file: Path, doc_type: Literal["report", "article"], evaluators: tuple, output: Path | None):
     """Run evals-based evaluation on a single file."""
     import asyncio
     import json
@@ -377,7 +374,7 @@ def _run_single_evals_evaluation(file: Path, doc_type: Literal["report", "articl
         raise click.Abort()
 
 
-def _run_batch_evals_evaluation(pattern: str, doc_type: str, evaluators: tuple, output: Optional[Path]):
+def _run_batch_evals_evaluation(pattern: str, doc_type: str, evaluators: tuple, output: Path | None):
     """Run evals-based evaluation on multiple files."""
     click.echo(f"Batch evals evaluation with pattern: {pattern}")
     click.echo(f"Document type: {doc_type}")

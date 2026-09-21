@@ -1,7 +1,6 @@
 """Google Cloud Storage service for managing uploaded documents."""
 
 from pathlib import Path
-from typing import Optional
 
 from fastapi import UploadFile
 
@@ -21,9 +20,9 @@ class GCSStorageService:
 
     def __init__(
         self,
-        bucket_name: Optional[str] = None,
-        project_id: Optional[str] = None,
-        credentials_path: Optional[str] = None,
+        bucket_name: str | None = None,
+        project_id: str | None = None,
+        credentials_path: str | None = None,
         base_path: str = "ataskaitos",
     ):
         """Initialize GCS storage service.
@@ -240,7 +239,7 @@ class GCSStorageService:
 
 
 # Global GCS storage service instance (initialized only when needed)
-_gcs_storage_service: Optional[GCSStorageService] = None
+_gcs_storage_service: GCSStorageService | None = None
 
 
 def get_gcs_storage_service() -> GCSStorageService:

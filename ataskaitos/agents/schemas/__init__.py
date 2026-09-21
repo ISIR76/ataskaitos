@@ -15,15 +15,13 @@ from .report import (
 )
 
 __all__ = [
-    # Article schemas
-    "SimpleArticleEvaluation",
     "DetailedArticleEvaluation",
-    "LLMDetectionResult",
-    # Report schemas
-    "SimpleReportEvaluation",
     "DetailedReportEvaluation",
     "FrascatiClassifierEvaluation",
+    "LLMDetectionResult",
     "ReportBreakdown",
+    "SimpleArticleEvaluation",
+    "SimpleReportEvaluation",
     "SystematicSubScores",
     "TransferabilitySubScores",
 ]

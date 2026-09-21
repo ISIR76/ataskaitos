@@ -16,4 +16,3 @@ class TestConvertResults:
         # TODO: Test averages conversion
         # TODO: Test cases conversion
         # TODO: Test failures conversion
-        pass

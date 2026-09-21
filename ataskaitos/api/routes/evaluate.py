@@ -1,6 +1,6 @@
 """Unified evaluation endpoints for all document types."""
 
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
@@ -27,11 +27,11 @@ async def evaluate_document(
         Literal["agent", "scoring"],
         Form(description="Evaluation method: 'agent' or 'scoring' (default)"),
     ] = "scoring",
-    evaluators: Optional[str] = Form(
+    evaluators: str | None = Form(
         None,
         description="Comma-separated list of specific evaluators to run (for scoring mode)",
     ),
-    agents: Optional[str] = Form(
+    agents: str | None = Form(
         None,
         description="Comma-separated list of specific agents to run (for agent mode)",
     ),
@@ -125,7 +125,7 @@ async def evaluate_report(
         Form(description="Evaluation method: 'agent' or 'scoring'"),
     ] = "scoring",
     evaluators: Annotated[
-        Optional[str],
+        str | None,
         Form(description="Comma-separated list of evaluators (optional)"),
     ] = None,
     user: User = Depends(current_active_user),
@@ -157,7 +157,7 @@ async def evaluate_article(
         Form(description="Evaluation method: 'agent' or 'scoring'"),
     ] = "scoring",
     evaluators: Annotated[
-        Optional[str],
+        str | None,
         Form(description="Comma-separated list of evaluators (optional)"),
     ] = None,
     user: User = Depends(current_active_user),

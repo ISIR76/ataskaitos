@@ -24,29 +24,24 @@ from .schemas import (
     DetailedReportEvaluation,
     FrascatiClassifierEvaluation,
     ReportBreakdown,
-    # Article schemas
     SimpleArticleEvaluation,
-    # Report schemas
     SimpleReportEvaluation,
     SystematicSubScores,
     TransferabilitySubScores,
 )
 
 __all__ = [
-    # Article schemas
-    "SimpleArticleEvaluation",
+    "AgentFactory",
+    "AgentRegistry",
     "DetailedArticleEvaluation",
-    # Report schemas
-    "SimpleReportEvaluation",
     "DetailedReportEvaluation",
     "FrascatiClassifierEvaluation",
     "ReportBreakdown",
+    "SimpleArticleEvaluation",
+    "SimpleReportEvaluation",
     "SystematicSubScores",
     "TransferabilitySubScores",
-    # Core functionality
-    "AgentFactory",
-    "AgentRegistry",
+    "create_mtep_agent",
     "get_agent_registry",
     "get_default_agent",
-    "create_mtep_agent",
 ]

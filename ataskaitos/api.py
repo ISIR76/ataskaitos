@@ -8,7 +8,7 @@ Two evaluation approaches:
 import os
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import Annotated, Any, Dict, Optional
+from typing import Annotated, Any
 
 from fastapi import Depends, FastAPI, File, HTTPException, Query, Security, UploadFile
 from fastapi.security import APIKeyHeader
@@ -28,7 +28,7 @@ REQUIRE_AUTH = ENV != "development"
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 
-async def verify_api_key(api_key: Optional[str] = Security(api_key_header)):
+async def verify_api_key(api_key: str | None = Security(api_key_header)):
     """
     Verify API key for protected endpoints.
 
@@ -85,7 +85,7 @@ class AgentEvaluationResponse(BaseEvaluationResponse):
 class ScoringEvaluationResponse(BaseEvaluationResponse):
     """Response from scoring-based evaluation - standardized scores."""
 
-    evaluation_results: Dict[str, Any] = Field(
+    evaluation_results: dict[str, Any] = Field(
         description="Standardized evaluation scores and reasons from multiple evaluators"
     )
     evaluation_type: str = Field(default="scoring")
@@ -95,10 +95,10 @@ class EvaluatorsListResponse(BaseModel):
     """Response from /evaluators/list endpoint."""
 
     total_evaluators: int = Field(description="Total number of evaluators")
-    evaluators: list[Dict[str, Any]] = Field(description="List of evaluator specifications")
+    evaluators: list[dict[str, Any]] = Field(description="List of evaluator specifications")
     framework: str = Field(description="Evaluation framework used")
     source: str = Field(description="Source of evaluators")
-    filter: Optional[Dict[str, str]] = Field(None, description="Applied filters")
+    filter: dict[str, str] | None = Field(None, description="Applied filters")
 
 
 class HealthCheckResponse(BaseModel):
@@ -162,7 +162,7 @@ async def evaluate_with_agent(
         )
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error during agent evaluation: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error during agent evaluation: {e!s}")
 
 
 @app.post("/evaluate/scoring", response_model=ScoringEvaluationResponse)
@@ -223,12 +223,12 @@ async def evaluate_with_scoring(
         return ScoringEvaluationResponse(markdown_content=markdown_content, evaluation_results=results_data)
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error during scoring evaluation: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error during scoring evaluation: {e!s}")
 
 
 @app.get("/evaluators/list", response_model=EvaluatorsListResponse)
 async def list_evaluators(
-    evaluation_name: Optional[str] = Query(None, description="Filter by evaluation_name (unique identifier)"),
+    evaluation_name: str | None = Query(None, description="Filter by evaluation_name (unique identifier)"),
 ):
     """
     List all available evaluators in the scoring system.
@@ -315,7 +315,7 @@ async def _convert_file_to_markdown(file: UploadFile) -> str:
             tmp_path.unlink(missing_ok=True)
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {str(e)}") from e
+        raise HTTPException(status_code=500, detail=f"Error converting file to markdown: {e!s}") from e
 
 
 if __name__ == "__main__":
